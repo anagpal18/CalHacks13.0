@@ -1,0 +1,10 @@
+{
+  "name": "bill-passport",
+  "private": true,
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "nessie:check": "corepack pnpm --filter @bill-passport/api nessie:check",
+    "nessie:seed": "corepack pnpm --filter @bill-passport/api nessie:seed",
+    "typecheck": "corepack pnpm -r typecheck"
+  }
+}
