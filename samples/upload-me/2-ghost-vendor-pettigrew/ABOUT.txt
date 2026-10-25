@@ -1,0 +1,1 @@
+A vendor that is not in the vendor master sends its first bill. Its owner is CRS test persona P14, whose SSN is flagged deceased. Expect: vendor fails, no PO or delivery on file.

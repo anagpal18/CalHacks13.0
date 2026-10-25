@@ -71,7 +71,11 @@ export interface OrchestratorDeps {
 function seatSummary(r: SeatRunResult): string {
   if (r.error) return `${r.seat}: ${r.error}`;
   const stamps = r.stamps.map((s) => `${s.id} ${s.status}`).join(", ") || "no stamps signed";
-  const read = r.extraction ? `; read ${r.extraction.matched}/${r.extraction.total} bill fields correctly` : "";
+  const read = !r.extraction
+    ? ""
+    : r.extraction.total
+      ? `; read ${r.extraction.matched}/${r.extraction.total} bill fields correctly`
+      : "; recorded the bill it read (uploaded bill, so there is no answer key to score it)";
   return `${r.seat} finished after ${r.toolCalls} tool calls: ${stamps}${read}`;
 }
 

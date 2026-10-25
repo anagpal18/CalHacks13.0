@@ -6,6 +6,7 @@ import type { createExtractions } from "../gateway/extractions.ts";
 import type { createPassports } from "../gateway/passports.ts";
 import { SEATS, type Seat } from "../gateway/seats.ts";
 import type { createTickets } from "../gateway/tickets.ts";
+import type { TunnelState } from "../gateway/tunnel.ts";
 
 export interface SeatRunResult {
   seat: Seat;
@@ -14,7 +15,7 @@ export interface SeatRunResult {
   runStatus: string;
   toolCalls: number;
   stamps: { id: string; status: string; reason: string }[];
-  extraction?: { matched: number; total: number; mismatches: string[] };
+  extraction?: { matched: number | null; total: number | null; mismatches: string[] };
   error?: string;
 }
 
@@ -26,6 +27,7 @@ export function createSeatRunner(d: {
   events: ReturnType<typeof createEventLog>;
   extractions: ReturnType<typeof createExtractions>;
   passports: ReturnType<typeof createPassports>;
+  tunnel: () => Promise<TunnelState>;
 }) {
   async function run(seat: Seat, billId: string, onEvent?: (e: LogEvent) => void): Promise<SeatRunResult> {
     const base = { seat, billId, runStatus: "not started", toolCalls: 0, stamps: [] };
@@ -34,6 +36,14 @@ export function createSeatRunner(d: {
     if (!appId) return { ...base, error: `no Creao agent ID configured for ${seat}` };
     // Vendor-Records and Matching work only from what Intake recorded.
     if (seat !== "intake" && !d.extractions.get(billId)) return { ...base, error: "Intake has not recorded this bill yet. Run intake first." };
+    // A Creao agent that cannot reach us would finish with 0 tool calls and still spend credits.
+    const tunnel = await d.tunnel();
+    if (!tunnel.healthy) {
+      return {
+        ...base,
+        error: `The public tunnel to this gateway is down (${tunnel.url ?? "no URL"}), so a Creao agent could not reach us. Restart it with: corepack pnpm tunnel`,
+      };
+    }
 
     const { ticket } = d.tickets.issue(seat, billId);
     d.events.append("ticket_issued", { billId, seat, data: { by: "orchestrator" } });
@@ -44,7 +54,7 @@ export function createSeatRunner(d: {
     try {
       const started = await d.creao.startRun({
         appId,
-        inputs: { [d.inputField]: JSON.stringify({ billId, ticket }) },
+        inputs: { [d.inputField]: JSON.stringify({ billId, ticket, gatewayUrl: tunnel.url }) },
         idempotencyKey: `${billId}-${seat}-${Date.now()}`,
       });
       runId = started.id;

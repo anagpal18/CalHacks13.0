@@ -5,6 +5,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { timingSafeEqual } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createCreaoClient } from "./integrations/creao/client.ts";
 import { createCrsClient, CrsError, getPath, isAllowedPersona, type CrsPurpose } from "./integrations/crs/client.ts";
@@ -17,6 +18,7 @@ import { createPassports } from "./gateway/passports.ts";
 import { ASKED_WHO, SEATS, SOURCE_TOOLS, isSeat, type Seat } from "./gateway/seats.ts";
 import { createSigner } from "./gateway/signing.ts";
 import { createTickets, type Ticket } from "./gateway/tickets.ts";
+import { createTunnelProbe } from "./gateway/tunnel.ts";
 import { createOrchestrator } from "./orchestrator/agent.ts";
 import { createSeatRunner } from "./orchestrator/seatRunner.ts";
 
@@ -35,6 +37,7 @@ if (adminKey.length < 24) {
 }
 
 const dataDir = process.env.BP_DATA_DIR ?? `${root}.data`;
+company.useDataDir(dataDir);
 const crs = createCrsClient({
   username: process.env.CRS_USERNAME ?? "",
   password: process.env.CRS_PASSWORD ?? "",
@@ -53,6 +56,7 @@ const bpScript = readFileSync(new URL("../tools/bp.sh", import.meta.url), "utf8"
 const dashboardKey = process.env.BP_DASHBOARD_KEY ?? "";
 
 const views = createViews({ crs, events, extractions, ledger, passports });
+const tunnel = createTunnelProbe({ fallbackUrl: process.env.BP_GATEWAY_URL, metricsUrl: process.env.CLOUDFLARED_METRICS_URL });
 const seatRunner = createSeatRunner({
   creao: process.env.CREAO_API_KEY?.startsWith("capi_") ? createCreaoClient({ apiKey: process.env.CREAO_API_KEY, baseUrl: process.env.CREAO_BASE_URL }) : undefined,
   agentIds: {
@@ -65,6 +69,7 @@ const seatRunner = createSeatRunner({
   events,
   extractions,
   passports,
+  tunnel: () => tunnel.current(),
 });
 
 // One line per event for live progress, the same wording as the passport script prints.
@@ -74,7 +79,9 @@ function describeEvent(e: LogEvent): string {
   if (e.type === "tool_call") return `${d.tool}${args ? ` ${args}` : ""}${d.decision ? ` -> ${d.decision}` : ""}`;
   if (e.type === "tool_denied") return `${d.tool} denied: ${d.reason}`;
   if (e.type === "tool_error") return `${d.tool} error: ${[d.error].flat().join("; ")}`;
-  if (e.type === "bill_extracted") return `recorded the bill it read (${d.matched}/${d.total} fields match the answer key)`;
+  if (e.type === "bill_extracted") {
+    return d.total ? `recorded the bill it read (${d.matched}/${d.total} fields match the answer key)` : "recorded the bill it read (uploaded bill, no answer key)";
+  }
   if (e.type === "stamp_signed") return `signed ${d.id}: ${d.status}`;
   if (e.type === "stamp_rejected") return `stamp ${d.id} rejected: ${(d.problems ?? []).join("; ")}`;
   return "";
@@ -92,6 +99,8 @@ const orchestrator = createOrchestrator({
 const PURPOSES = new Set<CrsPurpose>(["bank_change", "new_vendor"]);
 const STATUSES = new Set(["pass", "fail", "ask_human"]);
 const BODY_LIMIT = 64 * 1024;
+// Uploads arrive as base64 JSON: 8 MB of files is about 11 MB on the wire.
+const UPLOAD_BODY_LIMIT = 12 * 1024 * 1024;
 
 class HttpError extends Error {
   readonly status: number;
@@ -156,6 +165,35 @@ async function dashboard(req: IncomingMessage, res: ServerResponse, path: string
     }
     return true;
   }
+  // Whether Creao agents can reach this gateway right now, for a status badge on the dashboard.
+  if (req.method === "GET" && path === "/dashboard/status") {
+    send(res, 200, { gateway: "ok", tunnel: await tunnel.current() });
+    return true;
+  }
+  if (req.method === "GET" && path === "/dashboard/intake/week") {
+    send(res, 200, views.weekIntake());
+    return true;
+  }
+  // A new bill from the dashboard: the raw files land in the AP inbox exactly as uploaded.
+  if (req.method === "POST" && path === "/dashboard/inbox") {
+    const { files } = await readJson(req, UPLOAD_BODY_LIMIT);
+    if (!Array.isArray(files) || files.length < 1 || files.length > 5) throw new HttpError(400, "send 1 to 5 files");
+    const decoded = files.map((f: any) => {
+      const name = String(f?.name ?? "");
+      const ext = extname(name).toLowerCase();
+      if (!company.UPLOAD_TYPES[ext]) throw new HttpError(400, `${name || "a file"}: only .pdf, .eml and .txt files are accepted`);
+      const data = Buffer.from(String(f?.dataBase64 ?? ""), "base64");
+      if (!data.length) throw new HttpError(400, `${name}: the file is empty`);
+      if (data.length > 4 * 1024 * 1024) throw new HttpError(413, `${name}: files must be 4 MB or smaller`);
+      if (ext === ".pdf" && data.subarray(0, 5).toString("latin1") !== "%PDF-") throw new HttpError(400, `${name}: this is not a PDF`);
+      return { name, data };
+    });
+    if (decoded.reduce((s, f) => s + f.data.length, 0) > 8 * 1024 * 1024) throw new HttpError(413, "all files together must be 8 MB or smaller");
+    const bill = company.addUploadedBill(decoded);
+    events.append("bill_received", { billId: bill.billId, data: { channel: "upload", files: bill.files } });
+    send(res, 201, views.billSummary(bill.billId));
+    return true;
+  }
   if (req.method === "GET" && path === "/dashboard/crs/log") {
     send(res, 200, views.crsLog());
     return true;
@@ -185,12 +223,12 @@ async function dashboard(req: IncomingMessage, res: ServerResponse, path: string
   return false;
 }
 
-async function readJson(req: IncomingMessage): Promise<any> {
+async function readJson(req: IncomingMessage, limit = BODY_LIMIT): Promise<any> {
   const chunks: Buffer[] = [];
   let size = 0;
   for await (const chunk of req) {
     size += chunk.length;
-    if (size > BODY_LIMIT) throw new HttpError(413, "body too large");
+    if (size > limit) throw new HttpError(413, "body too large");
     chunks.push(chunk);
   }
   try {
@@ -228,7 +266,9 @@ async function verifyRequester(body: any, t?: Ticket) {
   if (t) {
     if (!SEATS[t.seat].tools.includes("crs")) deny(t, "crs", args, `the ${t.seat} seat may not call CRS`);
     // Permissible purpose: a seat may check only the people on its own bill.
-    if (!company.personasForBill(t.billId).includes(persona)) deny(t, "crs", args, `${persona} is not a contact on bill ${t.billId}`);
+    if (!company.personasForBill(t.billId, extractions.get(t.billId)?.fields).includes(persona)) {
+      deny(t, "crs", args, `${persona} is not a contact on bill ${t.billId}`);
+    }
   }
   try {
     const result = await crs.verifyRequester(persona, purpose, billId);
@@ -296,7 +336,9 @@ function recordBill(t: Ticket, fields: any) {
   }
   extractions.put({ billId: t.billId, fields, extractedBy: { seat: t.seat, runId: t.runId, at: new Date().toISOString() } });
   // Scored against the answer key for our proof page; the agent is never told the score.
-  const result = score(fields, company.getBill(t.billId));
+  // Uploaded bills have no answer key, so they are recorded without a score.
+  const truth = company.answerKey(t.billId);
+  const result = truth ? score(fields, truth) : { matched: null, total: null, mismatches: [] };
   events.append("bill_extracted", { billId: t.billId, seat: t.seat, data: { ...result, runId: t.runId } });
   return { recorded: true, billId: t.billId, fields: Object.keys(fields).length };
 }
@@ -367,7 +409,7 @@ const server = createServer(async (req, res) => {
       return res.end(bpScript);
     }
     if (req.method === "GET" && path === "/keys") return send(res, 200, signer.publicKeys());
-    const skill = /^\/tools\/skills\/(?:(v[23])\/)?([a-z_]+)\.md$/.exec(path);
+    const skill = /^\/tools\/skills\/(?:(v[2-9])\/)?([a-z_]+)\.md$/.exec(path);
     if (req.method === "GET" && skill && isSeat(skill[2])) {
       const file = new URL(`../../../creao/agents/${skill[1] ?? "v2"}/${skill[2]}.md`, import.meta.url);
       try {

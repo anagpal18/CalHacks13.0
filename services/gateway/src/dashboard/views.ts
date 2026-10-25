@@ -52,7 +52,11 @@ export function createViews(d: Deps) {
     if (d.ledger.forBill(billId)) return "All 8 stamps passed. Booked: debit Expense, credit Accounts Payable.";
     if (failed.length) return `${failed.length} stamp${failed.length > 1 ? "s" : ""} failed (${failed.join(", ")}): ${p.stamps[failed[0]].reason}`;
     if (p.askedWho.length) return `Waiting on the ${p.askedWho.join(" and ").replace("_", " ")}.`;
-    return signed.length ? `${signed.length} of 8 stamps signed so far.` : "Waiting for the agents to read this bill.";
+    if (signed.length) return `${signed.length} of 8 stamps signed so far.`;
+    if (d.extractions.get(billId)) return "Intake read the bill. Waiting for the stamps.";
+    return company.getBill(billId)?.uploaded
+      ? "Uploaded. Waiting for the Intake agent to read the files."
+      : "Waiting for the agents to read this bill.";
   }
 
   function billSummary(billId: string) {
@@ -62,9 +66,9 @@ export function createViews(d: Deps) {
     const vendor = company.searchVendors(f.vendorName ?? "")[0];
     return {
       billId,
-      invoiceNumber: f.invoiceNumber,
+      invoiceNumber: f.invoiceNumber ?? "Not read yet",
       vendorId: vendor?.vendorId ?? "unknown",
-      vendorName: vendor?.legalName ?? f.vendorName,
+      vendorName: vendor?.legalName ?? f.vendorName ?? "Not read yet",
       amountCents: cents(f.totalAmount),
       receivedVia: seed.channel === "email" ? "email" : "portal",
       receivedAt: seed.receivedAt,
@@ -107,8 +111,12 @@ export function createViews(d: Deps) {
         return { at: e.at, actor, action: `Denied ${x.tool}`, detail: x.reason ?? "", tone: "held" };
       case "tool_error":
         return { at: e.at, actor, action: `${x.tool} failed`, detail: [x.error].flat().join("; "), tone: "asking" };
+      case "bill_received":
+        return { at: e.at, actor: "Gateway", action: "Bill received", detail: `Uploaded: ${(x.files ?? []).join(", ")}`, tone: "neutral" };
       case "bill_extracted":
-        return { at: e.at, actor, action: "Read the email and PDF", detail: `Recorded the bill; ${x.matched}/${x.total} fields match the answer key`, tone: x.matched === x.total ? "cleared" : "asking" };
+        return x.total
+          ? { at: e.at, actor, action: "Read the email and PDF", detail: `Recorded the bill; ${x.matched}/${x.total} fields match the answer key`, tone: x.matched === x.total ? "cleared" : "asking" }
+          : { at: e.at, actor, action: "Read the uploaded files", detail: "Recorded the bill (uploaded bills have no answer key)", tone: "neutral" };
       case "stamp_signed":
         return { at: e.at, actor, action: `Signed ${x.id}: ${x.status}`, detail: `Signature ${String(x.signature).slice(0, 12)}...; ${x.grounded} values found in tool output`, tone: x.status === "pass" ? "cleared" : x.status === "fail" ? "held" : "asking" };
       case "stamp_rejected":
@@ -187,5 +195,25 @@ export function createViews(d: Deps) {
     };
   }
 
-  return { billSummary, passport, auditTrail, crsLog, crsChain, passportStatus };
+  // The Inbox's last 7 days, from the real bills: received, billed, stopped (held or sent to a person).
+  function weekIntake() {
+    const bills = Object.keys(company.allBills()).map(billSummary).filter(Boolean) as NonNullable<ReturnType<typeof billSummary>>[];
+    const today = new Date();
+    return Array.from({ length: 7 }, (_, i) => {
+      const day = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() - (6 - i)));
+      const date = day.toISOString().slice(0, 10);
+      const received = bills.filter((b) => String(b.receivedAt).slice(0, 10) === date);
+      const stopped = received.filter((b) => b.status === "held" || b.status === "parked");
+      return {
+        date,
+        dayLetter: "SMTWTFS"[day.getUTCDay()],
+        billsReceived: received.length,
+        amountCents: received.reduce((s, b) => s + b.amountCents, 0),
+        problemsCaught: stopped.length,
+        protectedCents: stopped.reduce((s, b) => s + b.amountCents, 0),
+      };
+    });
+  }
+
+  return { billSummary, passport, auditTrail, crsLog, crsChain, passportStatus, weekIntake };
 }

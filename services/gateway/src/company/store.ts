@@ -1,9 +1,40 @@
 // The company's systems as the seat tools see them: vendor master, bills inbox, POs, receiving log,
-// contracts, employees and bank payment history. Seeded from data/company.json.
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { extname } from "node:path";
+// contracts, employees and bank payment history. Seeded from data/company.json; bills uploaded from the
+// dashboard are kept in the data directory with their raw files.
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { basename, extname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const data = JSON.parse(readFileSync(new URL("../../data/company.json", import.meta.url), "utf8"));
+
+// Uploaded bills: no answer key, files under <dataDir>/inbox/<billId>/. Set by the server at start.
+let uploadDir = "";
+let uploaded: Record<string, any> = {};
+const uploadedPath = () => join(uploadDir, "uploaded-bills.json");
+
+export function useDataDir(dataDir: string) {
+  uploadDir = dataDir;
+  uploaded = existsSync(uploadedPath()) ? JSON.parse(readFileSync(uploadedPath(), "utf8")) : {};
+}
+
+export const UPLOAD_TYPES: Record<string, string> = { ".eml": "message/rfc822", ".pdf": "application/pdf", ".txt": "text/plain" };
+
+// Stores the raw files exactly as received and opens a new bill for them.
+export function addUploadedBill(files: { name: string; data: Buffer }[]): any {
+  const month = new Date().toISOString().slice(0, 7);
+  const next = 1 + Math.max(0, ...Object.keys(allBills()).map((id) => Number(id.split("-").at(-1)) || 0));
+  const billId = `B-${month}-${String(next).padStart(4, "0")}`;
+  const dir = join(uploadDir, "inbox", billId);
+  mkdirSync(dir, { recursive: true });
+  const names = files.map((f) => {
+    const name = basename(f.name).replace(/[^\w.-]+/g, "_").slice(-80) || "file";
+    writeFileSync(join(dir, name), f.data);
+    return name;
+  });
+  uploaded[billId] = { billId, receivedAt: new Date().toISOString(), channel: "upload", uploaded: true, files: names };
+  writeFileSync(uploadedPath(), JSON.stringify(uploaded, null, 1));
+  return uploaded[billId];
+}
 
 const norm = (s: string) =>
   s
@@ -13,8 +44,10 @@ const norm = (s: string) =>
     .trim();
 const digits = (s: string) => s.replace(/\D/g, "").slice(-10);
 
-export const allBills = (): Record<string, any> => data.bills;
-export const getBill = (billId: string): any => data.bills[billId];
+export const allBills = (): Record<string, any> => ({ ...data.bills, ...uploaded });
+export const getBill = (billId: string): any => data.bills[billId] ?? uploaded[billId];
+// Seeded bills double as the answer key for scoring what Intake reads; uploaded bills have none.
+export const answerKey = (billId: string): any => data.bills[billId];
 export const getVendor = (vendorId: string): any => data.vendors.find((v: any) => v.vendorId === vendorId);
 export const getPo = (poNumber: string): any => data.purchaseOrders[poNumber];
 export const getContract = (vendorId: string): any => data.contracts[vendorId];
@@ -57,17 +90,19 @@ export function matchEmployees(q: { phones: string[]; addresses: string[]; names
   });
 }
 
-// The AP inbox: the raw email and PDF exactly as they arrived (built by scripts/build-inbox.ts).
-const inboxDir = new URL("../../data/inbox/", import.meta.url);
-const CONTENT_TYPES: Record<string, string> = { ".eml": "message/rfc822", ".pdf": "application/pdf" };
+// The AP inbox: the raw email and PDF exactly as they arrived (seeded ones built by scripts/build-inbox.ts).
+const seedInboxDir = new URL("../../data/inbox/", import.meta.url);
+const inboxDirFor = (billId: string) =>
+  uploaded[billId] ? pathToFileURL(join(uploadDir, "inbox", billId) + "/") : new URL(`${billId}/`, seedInboxDir);
 
 export function inboxFiles(billId: string): { name: string; contentType: string; bytes: number }[] {
   if (!getBill(billId)) return [];
   try {
-    return readdirSync(new URL(`${billId}/`, inboxDir)).map((name) => ({
+    const dir = inboxDirFor(billId);
+    return readdirSync(dir).map((name) => ({
       name,
-      contentType: CONTENT_TYPES[extname(name)] ?? "application/octet-stream",
-      bytes: statSync(new URL(`${billId}/${name}`, inboxDir)).size,
+      contentType: UPLOAD_TYPES[extname(name).toLowerCase()] ?? "application/octet-stream",
+      bytes: statSync(new URL(name, dir)).size,
     }));
   } catch {
     return [];
@@ -76,29 +111,37 @@ export function inboxFiles(billId: string): { name: string; contentType: string;
 
 export function inboxFile(billId: string, name: string): { contentType: string; data: Buffer } | undefined {
   const file = inboxFiles(billId).find((f) => f.name === name);
-  return file && { contentType: file.contentType, data: readFileSync(new URL(`${billId}/${file.name}`, inboxDir)) };
+  return file && { contentType: file.contentType, data: readFileSync(new URL(file.name, inboxDirFor(billId))) };
 }
 
 // The CRS test persona behind a contact, matched on email or full phone. In this demo the gateway
 // keeps the persona directory; in production the CRS request would carry the contact's own details.
+// Also knows every CRS test persona's own email and phone, so an uploaded bill can name any of them.
+const crsTestContacts = Object.entries(
+  JSON.parse(readFileSync(new URL("../integrations/crs/allowlist.json", import.meta.url), "utf8")).personas as Record<string, any>,
+).map(([id, p]) => ({ crsPersona: id, email: p.requests.fraud_finder?.body?.email, phone: p.requests.fraud_finder?.body?.phoneNumber }));
+
 export function personaForContact(contact: { email?: string; phone?: string } | undefined): string | undefined {
   if (!contact) return undefined;
   const known = [
     ...Object.values(data.bills).map((b: any) => b.claimedContact),
     ...data.vendors.flatMap((v: any) => v.verifiedContacts ?? []),
+    ...crsTestContacts,
   ].filter((c: any) => c?.crsPersona);
   const email = String(contact.email ?? "").toLowerCase();
   const phone = digits(String(contact.phone ?? ""));
   return known.find((c: any) => (email && c.email?.toLowerCase() === email) || (phone.length === 10 && digits(c.phone ?? "") === phone))?.crsPersona;
 }
 
-// CRS personas the bill's own people map to. A seat may only run CRS on these.
-export function personasForBill(billId: string): string[] {
-  const bill = getBill(billId);
-  if (!bill) return [];
+// CRS personas the bill's own people map to. A seat may only run CRS on these. For an uploaded bill the
+// people come from what Intake read (pass its recorded fields as `read`).
+export function personasForBill(billId: string, read?: any): string[] {
+  const bill = { ...getBill(billId), ...(read ?? {}) };
+  if (!getBill(billId)) return [];
   const vendors = searchVendors(bill.vendorName ?? "");
   return [
     bill.claimedContact?.crsPersona,
+    personaForContact(bill.claimedContact),
     ...vendors.flatMap((v: any) => (v.verifiedContacts ?? []).map((c: any) => c.crsPersona)),
   ].filter((p): p is string => typeof p === "string");
 }
