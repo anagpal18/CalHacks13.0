@@ -12,6 +12,7 @@ import type { AttentionItem, AttentionKind, BillSummary, ProcessedInvoice } from
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatDollars } from "@/lib/format";
 import { TONE_STYLE } from "@/lib/statusStyle";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const ATTENTION_ICON: Record<AttentionKind, LucideIcon> = {
@@ -123,10 +124,7 @@ function AttentionRow({ item, index }: { item: AttentionItem; index: number }) {
             {item.urgencyNote && <span className="rounded-full bg-foreground/[0.05] px-2.5 py-1 text-xs text-muted-foreground">{item.urgencyNote}</span>}
             <Link
               to={item.href}
-              className={cn(
-                "ml-auto flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition",
-                isRun ? "bg-foreground text-background hover:bg-foreground/85" : "border border-border hover:border-foreground/30",
-              )}
+              className={primaryButton("md", "ml-auto")}
             >
               {item.actionLabel} <ArrowRight className="size-3.5" />
             </Link>
@@ -173,7 +171,7 @@ function ProcessedToday({ bills }: { bills: BillSummary[] }) {
           </div>
         ))}
       </div>
-      <Link to="/inbox" className="mt-4 inline-flex items-center gap-1 text-sm underline underline-offset-4">See today's intake <ArrowRight className="size-3.5" /></Link>
+      <Link to="/inbox" className={primaryButton("sm", "mt-4")}>See today's intake <ArrowRight className="size-3.5" /></Link>
     </div>
   );
 }
@@ -202,7 +200,7 @@ function RecentProcessed({ invoices }: { invoices: ProcessedInvoice[] }) {
           </div>
         ))}
       </div>
-      <Link to="/processed" className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-full border border-border py-2 text-sm font-medium transition hover:border-foreground/30">
+      <Link to="/processed" className={primaryButton("md", "mt-4 w-full")}>
         View more <ArrowRight className="size-3.5" />
       </Link>
     </div>

@@ -17,6 +17,7 @@ import type { BillSummary, ProblemKind } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatClockTime, formatDollars } from "@/lib/format";
 import { PASSPORT_STATUS_LOOK, TONE_STYLE, type Tone } from "@/lib/statusStyle";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const TICK_MS = 380;
@@ -62,7 +63,7 @@ export function InboxPage() {
           )}
         </Panel>
 
-        <Panel className="lg:col-span-5" title="Bills worth a look" subtitle="Held or waiting on a person" action={<button onClick={() => navigate("/check")} className="text-sm underline underline-offset-4">See all</button>}>
+        <Panel className="lg:col-span-5" title="Bills worth a look" subtitle="Held or waiting on a person" action={<button onClick={() => navigate("/check")} className={primaryButton("sm")}>See all</button>}>
           <WorthALookList bills={bills.filter((bill) => bill.status === "held" || bill.status === "parked").slice(0, 5)} onOpen={(billId) => navigate(`/check/${billId}`)} />
         </Panel>
       </div>
@@ -209,7 +210,7 @@ function LiveIntake({ bills, onOpen }: { bills: BillSummary[]; onOpen: (billId: 
       action={
         <div className="flex items-center gap-4">
           <span className="text-sm text-muted-foreground"><AnimatedNumber value={settledCount} durationSeconds={0.4} className="font-semibold text-foreground" /> of {bills.length} settled</span>
-          <button onClick={() => setReplayCount((count) => count + 1)} className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium hover:border-foreground/30">
+          <button onClick={() => setReplayCount((count) => count + 1)} className={primaryButton("sm")}>
             <RotateCcw className="size-3.5" /> Replay
           </button>
         </div>

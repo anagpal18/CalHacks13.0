@@ -3,6 +3,7 @@ import { ArrowRight, BookCheck, Skull } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Switch } from "@/components/ui/switch";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 import { useDemoMode } from "./DemoModeContext";
 import { DASHBOARD_STEPS, findStepForPath } from "./dashboardSteps";
@@ -40,7 +41,7 @@ export function AppShell() {
             </label>
             <button
               onClick={() => setScamConsoleOpen(true)}
-              className="flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-foreground/85"
+              className={primaryButton("md")}
             >
               <Skull className="size-4 text-held" /> Try to scam us
             </button>
@@ -62,7 +63,7 @@ export function AppShell() {
         {nextStep && (
           <Link
             to={nextStep.path}
-            className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium shadow-sm transition hover:border-foreground/30 md:right-10"
+            className={primaryButton("md", "fixed bottom-6 right-6 z-40 shadow-lg md:right-10")}
           >
             {currentStep.number === 0 ? "See how it works" : `Next: ${nextStep.label}`} <ArrowRight className="size-4" />
           </Link>

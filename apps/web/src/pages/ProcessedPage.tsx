@@ -14,6 +14,7 @@ import { getDailyProcessing, listProcessedInvoices } from "@/data/dataSource";
 import type { ProcessedInvoice } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatClockTime, formatDollars, formatShortDate } from "@/lib/format";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 type StatusFilter = "all" | "booked" | "paid";
@@ -33,7 +34,7 @@ export function ProcessedPage() {
 
   return (
     <div className="space-y-5">
-      <Link to="/overview" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+      <Link to="/overview" className={primaryButton("sm")}>
         <ArrowLeft className="size-4" /> Back to overview
       </Link>
 
@@ -176,7 +177,7 @@ function ProcessedTable({ invoices }: { invoices: ProcessedInvoice[] }) {
         </table>
       </div>
       {filtered.length > TABLE_PAGE_SIZE && (
-        <button onClick={() => setShowingAll((showing) => !showing)} className="mt-4 w-full rounded-full border border-border py-2 text-sm font-medium hover:border-foreground/30">
+        <button onClick={() => setShowingAll((showing) => !showing)} className={primaryButton("md", "mt-4 w-full")}>
           {isShowingAll ? "Show fewer" : `Show all ${filtered.length}`}
         </button>
       )}

@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRightLeft, Fingerprint, PhoneCall, RotateCcw, ShieldAlert, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
-import { Button } from "@/components/ui/button";
 import { RiskGauge } from "@/components/visuals/RiskGauge";
 import { ScannerBar, SignalChip, type ScannerState } from "@/components/visuals/ScannerBar";
 import { listCrsPersonas, runCrsChain } from "@/data/dataSource";
@@ -14,6 +13,7 @@ import type { CrsChainResult } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatDollars } from "@/lib/format";
 import { CRS_DECISION_LOOK, TONE_STYLE } from "@/lib/statusStyle";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const DEFAULT_PERSONA_ID = "P13";
@@ -202,9 +202,9 @@ function DecisionPanel({ result, isRevealed, isGaugeRevealed, onReplay }: { resu
         </AnimatePresence>
       </div>
 
-      <Button variant="ghost" size="sm" onClick={onReplay} className="mt-4 self-center text-muted-foreground">
+      <button onClick={onReplay} className={primaryButton("sm", "mt-4 self-center")}>
         <RotateCcw className="size-4" /> Run again
-      </Button>
+      </button>
     </div>
   );
 }

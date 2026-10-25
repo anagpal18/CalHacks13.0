@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { BookCheck, Mail, MonitorSmartphone, RotateCcw, ScanFace, ShieldX, Hand } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { Button } from "@/components/ui/button";
 import { EvidenceSheet } from "@/components/visuals/EvidenceSheet";
 import { StampSeal } from "@/components/visuals/StampSeal";
 import { getBillSummary, getPassport, getScore, listBills } from "@/data/dataSource";
@@ -19,6 +18,7 @@ import type { BillSummary, Passport, Stamp } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatClockTime, formatDollars } from "@/lib/format";
 import { PASSPORT_STATUS_LOOK, TONE_STYLE } from "@/lib/statusStyle";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const STAMP_INTERVAL_MS = 550;
@@ -68,9 +68,9 @@ export function CheckPage() {
         <div className="space-y-5">
           <PassportDocument bill={bill} passport={passport} revealedCount={revealedCount} onOpenEvidence={setEvidenceStamp} />
           <div className="flex justify-center">
-            <Button variant="ghost" size="sm" onClick={() => setReplayCount((count) => count + 1)} className="text-muted-foreground">
-              <RotateCcw className="size-4" /> Check again
-            </Button>
+            <button onClick={() => setReplayCount((count) => count + 1)} className={primaryButton("sm")}>
+              <RotateCcw className="size-3.5" /> Check again
+            </button>
           </div>
         </div>
       ) : (
@@ -203,9 +203,7 @@ function PassportVerdict({ passport, crsPersonaId }: { passport: Passport; crsPe
       <div className="flex items-center gap-4">
         <div className={cn("text-xl font-bold", verdict.tone.text)}>{verdict.footer}</div>
         {crsPersonaId && (
-          <Button asChild variant="outline" className="border-held/40">
-            <Link to={`/verify/${crsPersonaId}`}><ScanFace className="size-4" /> See who asked</Link>
-          </Button>
+          <Link to={`/verify/${crsPersonaId}`} className={primaryButton("md")}><ScanFace className="size-4" /> See who asked</Link>
         )}
       </div>
     </motion.div>

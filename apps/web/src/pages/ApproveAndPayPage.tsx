@@ -5,7 +5,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { Bot, CalendarClock, Check, Loader, Percent, ShieldCheck, UserCheck, Wallet, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { ApprovedCheck } from "@/components/visuals/ApprovedCheck";
 import { getNextPaymentRun } from "@/data/dataSource";
 import { DEMO_TODAY } from "@/data/mockData";
@@ -13,6 +12,7 @@ import { PAYMENT_CHECKS } from "@/data/stampCatalog";
 import type { PaymentRun, PaymentRunItem } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatDollars, formatShortDate, formatWeekday } from "@/lib/format";
+import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const CONTROLLER_NAME = "Dana Whitfield";
@@ -248,12 +248,12 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
       <div className="mt-6 flex flex-col items-center gap-3">
         {phase === "proposed" ? (
           <>
-            <button onClick={onApprove} className="flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-base font-semibold text-background transition hover:bg-foreground/85">
+            <button onClick={onApprove} className={primaryButton("lg")}>
               <ShieldCheck className="size-5" /> Approve as {CONTROLLER_NAME.split(" ")[0]}
             </button>
-            <Button variant="ghost" size="sm" onClick={onAgentSelfApprove} className="text-xs text-muted-foreground">
+            <button onClick={onAgentSelfApprove} className={primaryButton("sm")}>
               <Bot className="size-3.5" /> Let the Payments agent approve its own run
-            </Button>
+            </button>
             <AnimatePresence>
               {selfApprovalRefused && (
                 <motion.div
