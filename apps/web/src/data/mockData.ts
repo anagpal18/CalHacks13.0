@@ -4,6 +4,7 @@
 
 import { STAMP_CATALOG } from "./stampCatalog";
 import type {
+  AttentionItem,
   AuditEvent,
   DailyIntake,
   BillSummary,
@@ -467,3 +468,39 @@ export const MOCK_WEEK_INTAKE: DailyIntake[] = WEEK_BASE.map((day, dayIndex) => 
     protectedCents: caughtThatDay.reduce((total, problem) => total + problem.amountCents, 0),
   };
 });
+
+// ---------------------------------------------------------------- overview: what needs a person
+// Ordered by urgency. Every item links into the tab where the decision is made.
+
+export const MOCK_ATTENTION_ITEMS: AttentionItem[] = [
+  {
+    id: "run", kind: "approve_run", title: "Approve this week's payment run",
+    reason: "6 bills are due between Oct 27 and Nov 3. All passed their checks; one more re-check happens before money moves.",
+    recommendation: "Approve", amountCents: 105_110_00, urgencyNote: "$745 in early-pay discounts expire Oct 27",
+    tone: "checking", actionLabel: "Review & approve", href: "/pay",
+  },
+  {
+    id: "okafor-bank-change", kind: "bank_change", title: "Bank-change request on Okafor Electric",
+    reason: "Requester's identity failed, the email is 3 days old and the callback number isn't Margaret Okafor's.",
+    recommendation: "Reject", amountCents: 48_000_00, urgencyNote: "Blocks INV-2291",
+    tone: "held", actionLabel: "See the checks", href: "/verify/P13",
+  },
+  {
+    id: "oyelaran", kind: "escalation", title: "New vendor with a fraud alert: Oyelaran Concrete Pumping",
+    reason: "Identity needs step-up verification before we can set up payments.",
+    recommendation: "Ask the vendor to verify", amountCents: 18_400_00,
+    tone: "asking", actionLabel: "Review", href: "/verify/P16",
+  },
+  {
+    id: "bay-lumber", kind: "parked", title: "Bay Lumber billed for plywood the site never received",
+    reason: "40 sheets billed, 0 on the Oakland Civic receiving log. Waiting on the site PM.",
+    recommendation: "Nudge the PM", amountCents: 6_340_00, urgencyNote: "Waiting 1 day",
+    tone: "asking", actionLabel: "Open bill", href: "/check/B-BL-7802",
+  },
+  {
+    id: "venkatesan", kind: "vendor_review", title: "Venkatesan Plumbing has new liens on file",
+    reason: "Real, long-time vendor, but a $7,450 tax lien and a $12,300 judgment appeared.",
+    recommendation: "Keep paying, review terms", amountCents: 9_115_00,
+    tone: "asking", actionLabel: "Review", href: "/verify/P08",
+  },
+];

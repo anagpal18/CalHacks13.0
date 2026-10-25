@@ -2,6 +2,7 @@
 // hours 8–14 swap these bodies to fetch() against the API without touching any page.
 
 import {
+  MOCK_ATTENTION_ITEMS,
   MOCK_AUDIT_TRAILS,
   MOCK_BILLS,
   MOCK_CRS_DATA_USE,
@@ -11,7 +12,7 @@ import {
   MOCK_SCORE,
   MOCK_WEEK_INTAKE,
 } from "./mockData";
-import type { AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport, PaymentRun, ScoreResult } from "./types";
+import type { AttentionItem, AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport, PaymentRun, ScoreResult } from "./types";
 
 const MOCK_LATENCY_MS = 120;
 const resolveLater = <Value,>(value: Value) => new Promise<Value>((resolve) => setTimeout(() => resolve(value), MOCK_LATENCY_MS));
@@ -36,3 +37,4 @@ export const getAuditTrail = (billId: string): Promise<AuditEvent[]> => resolveL
 
 export const getCrsDataUseLog = (): Promise<CrsDataUseEntry[]> => resolveLater(MOCK_CRS_DATA_USE);
 export const getWeekIntake = (): Promise<DailyIntake[]> => resolveLater(MOCK_WEEK_INTAKE);
+export const listAttentionItems = (): Promise<AttentionItem[]> => resolveLater(MOCK_ATTENTION_ITEMS);

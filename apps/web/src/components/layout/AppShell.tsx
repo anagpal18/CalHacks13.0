@@ -21,7 +21,7 @@ export function AppShell() {
       {/* Full-screen light canvas; content stays on a readable max width. */}
       <div className="relative mx-auto max-w-[1680px] px-5 pb-24 pt-5 md:px-10">
         <header className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-border pb-4">
-          <Link to="/inbox" className="flex shrink-0 items-center gap-2.5">
+          <Link to="/overview" className="flex shrink-0 items-center gap-2.5">
             <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
               <BookCheck className="size-4.5" />
             </span>
@@ -64,7 +64,7 @@ export function AppShell() {
             to={nextStep.path}
             className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium shadow-sm transition hover:border-foreground/30 md:right-10"
           >
-            Next: {nextStep.label} <ArrowRight className="size-4" />
+            {currentStep.number === 0 ? "See how it works" : `Next: ${nextStep.label}`} <ArrowRight className="size-4" />
           </Link>
         )}
       </div>

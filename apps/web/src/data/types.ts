@@ -165,3 +165,23 @@ export interface DailyIntake {
   problemsCaught: number;
   protectedCents: number;
 }
+
+// ---- Overview (what needs the AP manager) ----
+
+export type AttentionKind = "approve_run" | "bank_change" | "parked" | "vendor_review" | "escalation";
+
+export interface AttentionItem {
+  id: string;
+  kind: AttentionKind;
+  title: string;
+  /** One plain sentence: why this needs a person. */
+  reason: string;
+  /** What the system suggests the person does. */
+  recommendation: string;
+  amountCents: number;
+  /** e.g. "Discount expires Oct 27" or "Waiting 2 days". */
+  urgencyNote?: string;
+  tone: "held" | "asking" | "checking";
+  actionLabel: string;
+  href: string;
+}
