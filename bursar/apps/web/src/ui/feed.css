@@ -1,0 +1,70 @@
+/* The agents' thinking, a see-through column left of the table, between the title block and the camera buttons.
+   Our agent's notes lean left in steel blue, the vendor's lean right in copper; chapters and outcomes sit centered. */
+
+.mind {
+  position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); top: calc(176px + env(safe-area-inset-top, 0px));
+  bottom: calc(68px + env(safe-area-inset-bottom, 0px)); width: 330px; display: flex; flex-direction: column; justify-content: flex-start;
+  z-index: 3; pointer-events: none;
+}
+.mind > * { pointer-events: auto; }
+.mind-box {
+  display: flex; flex-direction: column; min-height: 0; max-height: 100%;
+  background: color-mix(in srgb, var(--surface-solid) 58%, transparent); backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent); border-radius: 6px; box-shadow: 0 6px 24px rgba(20, 30, 36, 0.1);
+}
+.mind-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 8px 6px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.mind-head button { border: 0; background: none; cursor: pointer; color: var(--muted); font-size: 11.5px; font-weight: 600; padding: 2px 6px; border-radius: 3px; }
+.mind-head button:hover { color: var(--ink); background: color-mix(in srgb, var(--line) 50%, transparent); }
+.mind.closed .mind-list { display: none; }
+.mind.closed .mind-head { border-bottom: 0; }
+
+.mind-list {
+  list-style: none; margin: 0; padding: 8px 9px 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 7px;
+  overscroll-behavior: contain; scrollbar-width: thin;
+}
+.mind-item { animation: mind-in 0.3s ease-out; }
+@keyframes mind-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.mind-item.agent {
+  max-width: 90%; padding: 6px 9px 7px; border-radius: 8px;
+  background: color-mix(in srgb, var(--raised) 80%, transparent); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.mind-item.agent.contractor { align-self: flex-start; border-left: 3px solid var(--contractor); border-bottom-left-radius: 2px; }
+.mind-item.agent.sub { align-self: flex-end; border-right: 3px solid var(--sub); border-bottom-right-radius: 2px; }
+.mind .who { font-size: 10.5px; line-height: 1.3; color: var(--muted); margin-bottom: 2px; }
+.mind .who b { font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 2px; }
+.mind .contractor .who b { color: var(--contractor); }
+.mind .sub .who b { color: var(--sub); }
+.mind .thinks { margin: 0 0 3px; font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.4; color: var(--ink); }
+.mind .does { margin: 2px 0 0; font-size: 11.5px; line-height: 1.35; color: var(--muted); }
+.mind .does.quote { font-family: var(--serif); font-size: 12.5px; color: var(--ink); }
+.mind .does.good { color: var(--good); }
+.mind .does.warn { color: var(--warn); }
+.mind .does.bad { color: var(--bad); }
+
+.mind-item.chapter { align-self: stretch; text-align: center; margin-top: 3px; padding: 2px 6px; }
+.mind-item.chapter b { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); }
+.mind-item.chapter span { display: block; font-size: 12px; line-height: 1.35; color: var(--muted); }
+
+.mind-item.mind-note { align-self: center; text-align: center; max-width: 94%; font-size: 12px; line-height: 1.35; padding: 5px 10px; border-radius: 6px;
+  background: color-mix(in srgb, var(--raised) 70%, transparent); color: var(--muted); }
+.mind-item.mind-note.good { color: var(--good); background: color-mix(in srgb, var(--good-bg) 85%, transparent); font-weight: 600; }
+.mind-item.mind-note.warn { color: var(--warn); background: color-mix(in srgb, var(--warn-bg) 85%, transparent); font-weight: 600; }
+.mind-item.mind-note.bad { color: var(--bad); background: color-mix(in srgb, var(--bad-bg) 85%, transparent); font-weight: 600; }
+.mind-item.mind-note.you { color: color-mix(in srgb, #6a4ea0 65%, var(--ink)); background: color-mix(in srgb, #6a4ea0 16%, transparent); font-weight: 600; }
+
+.mind-item.pending { opacity: 0.92; }
+.mind .dots { display: flex; align-items: center; gap: 4px; margin: 3px 0 0; min-height: 14px; }
+.mind .dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: mind-dot 1s ease-in-out infinite; }
+.mind .dots i:nth-child(2) { animation-delay: 0.15s; }
+.mind .dots i:nth-child(3) { animation-delay: 0.3s; }
+.mind .dots span { margin-left: 4px; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+@keyframes mind-dot { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+
+@media (max-width: 1080px) { .mind { width: 270px; } }
+@media (max-width: 860px) { .mind { display: none; } }
+@media (prefers-reduced-motion: reduce) { .mind-item, .mind .dots i { animation: none; } }

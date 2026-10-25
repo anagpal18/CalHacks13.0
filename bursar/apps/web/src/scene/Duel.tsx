@@ -45,8 +45,12 @@ function ExhibitSheet({ px, doneAt, latest }: { px: PlayedExhibit; doneAt: numbe
   const { handlers, hovered } = useClickable(label, { kind: "exhibit", id: px.exhibit.id }, { pos: [x, TABLE.top + 0.45, z + 0.32], target: [x, TABLE.top, z] });
   useFrame((state, dt) => {
     const now = performance.now();
-    const ended = useStore.getState().table.ended;
-    const presenting = latest && !ended && (doneAt === null || now < doneAt + HOLD_AFTER_MS);
+    const st = useStore.getState();
+    const ended = st.table.ended;
+    // It steps back while a CRS check's cards are up, so one thing at a time is in front of the camera.
+    const tail = st.events[st.played - 1]?.type;
+    const cardsUp = tail === "crs_call" || tail === "card_landed";
+    const presenting = latest && !ended && !cardsUp && (doneAt === null || now < doneAt + HOLD_AFTER_MS);
     const was = lift.current;
     lift.current += ((presenting ? 1 : 0) - lift.current) * (1 - Math.exp(-dt * 3.6));
     // It moved out from under a resting pointer: drop its hover label.

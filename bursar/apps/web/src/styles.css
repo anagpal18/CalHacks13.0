@@ -452,3 +452,100 @@ details.advanced .start-sec { box-shadow: none; }
 @media (max-width: 860px) { .panel.collapsed > :not(.story) { display: none; } .panel.collapsed > .story > :not(.story-top):not(.story-headline):not(.story-actions) { display: none; } }
 .story-headline.tone-neutral { color: var(--ink); }
 button.ev.call { display: block; } button.ev.call .badge { display: inline-flex; }
+
+/* ======================================================================================================
+   Panel and title refresh: bigger, bolder title; calmer, easier side panel.
+   ====================================================================================================== */
+
+/* ---------- title ---------- */
+.titleblock { padding: 14px 20px 14px 18px; border-left-width: 5px; gap: 4px; }
+.titleblock h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.01em; line-height: 1; margin-bottom: 4px; }
+.titleblock p { font-size: 13.5px; }
+.start-head h1 { font-size: 44px; font-weight: 800; letter-spacing: -0.01em; line-height: 1; }
+
+/* ---------- panel shell ---------- */
+.panel > * { padding-inline: 20px; }
+.story { padding-block: 18px 16px; gap: 12px; }
+.story-headline { font-size: 23px; font-weight: 800; letter-spacing: -0.005em; }
+.story-detail { font-size: 14px; line-height: 1.5; color: var(--muted); opacity: 1; }
+.story-steps { gap: 5px; } .story-steps .step { height: 6px; }
+
+/* where each side stands: one row per term, one column per side */
+table.compare { width: 100%; border-collapse: separate; border-spacing: 0; font-variant-numeric: tabular-nums; background: var(--raised); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+table.compare tr:last-child th, table.compare tr:last-child td { border-bottom: 0; }
+table.compare thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); background: color-mix(in srgb, var(--line) 35%, transparent); }
+table.compare thead th.sub { color: var(--sub); } table.compare thead th.contractor { color: var(--contractor); }
+table.compare tbody th { font-size: 12.5px; font-weight: 500; color: var(--muted); width: 32%; }
+table.compare tbody td { font-size: 17px; font-weight: 750; }
+table.compare td.sub { color: var(--sub); } table.compare td.contractor { color: var(--contractor); }
+
+/* the deal, once agreed */
+.agreed { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; background: var(--raised); border: 1px solid color-mix(in srgb, var(--good) 40%, var(--line)); border-radius: 8px; overflow: hidden; }
+.agreed > div { padding: 12px 12px 11px; display: grid; gap: 2px; border-right: 1px solid var(--line); min-width: 0; }
+.agreed > div:last-child { border-right: 0; }
+.agreed b { font-size: 21px; font-weight: 800; color: var(--good); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.agreed span { font-size: 11.5px; color: var(--muted); }
+
+.meter { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.meter .bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.meter .bar i { display: block; height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.meter .bar.good i { background: var(--good); } .meter .bar.warn i { background: var(--warn); } .meter .bar.bad i { background: var(--bad); }
+.meter b { color: var(--ink); font-size: 15px; font-variant-numeric: tabular-nums; }
+.risk { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.btn.ghost { background: transparent; }
+.btn.approve { flex: 1; justify-content: center; }
+
+/* ---------- tabs ---------- */
+.tabs { padding-top: 10px; gap: 4px; }
+.tabs button, .tabs .chip-rulebook { font-size: 13.5px; padding: 8px 10px; }
+
+/* ---------- transcript ---------- */
+.feed { gap: 10px; padding-block: 14px 22px; }
+.claim { border-left: 3px solid var(--line); border-radius: 6px; padding: 9px 11px; gap: 5px; }
+.claim.verified { border-left-color: var(--good); }
+.claim.contradicted { border-left-color: var(--bad); }
+.claim.unverified { border-left-color: var(--faint); }
+.claim-text { font-size: 13px; }
+.claim-why { font-size: 12.5px; line-height: 1.45; }
+.offer { border-radius: 6px; padding: 10px 12px; }
+.cite.more { color: var(--brass); border-style: dashed; }
+.chap { margin-top: 10px; font-size: 14px; }
+
+/* ---------- Rulebook ---------- */
+.rulebook { display: grid; gap: 12px; font-size: 13px; }
+.rb-intro { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.rb-intro b { color: var(--brass); }
+.rb-card { background: var(--raised); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 9px; }
+.rb-card h4 { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+.rb-card.vendor { border-top: 3px solid var(--sub); }
+table.rb-tiers { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+table.rb-tiers th, table.rb-tiers td { padding: 6px 6px; text-align: left; font-size: 12.5px; }
+table.rb-tiers thead th { font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); padding-top: 0; }
+table.rb-tiers tbody th { font-weight: 600; white-space: nowrap; display: flex; align-items: center; gap: 7px; }
+table.rb-tiers tbody td { font-weight: 600; white-space: nowrap; }
+table.rb-tiers tbody tr { border-top: 1px solid var(--line); }
+table.rb-tiers tbody tr.hit { background: color-mix(in srgb, var(--brass) 14%, transparent); }
+table.rb-tiers tbody tr.hit th { color: var(--brass); }
+.rb-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.rb-row { display: flex; align-items: center; gap: 10px; padding: 7px 8px; margin-inline: -8px; border-radius: 5px; border-top: 1px solid var(--line); }
+.rb-list .rb-row:first-child { border-top: 0; }
+.rb-label { flex: 1; min-width: 0; color: var(--ink); line-height: 1.35; }
+.rb-value { color: var(--muted); font-weight: 600; text-align: right; font-size: 12.5px; }
+.rb-row.off .rb-label, .rb-row.off .rb-value { color: var(--faint); font-weight: 400; }
+.rb-row.hit { background: color-mix(in srgb, var(--brass) 13%, transparent); border-top-color: transparent; }
+.rb-row.hit .rb-label { font-weight: 600; }
+.rb-row.hit .rb-value { color: var(--brass); }
+.rb-row + .rb-row.hit, .rb-row.hit + .rb-row { border-top-color: transparent; }
+.applied-tag { flex: none; white-space: nowrap; }
+.applied-tag.pulse { animation: rule-pulse 2.4s ease-out; }
+.rb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-v { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.chip-v.good { color: var(--good); background: var(--good-bg); }
+.chip-v.bad { color: var(--bad); background: var(--bad-bg); }
+.chip-v.neutral { color: var(--muted); background: color-mix(in srgb, var(--muted) 13%, transparent); }
+.rb-foot { margin: 0; font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+
+@media (max-width: 860px) { .titleblock h1 { font-size: 28px; } .agreed b { font-size: 17px; } }
+.rb-label { min-width: 96px; }
+.rb-value { max-width: 62%; overflow-wrap: anywhere; }

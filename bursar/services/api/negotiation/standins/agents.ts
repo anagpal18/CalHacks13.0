@@ -43,7 +43,7 @@ const lastFrom = (h: Offer[], side: Offer["from"]) => [...h].reverse().find((o) 
 const toTerms = (o: Offer): Terms => ({ netDays: o.netDays, upfrontPct: o.depositPct, limitCents: o.limitCents });
 
 export function schedule(upfrontPct: number, netDays: number): Offer["schedule"] {
-  return upfrontPct >= 100 ? [] : [{ label: `Balance on net ${netDays}`, pct: 100 - upfrontPct }];
+  return upfrontPct >= 100 ? [] : [{ label: `Rest paid in ${netDays} days`, pct: 100 - upfrontPct }];
 }
 
 export function sameTerms(a: Offer, b: Offer) {
@@ -87,7 +87,7 @@ export function standinContractor(): ContractorAgent {
   });
   const why = (v: AgentView, t: Terms) => {
     const k = tally(v);
-    return `Trust ${v.trust}: ${k.verified} claims verified, ${k.contradicted} contradicted, ${k.unverified} unverified. We can do net ${t.netDays}, ${t.upfrontPct}% upfront and a ${fmtUsd(t.limitCents)} first order.`;
+    return `Trust ${v.trust}: ${k.verified} claims verified, ${k.contradicted} contradicted, ${k.unverified} unverified. We can pay in ${t.netDays} days, with ${t.upfrontPct}% up front and a ${fmtUsd(t.limitCents)} first order.`;
   };
 
   return {
@@ -101,7 +101,7 @@ export function standinContractor(): ContractorAgent {
       const V = theirs ? toTerms(theirs) : v.rulebook.vendorRules.opening;
       if (theirs && this.accepts(v, theirs))
         return offer(v, "contractor", V, theirs.conditions.length ? theirs.conditions : conditions(v), evidence(v),
-          `The evidence holds up and it's inside the rulebook. Agreed: net ${V.netDays}, ${V.upfrontPct}% upfront, ${fmtUsd(V.limitCents)} first order.`);
+          `The evidence holds up and it's inside the rulebook. Agreed: paid in ${V.netDays} days, ${V.upfrontPct}% up front, ${fmtUsd(V.limitCents)} first order.`);
       const d = desire(v, V);
       const f = Math.min(1, v.round / 2);
       let t: Terms = {
@@ -118,7 +118,7 @@ export function standinContractor(): ContractorAgent {
       if (ruleIds.includes("cap.upfront")) known.up = v.caps.maxUpfrontPct;
       if (ruleIds.includes("cap.limit") || ruleIds.includes("anchor")) known.limit = v.caps.limitCapCents;
       const t = clampKnown(toTerms(rejected));
-      return { ...offer(v, "contractor", t, rejected.conditions, evidence(v), ""), rationale: `Held to the rulebook: net ${t.netDays}, ${t.upfrontPct}% upfront, ${fmtUsd(t.limitCents)} first order.` };
+      return { ...offer(v, "contractor", t, rejected.conditions, evidence(v), ""), rationale: `Held to the rulebook: paid in ${t.netDays} days, ${t.upfrontPct}% up front, ${fmtUsd(t.limitCents)} first order.` };
     },
   };
 }
@@ -166,11 +166,11 @@ export function standinSub(): SubAgent {
       const m = mine(v);
       if (theirs && this.accepts(v, theirs))
         return offer(v, "sub", toTerms(theirs), theirs.conditions, cites(v),
-          `Net ${theirs.netDays}, ${theirs.depositPct}% upfront and a ${fmtUsd(theirs.limitCents)} first order works for us.${theirs.conditions.includes("lien_release") ? " We'll sign the lien release." : ""}`, shared(v));
+          `Paid in ${theirs.netDays} days, ${theirs.depositPct}% up front and a ${fmtUsd(theirs.limitCents)} first order works for us.${theirs.conditions.includes("lien_release") ? " We'll sign the lien release." : ""}`, shared(v));
       const t = m ? next(v, toTerms(m)) : v.rulebook.vendorRules.opening;
       const k = tally(v);
-      const said = m ? `We can move: net ${t.netDays}, ${t.upfrontPct}% upfront, ${fmtUsd(t.limitCents)}.`
-        : `Net ${t.netDays}, ${t.upfrontPct}% upfront and a ${fmtUsd(t.limitCents)} first order.`;
+      const said = m ? `We can move: paid in ${t.netDays} days, ${t.upfrontPct}% up front, a ${fmtUsd(t.limitCents)} first order.`
+        : `We'd like to be paid in ${t.netDays} days, with ${t.upfrontPct}% up front and a ${fmtUsd(t.limitCents)} first order.`;
       return offer(v, "sub", t, [], cites(v), `${k.verified ? `${k.verified} of our claims checked out. ` : ""}${said}`, shared(v));
     },
     revise(v, rejected, reasons) {
@@ -186,5 +186,5 @@ export function bluffOffer(v: AgentView): Offer {
   const ff = v.cards.find((c) => c.id === "ff-score")?.citations[0];
   const fake = ff ? { ...ff, value: "2" } : { product: "fraud_finder" as const, field: "risk.score", value: "2", callId: "00000000-0000-0000-0000-000000000000" };
   return offer(v, "sub", { netDays: 15, upfrontPct: 30, limitCents: v.rulebook.vendorRules.opening.limitCents }, [], [fake],
-    "Fraud Finder scored us 2/100, so we should get 30% upfront on net 15.");
+    "Fraud Finder scored us 2/100, so we should get 30% up front and be paid in 15 days.");
 }

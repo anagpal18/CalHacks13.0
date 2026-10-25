@@ -38,23 +38,23 @@ export function standinGateway(): Gateway {
       }
       const max = rulebook.general.maxRounds;
       if (offer.round < 1 || offer.round > max) reasons.push(`Round ${offer.round} is outside 1 to ${max}.`);
-      if (offer.depositPct < 0 || offer.depositPct > 30) reasons.push("Upfront has to be 0 to 30%.");
-      if (offer.netDays < 15 || offer.netDays > 60) reasons.push("Net days run 15 to 60.");
-      if (offer.limitCents <= 0) reasons.push("The first-order limit has to be above $0.");
+      if (offer.depositPct < 0 || offer.depositPct > 30) reasons.push("Up front has to be 0 to 30%.");
+      if (offer.netDays < 15 || offer.netDays > 60) reasons.push("Payment has to be due in 15 to 60 days.");
+      if (offer.limitCents <= 0) reasons.push("The first order has to be above $0.");
       const sum = offer.depositPct + offer.schedule.reduce((s, m) => s + m.pct, 0);
-      if (sum !== 100) reasons.push(`Upfront plus schedule is ${sum}%, not 100%.`);
+      if (sum !== 100) reasons.push(`Up front plus the rest is ${sum}%, not 100%.`);
       if (offer.from === "contractor") {
         if (offer.netDays < caps.bestNetDays) {
-          ruled("cap.net", `This tier's best is net ${caps.bestNetDays}. Offered net ${offer.netDays}.`, `offered net ${offer.netDays}`);
+          ruled("cap.net", `At this risk level we pay in ${caps.bestNetDays} days at the soonest. Offered ${offer.netDays} days.`, `offered ${offer.netDays} days`);
         }
         if (offer.depositPct > caps.maxUpfrontPct) {
-          ruled("cap.upfront", `This tier allows at most ${caps.maxUpfrontPct}% upfront. Offered ${offer.depositPct}%.`, `offered ${offer.depositPct}%`);
+          ruled("cap.upfront", `At this risk level we pay at most ${caps.maxUpfrontPct}% up front. Offered ${offer.depositPct}%.`, `offered ${offer.depositPct}%`);
         }
         if (offer.limitCents > caps.limitCapCents) {
           const anchored = caps.anchor && caps.anchor.capCents < caps.maxLimitCents;
           ruled(anchored ? "anchor" : "cap.limit", anchored
-            ? `Credit-limit anchor: ${caps.anchor!.pct}% of Risk Dashboard's ${fmtUsd(caps.anchor!.recommendedCents)} is ${fmtUsd(caps.limitCapCents)}. Offered ${fmtUsd(offer.limitCents)}.`
-            : `This tier's max limit is ${fmtUsd(caps.limitCapCents)}. Offered ${fmtUsd(offer.limitCents)}.`, `offered ${fmtUsd(offer.limitCents)}`);
+            ? `The first order can be at most ${caps.anchor!.pct}% of the ${fmtUsd(caps.anchor!.recommendedCents)} credit limit CRS recommends, so ${fmtUsd(caps.limitCapCents)}. Offered ${fmtUsd(offer.limitCents)}.`
+            : `At this risk level the first order can be at most ${fmtUsd(caps.limitCapCents)}. Offered ${fmtUsd(offer.limitCents)}.`, `offered ${fmtUsd(offer.limitCents)}`);
         }
       }
       return reasons.length ? { ok: false, reasons, ruleIds: details.map((d) => d.ruleId), details } : { ok: true };
@@ -97,7 +97,7 @@ export function hardStops(cards: Card[], calls: CrsCallRecord[], rb: Rulebook): 
 }
 
 export function fraudAlert(cards: Card[], calls: CrsCallRecord[]): string | null {
-  if (find(cards, "idv-step-up")) return "TransUnion: fraud alert on file (2401). Step-up authentication is recommended, which the sandbox can't run.";
+  if (find(cards, "idv-step-up")) return "TransUnion: fraud alert on file (2401). Step-up authentication is recommended, which we can't run here.";
   const fs = (lastCall(calls, "biz_fraud_shields")?.response as any)?.results?.fraudShields;
   if (fs?.businessVictimStatementIndicator) return "Fraud Shields: a victim statement is on file for this business.";
   return null;

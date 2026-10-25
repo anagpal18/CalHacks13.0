@@ -54,15 +54,15 @@ const PURPOSE: Record<CrsCallProduct, string> = {
   tu_idv: "Cross-examine “I'm the owner”: is this person who they say they are",
   fraud_finder: "Cross-examine “these are my email and phone”: risk on the email, phone and IP",
   reverse_phone: "Cross-examine “this is my phone”: who the number belongs to",
-  pitchpoint: "Cross-examine “no liens or judgments”, and set the risk tier",
+  pitchpoint: "Cross-examine “no liens or judgments”, and set the risk level",
   credit_report: "Vendor side, with signed consent: its own report, so it can share the facts it allows",
   biz_quick_search: "Cross-examine “I own this business”: does it exist, and is it a look-alike",
   biz_registration: "Cross-examine the business's name, age and standing with the secretary of state",
   biz_fraud_shields: "Check the EIN and address on the W-9, OFAC and active status",
-  biz_risk_dashboard: "Set the risk tier and the credit-limit anchor: Intelliscore, days beyond terms, recommended limit",
+  biz_risk_dashboard: "Set the risk level and the first-order cap: business credit score, how late it pays suppliers, suggested credit limit",
 };
 
-const CHAPTERS = ["The pitch", "Cross-examination", "Risk tier", "Negotiation", "Verdict"] as const;
+const CHAPTERS = ["The pitch", "Cross-examination", "Risk level", "Negotiation", "Verdict"] as const;
 
 export class ConsentRequiredError extends Error {}
 
@@ -167,7 +167,7 @@ export async function runNegotiation(
     for (const h of hits) rule(h.ruleId, h.detail, round);
     if (n.deal.riskTier !== "blocked" || !n.caps)
       setTier("blocked", hits.length ? `Blocked: ${hits.length === 1 ? hits[0].text.replace(" → talks end", "").toLowerCase() : `${hits.length} hard stops fired`}.` : `Blocked: ${why}.`, capsFor("blocked", rb, n.calls));
-    verdict("Talks end. No upfront payment, no order.");
+    verdict("Talks end. No up-front payment, no order.");
     n.deal.status = "ended";
     emit({ type: "talks_ended", at: at(), round, reasons: hits.length ? hits.map((h) => `${h.text} (${h.detail.replace(/\.$/, "")}).`) : [why ?? "Talks ended."], ruleIds: hits.map((h) => h.ruleId) });
     return n;
@@ -188,7 +188,7 @@ export async function runNegotiation(
   emit({ type: "negotiation_started", at: at(), negotiationId, sub, ask, contractor: CONTRACTOR.name, rulebook: rb,
     business: { name: sc.record.legalName, einLast4: sc.record.ein.slice(-4), address: `${titleCase(sc.record.address.street)}, ${titleCase(sc.record.address.city)} ${sc.record.address.state}`,
       state: sc.record.stateOfOrigin, profile: sc.profile, simulated: true } });
-  toChapter(1, `${titleCase(sub.contact)} of ${sub.business} asks ${CONTRACTOR.name} for net ${ask.netDays}, ${ask.upfrontPct}% upfront and a ${fmtUsd(ask.limitCents)} first order.`);
+  toChapter(1, `${titleCase(sub.contact)} of ${sub.business} asks ${CONTRACTOR.name} to be paid in ${ask.netDays} days, with ${ask.upfrontPct}% up front and a ${fmtUsd(ask.limitCents)} first order.`);
   const opening = statement(sc, ask);
 
   // ---------------------------------------------------------------- 2. cross-examination
@@ -212,7 +212,7 @@ export async function runNegotiation(
   if (alert && rb.buyerRules.escalate.fraudAlert) return escalate(1, alert, "escalate.fraud_alert", alert.startsWith("TransUnion") ? "TransUnion reason code 2401" : "Fraud Shields victim statement");
 
   // ---------------------------------------------------------------- 3. risk tier
-  toChapter(3, "The risk tier sets the limits the gateway enforces on every offer we make.");
+  toChapter(3, "The risk level decides how far we can go on every offer.");
   if (!has("pitchpoint")) await pull("pitchpoint");
   if (!has("biz_risk_dashboard")) await pull("biz_risk_dashboard");
   if (!has("biz_fraud_shields")) await pull("biz_fraud_shields");
@@ -221,11 +221,11 @@ export async function runNegotiation(
   const caps = capsFor(tier, rb, n.calls);
   setTier(tier, reason, caps);
   rule(`tier.${tier}` as RuleId, "", 1);
-  if (caps.anchor) rule("anchor", caps.limitCapCents < caps.anchor.capCents ? `the tier's max limit is lower` : "", 1);
-  if (caps.limitCapCents <= 0) return end(1, [{ ruleId: `tier.${tier}` as RuleId, text: ruleText(`tier.${tier}` as RuleId, rb), detail: `max limit ${fmtUsd(0)}, so there's nothing to offer` }]);
+  if (caps.anchor) rule("anchor", caps.limitCapCents < caps.anchor.capCents ? `the risk level's own limit is lower` : "", 1);
+  if (caps.limitCapCents <= 0) return end(1, [{ ruleId: `tier.${tier}` as RuleId, text: ruleText(`tier.${tier}` as RuleId, rb), detail: `no first order allowed, so there's nothing to offer` }]);
 
   // ---------------------------------------------------------------- 4. negotiation
-  toChapter(4, `Offers go through the gateway, which refuses anything outside the rulebook: ${capsLine(caps)}.`);
+  toChapter(4, `Every offer is checked against the rulebook: ${capsLine(caps)}.`);
   const view = (round: number): AgentView => ({ negotiationId, round, lastRound, sub, rulebook: rb, tier: n.deal.riskTier, caps: n.caps!, trust: n.trust,
     cards: n.cards, checks: n.checks, history: n.deal.rounds });
   const submit = (offer: Offer, revise: (o: Offer, reasons: string[], ruleIds: RuleId[]) => Offer): Offer | null => {
@@ -243,8 +243,8 @@ export async function runNegotiation(
     n.deal.status = "agreed";
     n.depositCents = depositCents(terms.limitCents, terms.depositPct);
     n.approversNeeded = approversNeeded(n.depositCents, rb);
-    if (n.approversNeeded > 1) rule("approval.second", `${fmtUsd(n.depositCents)} upfront`, terms.round);
-    verdict(`Deal: net ${terms.netDays}, ${terms.depositPct}% upfront, ${fmtUsd(terms.limitCents)} first order. The controller approves before money moves.`);
+    if (n.approversNeeded > 1) rule("approval.second", `${fmtUsd(n.depositCents)} up front`, terms.round);
+    verdict(`Deal: paid in ${terms.netDays} days, ${terms.depositPct}% up front, ${fmtUsd(terms.limitCents)} first order. The controller approves before money moves.`);
     emit({ type: "deal_closed", at: at(), terms, rounds: terms.round, depositCents: n.depositCents, approversNeeded: n.approversNeeded });
     return n;
   };
@@ -266,12 +266,12 @@ export async function runNegotiation(
       if (checkStops(round)) return n;
     }
     const s = submit(subAgent.propose(view(round)), (o, r) => subAgent.revise(view(round), o, r));
-    if (!s) return escalate(round, "The vendor's offer failed the gateway twice.");
+    if (!s) return escalate(round, "The vendor's offer failed the rule check twice.");
     const lastC = [...n.deal.rounds].reverse().find((o) => o.from === "contractor" && o !== s);
     if (lastC && sameTerms(s, lastC)) return close(s);
 
     const c = submit(contractor.propose(view(round)), (o, r, ids) => contractor.revise(view(round), o, r, ids));
-    if (!c) return escalate(round, "Our agent's offer failed the gateway twice.");
+    if (!c) return escalate(round, "Our agent's offer failed the rule check twice.");
     if (sameTerms(c, s)) return close(c);
     if (subAgent.accepts(view(round), c)) {
       const echo = submit(subAgent.propose(view(round)), (o, r) => subAgent.revise(view(round), o, r));
@@ -288,7 +288,7 @@ export function approveDeal(n: Negotiation, approvers: string[], now: () => Date
   if (n.deal.status !== "agreed") throw new Error(`Only an agreed deal can be approved (this one is ${n.deal.status}).`);
   const distinct = [...new Set(approvers.map((a) => a.trim()).filter(Boolean))];
   const needed = n.approversNeeded ?? 1;
-  if (distinct.length < needed) throw new Error(`This upfront payment needs ${needed} different approvers; got ${distinct.length}.`);
+  if (distinct.length < needed) throw new Error(`This up-front payment needs ${needed} different approvers; got ${distinct.length}.`);
   const out: DealEvent[] = [];
   n.deal.status = "approved";
   n.deal.approvedBy = distinct.join(" + ");

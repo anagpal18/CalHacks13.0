@@ -17,7 +17,7 @@ const PRESETS: [PresetId, string, string][] = [
   ["friendly", "Friendly buyer", "Higher caps, looser cut-offs"],
 ];
 
-export const LiveBadge = () => <span className="badge live" title="Real CRS sandbox data for a test persona">LIVE CRS</span>;
+export const CrsBadge = () => <span className="badge live" title="Checked with CRS">CRS</span>;
 
 export function Start() {
   const rb = useStore((s) => s.rulebook);
@@ -31,7 +31,7 @@ export function Start() {
           <span className="eyebrow">Cal Hacks 13.0 · CRS track</span>
           <h1>Bursar</h1>
           <p>{CONTRACTOR.name} is onboarding a vendor for {CONTRACTOR.project}. Two AI agents negotiate when we pay, how much up front, and how big the first order is. CRS checks every claim.</p>
-          <div className="row legend"><LiveBadge /><span>people data from the CRS sandbox personas</span></div>
+          <div className="row legend"><CrsBadge /><span>marks every CRS check</span></div>
         </header>
 
         <Section n={1} title="Pick a vendor">
@@ -59,7 +59,7 @@ export function Start() {
               </label>
               <label>Speed
                 <span className="group seg" role="group" aria-label="Story speed">
-                  {[1, 2, 3].map((n) => <button key={n} aria-pressed={rb.general.speed === n} onClick={() => set((r) => { r.general.speed = n; })}>{n}×</button>)}
+                  {[1, 2, 3].map((n) => <button key={n} aria-pressed={rb.general.speed === n} onClick={() => set((r) => { r.general.speed = n; }, { keepPreset: true })}>{n}×</button>)}
                 </span>
               </label>
             </div>
@@ -69,16 +69,16 @@ export function Start() {
         <details className="advanced">
           <summary>Customize every rule</summary>
         <div className="start-cols">
-          <Section n={3} title="Buyer agent rules" sub={`Our side: ${CONTRACTOR.name}'s contractor agent. The gateway enforces these in code, not just in the prompt.`}>
+          <Section n={3} title="Buyer agent rules" sub={`Our side: ${CONTRACTOR.name}'s contractor agent. These are checked in code on every offer, not just in the prompt.`}>
             <TermsRow label="Opening position" t={rb.buyerRules.opening} onChange={(t) => set((r) => { r.buyerRules.opening = t; })} />
-            <Group label="Limits by risk tier">
+            <Group label="Limits by risk level">
               <table className="tiers">
-                <thead><tr><th /><th>Best net days</th><th>Max upfront</th><th>Max limit</th></tr></thead>
+                <thead><tr><th /><th>Pay in at least</th><th>Most up front</th><th>Biggest first order</th></tr></thead>
                 <tbody>
                   {TIERS.map(([t, name]) => (
                     <tr key={t}>
                       <th scope="row">{name}</th>
-                      <td><Num value={rb.buyerRules.tiers[t].bestNetDays} min={15} max={60} step={5} prefix="net " onChange={(v) => set((r) => { r.buyerRules.tiers[t].bestNetDays = v; })} /></td>
+                      <td><Num value={rb.buyerRules.tiers[t].bestNetDays} min={15} max={60} step={5} suffix=" days" onChange={(v) => set((r) => { r.buyerRules.tiers[t].bestNetDays = v; })} /></td>
                       <td><Num value={rb.buyerRules.tiers[t].maxUpfrontPct} min={0} max={30} step={5} suffix="%" onChange={(v) => set((r) => { r.buyerRules.tiers[t].maxUpfrontPct = v; })} /></td>
                       <td><Money cents={rb.buyerRules.tiers[t].maxLimitCents} onChange={(v) => set((r) => { r.buyerRules.tiers[t].maxLimitCents = v; })} /></td>
                     </tr>
@@ -86,9 +86,9 @@ export function Start() {
                 </tbody>
               </table>
             </Group>
-            <Group label="Credit-limit anchor">
+            <Group label="First order cap">
               <Toggle checked={rb.buyerRules.creditLimitAnchor.on} onChange={(v) => set((r) => { r.buyerRules.creditLimitAnchor.on = v; })}
-                label="Use Risk Dashboard's recommended credit limit">
+                label="Cap the first order at a share of the credit limit CRS suggests">
                 <span className="inline">cap at <Num value={rb.buyerRules.creditLimitAnchor.pct} min={10} max={100} step={5} suffix="%" disabled={!rb.buyerRules.creditLimitAnchor.on}
                   onChange={(v) => set((r) => { r.buyerRules.creditLimitAnchor.pct = v; })} /> of it</span>
               </Toggle>
@@ -121,7 +121,7 @@ export function Start() {
               </Toggle>
             </Group>
             <Group label="Approval">
-              <p className="hint">{CONTRACTOR.controller} approves every deal. A second approver ({CONTRACTOR.secondApprover}) when the upfront payment is above</p>
+              <p className="hint">{CONTRACTOR.controller} approves every deal. A second approver ({CONTRACTOR.secondApprover}) when the up-front payment is above</p>
               <Money cents={rb.buyerRules.approval.secondApproverAboveCents} onChange={(v) => set((r) => { r.buyerRules.approval.secondApproverAboveCents = v; })} />
             </Group>
           </Section>
@@ -135,11 +135,11 @@ export function Start() {
                   <button key={s} aria-pressed={rb.vendorRules.style === s} onClick={() => set((r) => { r.vendorRules.style = s; })}>{s[0].toUpperCase() + s.slice(1)}</button>
                 ))}
               </div>
-              <p className="hint">{rb.vendorRules.style === "firm" ? "Concedes slowly." : rb.vendorRules.style === "flexible" ? "Concedes fast." : "Meets halfway, upfront first and net days last."}</p>
+              <p className="hint">{rb.vendorRules.style === "firm" ? "Concedes slowly." : rb.vendorRules.style === "flexible" ? "Concedes fast." : "Meets halfway: gives on up front first, on days to get paid last."}</p>
             </Group>
             <Group label="Consent">
               <Toggle checked={rb.vendorRules.consent.allow} onChange={(v) => set((r) => { r.vendorRules.consent.allow = v; })}
-                label="Allow sharing its own credit facts" hint="Its agent pulls its own TransUnion report and shares only these facts, if they help. The report stays face down." after={<LiveBadge />} />
+                label="Allow sharing its own credit facts" hint="Its agent pulls its own TransUnion report and shares only these facts, if they help. The report stays face down." after={<CrsBadge />} />
               <div className="checks">
                 {CREDIT_FACTS.map((f: CreditFact) => (
                   <label key={f} className={rb.vendorRules.consent.allow ? "" : "off"}>
@@ -260,9 +260,9 @@ function TermsRow({ label, t, onChange }: { label: string; t: Terms; onChange: (
   return (
     <Group label={label}>
       <div className="terms-row">
-        <label>Net days <Num value={t.netDays} min={15} max={60} step={5} prefix="net " onChange={(v) => onChange({ ...t, netDays: v })} /></label>
-        <label>Upfront <Num value={t.upfrontPct} min={0} max={30} step={5} suffix="%" onChange={(v) => onChange({ ...t, upfrontPct: v })} /></label>
-        <label>First-order limit <Money cents={t.limitCents} onChange={(v) => onChange({ ...t, limitCents: v })} /></label>
+        <label>Paid in <Num value={t.netDays} min={15} max={60} step={5} suffix=" days" onChange={(v) => onChange({ ...t, netDays: v })} /></label>
+        <label>Up front <Num value={t.upfrontPct} min={0} max={30} step={5} suffix="%" onChange={(v) => onChange({ ...t, upfrontPct: v })} /></label>
+        <label>First order <Money cents={t.limitCents} onChange={(v) => onChange({ ...t, limitCents: v })} /></label>
       </div>
     </Group>
   );
@@ -284,7 +284,7 @@ function Stop({ on, set, label, live, children }: { on: boolean; set: (v: boolea
     <div className="toggle stop">
       <label><input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} /><span>{label}</span></label>
       {children}
-      {live && <LiveBadge />}
+      {live && <CrsBadge />}
     </div>
   );
 }

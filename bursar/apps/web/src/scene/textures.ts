@@ -258,7 +258,7 @@ export function cardFace(card: Card) {
   paperGrain(g, W, H, card.id.length * 13 + card.headline.length);
   g.fillStyle = TONE[card.tone]; g.fillRect(0, 0, 16, H);
   text(g, card.title.toUpperCase(), 52, 78, `600 25px ${F.sans}`, "#39434a", { spacing: 2.5 });
-  text(g, card.source === "live" ? "CRS Credit API · sandbox persona" : "CRS Credit API · business", 52, 114, `400 23px ${F.sans}`, "#7b858b");
+  text(g, card.source === "live" ? "CRS Credit API · person" : "CRS Credit API · business", 52, 114, `400 23px ${F.sans}`, "#7b858b");
   const tag = card.side === "contractor" ? "PULLED BY CONTRACTOR" : "SHARED BY VENDOR";
   g.font = `600 19px ${F.sans}`;
   const tw = g.measureText(tag).width + 34;
@@ -284,11 +284,11 @@ export function cardFace(card: Card) {
   text(g, `= ${c0.value}`, 52, py + 26, `500 38px ${F.mono}`, "#14181a");
   text(g, `call ${c0.callId.slice(0, 8)}${card.citations.length > 1 ? ` · +${card.citations.length - 1} more field${card.citations.length > 2 ? "s" : ""}` : ""}`,
     52, H - 52, `400 22px ${F.mono}`, "#7b858b");
-  if (card.source === "live") {
+  { // every card carries the same CRS tag
     g.font = `700 21px ${F.sans}`;
-    const bw = g.measureText("LIVE CRS").width + 30;
+    const bw = g.measureText("CRS").width + 30;
     g.fillStyle = "#1f5e44"; roundRect(g, W - 52 - bw, H - 84, bw, 42, 6); g.fill();
-    text(g, "LIVE CRS", W - 52 - bw / 2, H - 56, `700 21px ${F.sans}`, "#fbfaf6", { align: "center", spacing: 1.5 });
+    text(g, "CRS", W - 52 - bw / 2, H - 56, `700 21px ${F.sans}`, "#fbfaf6", { align: "center", spacing: 1.5 });
   }
   g.restore();
   return tex(c);
@@ -312,7 +312,7 @@ export function cardBack() {
   }
   g.strokeStyle = "#2c5652"; g.lineWidth = 6; roundRect(g, 30, 30, W - 60, H - 60, 22); g.stroke();
   text(g, "CRS EVIDENCE", W / 2, H / 2 + 14, `700 44px ${F.sans}`, "#244744", { align: "center", spacing: 8 });
-  text(g, "sandbox · persona data only", W / 2, H / 2 + 56, `400 24px ${F.sans}`, "#3b5e5a", { align: "center", spacing: 1 });
+  text(g, "every claim, checked", W / 2, H / 2 + 56, `400 24px ${F.sans}`, "#3b5e5a", { align: "center", spacing: 1 });
   g.restore();
   return tex(c);
 }
@@ -346,14 +346,14 @@ export function slip(offer: Offer, rejected: boolean, reasons: string[]) {
   g.save(); roundRect(g, 0, 0, W, H, 10); g.clip();
   paperGrain(g, W, H, offer.round * 7 + offer.depositPct, offer.from === "contractor" ? "#f2f4f6" : "#f7f2ec");
   g.fillStyle = offer.from === "contractor" ? INK.contractor : INK.sub; g.fillRect(0, 0, W, 12);
-  text(g, `ROUND ${offer.round} · ${offer.from === "contractor" ? "CONTRACTOR COUNTER" : "VENDOR OFFER"}`, 40, 62, `600 24px ${F.sans}`, "#3a444a", { spacing: 2.5 });
+  text(g, `ROUND ${offer.round} · ${offer.from === "contractor" ? "WE OFFER" : "VENDOR ASKS"}`, 40, 62, `600 24px ${F.sans}`, "#3a444a", { spacing: 2.5 });
   text(g, `${offer.depositPct}%`, 40, 170, `700 104px ${F.sans}`, "#14181a");
   g.font = `700 104px ${F.sans}`;
   const dw = g.measureText(`${offer.depositPct}%`).width;
-  text(g, "upfront", 40 + dw + 18, 166, `500 34px ${F.sans}`, "#4b555b");
-  text(g, `net ${offer.netDays}`, W - 40, 166, `700 50px ${F.sans}`, "#14181a", { align: "right" });
+  text(g, "up front", 40 + dw + 18, 166, `500 34px ${F.sans}`, "#4b555b");
+  text(g, `paid in ${offer.netDays} days`, W - 40, 166, `700 46px ${F.sans}`, "#14181a", { align: "right" });
   g.font = `400 26px ${F.sans}`;
-  text(g, wrap(g, `${fmtUsd(offer.limitCents)} first-order limit · balance on net ${offer.netDays}`, W - 80)[0], 40, 214, `500 26px ${F.sans}`, "#2f383c");
+  text(g, wrap(g, `First order up to ${fmtUsd(offer.limitCents)} · the rest paid ${offer.netDays} days after delivery`, W - 80)[0], 40, 214, `500 26px ${F.sans}`, "#2f383c");
   let x = 40;
   for (const cnd of offer.conditions) {
     g.font = `600 22px ${F.sans}`;
@@ -413,9 +413,9 @@ export function contract(v: ContractView) {
     ["Contractor", v.contractor],
     ["Vendor", `${v.sub.business} (${v.sub.contact.replace(/\b(\w)(\w*)/g, (_, a, b) => a + b.toLowerCase())})`],
     ["Scope", v.sub.scope],
-    ["Payment terms", `Net ${v.terms.netDays}`],
-    ["Upfront", `${v.terms.depositPct}% · ${fmtUsd(v.depositCents)}`],
-    ["First-order limit", fmtUsd(v.terms.limitCents)],
+    ["Paid in", `${v.terms.netDays} days after delivery`],
+    ["Up front", `${v.terms.depositPct}% · ${fmtUsd(v.depositCents)}`],
+    ["First order up to", fmtUsd(v.terms.limitCents)],
     ["Balance", v.terms.schedule.map((m) => `${m.pct}% ${m.label.toLowerCase()}`).join("; ") || "none"],
     ["Conditions", v.terms.conditions.length ? v.terms.conditions.map((x) => COND[x]).join("; ") : "None"],
   ];
@@ -429,7 +429,7 @@ export function contract(v: ContractView) {
     g.strokeStyle = "#e1ddd2"; g.lineWidth = 1; g.beginPath(); g.moveTo(90, y - 30); g.lineTo(W - 90, y - 30); g.stroke();
   }
   g.font = `italic 400 26px ${F.serif}`;
-  wrap(g, `Agreed in ${v.rounds} round${v.rounds > 1 ? "s" : ""}. Every offer cited CRS facts from the call log (${v.citations} citations in all), and the gateway checked each one before it reached the table.`, W - 180)
+  wrap(g, `Agreed in ${v.rounds} round${v.rounds > 1 ? "s" : ""}. Every offer cited CRS facts from the call log (${v.citations} citations in all), and the rule check passed each one before it reached the table.`, W - 180)
     .forEach((l, i) => text(g, l, 90, y + 10 + i * 34, `italic 400 26px ${F.serif}`, "#3c464b"));
   const sy = 1110;
   for (const [i, who] of [[0, `Contractor agent, for ${v.contractor}`], [1, `Vendor agent, for ${v.sub.business}`]] as const) {
@@ -446,13 +446,14 @@ export function contract(v: ContractView) {
     text(g, v.approvedBy.join(" + "), 0, 42, `600 19px ${F.sans}`, "rgba(30,110,60,0.9)", { align: "center" });
     g.restore();
   }
-  if (v.transferId) text(g, `Upfront sent · ${v.transferId}`, 90, 1316, `400 20px ${F.mono}`, "#2e6b45");
+  if (v.transferId) text(g, `Up-front payment sent · ${v.transferId}`, 90, 1316, `400 20px ${F.mono}`, "#2e6b45");
   return tex(c);
 }
 
 // ---------------------------------------------------------------- the room
 
-export interface BoardRow { round: number; sub?: string; us?: string; rejected?: string; }
+/** One offer on the whiteboard. order is the first order, already short ("$75k"). */
+export interface BoardRow { round: number; from: "sub" | "contractor"; days: number; upfront: number; order: string; rejected: boolean }
 
 export function whiteboard(title: string, rows: BoardRow[], outcome: { text: string; color: string } | null) {
   const W = 1600, H = 1000;
@@ -463,33 +464,34 @@ export function whiteboard(title: string, rows: BoardRow[], outcome: { text: str
     g.strokeStyle = `rgba(120,130,140,${0.03 + r() * 0.04})`; g.lineWidth = 6 + r() * 14; g.lineCap = "round";
     g.beginPath(); const x = r() * W, y = r() * H; g.moveTo(x, y); g.quadraticCurveTo(x + r() * 300, y + (r() - 0.5) * 120, x + 120 + r() * 400, y + (r() - 0.5) * 60); g.stroke();
   }
-  const blue = "#1d4b9c", red = "#c3262d", black = "#202326", green = "#1c7a3e";
+  const blue = "#1d4b9c", red = "#c3262d", black = "#202326", green = "#1c7a3e", copper = "#9a4a1c";
   text(g, title, 70, 120, `700 82px ${F.hand}`, blue);
   g.strokeStyle = blue; g.lineWidth = 5; g.beginPath(); g.moveTo(70, 140); g.quadraticCurveTo(600, 152, 1180, 136); g.stroke();
-  const cols = [70, 260, 760, 1250];
-  ["Rd", "Vendor asks", "We offer", ""].forEach((h, i) => text(g, h, cols[i], 230, `700 54px ${F.hand}`, black));
+  // Plain headings, so the numbers need no explaining: who offered, when we pay, how much up front, how big the first order.
+  const cols = [70, 250, 520, 860, 1150];
+  ["Round", "From", "Paid in", "Up front", "First order"].forEach((h, i) => text(g, h, cols[i], 230, `700 50px ${F.hand}`, black));
   g.strokeStyle = black; g.lineWidth = 3; g.beginPath(); g.moveTo(60, 250); g.lineTo(1540, 254); g.stroke();
-  let y = 330;
+  let y = 318;
   for (const row of rows) {
-    text(g, String(row.round), cols[0] + 14, y, `600 58px ${F.hand}`, black);
-    if (row.sub) text(g, row.sub, cols[1], y, `500 54px ${F.hand}`, "#9a4a1c");
+    const ink = row.rejected ? red : row.from === "sub" ? copper : blue;
+    text(g, String(row.round), cols[0] + 22, y, `600 54px ${F.hand}`, black);
+    const cells = [row.from === "sub" ? "Vendor" : "Us", `${row.days} days`, `${row.upfront}%`, row.order];
+    cells.forEach((v, i) => text(g, v, cols[i + 1], y, `500 54px ${F.hand}`, ink));
     if (row.rejected) {
-      text(g, row.rejected, cols[2], y, `500 54px ${F.hand}`, red);
       g.font = `500 54px ${F.hand}`;
-      const w = g.measureText(row.rejected).width;
-      g.strokeStyle = red; g.lineWidth = 5; g.beginPath(); g.moveTo(cols[2] - 8, y - 16); g.lineTo(cols[2] + w + 8, y - 22); g.stroke();
-      text(g, "← gateway: no", cols[2] + w + 24, y, `600 44px ${F.hand}`, red);
-      y += 70;
+      const end = cols[4] + g.measureText(row.order).width;
+      g.strokeStyle = red; g.lineWidth = 5; g.beginPath(); g.moveTo(cols[1] - 8, y - 16); g.lineTo(end + 8, y - 22); g.stroke();
+      text(g, "← rules say no", end + 26, y, `600 42px ${F.hand}`, red);
     }
-    if (row.us) text(g, row.us, cols[2], y, `500 54px ${F.hand}`, blue);
-    y += 84;
+    y += 72;
   }
   if (outcome) {
-    text(g, outcome.text, 70, Math.min(y + 60, 940), `700 70px ${F.hand}`, outcome.color);
-    g.font = `700 70px ${F.hand}`;
+    const oy = Math.min(y + 58, 938);
+    text(g, outcome.text, 70, oy, `700 60px ${F.hand}`, outcome.color);
+    g.font = `700 60px ${F.hand}`;
     const w = g.measureText(outcome.text).width;
     g.strokeStyle = outcome.color; g.lineWidth = 5;
-    g.beginPath(); g.ellipse(70 + w / 2, Math.min(y + 60, 940) - 22, w / 2 + 40, 60, -0.03, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.ellipse(70 + w / 2, oy - 20, w / 2 + 40, 54, -0.03, 0, Math.PI * 2); g.stroke();
   }
   g.fillStyle = green; g.fillRect(1440, 948, 120, 14); // the green marker's cap, left on the tray
   return tex(c);
@@ -500,7 +502,7 @@ export function plaque(title: string, rules: [string, string][]) {
   g.strokeStyle = "rgba(40,44,46,0.6)"; g.lineWidth = 4; g.strokeRect(24, 24, 852, 652);
   const ink = { dark: "#23282b" };
   engrave(g, title, 60, 106, `700 50px ${F.sans}`, { ...ink, spacing: 6 });
-  engrave(g, "Enforced in code by the gateway, not by the agents", 60, 148, `400 24px ${F.sans}`, ink);
+  engrave(g, "Checked in code on every offer, not left to the agents", 60, 148, `400 24px ${F.sans}`, ink);
   rules.slice(0, 7).forEach(([a, b], i) => {
     const y = 226 + i * 64;
     engrave(g, a, 60, y, `500 29px ${F.sans}`, ink);

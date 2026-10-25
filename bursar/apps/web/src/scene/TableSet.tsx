@@ -78,7 +78,7 @@ export function DealBar() {
   const enamel = useRef<THREE.MeshStandardMaterial>(null!);
   const target = table.current?.depositPct ?? table.ask?.upfrontPct ?? 0;
   const sideColor = useMemo(() => new THREE.Color(), []);
-  const { handlers } = useClickable("Deal bar: upfront 0 to 50%", { kind: "spot", id: "dealbar" }, look(0, DEALBAR.z, 0.45, 0.42));
+  const { handlers } = useClickable("Deal bar: up front, 0 to 50%", { kind: "spot", id: "dealbar" }, look(0, DEALBAR.z, 0.45, 0.42));
   useFrame((_, dt) => {
     const k = 1 - Math.exp(-dt * 3.2);
     const z = DEALBAR.z - 0.045;

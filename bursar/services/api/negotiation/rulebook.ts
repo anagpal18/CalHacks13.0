@@ -187,7 +187,7 @@ export function normalizeRulebook(input: unknown): Rulebook {
 export const TIER_NAME: Record<RiskTier, string> = { low: "Low risk", caution: "Caution", blocked: "Blocked" };
 export const tierLine = (rb: Rulebook, t: RiskTier) => {
   const x = rb.buyerRules.tiers[t];
-  return `${TIER_NAME[t]}: best net ${x.bestNetDays} · max upfront ${x.maxUpfrontPct}% · max limit ${fmtUsd(x.maxLimitCents)}`;
+  return `${TIER_NAME[t]}: pay in ${x.bestNetDays} days at the soonest · up to ${x.maxUpfrontPct}% up front · first order up to ${fmtUsd(x.maxLimitCents)}`;
 };
 
 /** The rule as the Rulebook prints it, e.g. "Fraud Finder risk ≥ 80 → talks end". */
@@ -204,14 +204,14 @@ export function ruleText(id: RuleId, rb: Rulebook): string {
     case "tier.low": return tierLine(rb, "low");
     case "tier.caution": return tierLine(rb, "caution");
     case "tier.blocked": return tierLine(rb, "blocked");
-    case "cap.net": return "Our offers can't beat the tier's best net days";
-    case "cap.upfront": return "Our offers can't exceed the tier's max upfront %";
-    case "cap.limit": return "Our offers can't exceed the tier's max limit";
-    case "anchor": return `Credit-limit anchor: limit ≤ ${b.creditLimitAnchor.pct}% of Risk Dashboard's recommended credit limit`;
+    case "cap.net": return "We never promise to pay sooner than the risk level allows";
+    case "cap.upfront": return "We never pay more up front than the risk level allows";
+    case "cap.limit": return "Our first order never goes above what the risk level allows";
+    case "anchor": return `First order at most ${b.creditLimitAnchor.pct}% of the credit limit CRS recommends`;
     case "escalate.fraud_alert": return "Fraud alert on file → a person decides";
     case "escalate.no_deal": return `No deal after ${b.escalate.noDeal.rounds} rounds → a person decides`;
     case "rounds.max": return `No deal after ${rb.general.maxRounds} rounds → talks end`;
-    case "approval.second": return `Upfront payment above ${fmtUsd(b.approval.secondApproverAboveCents)} → second approver`;
+    case "approval.second": return `Up-front payment over ${fmtUsd(b.approval.secondApproverAboveCents)} → a second person approves`;
     case "consent": return "Vendor credit data only with the vendor's signed consent, and only the facts it allows";
     case "evidence": return `Each verdict moves trust: verified +${b.evidence.verified}, contradicted −${b.evidence.contradicted}, unverified −${b.evidence.unverified}`;
   }
@@ -234,18 +234,18 @@ export function activeRules(rb: Rulebook): RuleId[] {
 /** The line the transcript prints when a rule decides something, e.g. "Caution tier max upfront 0% → our offer held at 0% (offered 10%)". */
 export function appliedText(id: RuleId, rb: Rulebook, x: { tier?: RiskTier; caps?: TierCaps; detail?: string } = {}): string {
   const d = x.detail ? ` (${x.detail.replace(/\.$/, "")})` : "";
-  const T = x.tier ? `${TIER_NAME[x.tier]} tier` : "The tier";
+  const T = x.tier ? TIER_NAME[x.tier] : "This risk level";
   const c = x.caps;
   switch (id) {
     case "tier.low": case "tier.caution": case "tier.blocked": {
       const t = id.slice(5) as RiskTier, r = rb.buyerRules.tiers[t];
-      return `${TIER_NAME[t]} tier → best net ${r.bestNetDays} · max upfront ${r.maxUpfrontPct}% · max limit ${fmtUsd(r.maxLimitCents)}${d}`;
+      return `${TIER_NAME[t]} → we pay in ${r.bestNetDays} days at the soonest, up to ${r.maxUpfrontPct}% up front, first order up to ${fmtUsd(r.maxLimitCents)}${d}`;
     }
-    case "cap.net": return `${T} best net ${c?.bestNetDays} → our offer held at net ${c?.bestNetDays}${d}`;
-    case "cap.upfront": return `${T} max upfront ${c?.maxUpfrontPct}% → our offer held at ${c?.maxUpfrontPct}%${d}`;
-    case "cap.limit": return `${T} max limit ${fmtUsd(c?.limitCapCents ?? 0)} → our offer held at ${fmtUsd(c?.limitCapCents ?? 0)}${d}`;
+    case "cap.net": return `${T}: we pay in ${c?.bestNetDays} days at the soonest → our offer held at ${c?.bestNetDays} days${d}`;
+    case "cap.upfront": return `${T}: up to ${c?.maxUpfrontPct}% up front → our offer held at ${c?.maxUpfrontPct}%${d}`;
+    case "cap.limit": return `${T}: first order up to ${fmtUsd(c?.limitCapCents ?? 0)} → our offer held at ${fmtUsd(c?.limitCapCents ?? 0)}${d}`;
     case "anchor": return c?.anchor
-      ? `Credit-limit anchor ${c.anchor.pct}% of Risk Dashboard's ${fmtUsd(c.anchor.recommendedCents)} → limit capped at ${fmtUsd(c.limitCapCents)}${d}`
+      ? `First order at most ${c.anchor.pct}% of the ${fmtUsd(c.anchor.recommendedCents)} credit limit CRS recommends → capped at ${fmtUsd(c.limitCapCents)}${d}`
       : `${ruleText(id, rb)}${d}`;
     case "consent": return `No signed consent → the vendor's agent can't pull its own credit report, so it shares no credit facts${d}`;
     default: return `${ruleText(id, rb)}${d}`;

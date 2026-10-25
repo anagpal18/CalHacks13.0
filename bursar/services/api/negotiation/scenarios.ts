@@ -79,7 +79,7 @@ function scenarioA(): ScenarioCase {
       invoices: "Completed $410,000 of commercial electrical work in 2025",
       bank: "Average business balance of $85,000 over the last six months",
     },
-    expected: "Clean. Expected: net 15.",
+    expected: "Clean. Expected: paid in 15 days.",
   };
 }
 
@@ -104,7 +104,7 @@ function scenarioB(): ScenarioCase {
       invoices: "Completed $1.2 million of framing and drywall in 2025",
       bank: "Average business balance of $40,000 over the last six months",
     },
-    expected: "Lien + judgment, slow payer. Expected: about net 45, 0% upfront.",
+    expected: "Lien + judgment, slow payer. Expected: paid in about 45 days, nothing up front.",
   };
 }
 

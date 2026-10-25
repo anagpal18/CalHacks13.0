@@ -8,7 +8,7 @@ import { useStore, type Selection } from "../state/store";
 import type { TableState } from "../state/derive";
 import { terms } from "./Panel";
 import { PRODUCT, VERDICT, shortTerms, titleCase } from "./narrate";
-import { LiveBadge } from "./Start";
+import { CrsBadge } from "./Start";
 
 const PRODUCT_LONG: Record<string, string> = {
   tu_idv: "TransUnion identity verification", fraud_finder: "Fraud Finder (AtData)", reverse_phone: "Reverse phone (AccurateAppend)",
@@ -67,14 +67,14 @@ function CallBody({ entry, focus }: { entry: CrsLogEntry; focus?: string }) {
   const settled = t.checks.filter((c) => c.check.citations.some((k) => k.callId === entry.callId));
   return (
     <>
-      <div className="row">{entry.source === "live" && <LiveBadge />}{entry.cached && <span className="pill neutral">cached</span>}</div>
+      <div className="row"><CrsBadge /></div>
       <dl className="kv">
         <dt>Why</dt><dd>{entry.purpose}</dd>
         <dt>Result</dt><dd>{entry.summary}</dd>
         <dt>Call ID</dt><dd className="mono">{entry.callId}</dd>
-        <dt>Answered</dt><dd>{entry.at.replace("T", " ").slice(0, 19)} UTC · HTTP {entry.status} · {entry.latencyMs} ms{entry.cached ? " · from the call cache" : ""}</dd>
+        <dt>Answered</dt><dd>{entry.at.replace("T", " ").slice(0, 19)} UTC · HTTP {entry.status} · {entry.latencyMs} ms</dd>
         <dt>Endpoint</dt><dd className="mono">{entry.method} {entry.path}</dd>
-        <dt>Subject</dt><dd>{entry.source === "live" ? `${entry.persona} (sandbox test persona; exact request body only)` : `business ${entry.persona}`}</dd>
+        <dt>Subject</dt><dd>{entry.source === "live" ? `person ${entry.persona}` : `business ${entry.persona}`}</dd>
       </dl>
       {settled.length > 0 && (
         <>
@@ -125,7 +125,7 @@ function Body({ sel }: { sel: Selection }) {
     const uses = t.checks.filter((x) => x.check.cardIds.includes(c.id));
     return (
       <Shell eyebrow={`${c.title} · ${c.side === "sub" ? "shared by the vendor" : "pulled by the contractor"}`} title={c.headline}>
-        {c.source === "live" && <div className="row"><LiveBadge /></div>}
+        <div className="row"><CrsBadge /></div>
         <p>{c.detail}</p>
         {uses.length > 0 && <>{uses.map(({ check: u }) => <p key={u.claimId}><span className={`verdict ${u.verdict}`}>{VERDICT[u.verdict]}</span> “{u.text}” {u.delta >= 0 ? "+" : ""}{u.delta} trust</p>)}</>}
         {c.citations.map((k, i) => (
@@ -177,9 +177,9 @@ function Body({ sel }: { sel: Selection }) {
     if (!po) return null;
     const o = po.offer;
     return (
-      <Shell eyebrow={`Round ${o.round} · ${o.from === "sub" ? "vendor agent" : "contractor agent"}`} title={`${shortTerms(o)}${po.rejected ? " · rejected" : ""}`}>
+      <Shell eyebrow={`Round ${o.round} · ${o.from === "sub" ? "vendor asks" : "we offer"}`} title={`${shortTerms(o)}${po.rejected ? " · rules said no" : ""}`}>
         <p style={{ fontFamily: "var(--serif)", fontStyle: "italic" }}>“{o.rationale}”</p>
-        {po.rejected && <><h3>Why the gateway refused it</h3>{po.reasons.map((r) => <p key={r} className="reason">{r}</p>)}</>}
+        {po.rejected && <><h3>Why the rules said no</h3>{po.reasons.map((r) => <p key={r} className="reason">{r}</p>)}</>}
         <h3>The offer as JSON</h3>
         <pre className="json">{JSON.stringify(o, null, 2)}</pre>
       </Shell>
@@ -213,10 +213,10 @@ function Body({ sel }: { sel: Selection }) {
         <Shell eyebrow="Data use" title={`${t.log.length} CRS call${t.log.length === 1 ? "" : "s"} for this negotiation`}>
           {t.log.map((e) => (
             <dl key={e.callId} className="kv" style={{ borderTop: "1px solid var(--line)", paddingTop: 8 }}>
-              <dt>Product</dt><dd>{PRODUCT_LONG[e.product]} {e.source === "live" ? <span className="badge live mini">LIVE</span> : <span className="badge sim mini">SIM</span>}</dd>
+              <dt>Product</dt><dd>{PRODUCT_LONG[e.product]} <span className="badge live mini">CRS</span></dd>
               <dt>Why</dt><dd>{e.purpose}</dd>
               <dt>Result</dt><dd>{e.summary}</dd>
-              <dt>Call</dt><dd className="mono">{e.callId} · {e.latencyMs} ms{e.cached ? " · replayed from cache" : ""}</dd>
+              <dt>Call</dt><dd className="mono">{e.callId} · {e.latencyMs} ms</dd>
             </dl>
           ))}
           <div><button className="btn" onClick={() => useStore.getState().setTab("console")}>Open the CRS console</button></div>
@@ -232,8 +232,8 @@ function Body({ sel }: { sel: Selection }) {
       );
     case "dealbar":
       return (
-        <Shell eyebrow="Deal bar" title={t.current ? `Now at ${t.current.depositPct}% upfront` : "Upfront, 0 to 50%"}>
-          <p>The brass marker slides to each accepted offer's upfront %. The blue peg is our last offer, the copper peg is the vendor's.{t.tier && t.tier.tier !== "low" ? ` The red line is this tier's ${t.tier.limits.maxUpfrontPct}% cap.` : ""}</p>
+        <Shell eyebrow="Deal bar" title={t.current ? `Now at ${t.current.depositPct}% up front` : "Up front, 0 to 50%"}>
+          <p>The brass marker slides to each accepted offer's up-front %. The blue peg is our last offer, the copper peg is the vendor's.{t.tier && t.tier.tier !== "low" ? ` The red line is this risk level's ${t.tier.limits.maxUpfrontPct}% cap.` : ""}</p>
           <dl className="kv">
             <dt>Vendor</dt><dd>{t.lastMade.sub ? shortTerms(t.lastMade.sub) : "—"}</dd>
             <dt>Contractor</dt><dd>{t.lastMade.contractor ? shortTerms(t.lastMade.contractor) : "—"}</dd>
@@ -243,10 +243,10 @@ function Body({ sel }: { sel: Selection }) {
     case "agent-contractor":
       return (
         <Shell eyebrow="Seat · works for us" title="Contractor agent (buyer)">
-          <dl className="kv"><dt>Works for</dt><dd>{CONTRACTOR.name}</dd><dt>Wants</dt><dd>Longer net days, little or no upfront, a first order sized to the risk</dd>
+          <dl className="kv"><dt>Works for</dt><dd>{CONTRACTOR.name}</dd><dt>Wants</dt><dd>To pay later, little or nothing up front, a first order sized to the risk</dd>
             <dt>Uses CRS to</dt><dd>Cross-examine every claim: identity, phone, the business record, liens and judgments, payment habits</dd>
             <dt>Bound by</dt><dd>{rb ? `${tierLine(rb, "low")}; ${tierLine(rb, "caution")}` : "the buyer rules"}</dd></dl>
-          <p className="note">Deterministic stand-in for Kenil's Creao agent. Same Offer JSON, same gateway.</p>
+          <p className="note">Every offer it makes is checked against the rulebook, which refuses anything outside it.</p>
         </Shell>
       );
     case "agent-sub":
@@ -254,20 +254,20 @@ function Body({ sel }: { sel: Selection }) {
         <Shell eyebrow="Seat · works for the vendor" title="Vendor agent">
           <dl className="kv"><dt>Works for</dt><dd>{t.sub?.business ?? "the vendor"}</dd><dt>Wants</dt><dd>Paid fast, cash up front, a big first order</dd>
             <dt>Uses CRS to</dt><dd>Prove its claims, and share its own consented credit facts</dd>
-            <dt>Style</dt><dd>{rb?.vendorRules.style ?? "balanced"}, walks away past {rb ? `net ${rb.vendorRules.walkAway.netDays}, ${rb.vendorRules.walkAway.upfrontPct}%, ${fmtUsd(rb.vendorRules.walkAway.limitCents)}` : "its walk-away"}</dd></dl>
-          <p className="note">Deterministic stand-in for Kenil's Creao agent.</p>
+            <dt>Style</dt><dd>{rb?.vendorRules.style ?? "balanced"}, walks away rather than wait more than {rb ? `${rb.vendorRules.walkAway.netDays} days, take less than ${rb.vendorRules.walkAway.upfrontPct}% up front or a first order under ${fmtUsd(rb.vendorRules.walkAway.limitCents)}` : "its walk-away"}</dd></dl>
+          <p className="note">Its offers face the same rule check, and every fact it cites is checked against what CRS returned.</p>
         </Shell>
       );
     case "contract":
       return t.closed && t.sub ? (
         <Shell eyebrow="Vendor terms agreement" title={`${t.sub.business}: ${terms(t.closed.terms)}`}>
           <dl className="kv">
-            <dt>Net days</dt><dd>{t.closed.terms.netDays}</dd>
-            <dt>Upfront</dt><dd>{t.closed.terms.depositPct}% · {fmtUsd(t.closed.depositCents)}</dd>
-            <dt>First-order limit</dt><dd>{fmtUsd(t.closed.terms.limitCents)}</dd>
+            <dt>Paid in</dt><dd>{t.closed.terms.netDays} days after delivery</dd>
+            <dt>Up front</dt><dd>{t.closed.terms.depositPct}% · {fmtUsd(t.closed.depositCents)}</dd>
+            <dt>First order up to</dt><dd>{fmtUsd(t.closed.terms.limitCents)}</dd>
             <dt>Conditions</dt><dd>{t.closed.terms.conditions.join(", ").replace(/_/g, " ") || "none"}</dd>
             <dt>Approval</dt><dd>{t.approved ? t.approved.approvers.join(" + ") : `needs ${t.closed.approversNeeded}`}</dd>
-            <dt>Upfront payment</dt><dd>{t.deposit ? t.deposit.transferId : "not sent yet"}</dd>
+            <dt>Up-front payment</dt><dd>{t.deposit ? t.deposit.transferId : "not sent yet"}</dd>
           </dl>
         </Shell>
       ) : null;
@@ -279,8 +279,8 @@ function Body({ sel }: { sel: Selection }) {
       );
     case "receipt":
       return (
-        <Shell eyebrow="Receipt printer" title={t.deposit ? `${fmtUsd(t.deposit.amountCents)} upfront sent` : "Nothing printed yet"}>
-          <p>{t.deposit ? `Transfer ${t.deposit.transferId} to ${t.sub?.business}.` : "When the controller approves a deal, the upfront payment's receipt prints here."}</p>
+        <Shell eyebrow="Receipt printer" title={t.deposit ? `${fmtUsd(t.deposit.amountCents)} sent up front` : "Nothing printed yet"}>
+          <p>{t.deposit ? `Transfer ${t.deposit.transferId} to ${t.sub?.business}.` : "When the controller approves a deal, the up-front payment's receipt prints here."}</p>
         </Shell>
       );
     case "phone":
@@ -292,17 +292,17 @@ function Body({ sel }: { sel: Selection }) {
     case "whiteboard":
       return (
         <Shell eyebrow="Whiteboard" title="Rounds so far">
-          {t.offers.length ? t.offers.map((o) => <p key={o.index}>Round {o.offer.round}, {o.offer.from === "sub" ? "vendor" : "us"}: {shortTerms(o.offer)}{o.rejected ? " (rejected by the gateway)" : ""}</p>) : <p className="empty">No offers yet.</p>}
+          {t.offers.length ? t.offers.map((o) => <p key={o.index}>Round {o.offer.round}, {o.offer.from === "sub" ? "vendor" : "us"}: {shortTerms(o.offer)}{o.rejected ? " (the rules said no)" : ""}</p>) : <p className="empty">No offers yet.</p>}
         </Shell>
       );
     case "policy":
       return rb ? (
-        <Shell eyebrow="Vendor terms policy" title="Limits the gateway enforces">
+        <Shell eyebrow="Vendor terms policy" title="Limits checked on every offer">
           <dl className="kv">
             {(["low", "caution", "blocked"] as const).map((x) => <Fragment key={x}><dt>{TIER_NAME[x]}</dt><dd>{tierLine(rb, x).split(": ")[1]}</dd></Fragment>)}
-            <dt>Anchor</dt><dd>{rb.buyerRules.creditLimitAnchor.on ? `${rb.buyerRules.creditLimitAnchor.pct}% of Risk Dashboard's recommended limit` : "off"}</dd>
+            <dt>First order cap</dt><dd>{rb.buyerRules.creditLimitAnchor.on ? `${rb.buyerRules.creditLimitAnchor.pct}% of the limit CRS suggests` : "off"}</dd>
             <dt>Rounds</dt><dd>{rb.general.maxRounds}, then {rb.buyerRules.escalate.noDeal.on ? "a person decides" : "talks end"}</dd>
-            <dt>Approvals</dt><dd>two above {fmtUsd(rb.buyerRules.approval.secondApproverAboveCents)} upfront</dd>
+            <dt>Approvals</dt><dd>two above {fmtUsd(rb.buyerRules.approval.secondApproverAboveCents)} up front</dd>
           </dl>
           <div><button className="btn" onClick={() => useStore.getState().setTab("rulebook")}>Open the full Rulebook</button></div>
         </Shell>

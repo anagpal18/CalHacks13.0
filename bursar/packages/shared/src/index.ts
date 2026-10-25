@@ -239,7 +239,10 @@ export interface TierCaps extends TierRule {
 /** A W-9 as the judge hands it in: the fields it claims. */
 export interface UploadedW9 { legalName: string; ein: string; address: string; signer: string; fileName?: string }
 
-export type DealEvent =
+/** What an agent is thinking as an event happens, for its bubble. Optional: without it the UI words the event itself. */
+export interface Thought { side: "contractor" | "sub"; text: string }
+
+export type DealEvent = (
   | { type: "negotiation_started"; at: string; negotiationId: string; sub: SubProfile; ask: Ask; contractor: string; rulebook: Rulebook; business: BusinessSummary }
   | { type: "chapter"; at: string; n: number; title: string; caption: string }
   | { type: "exhibit_played"; at: string; exhibit: Exhibit }
@@ -256,7 +259,8 @@ export type DealEvent =
   | { type: "talks_ended"; at: string; round: number; reasons: string[]; ruleIds: RuleId[] }
   | { type: "escalated"; at: string; round: number; reason: string; ruleId?: RuleId }
   | { type: "approved"; at: string; approvers: string[] }
-  | { type: "deposit_paid"; at: string; transferId: string; amountCents: number; simulated: boolean };
+  | { type: "deposit_paid"; at: string; transferId: string; amountCents: number; simulated: boolean }
+) & { thought?: Thought };
 
 export type DealEventType = DealEvent["type"];
 
@@ -267,9 +271,13 @@ export const DEAL_EVENT_TYPES: DealEventType[] = ["negotiation_started", "chapte
 export const fmtUsd = (cents: number) =>
   "$" + (cents / 100).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
-/** "net 15 · 20% upfront · $120,000 limit" */
+/** The three terms in words anyone can read: "paid in 30 days · 10% up front · $75,000 first order". Never "net 30". */
 export const fmtTerms = (t: { netDays: number; depositPct?: number; upfrontPct?: number; limitCents: number }) =>
-  `net ${t.netDays} · ${t.depositPct ?? t.upfrontPct}% upfront · ${fmtUsd(t.limitCents)} limit`;
+  `paid in ${t.netDays} days · ${t.depositPct ?? t.upfrontPct}% up front · ${fmtUsd(t.limitCents)} first order`;
+
+/** The same terms inside a sentence: "paid in 30 days, with 10% up front and a $75,000 first order". */
+export const termsPhrase = (t: { netDays: number; depositPct?: number; upfrontPct?: number; limitCents: number }) =>
+  `paid in ${t.netDays} days, with ${t.depositPct ?? t.upfrontPct}% up front and a ${fmtUsd(t.limitCents)} first order`;
 
 // ---------------------------------------------------------------- masking
 

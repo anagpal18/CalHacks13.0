@@ -3,7 +3,7 @@
 
 import { useStore } from "../state/store";
 import { VIEWS, type ViewId } from "../scene/layout";
-import { LiveBadge } from "./Start";
+import { CrsBadge } from "./Start";
 
 const ORDER: ViewId[] = ["overview", "cards", "room", "wall"];
 
@@ -33,7 +33,7 @@ export function TitleBlock() {
       <h1>Bursar</h1>
       <p>{sub ? <><span className="vs">Keystone Bay Builders</span> and <span className="vs">{sub.business}</span> negotiate vendor terms. CRS cross-examines every claim.</> : "Two agents negotiate a vendor's terms. Every claim is cross-examined against CRS."}</p>
       <p>Drag to look around · scroll to lean in · click anything on the table</p>
-      <p className="legend"><LiveBadge /> people data from the CRS sandbox</p>
+      <p className="legend"><CrsBadge /> marks every CRS check</p>
     </header>
   );
 }

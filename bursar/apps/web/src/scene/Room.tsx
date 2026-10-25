@@ -302,19 +302,14 @@ export function AccentWall() {
   const m = mats();
   const table = useStore((s) => s.table);
   const board = useMemo(() => {
-    const rows: BoardRow[] = [];
-    for (const o of table.offers) {
-      const label = `net ${o.offer.netDays} · ${o.offer.depositPct}% · $${Math.round(o.offer.limitCents / 100_000)}k`;
-      let row = rows.find((r) => r.round === o.offer.round);
-      if (!row) rows.push((row = { round: o.offer.round }));
-      if (o.offer.from === "sub") row.sub = label;
-      else if (o.rejected) row.rejected = label;
-      else row.us = label;
-    }
-    const outcome = table.closed ? { text: `DEAL: net ${table.closed.terms.netDays} · ${table.closed.terms.depositPct}% · $${Math.round(table.closed.terms.limitCents / 100_000)}k`, color: INK.good }
+    const k = (cents: number) => `$${Math.round(cents / 100_000)}k`;
+    const rows: BoardRow[] = table.offers.map((o) => ({ round: o.offer.round, from: o.offer.from, days: o.offer.netDays,
+      upfront: o.offer.depositPct, order: k(o.offer.limitCents), rejected: o.rejected }));
+    const d = table.closed?.terms;
+    const outcome = d ? { text: `DEAL: paid in ${d.netDays} days · ${d.depositPct}% up front · ${k(d.limitCents)} first order`, color: INK.good }
       : table.ended ? { text: "TALKS ENDED · no order", color: INK.bad }
-      : table.escalated ? { text: "PAUSED → controller", color: INK.warn } : null;
-    return whiteboard(table.sub ? table.sub.business : "Bursar", rows.slice(0, 4), outcome);
+      : table.escalated ? { text: "PAUSED · a person decides", color: INK.warn } : null;
+    return whiteboard(table.sub ? table.sub.business : "Bursar", rows.slice(-8), outcome);
   }, [table.offers, table.closed, table.ended, table.escalated, table.sub]);
   useEffect(() => () => board.dispose(), [board]);
   const rb = table.rulebook;
@@ -322,11 +317,14 @@ export function AccentWall() {
     if (!rb) return plaque("VENDOR TERMS POLICY", [["Set on the start page", "Rulebook"]]);
     const hs = rb.buyerRules.hardStops;
     return plaque("VENDOR TERMS POLICY", [
-      ...(["low", "caution", "blocked"] as const).map((t) => [TIER_NAME[t], tierLine(rb, t).split(": ")[1].replace("best ", "").replace("max upfront ", "").replace("max limit ", "")] as [string, string]),
-      ["Credit-limit anchor", rb.buyerRules.creditLimitAnchor.on ? `${rb.buyerRules.creditLimitAnchor.pct}% of recommended` : "off"],
-      ["Fraud Finder", hs.fraudFinder.on ? `≥ ${hs.fraudFinder.threshold}: talks end` : "no stop"],
-      ["Upfront over " + fmtUsd(rb.buyerRules.approval.secondApproverAboveCents), "second approver"],
-      ["Every claim", "cross-examined against CRS"],
+      ...(["low", "caution", "blocked"] as const).map((t) => {
+        const x = rb.buyerRules.tiers[t];
+        return [TIER_NAME[t], x.maxLimitCents <= 0 ? "no order" : `pay in ${x.bestNetDays}+ days · ${x.maxUpfrontPct}% up front · $${Math.round(x.maxLimitCents / 100_000)}k`] as [string, string];
+      }),
+      ["First order cap", rb.buyerRules.creditLimitAnchor.on ? `${rb.buyerRules.creditLimitAnchor.pct}% of CRS's suggested limit` : "off"],
+      ["Fraud risk", hs.fraudFinder.on ? `${hs.fraudFinder.threshold} or more: talks end` : "no stop"],
+      ["Up front over " + fmtUsd(rb.buyerRules.approval.secondApproverAboveCents), "a second person approves"],
+      ["Every claim", "checked against CRS"],
     ]);
   }, [rb]);
   useEffect(() => () => plaqueTex.dispose(), [plaqueTex]);

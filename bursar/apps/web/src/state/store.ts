@@ -5,7 +5,7 @@
 import { create } from "zustand";
 import { DEAL_EVENT_TYPES, type DealEvent, type DealEventType, type Rulebook, type ScenarioId, type UploadedW9 } from "@terms-room/shared";
 import { approveDeal, CONTRACTOR, normalizeRulebook, rulebookFor, runNegotiation, switchScenario, type Negotiation, type PresetId } from "@terms-room/api/negotiation";
-import { derive, EMPTY, HOLD_MS, type TableState } from "./derive";
+import { derive, EMPTY, holdAfter, type TableState } from "./derive";
 import { VIEWS, type ViewId } from "../scene/layout";
 import { setSoundEnabled, sfx } from "../sound";
 
@@ -43,7 +43,7 @@ interface Store {
   view: ViewId | null;
   sound: boolean;
   quality: "high" | "fast";
-  setRulebook: (f: (r: Rulebook) => void) => void;
+  setRulebook: (f: (r: Rulebook) => void, opts?: { keepPreset?: boolean }) => void;
   applyPreset: (p: PresetId) => void;
   pickScenario: (id: ScenarioId, custom?: { owner?: string; profile?: Rulebook["scenario"]["profile"] }) => void;
   enterRoom: () => void;
@@ -88,10 +88,11 @@ const SOUND_FOR: Partial<Record<DealEventType, () => void>> = {
 export const useStore = create<Store>((set, get) => {
   const schedule = () => {
     if (timer) return;
-    const { playing, played, events, speed } = get();
+    const { playing, played, events, speed, times } = get();
     if (!playing || played >= events.length) return;
-    const prev = events[played - 1];
-    const wait = played === 0 ? 450 : HOLD_MS[prev.type] / speed;
+    // Hold on the last event for its full time, counted from when it played (a wait for the stream counts too).
+    const shownFor = performance.now() - (times[played - 1] ?? performance.now());
+    const wait = played === 0 ? 450 : Math.max(0, holdAfter(events, played - 1, speed) - shownFor);
     timer = setTimeout(() => {
       timer = null;
       const s = get();
@@ -136,10 +137,10 @@ export const useStore = create<Store>((set, get) => {
     cam: { ...VIEWS.overview, nonce: 0 }, view: "overview",
     sound: true, quality: "high",
 
-    setRulebook(f) {
+    setRulebook(f, opts) {
       const r = structuredClone(get().rulebook);
       f(r);
-      r.preset = "custom";
+      if (!opts?.keepPreset) r.preset = "custom";
       const n = normalizeRulebook(r);
       saveRulebook(n);
       set({ rulebook: n });

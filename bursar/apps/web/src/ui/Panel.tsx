@@ -2,18 +2,18 @@
 // and one Start button. Below, three tabs: the transcript (every claim, verdict, offer and rule that decided
 // something), the CRS console (every call), and the Rulebook (the active rules; a rule pulses when it decides).
 
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fmtUsd, type Citation, type Offer, type RuleId } from "@terms-room/shared";
-import { CONTRACTOR, EXHIBIT_LABEL, FACT_LABEL, TIER_NAME, scenarioCase, tierLine } from "@terms-room/api/negotiation";
+import { CONTRACTOR, EXHIBIT_LABEL, FACT_LABEL, TIER_NAME, scenarioCase } from "@terms-room/api/negotiation";
 import { useStore } from "../state/store";
 import { chapterStarts } from "../state/derive";
 import { focusCard, focusExhibit, focusOffer } from "./focus";
 import { PRODUCT, VERDICT, shortTerms, story, titleCase, type StoryLine } from "./narrate";
-import { LiveBadge } from "./Start";
+import { CrsBadge } from "./Start";
 
 const COND: Record<string, string> = { lien_release: "lien release", pay_supplier_direct: "supplier paid direct" };
-export const terms = (o: Offer) => `net ${o.netDays} · ${o.depositPct}% upfront`;
-const CHAPTERS = ["The pitch", "Cross-examination", "Risk tier", "Negotiation", "Verdict"];
+export const terms = (o: Offer) => `paid in ${o.netDays} days · ${o.depositPct}% up front`;
+const CHAPTERS = ["The pitch", "Cross-examination", "Risk level", "Negotiation", "Verdict"];
 
 export function Panel() {
   const tab = useStore((s) => s.tab);
@@ -30,7 +30,7 @@ export function Panel() {
         ))}
         <RulebookChip selected={tab === "rulebook"} />
       </div>
-      <div className="feed" role="tabpanel">
+      <div className="feed" role="tabpanel" key={tab}>
         {tab === "transcript" ? <Feed /> : tab === "console" ? <Console /> : <RulebookTab />}
       </div>
     </aside>
@@ -63,22 +63,28 @@ function Story({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => vo
   const owner = titleCase(sc.sub.contact.split(" ")[0]);
   const starts = useMemo(() => chapterStarts(events), [events]);
   const line: StoryLine = useMemo(() => {
+    if (t.closed) {
+      const needs = t.closed.approversNeeded > 1 ? "two approvals" : "the controller's approval";
+      return t.deposit
+        ? { headline: "Deal done", detail: `${t.approved?.approvers.join(" and ")} approved it, and ${fmtUsd(t.deposit.amountCents)} went out up front.`, tone: "good" }
+        : { headline: "Deal agreed", detail: `Waiting for ${needs} before any money moves.`, tone: "good" };
+    }
     for (let i = played - 1; i >= 0; i--) { const l = story(events[i], owner); if (l) return l; }
     return started
       ? { headline: "Setting the table…", detail: "", tone: "neutral" }
-      : { headline: `${owner} wants ${sc.sub.business} on the job`, detail: `${titleCase(sc.sub.contact)} runs ${sc.sub.business}: ${sc.sub.trade.toLowerCase()}, ${sc.sub.scope.toLowerCase()}. Press Start to watch the two agents negotiate.`, tone: "neutral" };
-  }, [events, played, owner, sc, started]);
+      : { headline: `${owner} wants ${sc.sub.business} on the job`, detail: `${sc.sub.trade}: ${sc.sub.scope.toLowerCase()}. Press Start to watch the two agents negotiate.`, tone: "neutral" };
+  }, [events, played, owner, sc, started, t.closed, t.approved, t.deposit]);
   const final = t.closed ? "good" : t.ended ? "bad" : t.escalated ? "warn" : null;
-  const ask = t.lastMade.sub ?? (t.ask ? { netDays: t.ask.netDays, depositPct: t.ask.upfrontPct, limitCents: t.ask.limitCents } : null);
   const opening = (t.rulebook ?? rb).vendorRules.opening;
-  const theirs = ask ?? { netDays: opening.netDays, depositPct: opening.upfrontPct, limitCents: opening.limitCents };
+  const theirs = t.lastMade.sub ?? { netDays: opening.netDays, depositPct: opening.upfrontPct, limitCents: opening.limitCents };
   const ours = t.lastMade.contractor;
-  const trustColor = t.trust < 35 ? "var(--bad)" : t.trust < 65 ? "var(--warn)" : "var(--good)";
+  const trustTone = t.trust < 35 ? "bad" : t.trust < 65 ? "warn" : "good";
   const n = t.chapter?.n ?? 0;
+  const deal = t.closed?.terms;
   return (
     <section className={`story${final ? ` final ${final}` : ""}`} aria-live="polite">
       <div className="story-top">
-        <span className="eyebrow">{started ? (n ? `Chapter ${n} of 5 · ${CHAPTERS[n - 1]}` : "Starting") : `Ready · ${sc.sub.business}`}</span>
+        <span className="eyebrow">{started ? (n ? `Chapter ${n} of 5 · ${CHAPTERS[n - 1]}` : "Starting") : "Ready"}</span>
         <button className="btn sheet-toggle" onClick={onToggle} aria-expanded={!collapsed}>{collapsed ? "Show" : "Hide"}</button>
       </div>
       <div className="story-steps" role="group" aria-label="Chapters">
@@ -90,28 +96,36 @@ function Story({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => vo
       </div>
       <h2 key={line.headline} className={`story-headline tone-${line.tone}`}>{line.headline}</h2>
       {line.detail && <p className="story-detail">{line.detail}</p>}
-      <div className="sides">
-        <div className="side sub">
-          <div className="k">{owner} asks</div>
-          <div className="v">{theirs.netDays} days</div>
-          <div className="s">{theirs.depositPct}% up front · {fmtUsd(theirs.limitCents)} order</div>
+
+      {deal ? (
+        <div className="agreed" aria-label="Agreed terms">
+          <div><b>{deal.netDays} days</b><span>until we pay</span></div>
+          <div><b>{deal.depositPct}%</b><span>up front · {fmtUsd(t.closed!.depositCents)}</span></div>
+          <div><b>{fmtUsd(deal.limitCents)}</b><span>first order</span></div>
         </div>
-        <div className="side contractor">
-          <div className="k">We offer</div>
-          <div className="v">{ours ? `${ours.netDays} days` : "—"}</div>
-          <div className="s">{ours ? `${ours.depositPct}% up front · ${fmtUsd(ours.limitCents)} order` : "after CRS checks their claims"}</div>
-        </div>
-      </div>
+      ) : (
+        <table className="compare" aria-label="Where each side stands">
+          <thead><tr><th /><th className="sub">{owner} asks</th><th className="contractor">We offer</th></tr></thead>
+          <tbody>
+            <tr><th>Paid in</th><td className="sub">{theirs.netDays} days</td><td className="contractor">{ours ? `${ours.netDays} days` : "—"}</td></tr>
+            <tr><th>Up front</th><td className="sub">{theirs.depositPct}%</td><td className="contractor">{ours ? `${ours.depositPct}%` : "—"}</td></tr>
+            <tr><th>First order</th><td className="sub">{fmtUsd(theirs.limitCents)}</td><td className="contractor">{ours ? fmtUsd(ours.limitCents) : "—"}</td></tr>
+          </tbody>
+        </table>
+      )}
+
       {started && (
-        <div className="trust" title="Every claim CRS verifies raises it; every claim CRS contradicts drops it">
-          <span>Trust</span>
-          <span className="bar"><i style={{ width: `${t.trust}%`, background: trustColor }} /></span>
+        <div className="meter" title="Every claim CRS verifies raises it; every claim CRS contradicts drops it">
+          <span>Trust in {owner}</span>
+          <span className={`bar ${trustTone}`}><i style={{ width: `${t.trust}%` }} /></span>
           <b>{t.trust}</b>
         </div>
       )}
       {t.tier && !final && (
-        <div className="tierline"><span className={`pill ${t.tier.tier === "low" ? "good" : t.tier.tier === "caution" ? "warn" : "bad"}`}>{TIER_NAME[t.tier.tier]}</span>
-          <span style={{ color: "var(--muted)" }}> at best {t.tier.limits.bestNetDays} days · {t.tier.limits.maxUpfrontPct}% up front · {fmtUsd(t.tier.limits.limitCapCents)}</span></div>
+        <div className="risk">
+          <span className={`pill ${t.tier.tier === "low" ? "good" : t.tier.tier === "caution" ? "warn" : "bad"}`}>{TIER_NAME[t.tier.tier]}</span>
+          <span>we can pay in {t.tier.limits.bestNetDays}+ days · {t.tier.limits.maxUpfrontPct}% up front · first order up to {fmtUsd(t.tier.limits.limitCapCents)}</span>
+        </div>
       )}
       <div className="story-actions">
         {!started && <button className="btn primary start-btn" onClick={() => void st().start()}>Start</button>}
@@ -120,7 +134,7 @@ function Story({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => vo
             Approve as {t.closed.approversNeeded > 1 ? `${CONTRACTOR.controller} + ${CONTRACTOR.secondApprover}` : CONTRACTOR.controller}
           </button>
         )}
-        {started && (final || t.deposit) && <button className="btn" onClick={() => st().backToStart()}>Start over</button>}
+        {started && (final || t.deposit) && <button className="btn ghost" onClick={() => st().backToStart()}>Start over</button>}
       </div>
     </section>
   );
@@ -128,15 +142,22 @@ function Story({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => vo
 
 // ---------------------------------------------------------------- transcript
 
+/** The CRS fields a claim or offer rests on. Two show; the rest fold into "+N more" (all of them are in the console). */
 function Cites({ cs }: { cs: Citation[] }) {
+  const open = (c: Citation) => {
+    useStore.getState().openCall(c.callId, c.field);
+    const pc = useStore.getState().table.cards.find((x) => x.card.citations.some((z) => z.callId === c.callId && z.field === c.field));
+    if (pc) focusCard(pc.card.id, false);
+  };
   return (
     <div className="cites">
-      {cs.map((c, k) => (
+      {cs.slice(0, 2).map((c, k) => (
         <button key={k} className="cite" title={`${c.product} ${c.field} = ${c.value} (call ${c.callId}). Opens the CRS console.`}
-          onClick={(ev) => { ev.stopPropagation(); useStore.getState().openCall(c.callId, c.field); const pc = useStore.getState().table.cards.find((x) => x.card.citations.some((z) => z.callId === c.callId && z.field === c.field)); if (pc) focusCard(pc.card.id, false); }}>
+          onClick={(ev) => { ev.stopPropagation(); open(c); }}>
           {PRODUCT[c.product]} {c.field.split(".").slice(-1)[0]} = {c.value}
         </button>
       ))}
+      {cs.length > 2 && <button className="cite more" onClick={(ev) => { ev.stopPropagation(); open(cs[2]); }} title="See every field in the CRS console">+{cs.length - 2} more</button>}
     </div>
   );
 }
@@ -160,7 +181,7 @@ function Feed() {
       {shown.map((e, i) => {
         switch (e.type) {
           case "negotiation_started":
-            return <div key={i} className="ev"><span><b style={{ color: "var(--ink)" }}>{e.sub.business}</b> ({titleCase(e.sub.contact)}, {e.sub.persona}) asks {e.contractor} for net {e.ask.netDays}, {e.ask.upfrontPct}% upfront and a {fmtUsd(e.ask.limitCents)} first order: {e.sub.scope.toLowerCase()}.</span></div>;
+            return <div key={i} className="ev"><span><b style={{ color: "var(--ink)" }}>{e.sub.business}</b> ({titleCase(e.sub.contact)}, {e.sub.persona}) asks {e.contractor} to be paid in {e.ask.netDays} days, with {e.ask.upfrontPct}% up front and a {fmtUsd(e.ask.limitCents)} first order: {e.sub.scope.toLowerCase()}.</span></div>;
           case "chapter":
             return <div key={i} className="chap"><span>Chapter {e.n}</span>{e.title}</div>;
           case "exhibit_played": {
@@ -168,7 +189,7 @@ function Feed() {
             return (
               <div key={i} className={`offer sub exhibit${x.from === "judge" ? " judge" : ""}`} role="button" tabIndex={0}
                 onClick={() => focusExhibit(x.id)} onKeyDown={(k) => { if (k.key === "Enter") focusExhibit(x.id); }}>
-                <div className="who"><span>{x.label} · {x.from === "judge" ? "handed in by you" : "vendor agent"}</span><span>{x.claims.length} claim{x.claims.length === 1 ? "" : "s"}</span></div>
+                <div className="who"><span>{x.label} · {x.from === "judge" ? "handed in by you" : "vendor's agent"}</span><span>{x.claims.length} claim{x.claims.length === 1 ? "" : "s"}</span></div>
                 <div className="big">{x.title}</div>
                 <q>{x.argument}</q>
                 {x.fileName && <div className="s">File: {x.fileName} (stays in this browser)</div>}
@@ -193,8 +214,8 @@ function Feed() {
           case "crs_call":
             return (
               <button key={i} className="ev call" onClick={() => useStore.getState().openCall(e.entry.callId)} title="Open in the CRS console">
-                {e.entry.source === "live" && <span className="badge live mini">LIVE</span>}
-                {e.entry.side === "sub" ? " vendor ▸ " : " "}{PRODUCT[e.entry.product]} · {e.entry.summary} · {e.entry.callId.slice(0, 8)} · {e.entry.latencyMs} ms{e.entry.cached ? " · cached" : ""}
+                <span className="badge live mini">CRS</span>
+                {e.entry.side === "sub" ? " vendor ▸ " : " "}{PRODUCT[e.entry.product]} · {e.entry.summary} · {e.entry.callId.slice(0, 8)} · {e.entry.latencyMs} ms
               </button>
             );
           case "card_landed":
@@ -219,7 +240,7 @@ function Feed() {
             return (
               <div key={i} className={`offer ${o.from}${e.type === "offer_rejected" ? " rejected" : ""}`} role="button" tabIndex={0}
                 onClick={() => focusOffer(idx)} onKeyDown={(k) => { if (k.key === "Enter") focusOffer(idx); }}>
-                <div className="who"><span>Round {o.round} · {o.from === "sub" ? "vendor agent" : "contractor agent"}</span><span>{e.type === "offer_rejected" ? "rejected" : "via gateway ✓"}</span></div>
+                <div className="who"><span>Round {o.round} · {o.from === "sub" ? "vendor's agent" : "our agent"}</span><span>{e.type === "offer_rejected" ? "rules said no" : "passed the rule check ✓"}</span></div>
                 <div className="big">{shortTerms(o)}{o.conditions.length ? ` · ${o.conditions.map((c) => COND[c]).join(", ")}` : ""}</div>
                 <q>{o.rationale}</q>
                 {e.type === "offer_rejected" && e.reasons.map((r) => <div key={r} className="reason">{r}</div>)}
@@ -228,15 +249,15 @@ function Feed() {
             );
           }
           case "deal_closed":
-            return <div key={i} className="ev"><span className="pill good">Agreed</span> {shortTerms(e.terms)} in {e.rounds} round{e.rounds > 1 ? "s" : ""}. Upfront {fmtUsd(e.depositCents)}.</div>;
+            return <div key={i} className="ev"><span className="pill good">Agreed</span> {shortTerms(e.terms)} in {e.rounds} round{e.rounds > 1 ? "s" : ""}. Up front: {fmtUsd(e.depositCents)}.</div>;
           case "talks_ended":
-            return <div key={i} className="ev"><span className="pill bad">Talks ended</span> {e.reasons.length} rule{e.reasons.length === 1 ? "" : "s"} said no. No upfront, no order.</div>;
+            return <div key={i} className="ev"><span className="pill bad">Talks ended</span> {e.reasons.length} rule{e.reasons.length === 1 ? "" : "s"} said no. Nothing paid, no order.</div>;
           case "escalated":
             return <div key={i} className="ev"><span className="pill warn">Escalated</span> {e.reason}</div>;
           case "approved":
             return <div key={i} className="ev"><span className="pill good">Approved</span> by {e.approvers.join(" and ")}</div>;
           case "deposit_paid":
-            return <div key={i} className="ev"><span className="pill good">Upfront sent</span> {fmtUsd(e.amountCents)} · {e.transferId}</div>;
+            return <div key={i} className="ev"><span className="pill good">Up-front payment sent</span> {fmtUsd(e.amountCents)} · {e.transferId}</div>;
         }
       })}
       <div ref={end} />
@@ -264,9 +285,9 @@ function Console() {
               <tr key={e.callId} ref={(el) => { rows.current[e.callId] = el; }}
                 className={`${sel?.kind === "call" && sel.callId === e.callId ? "on" : ""}${focus?.callId === e.callId ? " flash" : ""}`}
                 onClick={() => useStore.getState().openCall(e.callId)} tabIndex={0} onKeyDown={(k) => { if (k.key === "Enter") useStore.getState().openCall(e.callId); }}>
-                <td>{PRODUCT[e.product]}{e.source === "live" && <><br /><span className="badge live mini">LIVE CRS</span></>}<br /><span style={{ color: "var(--faint)" }}>{e.side === "sub" ? "vendor side" : "contractor"}</span></td>
+                <td>{PRODUCT[e.product]}<br /><span className="badge live mini">CRS</span><br /><span style={{ color: "var(--faint)" }}>{e.side === "sub" ? "vendor side" : "contractor"}</span></td>
                 <td>{e.purpose}<br /><b>{e.summary}</b></td>
-                <td className="mono">{e.callId.slice(0, 8)}<br />HTTP {e.status} · {e.latencyMs} ms<br />{e.at.slice(11, 19)} UTC{e.cached ? <><br />cached</> : null}</td>
+                <td className="mono">{e.callId.slice(0, 8)}<br />HTTP {e.status} · {e.latencyMs} ms<br />{e.at.slice(11, 19)} UTC</td>
               </tr>
             ))}
           </tbody>
@@ -282,59 +303,91 @@ function RulebookTab() {
   const rb = useStore((s) => s.table.rulebook ?? s.rulebook);
   const applied = useStore((s) => s.table.rules);
   const b = rb.buyerRules, v = rb.vendorRules, hs = b.hardStops;
-  const sc = scenarioCase(rb);
-  const Row = ({ ids, k, val, off }: { ids: RuleId[]; k: string; val: string; off?: boolean }) => {
-    const hits = applied.filter((a) => ids.includes(a.ruleId));
-    const last = hits.at(-1);
-    return (
-      <Fragment>
-        <dt className={off ? "off" : undefined}>{k}</dt>
-        <dd key={last?.at ?? 0} className={`${off ? "off" : ""}${last ? " applied pulse" : ""}`}>{val}{hits.length ? <span className="applied-tag">applied{hits.length > 1 ? ` ×${hits.length}` : ""}</span> : null}</dd>
-      </Fragment>
-    );
+  const hits = (ids: RuleId[]) => applied.filter((a) => ids.includes(a.ruleId));
+  const Applied = ({ ids }: { ids: RuleId[] }) => {
+    const h = hits(ids);
+    return h.length ? <span key={h.at(-1)!.at} className="applied-tag pulse">Applied{h.length > 1 ? ` ×${h.length}` : ""}</span> : null;
   };
-  const t = (x: { netDays: number; upfrontPct: number; limitCents: number }) => `net ${x.netDays} · ${x.upfrontPct}% · ${fmtUsd(x.limitCents)}`;
+  const Row = ({ ids, label, value, off }: { ids: RuleId[]; label: string; value: string; off?: boolean }) => (
+    <li className={`rb-row${off ? " off" : ""}${hits(ids).length ? " hit" : ""}`}>
+      <span className="rb-label">{label}</span>
+      <span className="rb-value">{off ? "Off" : value}</span>
+      <Applied ids={ids} />
+    </li>
+  );
+  const terms3 = (x: { netDays: number; upfrontPct: number; limitCents: number }) => `paid in ${x.netDays} days · ${x.upfrontPct}% up front · ${fmtUsd(x.limitCents)} first order`;
+  const TIERS = [["low", "tier.low"], ["caution", "tier.caution"], ["blocked", "tier.blocked"]] as const;
   return (
-    <div className="rules">
-      <p className="note">The rules for this run, read-only. Change them with Start over. The gateway enforces the buyer's rules in code; both agents get them as constraints. A rule that decided something says so and pulses.</p>
-      <h4>Scenario {rb.scenario.id}</h4>
-      <dl>
-        <dt>Vendor</dt><dd>{sc.sub.business} · owner {sc.owner}</dd>
-      </dl>
-      <h4>Buyer agent · our side</h4>
-      <dl>
-        <dt>Opening position</dt><dd>{t(b.opening)}</dd>
-        <Row ids={["tier.low"]} k="Low risk" val={tierLine(rb, "low").replace(/^Low risk: /, "")} />
-        <Row ids={["tier.caution"]} k="Caution" val={tierLine(rb, "caution").replace(/^Caution: /, "")} />
-        <Row ids={["tier.blocked"]} k="Blocked" val={tierLine(rb, "blocked").replace(/^Blocked: /, "")} />
-        <Row ids={["cap.net", "cap.upfront", "cap.limit"]} k="Gateway caps" val="our offers stay inside the tier's limits" />
-        <Row ids={["anchor"]} k="Credit-limit anchor" val={b.creditLimitAnchor.on ? `limit ≤ ${b.creditLimitAnchor.pct}% of Risk Dashboard's recommended limit` : "off"} off={!b.creditLimitAnchor.on} />
-        <Row ids={["stop.idv"]} k="Identity fails" val={hs.idvFails.on ? "talks end" : "off"} off={!hs.idvFails.on} />
-        <Row ids={["stop.fraud_finder"]} k={`Fraud Finder ≥ ${hs.fraudFinder.threshold}`} val={hs.fraudFinder.on ? "talks end" : "off"} off={!hs.fraudFinder.on} />
-        <Row ids={["stop.ofac"]} k="OFAC / watch-list" val={hs.ofac.on ? "talks end" : "off"} off={!hs.ofac.on} />
-        <Row ids={["stop.inactive"]} k="Business inactive" val={hs.inactive.on ? "talks end" : "off"} off={!hs.inactive.on} />
-        <Row ids={["stop.registered"]} k={`Registered < ${hs.registeredDays.days} days`} val={hs.registeredDays.on ? "talks end" : "off"} off={!hs.registeredDays.on} />
-        <Row ids={["stop.look_alike"]} k="Look-alike in Quick Search" val={hs.lookAlike.on ? "talks end" : "off"} off={!hs.lookAlike.on} />
-        <Row ids={["stop.mismatch"]} k="Phone, address or EIN mismatch" val={hs.mismatch.on ? "talks end" : "off"} off={!hs.mismatch.on} />
-        <Row ids={["evidence"]} k="Evidence weights" val={`verified +${b.evidence.verified} · contradicted −${b.evidence.contradicted} · unverified −${b.evidence.unverified}`} />
-        <Row ids={["escalate.fraud_alert"]} k="Fraud alert on file" val={b.escalate.fraudAlert ? "a person decides" : "off"} off={!b.escalate.fraudAlert} />
-        <Row ids={["escalate.no_deal", "rounds.max"]} k="No deal" val={b.escalate.noDeal.on ? `after ${b.escalate.noDeal.rounds} rounds, a person decides` : `after ${rb.general.maxRounds} rounds, talks end`} />
-        <Row ids={["approval.second"]} k="Approval" val={`${CONTRACTOR.controller}; second approver above ${fmtUsd(b.approval.secondApproverAboveCents)} upfront`} />
-      </dl>
-      <h4>Vendor agent · their side</h4>
-      <dl>
-        <dt>Opening ask</dt><dd>{t(v.opening)}</dd>
-        <dt>Walk-away</dt><dd>{t(v.walkAway)}</dd>
-        <dt>Style</dt><dd>{v.style}</dd>
-        <Row ids={["consent"]} k="Consent" val={v.consent.allow ? `shares only: ${v.consent.facts.map((f) => FACT_LABEL[f]).join(", ") || "nothing"}` : "no credit data shared"} off={!v.consent.allow} />
-        <dt>Exhibits</dt><dd>{v.exhibits.map((x) => EXHIBIT_LABEL[x]).join(", ") || "none"}</dd>
-      </dl>
-      <h4>General</h4>
-      <dl>
-        <dt>Max rounds</dt><dd>{rb.general.maxRounds}</dd>
-        <dt>Story speed · narrator</dt><dd>{rb.general.speed}× · {rb.general.narrator ? "on" : "off"}</dd>
-      </dl>
-      <p className="note"><LiveBadge /> People data is the CRS sandbox's answers for these test personas. No criminal or eviction data is used anywhere.</p>
+    <div className="rulebook">
+      <p className="rb-intro">Set before the run and checked in code on every offer. <b>Gold</b> marks a rule that decided something.</p>
+
+      <section className="rb-card">
+        <h4>How far we'll go, by risk</h4>
+        <table className="rb-tiers">
+          <thead><tr><th /><th>Pay in</th><th>Up front</th><th>First order</th></tr></thead>
+          <tbody>
+            {TIERS.map(([tier, id]) => {
+              const x = b.tiers[tier];
+              return (
+                <tr key={tier} className={hits([id, "cap.net", "cap.upfront", "cap.limit"]).some((h) => h.ruleId === id) ? "hit" : undefined}>
+                  <th><span className={`dot ${tier === "low" ? "good" : tier === "caution" ? "warn" : "bad"}`} />{TIER_NAME[tier]}</th>
+                  <td>{x.bestNetDays}+ days</td><td>≤ {x.maxUpfrontPct}%</td><td>≤ {fmtUsd(x.maxLimitCents)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <ul className="rb-list">
+          <Row ids={["cap.net", "cap.upfront", "cap.limit"]} label="Our offers stay inside these limits" value="Always" />
+          <Row ids={["anchor"]} label="First order capped at a share of the limit CRS suggests" value={`≤ ${b.creditLimitAnchor.pct}%`} off={!b.creditLimitAnchor.on} />
+          <Row ids={[]} label="We open at" value={terms3(b.opening)} />
+        </ul>
+      </section>
+
+      <section className="rb-card">
+        <h4>Deal-breakers</h4>
+        <ul className="rb-list">
+          <Row ids={["stop.idv"]} label="Identity check fails" value="Talks end" off={!hs.idvFails.on} />
+          <Row ids={["stop.fraud_finder"]} label={`Fraud Finder score ≥ ${hs.fraudFinder.threshold}`} value="Talks end" off={!hs.fraudFinder.on} />
+          <Row ids={["stop.mismatch"]} label="Phone, address or EIN doesn't match" value="Talks end" off={!hs.mismatch.on} />
+          <Row ids={["stop.look_alike"]} label="Copycat of an older business" value="Talks end" off={!hs.lookAlike.on} />
+          <Row ids={["stop.registered"]} label={`Registered under ${hs.registeredDays.days} days ago`} value="Talks end" off={!hs.registeredDays.on} />
+          <Row ids={["stop.ofac"]} label="OFAC / watch-list hit" value="Talks end" off={!hs.ofac.on} />
+          <Row ids={["stop.inactive"]} label="Business inactive" value="Talks end" off={!hs.inactive.on} />
+          <Row ids={["escalate.fraud_alert"]} label="Fraud alert on file" value="A person decides" off={!b.escalate.fraudAlert} />
+          <Row ids={["escalate.no_deal", "rounds.max"]} label={`No deal after ${b.escalate.noDeal.on ? b.escalate.noDeal.rounds : rb.general.maxRounds} rounds`} value={b.escalate.noDeal.on ? "A person decides" : "Talks end"} />
+        </ul>
+      </section>
+
+      <section className="rb-card">
+        <h4>How evidence moves trust</h4>
+        <div className="rb-chips">
+          <span className="chip-v good">Verified +{b.evidence.verified}</span>
+          <span className="chip-v bad">Contradicted −{b.evidence.contradicted}</span>
+          <span className="chip-v neutral">Unverified −{b.evidence.unverified}</span>
+        </div>
+      </section>
+
+      <section className="rb-card">
+        <h4>Who signs off</h4>
+        <ul className="rb-list">
+          <Row ids={[]} label={CONTRACTOR.controller} value="Every deal" />
+          <Row ids={["approval.second"]} label={`Plus ${CONTRACTOR.secondApprover}`} value={`Over ${fmtUsd(b.approval.secondApproverAboveCents)} up front`} />
+        </ul>
+      </section>
+
+      <section className="rb-card vendor">
+        <h4>The vendor's side</h4>
+        <ul className="rb-list">
+          <Row ids={[]} label="Asks for" value={terms3(v.opening)} />
+          <Row ids={[]} label="Walks away past" value={terms3(v.walkAway)} />
+          <Row ids={[]} label="Style" value={v.style[0].toUpperCase() + v.style.slice(1)} />
+          <Row ids={["consent"]} label="Shares credit facts" value={v.consent.allow ? v.consent.facts.map((f) => FACT_LABEL[f]).join(", ") || "None" : "No"} />
+        </ul>
+        <div className="rb-chips">{v.exhibits.map((x) => <span key={x} className="chip-v neutral">{EXHIBIT_LABEL[x]}</span>)}</div>
+      </section>
+
+      <p className="rb-foot"><CrsBadge /> marks every CRS check. No criminal or eviction data is used.</p>
     </div>
   );
 }

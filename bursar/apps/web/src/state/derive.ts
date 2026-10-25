@@ -149,6 +149,24 @@ export const HOLD_MS: Record<DealEvent["type"], number> = {
   deposit_paid: 2200,
 };
 
+/** How long a CRS check's cards, or a document, stay up in front of the camera: long enough to read, at any speed. */
+export const PRESENT_MS = 5000;
+
+/** How long to hold on event i before playing the next. A CRS check's cards come up together, then hold for reading. */
+export function holdAfter(events: DealEvent[], i: number, speed: number): number {
+  const e = events[i];
+  if (e.type === "card_landed") return events[i + 1]?.type === "card_landed" ? 350 : PRESENT_MS;
+  if (e.type === "exhibit_played") return Math.max(PRESENT_MS, HOLD_MS.exhibit_played / speed);
+  return HOLD_MS[e.type] / speed;
+}
+
+/** How many cards are on show: the run of cards at the end of what's played, which is one CRS check's results. */
+export function cardsOnShow(events: DealEvent[], played: number): number {
+  let n = 0;
+  for (let i = Math.min(played, events.length) - 1; i >= 0 && events[i].type === "card_landed"; i--) n++;
+  return n;
+}
+
 /** Index of the first event of each chapter, for the chapter strip. */
 export function chapterStarts(events: DealEvent[]) {
   const out: { n: number; title: string; index: number }[] = [];

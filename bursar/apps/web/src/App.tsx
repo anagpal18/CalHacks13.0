@@ -7,6 +7,7 @@ import { useStore } from "./state/store";
 import { Loading } from "./ui/Loading";
 import { Start } from "./ui/Start";
 import { UploadCard } from "./ui/Upload";
+import { Feed } from "./ui/Feed";
 
 export function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ export function App() {
           <ErrorBanner />
           <Panel />
           <Hud />
+          <Feed />
           <HoverLabel />
           <Inspector />
           <UploadCard />

@@ -18,7 +18,7 @@ export function statement(sc: ScenarioCase, ask: Ask): Exhibit {
   const who = titleCase(s.contact);
   return {
     id: "ex-statement", kind: "statement", label: "Opening statement", title: `${who}, for ${s.business}`, from: "sub", round: 1,
-    argument: `I'm ${who}, owner of ${s.business}. ${s.trade} since ${sc.docs.licenseSince}. We're asking for net ${ask.netDays}, ${ask.upfrontPct}% upfront and a ${fmtUsd(ask.limitCents)} first order.`,
+    argument: `I'm ${who}, owner of ${s.business}. ${s.trade} since ${sc.docs.licenseSince}. We're asking to be paid within ${ask.netDays} days, with ${ask.upfrontPct}% up front and a ${fmtUsd(ask.limitCents)} first order.`,
     claims: [
       { id: "s-identity", topic: "identity", text: `I'm ${who}.` },
       { id: "s-contact", topic: "contact", text: `${phoneFmt(s.phone)} and ${s.email} are mine.` },
@@ -103,7 +103,7 @@ export function examine(claim: Claim, sub: SubProfile, calls: CrsCallRecord[], c
   switch (claim.topic) {
     case "identity": {
       if (c("idv-verified")) return verdict("verified", "TransUnion matched name, SSN, date of birth and address. No reason codes.", [c("idv-verified")]);
-      if (c("idv-step-up")) return verdict("unverified", "Identity matches, but a fraud alert is on file (2401). It needs a step-up check the sandbox can't run.", [c("idv-step-up")]);
+      if (c("idv-step-up")) return verdict("unverified", "Identity matches, but a fraud alert is on file (2401). It needs a step-up check we can't run here.", [c("idv-step-up")]);
       return verdict("contradicted", `TransUnion returned ${c("idv-failed")?.headline.replace("Identity failed · ", "reason codes ") ?? "reason codes"}: ${c("idv-failed")?.detail.toLowerCase()}`, [c("idv-failed")]);
     }
     case "contact": {

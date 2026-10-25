@@ -43,7 +43,7 @@ export function capsFor(tier: RiskTier, rb: Rulebook, calls: CrsCallRecord[]): T
 }
 
 export const capsLine = (c: TierCaps) =>
-  `best net ${c.bestNetDays} · max upfront ${c.maxUpfrontPct}% · max limit ${fmtUsd(c.limitCapCents)}`;
+  `pay in ${c.bestNetDays} days at the soonest · up to ${c.maxUpfrontPct}% up front · first order up to ${fmtUsd(c.limitCapCents)}`;
 
 export const depositCents = (limitCents: number, pct: number) => Math.round((limitCents * pct) / 100);
 export const approversNeeded = (cents: number, rb: Rulebook) => (cents > rb.buyerRules.approval.secondApproverAboveCents ? 2 : 1);
