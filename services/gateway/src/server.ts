@@ -1,0 +1,485 @@
+// Bill Passport API: the gateway between the Creao seat agents and the company's data, CRS and the passport.
+// Seat agents call /tools/* with a run ticket. Our backend calls /admin/* with BP_ADMIN_KEY, from this machine only.
+// The dashboard calls /dashboard/* with BP_DASHBOARD_KEY (added by the Vite dev proxy), also from this machine only.
+// Usage: pnpm gateway   (then pnpm tunnel for a public URL the Creao agents can reach)
+import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import { timingSafeEqual } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { createCreaoClient } from "./integrations/creao/client.ts";
+import { createCrsClient, CrsError, getPath, isAllowedPersona, type CrsPurpose } from "./integrations/crs/client.ts";
+import * as company from "./company/store.ts";
+import { createViews, SCAM_CONSOLE_PERSONAS } from "./dashboard/views.ts";
+import { createEventLog, type LogEvent } from "./gateway/eventlog.ts";
+import { checkShape, createExtractions, score } from "./gateway/extractions.ts";
+import { createLedger } from "./gateway/ledger.ts";
+import { createPassports } from "./gateway/passports.ts";
+import { ASKED_WHO, SEATS, SOURCE_TOOLS, isSeat, type Seat } from "./gateway/seats.ts";
+import { createSigner } from "./gateway/signing.ts";
+import { createTickets, type Ticket } from "./gateway/tickets.ts";
+import { createOrchestrator } from "./orchestrator/agent.ts";
+import { createSeatRunner } from "./orchestrator/seatRunner.ts";
+
+const root = fileURLToPath(new URL("../../../", import.meta.url));
+try {
+  process.loadEnvFile(`${root}.env`);
+} catch {
+  // .env is optional when the variables are already exported.
+}
+
+// The admin key never goes to Creao. Agents get only BP_GATEWAY_URL and a per-run ticket.
+const adminKey = process.env.BP_ADMIN_KEY ?? "";
+if (adminKey.length < 24) {
+  console.error("Set BP_ADMIN_KEY (24+ characters) in .env.");
+  process.exit(1);
+}
+
+const dataDir = process.env.BP_DATA_DIR ?? `${root}.data`;
+const crs = createCrsClient({
+  username: process.env.CRS_USERNAME ?? "",
+  password: process.env.CRS_PASSWORD ?? "",
+  baseUrl: process.env.CRS_BASE_URL,
+  storePath: process.env.CRS_STORE_PATH ?? `${dataDir}/crs-store.json`,
+});
+const events = createEventLog(`${dataDir}/events.jsonl`);
+const passports = createPassports(`${dataDir}/passports.json`);
+const extractions = createExtractions(`${dataDir}/extracted.json`);
+// BP_SEED_BILLS=1 serves the seeded bill to every seat (the pre-inbox flow), for tests only.
+const seedBills = process.env.BP_SEED_BILLS === "1";
+const signer = createSigner(`${dataDir}/keys`);
+const tickets = createTickets();
+const ledger = createLedger(`${dataDir}/ledger.json`);
+const bpScript = readFileSync(new URL("../tools/bp.sh", import.meta.url), "utf8");
+const dashboardKey = process.env.BP_DASHBOARD_KEY ?? "";
+
+const views = createViews({ crs, events, extractions, ledger, passports });
+const seatRunner = createSeatRunner({
+  creao: process.env.CREAO_API_KEY?.startsWith("capi_") ? createCreaoClient({ apiKey: process.env.CREAO_API_KEY, baseUrl: process.env.CREAO_BASE_URL }) : undefined,
+  agentIds: {
+    intake: process.env.CREAO_AGENT_INTAKE,
+    vendor_records: process.env.CREAO_AGENT_VENDOR_RECORDS,
+    matching: process.env.CREAO_AGENT_MATCHING,
+  },
+  inputField: process.env.CREAO_INPUT_FIELD ?? "payload",
+  tickets,
+  events,
+  extractions,
+  passports,
+});
+
+// One line per event for live progress, the same wording as the passport script prints.
+function describeEvent(e: LogEvent): string {
+  const d: any = e.data ?? {};
+  const args = Object.values(d.args ?? {}).flat().filter(Boolean).join(" ");
+  if (e.type === "tool_call") return `${d.tool}${args ? ` ${args}` : ""}${d.decision ? ` -> ${d.decision}` : ""}`;
+  if (e.type === "tool_denied") return `${d.tool} denied: ${d.reason}`;
+  if (e.type === "tool_error") return `${d.tool} error: ${[d.error].flat().join("; ")}`;
+  if (e.type === "bill_extracted") return `recorded the bill it read (${d.matched}/${d.total} fields match the answer key)`;
+  if (e.type === "stamp_signed") return `signed ${d.id}: ${d.status}`;
+  if (e.type === "stamp_rejected") return `stamp ${d.id} rejected: ${(d.problems ?? []).join("; ")}`;
+  return "";
+}
+
+const orchestrator = createOrchestrator({
+  listBills: () => Object.keys(company.allBills()).map((id) => views.billSummary(id)),
+  runSeat: (seat, billId, onEvent) => seatRunner.run(seat, billId, onEvent),
+  passport: (billId) => views.passport(billId),
+  audit: (billId) => views.auditTrail(billId),
+  describe: describeEvent,
+});
+
+// Master section 9: call CRS only for new vendors and bank-detail changes, never on every bill.
+const PURPOSES = new Set<CrsPurpose>(["bank_change", "new_vendor"]);
+const STATUSES = new Set(["pass", "fail", "ask_human"]);
+const BODY_LIMIT = 64 * 1024;
+
+class HttpError extends Error {
+  readonly status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
+function send(res: ServerResponse, status: number, body: unknown) {
+  res.writeHead(status, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(body));
+}
+
+// Tunnel traffic reaches us from localhost too, so refuse anything that carries proxy headers.
+function hasKey(req: IncomingMessage, key: string): boolean {
+  if (!key || req.headers["cf-connecting-ip"] || req.headers["x-forwarded-for"]) return false;
+  const got = Buffer.from(String(req.headers.authorization ?? ""));
+  const want = Buffer.from(`Bearer ${key}`);
+  return got.length === want.length && timingSafeEqual(got, want);
+}
+const isAdmin = (req: IncomingMessage) => hasKey(req, adminKey);
+const isDashboard = (req: IncomingMessage) => hasKey(req, dashboardKey) || isAdmin(req);
+
+// The gateway books a bill itself once every stamp passes: debit Expense, credit Accounts Payable.
+function bookIfReady(billId: string) {
+  if (passports.summary(billId).status !== "bookable" || ledger.forBill(billId)) return;
+  const fields = seedBills ? company.getBill(billId) : extractions.get(billId)?.fields;
+  const vendor = company.searchVendors(fields?.vendorName ?? "")[0];
+  const amountCents = Math.round(Number(String(fields?.totalAmount ?? "").replace(/[$,\s]/g, "")) * 100);
+  if (!vendor || !(amountCents > 0)) {
+    events.append("booking_skipped", { billId, data: { reason: !vendor ? "vendor not found" : "no amount" } });
+    return;
+  }
+  const entry = ledger.book(billId, vendor.vendorId, amountCents, `${fields.invoiceNumber} from ${vendor.legalName}`);
+  events.append("bill_booked", { billId, data: { entryId: entry.entryId, amountCents, lines: entry.lines } });
+}
+
+// Server-Sent Events for the dashboard's agent panel.
+function openStream(res: ServerResponse) {
+  res.writeHead(200, { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive", "X-Accel-Buffering": "no" });
+  return (type: string, data: unknown) => {
+    if (!res.writableEnded && !res.destroyed) res.write(`event: ${type}\ndata: ${JSON.stringify(data)}\n\n`);
+  };
+}
+
+async function dashboard(req: IncomingMessage, res: ServerResponse, path: string): Promise<boolean> {
+  let m: RegExpExecArray | null;
+  if (req.method === "GET" && path === "/dashboard/bills") {
+    send(res, 200, Object.keys(company.allBills()).map((id) => views.billSummary(id)));
+    return true;
+  }
+  if (req.method === "GET" && (m = /^\/dashboard\/bills\/([\w-]+)(?:\/(passport|audit))?$/.exec(path))) {
+    const [, billId, part] = m;
+    if (!company.getBill(billId)) throw new HttpError(404, `unknown bill ${billId}`);
+    if (!part) send(res, 200, views.billSummary(billId));
+    else if (part === "audit") send(res, 200, views.auditTrail(billId));
+    else {
+      const p = views.passport(billId);
+      p ? send(res, 200, p) : send(res, 404, { error: "no stamps yet" });
+    }
+    return true;
+  }
+  if (req.method === "GET" && path === "/dashboard/crs/log") {
+    send(res, 200, views.crsLog());
+    return true;
+  }
+  if (req.method === "GET" && path === "/dashboard/crs/personas") {
+    send(res, 200, await Promise.all(SCAM_CONSOLE_PERSONAS.map((p) => views.crsChain(p))));
+    return true;
+  }
+  if (req.method === "POST" && (m = /^\/dashboard\/crs\/chain\/(P\d{2})$/.exec(path))) {
+    if (!isAllowedPersona(m[1])) throw new HttpError(400, "not an allowlisted CRS test persona");
+    send(res, 200, await views.crsChain(m[1]));
+    return true;
+  }
+  if (req.method === "POST" && path === "/dashboard/agent/chat") {
+    const { sessionId, message } = await readJson(req);
+    if (typeof message !== "string" || !message.trim()) throw new HttpError(400, "message is required");
+    const emit = openStream(res);
+    try {
+      await orchestrator.chat(typeof sessionId === "string" ? sessionId : undefined, message.slice(0, 4000), emit);
+    } catch (e) {
+      emit("error", { message: (e as Error).message });
+    }
+    emit("done", {});
+    res.end();
+    return true;
+  }
+  return false;
+}
+
+async function readJson(req: IncomingMessage): Promise<any> {
+  const chunks: Buffer[] = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > BODY_LIMIT) throw new HttpError(413, "body too large");
+    chunks.push(chunk);
+  }
+  try {
+    return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
+  } catch {
+    throw new HttpError(400, "body is not JSON");
+  }
+}
+
+function deny(t: Ticket, tool: string, args: unknown, reason: string): never {
+  events.append("tool_denied", { billId: t.billId, seat: t.seat, data: { tool, args, reason, runId: t.runId } });
+  throw new HttpError(403, reason);
+}
+
+// Serve a tool result to a seat: check the seat may use the tool, log the call, remember what was served.
+function serve(res: ServerResponse, t: Ticket, tool: string, args: unknown, data: unknown) {
+  if (!SEATS[t.seat].tools.includes(tool)) deny(t, tool, args, `the ${t.seat} seat may not use the ${tool} tool`);
+  if (data === undefined || data === null) {
+    events.append("tool_error", { billId: t.billId, seat: t.seat, data: { tool, args, error: "not found", runId: t.runId } });
+    throw new HttpError(404, `${tool}: not found`);
+  }
+  events.append("tool_call", { billId: t.billId, seat: t.seat, data: { tool, args, runId: t.runId } });
+  t.served.push({ tool, data });
+  send(res, 200, data);
+}
+
+async function verifyRequester(body: any, t?: Ticket) {
+  const { persona, purpose } = body;
+  const billId = t?.billId ?? (typeof body.billId === "string" ? body.billId : undefined);
+  const args = { persona, purpose };
+  if (typeof persona !== "string" || !isAllowedPersona(persona)) {
+    throw new HttpError(400, "persona must be an allowlisted CRS test persona id, such as P13");
+  }
+  if (!PURPOSES.has(purpose)) throw new HttpError(400, "purpose must be bank_change or new_vendor");
+  if (t) {
+    if (!SEATS[t.seat].tools.includes("crs")) deny(t, "crs", args, `the ${t.seat} seat may not call CRS`);
+    // Permissible purpose: a seat may check only the people on its own bill.
+    if (!company.personasForBill(t.billId).includes(persona)) deny(t, "crs", args, `${persona} is not a contact on bill ${t.billId}`);
+  }
+  try {
+    const result = await crs.verifyRequester(persona, purpose, billId);
+    console.log(`verify-requester ${persona} (${purpose}, bill ${billId ?? "-"}): ${result.decision}`);
+    if (t) {
+      events.append("tool_call", {
+        billId: t.billId,
+        seat: t.seat,
+        data: { tool: "crs", args, decision: result.decision, callIds: result.checks.map((c) => c.callId), runId: t.runId },
+      });
+      t.served.push({ tool: "crs", data: result });
+    }
+    return result;
+  } catch (e) {
+    if (t) events.append("tool_error", { billId: t.billId, seat: t.seat, data: { tool: "crs", args, error: (e as Error).message, runId: t.runId } });
+    throw e;
+  }
+}
+
+// A cited value is grounded when the tool behind its source served exactly that value at that path.
+// Paths may be written relative to one item of an array result, or with the tool name as a prefix.
+// For raw inbox files there are no paths, so the value must appear verbatim in the file.
+function grounded(t: Ticket, ev: any): boolean {
+  const want = String(ev?.value ?? "");
+  const field = String(ev?.field ?? "");
+  if (!want || !field) return false;
+  const tools = SOURCE_TOOLS[String(ev.source).toLowerCase()] ?? [];
+  const paths = [field, field.replace(/^[A-Za-z_]+(?=[.[])\.?/, "")];
+  return t.served
+    .filter((s) => tools.includes(s.tool))
+    .flatMap((s) => (Array.isArray(s.data) ? [s.data, ...s.data] : [s.data]))
+    .some((data) =>
+      typeof data === "string"
+        ? data.includes(want)
+        : paths.some((p) => {
+            const v = getPath(data, p);
+            return v !== undefined && v !== null && (typeof v === "object" ? JSON.stringify(v) : String(v)) === want;
+          }),
+    );
+}
+
+// What Intake recorded, as the other seats see it, with the CRS persona looked up from the contact.
+function billFor(t: Ticket): any {
+  if (seedBills) return company.getBill(t.billId);
+  const e = extractions.get(t.billId);
+  if (!e) {
+    events.append("tool_error", { billId: t.billId, seat: t.seat, data: { tool: "bill", error: "not read yet", runId: t.runId } });
+    throw new HttpError(409, "Intake has not read this bill yet; try again shortly");
+  }
+  const contact = e.fields.claimedContact ?? {};
+  return {
+    billId: t.billId,
+    ...e.fields,
+    claimedContact: { ...contact, crsPersona: company.personaForContact(contact) },
+    extractedBy: e.extractedBy,
+  };
+}
+
+function recordBill(t: Ticket, fields: any) {
+  if (!SEATS[t.seat].tools.includes("record_bill")) deny(t, "record_bill", {}, `the ${t.seat} seat may not record bills`);
+  const problems = checkShape(fields);
+  if (problems.length) {
+    events.append("tool_error", { billId: t.billId, seat: t.seat, data: { tool: "record_bill", error: problems, runId: t.runId } });
+    throw new HttpError(400, problems.join("; "));
+  }
+  extractions.put({ billId: t.billId, fields, extractedBy: { seat: t.seat, runId: t.runId, at: new Date().toISOString() } });
+  // Scored against the answer key for our proof page; the agent is never told the score.
+  const result = score(fields, company.getBill(t.billId));
+  events.append("bill_extracted", { billId: t.billId, seat: t.seat, data: { ...result, runId: t.runId } });
+  return { recorded: true, billId: t.billId, fields: Object.keys(fields).length };
+}
+
+function submitStamps(t: Ticket, body: any) {
+  const stamps: any[] = Array.isArray(body?.stamps) ? body.stamps : [];
+  if (!stamps.length) throw new HttpError(400, 'send {"stamps": [...]}');
+  const seat = SEATS[t.seat];
+  const results = stamps.map((st) => {
+    const evidence: any[] = Array.isArray(st?.evidence) ? st.evidence : [];
+    const source = (ev: any) => String(ev?.source ?? "").toLowerCase();
+    // Anything pointing at a stored CRS call is a CRS citation, whatever its label says.
+    const isCrs = (ev: any) => source(ev) === "crs" || Boolean(crs.getCall(String(ev?.ref ?? "")));
+    const problems = [
+      seat.stamps.includes(st?.id) ? "" : `the ${t.seat} seat may not sign "${st?.id}"`,
+      STATUSES.has(st?.status) ? "" : "status must be pass, fail or ask_human",
+      typeof st?.reason === "string" && st.reason.trim() ? "" : "reason is required",
+      evidence.length ? "" : "evidence is required",
+      st?.status !== "ask_human" || ASKED_WHO.has(st?.askedWho) ? "" : "askedWho must be controller, project_manager or vendor",
+      ...evidence
+        .filter((ev) => !seat.sources.includes(source(ev)))
+        .map((ev) => `the ${t.seat} seat may not cite source "${ev?.source}"`),
+      ...evidence
+        .filter(isCrs)
+        .filter((ev) => !crs.checkCitation(String(ev.ref ?? ""), String(ev.field ?? ""), String(ev.value ?? "")))
+        .map((ev) => `CRS fact not in our CRS log: ${ev.field}=${ev.value}`),
+    ].filter(Boolean);
+    if (problems.length) {
+      events.append("stamp_rejected", { billId: t.billId, seat: t.seat, data: { id: st?.id, problems, runId: t.runId } });
+      return { id: st?.id, accepted: false, problems };
+    }
+    const nonCrs = evidence.filter((ev) => !isCrs(ev));
+    const groundedCount = nonCrs.filter((ev) => grounded(t, ev)).length;
+    const payload = {
+      billId: t.billId,
+      id: st.id,
+      status: st.status,
+      reason: st.reason,
+      evidence,
+      disagreement: st.disagreement,
+      askedWho: st.status === "ask_human" ? st.askedWho : undefined,
+      signedBy: t.seat,
+      creaoRunId: t.runId,
+      at: new Date().toISOString(),
+    };
+    const signed = { ...payload, signature: signer.sign(t.seat, payload) };
+    passports.put(signed);
+    events.append("stamp_signed", {
+      billId: t.billId,
+      seat: t.seat,
+      data: { id: st.id, status: st.status, grounded: `${groundedCount}/${nonCrs.length}`, signature: signed.signature, runId: t.runId },
+    });
+    return { id: st.id, accepted: true, status: st.status, grounded: `${groundedCount}/${nonCrs.length} non-CRS values found exactly in tool output` };
+  });
+  bookIfReady(t.billId);
+  return { billId: t.billId, results, passport: passports.summary(t.billId).status };
+}
+
+const server = createServer(async (req, res) => {
+  // Collapse leading slashes so "//tools/bp" (a base URL with a trailing slash) is not read as a host.
+  const url = new URL((req.url ?? "/").replace(/^\/+/, "/"), "http://localhost");
+  const path = url.pathname;
+  const q = (k: string) => url.searchParams.get(k) ?? "";
+  try {
+    if (req.method === "GET" && path === "/health") return send(res, 200, { ok: true });
+    if (req.method === "GET" && path === "/tools/bp") {
+      res.writeHead(200, { "Content-Type": "text/x-shellscript" });
+      return res.end(bpScript);
+    }
+    if (req.method === "GET" && path === "/keys") return send(res, 200, signer.publicKeys());
+    const skill = /^\/tools\/skills\/(?:(v[23])\/)?([a-z_]+)\.md$/.exec(path);
+    if (req.method === "GET" && skill && isSeat(skill[2])) {
+      const file = new URL(`../../../creao/agents/${skill[1] ?? "v2"}/${skill[2]}.md`, import.meta.url);
+      try {
+        const md = readFileSync(file, "utf8");
+        res.writeHead(200, { "Content-Type": "text/markdown; charset=utf-8" });
+        return res.end(md);
+      } catch {
+        throw new HttpError(404, "no such skill");
+      }
+    }
+
+    const t = tickets.read(req.headers.authorization);
+    if (t) {
+      let m: RegExpExecArray | null;
+      if (req.method === "GET" && path === "/tools/inbox") return serve(res, t, "inbox", {}, company.inboxFiles(t.billId));
+      if (req.method === "GET" && (m = /^\/tools\/inbox\/([\w.-]+)$/.exec(path))) {
+        const name = m[1];
+        if (!SEATS[t.seat].tools.includes("inbox")) deny(t, "inbox", { name }, `the ${t.seat} seat may not read the inbox`);
+        const file = company.inboxFile(t.billId, name);
+        if (!file) throw new HttpError(404, `inbox: no file ${name}`);
+        events.append("tool_call", { billId: t.billId, seat: t.seat, data: { tool: "inbox", args: { name }, runId: t.runId } });
+        t.served.push({ tool: "inbox", data: file.data.toString(name.endsWith(".pdf") ? "latin1" : "utf8") });
+        res.writeHead(200, { "Content-Type": file.contentType, "Content-Length": file.data.length });
+        return res.end(file.data);
+      }
+      if (req.method === "POST" && path === "/tools/bill") return send(res, 200, recordBill(t, await readJson(req)));
+      if (req.method === "GET" && path === "/tools/bill") return serve(res, t, "bill", {}, billFor(t));
+      if (req.method === "GET" && path === "/tools/vendors") return serve(res, t, "vendors", { name: q("name") }, company.searchVendors(q("name")));
+      if (req.method === "GET" && (m = /^\/tools\/vendors\/([\w-]+)$/.exec(path))) return serve(res, t, "vendors", { vendorId: m[1] }, company.getVendor(m[1]));
+      if (req.method === "GET" && path === "/tools/payments") return serve(res, t, "payments", { vendorId: q("vendorId") }, company.paymentsFor(q("vendorId")));
+      if (req.method === "GET" && (m = /^\/tools\/po\/([\w-]+)$/.exec(path))) return serve(res, t, "po", { poNumber: m[1] }, company.getPo(m[1]));
+      if (req.method === "GET" && path === "/tools/receiving") return serve(res, t, "receiving", { po: q("po") }, company.receivingFor(q("po")));
+      if (req.method === "GET" && (m = /^\/tools\/contracts\/([\w-]+)$/.exec(path))) return serve(res, t, "contracts", { vendorId: m[1] }, company.getContract(m[1]));
+      if (req.method === "GET" && path === "/tools/employees/match") {
+        const args = {
+          phones: url.searchParams.getAll("phone"),
+          addresses: url.searchParams.getAll("address"),
+          names: url.searchParams.getAll("name"),
+        };
+        if (![...args.phones, ...args.addresses, ...args.names].some((v) => v.trim())) {
+          throw new HttpError(400, "give at least one --phone, --address or --name");
+        }
+        return serve(res, t, "employees", args, { matches: company.matchEmployees(args) });
+      }
+      if (req.method === "POST" && path === "/crs/verify-requester") return send(res, 200, await verifyRequester(await readJson(req), t));
+      if (req.method === "POST" && path === "/tools/stamps") return send(res, 200, submitStamps(t, await readJson(req)));
+      throw new HttpError(404, "no such tool");
+    }
+
+    if (path.startsWith("/dashboard/")) {
+      if (!isDashboard(req)) return send(res, 401, { error: "unauthorized: the dashboard key is added by the local Vite proxy" });
+      if (await dashboard(req, res, path)) return;
+      throw new HttpError(404, "not found");
+    }
+
+    if (!isAdmin(req)) return send(res, 401, { error: "unauthorized: send a run ticket" });
+
+    if (req.method === "POST" && path === "/admin/tickets") {
+      const { seat, billId } = await readJson(req);
+      if (!isSeat(seat)) throw new HttpError(400, `seat must be one of ${Object.keys(SEATS).join(", ")}`);
+      if (!company.getBill(billId)) throw new HttpError(404, `unknown bill ${billId}`);
+      const issued = tickets.issue(seat as Seat, billId);
+      events.append("ticket_issued", { billId, seat, data: { expiresAt: issued.expiresAt } });
+      return send(res, 200, issued);
+    }
+    if (req.method === "POST" && path === "/admin/tickets/run") {
+      const { ticket, runId } = await readJson(req);
+      return send(res, tickets.attachRun(String(ticket), String(runId)) ? 200 : 404, { ok: true });
+    }
+    // Runs one seat agent through the same runner the orchestrator uses, for scripts and tests.
+    if (req.method === "POST" && path === "/admin/run-seat") {
+      const { seat, billId } = await readJson(req);
+      if (!isSeat(seat)) throw new HttpError(400, `seat must be one of ${Object.keys(SEATS).join(", ")}`);
+      if (!company.getBill(billId)) throw new HttpError(404, `unknown bill ${billId}`);
+      return send(res, 200, await seatRunner.run(seat, billId));
+    }
+    if (req.method === "POST" && path === "/admin/tickets/revoke") {
+      const { ticket } = await readJson(req);
+      return send(res, 200, { revoked: tickets.revoke(String(ticket)) });
+    }
+    let m: RegExpExecArray | null;
+    if ((m = /^\/admin\/passports\/([\w-]+)$/.exec(path))) {
+      if (req.method === "GET") return send(res, 200, passports.summary(m[1]));
+      if (req.method === "DELETE") {
+        const revoked = tickets.revokeBill(m[1]);
+        passports.reset(m[1]);
+        extractions.reset(m[1]);
+        ledger.unbook(m[1]);
+        events.append("passport_reset", { billId: m[1], data: { ticketsRevoked: revoked } });
+        return send(res, 200, { ok: true, ticketsRevoked: revoked });
+      }
+    }
+    if (req.method === "GET" && path === "/admin/events") {
+      return send(res, 200, {
+        chainBrokenAt: events.verify(),
+        events: events.list({ billId: q("billId") || undefined, sinceSeq: Number(q("sinceSeq")) || undefined }),
+      });
+    }
+    if (req.method === "POST" && path === "/crs/verify-requester") return send(res, 200, await verifyRequester(await readJson(req)));
+    if (req.method === "GET" && path === "/crs/log") return send(res, 200, { log: crs.log() });
+    if (req.method === "GET" && (m = /^\/crs\/calls\/([\w-]+)$/.exec(path))) {
+      const call = crs.getCall(m[1]);
+      return call ? send(res, 200, call) : send(res, 404, { error: "unknown callId" });
+    }
+
+    send(res, 404, { error: "not found" });
+  } catch (e) {
+    const status = e instanceof HttpError || e instanceof CrsError ? e.status : 500;
+    if (status >= 500) console.error(`${req.method} ${path} -> ${status}: ${(e as Error).message}`);
+    send(res, status, { error: (e as Error).message });
+  }
+});
+
+const port = Number(process.env.PORT ?? 8787);
+server.listen(port, () => console.log(`Bill Passport API on http://localhost:${port}`));

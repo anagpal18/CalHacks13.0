@@ -1,0 +1,48 @@
+Return-Path: <bounce@okaforelectric.com>
+Received: from mail.okaforelectric.com ([198.51.100.24]) by mx.bayline.example with ESMTPS; Fri, 23 Oct 2026 17:05:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=okaforelectric.com; dkim=pass header.d=okaforelectric.com; dmarc=pass header.from=okaforelectric.com
+From: "Okafor Electric Billing" <margaret@okaforelectric.com>
+To: <ap@bayline.example>
+Subject: Invoice INV-1088 - Site 7 lighting retrofit
+Date: Fri, 23 Oct 2026 17:05:00 +0000
+Message-ID: <b-2026-10-0144@okaforelectric.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0144"
+
+--bp-B-2026-10-0144
+Content-Type: text/plain; charset=utf-8
+
+Hi, attached is invoice INV-1088 for the Site 7 lighting retrofit, per PO-5560. Payment to our usual account. Thanks, Margaret
+
+--bp-B-2026-10-0144
+Content-Type: application/pdf; name="INV-1088.pdf"
+Content-Disposition: attachment; filename="INV-1088.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzQzID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChPa2Fmb3IgRWxlY3RyaWMgTExDKSBUaiBFVApCVCAvRjEg
+OSBUZiA1MCA3MjQgVGQgKDExODAgTWlzc2lvbiBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgIC0gIFwo
+NTU1XCkgMDEwLTEwMDEpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2UgSU5W
+LTEwODgpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTIyICAt
+ICBZb3VyIFBPIFBPLTU1NjAgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCBmcm9tIGRlbGl2ZXJ5
+KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9u
+IENvLikgVGogRVQKMC42IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYx
+NCBUZCAoNDAgeCBMRUQgZml4dHVyZSBpbnN0YWxsLCBTaXRlIDcgQCAkMzEwLjAwKSBUaiBFVApC
+VCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDEyLDQwMC4wMCkgVGogRVQKMC42IHcgNTAgNTkwIG0g
+NTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQxMiw0MDAuMDApIFRq
+IEVUCkJUIC9GMSAxMCBUZiA1MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQgb24g
+ZmlsZSwgZW5kaW5nIDIyOTAuKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFuayB5
+b3UsIE1hcmdhcmV0IE9rYWZvciBcKG1hcmdhcmV0QG9rYWZvcmVsZWN0cmljLmNvbVwpKSBUaiBF
+VAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUx
+IC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9i
+ago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZl
+dGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iagp4cmVmCjAgNwow
+MDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBu
+IAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAgbiAKMDAwMDAwMTA0NSAwMDAw
+MCBuIAowMDAwMDAxMTQyIDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNyAvUm9vdCAxIDAgUiA+
+PgpzdGFydHhyZWYKMTI0NAolJUVPRgo=
+--bp-B-2026-10-0144--

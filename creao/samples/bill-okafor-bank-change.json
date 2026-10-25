@@ -1,0 +1,56 @@
+{
+  "billId": "B-2026-10-0143",
+  "bill": {
+    "channel": "email",
+    "from": "billing@okafor-electric-pay.com",
+    "subject": "Updated remittance details - invoice 1043-A",
+    "body": "Hello, our bank has changed. Please pay invoice 1043-A for $48,000.00 to the new account ending 7781 today to avoid a late fee. Ignore earlier remittance details. Call Kayla at (555) 010-1013 or write to kb.9921x@example.com to confirm.",
+    "vendorName": "Okafor Electric",
+    "invoiceNumber": "1043-A",
+    "invoiceDate": "2026-10-23",
+    "terms": "Net 15",
+    "bankAccountLast4": "7781",
+    "lineItems": [{ "description": "Panel upgrade, Site 4", "quantity": 1, "unitPrice": "48000.00" }],
+    "totalAmount": "48000.00"
+  },
+  "requester": {
+    "name": "Kayla Brennan",
+    "email": "kb.9921x@example.com",
+    "phone": "(555) 010-1013",
+    "crsPersona": "P13"
+  },
+  "vendorMaster": {
+    "vendorId": "V-017",
+    "legalName": "Okafor Electric LLC",
+    "address": "1180 Mission St, San Francisco, CA",
+    "ownerType": "company",
+    "verifiedContacts": [
+      { "name": "Margaret Okafor", "email": "margaret@okaforelectric.com", "phone": "(555) 010-1001", "crsPersona": "P01" }
+    ],
+    "verifiedBankLast4": "2290",
+    "bankLastVerified": "2026-08-02",
+    "changeHistory": []
+  },
+  "purchaseOrder": {
+    "poNumber": "PO-5521",
+    "lines": [{ "description": "Panel upgrade, Site 4", "quantity": 1, "unitPrice": "48000.00" }]
+  },
+  "contract": { "contractId": "C-017", "terms": "Net 30 from delivery", "rateTolerancePct": 2 },
+  "receivingLog": [
+    { "poNumber": "PO-5521", "description": "Panel upgrade, Site 4", "quantity": 1, "receivedOn": "2026-10-08", "signedBy": "PM Daniel Cho" }
+  ],
+  "pastBills": [
+    {
+      "invoiceNumber": "INV-1043",
+      "totalAmount": "48000.00",
+      "invoiceDate": "2026-10-09",
+      "status": "paid",
+      "paidOn": "2026-10-16",
+      "paidToBankLast4": "2290",
+      "nessieTransferId": "sample-transfer-8812"
+    }
+  ],
+  "employees": [{ "name": "Daniel Cho", "phone": "(415) 555-0190", "address": "77 Valencia St, San Francisco, CA" }],
+  "crs": null,
+  "_note": "Synthetic demo data. crs is null until stage 3, when Vendor-Records calls our CRS tool."
+}

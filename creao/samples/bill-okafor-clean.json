@@ -1,0 +1,56 @@
+{
+  "billId": "B-2026-10-0144",
+  "bill": {
+    "channel": "email",
+    "from": "margaret@okaforelectric.com",
+    "subject": "Invoice INV-1088 - Site 7 lighting retrofit",
+    "body": "Hi, attached is invoice INV-1088 for the Site 7 lighting retrofit, per PO-5560. Payment to our usual account. Thanks, Margaret",
+    "vendorName": "Okafor Electric LLC",
+    "invoiceNumber": "INV-1088",
+    "invoiceDate": "2026-10-22",
+    "terms": "Net 30 from delivery",
+    "bankAccountLast4": "2290",
+    "lineItems": [{ "description": "LED fixture install, Site 7", "quantity": 40, "unitPrice": "310.00" }],
+    "totalAmount": "12400.00"
+  },
+  "requester": {
+    "name": "Margaret Okafor",
+    "email": "margaret@okaforelectric.com",
+    "phone": "(555) 010-1001",
+    "crsPersona": "P01"
+  },
+  "vendorMaster": {
+    "vendorId": "V-017",
+    "legalName": "Okafor Electric LLC",
+    "address": "1180 Mission St, San Francisco, CA",
+    "ownerType": "company",
+    "verifiedContacts": [
+      { "name": "Margaret Okafor", "email": "margaret@okaforelectric.com", "phone": "(555) 010-1001", "crsPersona": "P01" }
+    ],
+    "verifiedBankLast4": "2290",
+    "bankLastVerified": "2026-08-02",
+    "changeHistory": []
+  },
+  "purchaseOrder": {
+    "poNumber": "PO-5560",
+    "lines": [{ "description": "LED fixture install, Site 7", "quantity": 40, "unitPrice": "310.00" }]
+  },
+  "contract": { "contractId": "C-017", "terms": "Net 30 from delivery", "rateTolerancePct": 2 },
+  "receivingLog": [
+    { "poNumber": "PO-5560", "description": "LED fixture install, Site 7", "quantity": 40, "receivedOn": "2026-10-20", "signedBy": "PM Daniel Cho" }
+  ],
+  "pastBills": [
+    {
+      "invoiceNumber": "INV-1043",
+      "totalAmount": "48000.00",
+      "invoiceDate": "2026-10-09",
+      "status": "paid",
+      "paidOn": "2026-10-16",
+      "paidToBankLast4": "2290",
+      "nessieTransferId": "sample-transfer-8812"
+    }
+  ],
+  "employees": [{ "name": "Daniel Cho", "phone": "(415) 555-0190", "address": "77 Valencia St, San Francisco, CA" }],
+  "crs": null,
+  "_note": "Synthetic demo data. A clean bill: every stamp should pass and the bill becomes bookable."
+}

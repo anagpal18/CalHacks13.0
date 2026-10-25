@@ -4,3 +4,4 @@ dist/
 *.log
 # Nessie IDs created by the seed script; specific to one API key
 services/api/data/*.json
+.data/
