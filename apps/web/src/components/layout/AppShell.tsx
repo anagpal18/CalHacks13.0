@@ -70,7 +70,7 @@ export function AppShell() {
             to={nextStep.path}
             className={primaryButton("md", "fixed bottom-6 right-6 z-40 shadow-lg md:right-10")}
           >
-            {currentStep.number === 0 ? "See how it works" : `Next: ${nextStep.label}`} <ArrowRight className="size-4" />
+            {currentStep.number === 0 ? "Dive in" : `Next: ${nextStep.label}`} <ArrowRight className="size-4" />
           </Link>
         )}
       </div>
