@@ -1,10 +1,13 @@
 // ④ Approve & Pay: "The right person signs, then money moves."
 // Bills sit on a due-date timeline, cash is a fill bar, a human approves, then each bill runs
-// re-check → pay (Nessie) → bank match. One bill's bank details changed after booking: it is held at re-check.
+// re-check → pay (Nessie) → bank match on its card. A bill whose bank details changed after booking is held
+// at re-check and raised as an alert at the top.
 
 import { AnimatePresence, motion } from "motion/react";
-import { Bot, CalendarClock, Check, CircleX, Landmark, Loader, Percent, ShieldCheck, UserCheck, Wallet, X, Link2 } from "lucide-react";
+import { Bot, CalendarClock, Check, CircleX, Loader, Percent, ShieldCheck, TriangleAlert, UserCheck, Wallet, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { ApprovedCheck } from "@/components/visuals/ApprovedCheck";
 import { getNextPaymentRun } from "@/data/dataSource";
@@ -13,7 +16,6 @@ import { PAYMENT_CHECKS } from "@/data/stampCatalog";
 import type { PaymentRun, PaymentRunItem } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatDollars, formatShortDate, formatWeekday } from "@/lib/format";
-import { TONE_STYLE } from "@/lib/statusStyle";
 import { cn } from "@/lib/utils";
 
 const CONTROLLER_NAME = "Dana Whitfield";
@@ -62,11 +64,27 @@ export function ApproveAndPayPage() {
 
   if (!run) return <div className="h-[560px] animate-pulse rounded-3xl bg-card" />;
 
+  const heldItems = run.items.filter((item) => stageByBillId[item.billId] === "held");
   const runTotalCents = run.items.reduce((total, item) => total + item.amountCents, 0);
   const discountCents = run.items.reduce((total, item) => total + (item.discount?.savingsCents ?? 0), 0);
 
   return (
     <div className="space-y-6">
+      <AnimatePresence>
+        {heldItems.map((item) => (
+          <motion.div key={item.billId} initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+            <Alert className="border-held/30 bg-card">
+              <TriangleAlert className="text-held" />
+              <AlertTitle>Escalated for your review: {item.vendorName}</AlertTitle>
+              <AlertDescription>
+                <p>Bank details changed after this {formatDollars(item.amountCents)} bill was booked, so it was held at the last-minute re-check and not paid. The rest of the run went through.</p>
+                <Link to="/overview" className="font-medium text-foreground underline underline-offset-4">Added to Needs your attention</Link>
+              </AlertDescription>
+            </Alert>
+          </motion.div>
+        ))}
+      </AnimatePresence>
+
       <ChecksStrip phase={phase} />
 
       <div className="grid gap-6 xl:grid-cols-[1.6fr_1fr]">
@@ -85,7 +103,6 @@ export function ApproveAndPayPage() {
             onApprove={() => setPhase("executing")}
             onAgentSelfApprove={() => setSelfApprovalRefused(true)}
           />
-          <AnimatePresence>{phase !== "proposed" && <ExecutionLog items={run.items} stageByBillId={stageByBillId} phase={phase} />}</AnimatePresence>
         </div>
       </div>
     </div>
@@ -295,78 +312,6 @@ function Person({ icon: Icon, name, role, highlighted }: { icon: typeof Bot; nam
         <div className="text-[11px] text-muted-foreground">{role}</div>
       </div>
     </div>
-  );
-}
-
-const STAGE_STEPS = [
-  { key: "recheck", label: "Re-check", icon: ShieldCheck },
-  { key: "pay", label: "Pay via Nessie", icon: Landmark },
-  { key: "match", label: "Bank match", icon: Link2 },
-] as const;
-
-function stepTone(stage: ItemStage, stepIndex: number): "done" | "active" | "failed" | "idle" {
-  const order: ItemStage[] = ["rechecking", "paying", "matching"];
-  if (stage === "paid") return "done";
-  if (stage === "held") return stepIndex === 0 ? "failed" : "idle";
-  const activeIndex = order.indexOf(stage);
-  if (activeIndex === -1) return "idle";
-  if (stepIndex < activeIndex) return "done";
-  return stepIndex === activeIndex ? "active" : "idle";
-}
-
-function ExecutionLog({ items, stageByBillId, phase }: { items: PaymentRunItem[]; stageByBillId: Record<string, ItemStage>; phase: RunPhase }) {
-  const heldItems = items.filter((item) => stageByBillId[item.billId] === "held");
-  const paidItems = items.filter((item) => stageByBillId[item.billId] === "paid");
-
-  return (
-    <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-foreground/8 bg-card p-5">
-      <div className="mb-3 text-sm font-semibold">Money moving</div>
-      <div className="space-y-2">
-        {items.map((item) => {
-          const stage = stageByBillId[item.billId];
-          return (
-            <div key={item.billId} className="flex items-center gap-3">
-              <span className="w-32 truncate text-xs">{item.vendorName}</span>
-              <div className="flex flex-1 items-center gap-1">
-                {STAGE_STEPS.map((step, stepIndex) => {
-                  const tone = stepTone(stage, stepIndex);
-                  const Icon = step.icon;
-                  return (
-                    <div
-                      key={step.key}
-                      title={step.label}
-                      className={cn(
-                        "flex h-7 flex-1 items-center justify-center rounded-md border text-[10px] transition-colors duration-300",
-                        tone === "done" && "border-foreground bg-foreground text-background",
-                        tone === "active" && "border-data bg-data-soft/60 text-foreground",
-                        tone === "failed" && "border-held/50 bg-held/15 text-held",
-                        tone === "idle" && "border-foreground/6 text-muted-foreground/40",
-                      )}
-                    >
-                      <Icon className={cn("size-3.5", tone === "active" && "animate-pulse")} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {heldItems.map((item) => (
-        <motion.div key={item.billId} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={cn("mt-4 rounded-xl border p-3 text-sm", TONE_STYLE.held.border, TONE_STYLE.held.background)}>
-          <div className="font-semibold text-held">{item.vendorName} held at re-check</div>
-          <div className="text-xs">Bank details changed after the bill was booked. Payment stopped and identity checks started on whoever made the change.</div>
-        </motion.div>
-      ))}
-
-      {phase === "done" && (
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-4 flex items-center justify-between rounded-xl border border-cleared/40 bg-cleared/10 p-3">
-          <span className="text-sm font-semibold text-cleared">{paidItems.length} paid · matched in Nessie</span>
-          <span className="text-lg font-extrabold tabular-nums text-cleared">{formatDollars(paidItems.reduce((total, item) => total + item.amountCents, 0))}</span>
-        </motion.div>
-      )}
-    </motion.div>
   );
 }
 
