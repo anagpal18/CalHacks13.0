@@ -3,7 +3,16 @@
   "company": {
     "name": "Bayline Construction Co.",
     "jobSites": 9,
-    "paymentRuns": "weekly, Fridays"
+    "paymentRuns": "weekly, Fridays",
+    "poChangeApproval": {
+      "rule": "The PO owner approves a price or quantity change on their PO up to $5,000.00 over the PO value. A larger change also needs the Controller.",
+      "ownerLimitCents": 500000,
+      "above": {
+        "name": "Tom Reyes",
+        "role": "Controller",
+        "phone": "(415) 555-0123"
+      }
+    }
   },
   "vendors": [
     {
@@ -138,6 +147,11 @@
       "vendorId": "V-017",
       "site": "Site 4",
       "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
       "lines": [
         {
           "description": "Panel upgrade, Site 4",
@@ -151,6 +165,11 @@
       "vendorId": "V-017",
       "site": "Site 7",
       "issuedOn": "2026-10-01",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
       "lines": [
         {
           "description": "LED fixture install, Site 7",
@@ -164,6 +183,11 @@
       "vendorId": "V-044",
       "site": "Site 2",
       "issuedOn": "2026-10-10",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
       "lines": [
         {
           "description": "2x4x8 SPF studs, Site 2",

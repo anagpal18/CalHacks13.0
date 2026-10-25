@@ -47,14 +47,21 @@ const TERMINAL = new Set(["completed", "failed", "cancelled"]);
 export class CreaoError extends Error {
   readonly status: number;
   readonly body: string;
+  readonly retryAfterMs?: number;
 
-  constructor(message: string, status: number, body: string) {
+  constructor(message: string, status: number, body: string, retryAfterMs?: number) {
     super(message);
     this.name = "CreaoError";
     this.status = status;
     this.body = body;
+    this.retryAfterMs = retryAfterMs;
   }
 }
+
+// Rate limits (several runs polling at once hit 429) and server hiccups are worth asking again; fetch
+// throws a TypeError when the network drops.
+const isTransient = (e: unknown) => (e instanceof CreaoError ? e.status === 429 || e.status >= 500 : e instanceof TypeError);
+const jitter = (ms: number) => Math.round(ms * (0.8 + Math.random() * 0.4));
 
 // The run record shape is only partly documented, so accept a wrapped or flat body.
 function toRun(raw: any): CreaoRun {
@@ -80,7 +87,11 @@ export function createCreaoClient(opts: { apiKey: string; baseUrl?: string }) {
     });
     const text = await res.text();
     // Never include request headers in errors: they carry the key.
-    if (!res.ok) throw new CreaoError(`Creao ${method} ${path} returned ${res.status}`, res.status, text.slice(0, 500));
+    if (!res.ok) {
+      const retryAfter = Number(res.headers.get("retry-after"));
+      const retryAfterMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : undefined;
+      throw new CreaoError(`Creao ${method} ${path} returned ${res.status}`, res.status, text.slice(0, 500), retryAfterMs);
+    }
     return text ? JSON.parse(text) : {};
   }
 
@@ -89,7 +100,15 @@ export function createCreaoClient(opts: { apiKey: string; baseUrl?: string }) {
     if (key !== undefined && (key.length < 8 || key.length > 128)) {
       throw new Error(`idempotencyKey must be 8-128 characters, got ${key.length}`);
     }
-    return toRun(await call("POST", "/api/v1/runs", input));
+    // With an idempotency key a retry returns the same run, so a rate-limited start is safe to repeat.
+    for (let attempt = 1; ; attempt++) {
+      try {
+        return toRun(await call("POST", "/api/v1/runs", input));
+      } catch (e) {
+        if (key === undefined || attempt >= 4 || !isTransient(e)) throw e;
+        await sleep(Math.max(jitter(2_000 * attempt), (e as CreaoError).retryAfterMs ?? 0));
+      }
+    }
   }
 
   async function getRun(runId: string): Promise<CreaoRun> {
@@ -113,14 +132,25 @@ export function createCreaoClient(opts: { apiKey: string; baseUrl?: string }) {
     let delay = 2_000;
     let last = "";
     for (;;) {
-      const run = await getRun(runId);
+      let run: CreaoRun;
+      try {
+        run = await getRun(runId);
+      } catch (e) {
+        // A rate limit while polling is not the run failing: wait longer and ask again.
+        if (!isTransient(e)) throw e;
+        const pause = Math.max(jitter(delay), (e as CreaoError).retryAfterMs ?? 0);
+        if (Date.now() + pause > deadline) throw e;
+        await sleep(pause);
+        delay = Math.min(Math.round(delay * 1.5), 10_000);
+        continue;
+      }
       if (run.status !== last) {
         last = run.status;
         wait.onStatus?.(run.status, run);
       }
       if (TERMINAL.has(run.status)) return run;
       if (Date.now() + delay > deadline) throw new CreaoError(`Run ${runId} still ${run.status} at timeout`, 408, "");
-      await sleep(delay);
+      await sleep(jitter(delay));
       delay = Math.min(Math.round(delay * 1.5), 10_000);
     }
   }

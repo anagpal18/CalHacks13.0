@@ -50,9 +50,19 @@ export const getBill = (billId: string): any => data.bills[billId] ?? uploaded[b
 export const answerKey = (billId: string): any => data.bills[billId];
 export const getVendor = (vendorId: string): any => data.vendors.find((v: any) => v.vendorId === vendorId);
 export const getPo = (poNumber: string): any => data.purchaseOrders[poNumber];
+// Bills write PO numbers loosely: "PO-5602", "PO 5602", "P.O. #05602" and "5602" all mean 5602. Anything
+// else ("WO-5602", "PO-5602-A", "INV-5560") is not read as a PO number, so it cannot open a real PO.
+export const poKey = (s: string): string | undefined => /^\s*(?:P\.?\s*O\.?)?\s*(?:#|NO\.?)?\s*[-:]?\s*0*(\d+)\s*$/i.exec(s)?.[1];
+// A bill can name several POs ("PO-5521, PO-5560").
+export const poRefs = (s: string): string[] => s.split(/[,;&]|\band\b/i).map((p) => p.trim()).filter(Boolean);
+export const findPo = (named: string): any => getPo(named.trim()) ?? (poKey(named) ? getPo(`PO-${poKey(named)}`) : undefined);
+export const poChangeApproval = (): any => data.company.poChangeApproval;
 export const getContract = (vendorId: string): any => data.contracts[vendorId];
 export const receivingFor = (poNumber: string): any[] => data.receivingLog.filter((r: any) => r.poNumber === poNumber);
 export const paymentsFor = (vendorId: string): any[] => data.bankPayments.filter((p: any) => p.vendorId === vendorId);
+
+// The name a vendor search really looks for, after dropping "LLC", "Inc" and punctuation.
+export const vendorQuery = (name: string): string => norm(name);
 
 export function searchVendors(name: string): any[] {
   const q = norm(name);

@@ -87,11 +87,31 @@ function describeEvent(e: LogEvent): string {
   return "";
 }
 
+// The POs a bill names, who owns each, and who approves a change, so the orchestrator can say who must act.
+// It reads the bill the way the seats do: what Intake recorded (the seed bill in seed mode), not the answer key.
+function purchaseOrderFor(billId: string) {
+  const bill = company.getBill(billId);
+  if (!bill) return { billId, purchaseOrders: [], note: `${billId} is not a bill in the inbox.` };
+  const fields = seedBills ? bill : extractions.get(billId)?.fields;
+  if (!fields) return { billId, purchaseOrders: [], note: "Intake has not recorded this bill yet, so no PO has been read from it." };
+  const named = company.poRefs(String(fields.poNumber ?? ""));
+  if (!named.length) return { billId, purchaseOrders: [], note: "The bill names no PO." };
+  const billVendors = new Set(company.searchVendors(String(fields.vendorName ?? "")).map((v: any) => v.vendorId));
+  const purchaseOrders = named.map((ref) => {
+    const po = company.findPo(ref);
+    if (!po) return { poNumber: ref, found: false, note: "No purchase order with this number is on file." };
+    // A bill can name a real PO that belongs to another vendor; nobody should approve a change on that.
+    return { ...po, found: true, poVendor: company.getVendor(po.vendorId)?.legalName, vendorMatches: billVendors.has(po.vendorId) };
+  });
+  return { billId, vendorName: fields.vendorName, purchaseOrders, changeApproval: company.poChangeApproval() };
+}
+
 const orchestrator = createOrchestrator({
   listBills: () => Object.keys(company.allBills()).map((id) => views.billSummary(id)),
   runSeat: (seat, billId, onEvent) => seatRunner.run(seat, billId, onEvent),
   passport: (billId) => views.passport(billId),
   audit: (billId) => views.auditTrail(billId),
+  purchaseOrder: purchaseOrderFor,
   describe: describeEvent,
 });
 
@@ -239,21 +259,63 @@ async function readJson(req: IncomingMessage, limit = BODY_LIMIT): Promise<any> 
 }
 
 function deny(t: Ticket, tool: string, args: unknown, reason: string): never {
+  t.misses++;
   events.append("tool_denied", { billId: t.billId, seat: t.seat, data: { tool, args, reason, runId: t.runId } });
   throw new HttpError(403, reason);
 }
 
-// Serve a tool result to a seat: check the seat may use the tool, log the call, remember what was served.
-function serve(res: ServerResponse, t: Ticket, tool: string, args: unknown, data: unknown) {
+// A run that keeps finding nothing is guessing (one agent tried 150 PO numbers); stop its record searches.
+// The checks a seat must still run are exempt, and the message names them, or the agent stops those too.
+const MISS_BUDGET = 10;
+const SEARCH_TOOLS = new Set(["vendors", "payments", "po", "receiving", "contracts"]);
+const CHECKS_LEFT: Partial<Record<Seat, string>> = {
+  intake: "record-bill, if you have not recorded the bill yet",
+  vendor_records: "employee-match, and crs-verify only if the bank details changed or the vendor is new",
+};
+
+function mayUse(t: Ticket, tool: string, args: unknown) {
   if (!SEATS[t.seat].tools.includes(tool)) deny(t, tool, args, `the ${t.seat} seat may not use the ${tool} tool`);
+  if (SEARCH_TOOLS.has(tool) && t.misses >= MISS_BUDGET) {
+    const finish = CHECKS_LEFT[t.seat] ? `Still run your other checks (${CHECKS_LEFT[t.seat]}), then submit` : "Submit";
+    deny(t, tool, args, `this run has made ${MISS_BUDGET} record lookups that found nothing or were refused, so stop searching for records. ${finish} your stamps: a missing record is itself the finding.`);
+  }
+}
+
+// Serve a tool result to a seat: check the seat may use the tool, log the call, remember what was served.
+function serve(res: ServerResponse, t: Ticket, tool: string, args: unknown, data: unknown, notFound = `${tool}: not found`) {
+  mayUse(t, tool, args);
+  if (data === undefined || data === null || (tool === "vendors" && Array.isArray(data) && data.length === 0)) t.misses++;
   if (data === undefined || data === null) {
     events.append("tool_error", { billId: t.billId, seat: t.seat, data: { tool, args, error: "not found", runId: t.runId } });
-    throw new HttpError(404, `${tool}: not found`);
+    throw new HttpError(404, notFound);
   }
   events.append("tool_call", { billId: t.billId, seat: t.seat, data: { tool, args, runId: t.runId } });
   t.served.push({ tool, data });
   send(res, 200, data);
 }
+
+// A run may read only the records its own bill leads to, so an agent cannot scan other bills' POs and vendors.
+function poForRun(t: Ticket, tool: string, args: unknown, asked: string): string {
+  mayUse(t, tool, args);
+  const fields = seedBills ? company.getBill(t.billId) : extractions.get(t.billId)?.fields;
+  if (!fields) throw new HttpError(409, "Intake has not read this bill yet; try again shortly");
+  const named = company.poRefs(String(fields.poNumber ?? ""));
+  if (!named.length) deny(t, tool, args, "this bill names no PO, so there is no PO to read. Sign your stamps from that.");
+  const key = (s: string) => company.poKey(s) ?? s.trim().toUpperCase();
+  const hit = named.find((ref) => key(ref) === key(asked));
+  if (!hit) deny(t, tool, args, `this run can read only the PO its bill names (${named.join(", ")}). Do not look up other PO numbers.`);
+  return company.findPo(hit)?.poNumber ?? hit;
+}
+
+function vendorForRun(t: Ticket, tool: string, args: unknown, vendorId: string): string {
+  mayUse(t, tool, args);
+  const seen = t.served.some(({ data }) => (Array.isArray(data) ? data : [data]).some((d: any) => d?.vendorId === vendorId));
+  if (!seen) deny(t, tool, args, `find the vendor first (vendor-search by name, or the vendorId on the bill's PO); ${vendorId} has not come up in this run.`);
+  return vendorId;
+}
+
+const missingPo = (po: string) =>
+  `No purchase order ${po} is on file. That is the finding: sign the stamp from it and do not search other PO numbers.`;
 
 async function verifyRequester(body: any, t?: Ticket) {
   const { persona, purpose } = body;
@@ -437,12 +499,36 @@ const server = createServer(async (req, res) => {
       }
       if (req.method === "POST" && path === "/tools/bill") return send(res, 200, recordBill(t, await readJson(req)));
       if (req.method === "GET" && path === "/tools/bill") return serve(res, t, "bill", {}, billFor(t));
-      if (req.method === "GET" && path === "/tools/vendors") return serve(res, t, "vendors", { name: q("name") }, company.searchVendors(q("name")));
-      if (req.method === "GET" && (m = /^\/tools\/vendors\/([\w-]+)$/.exec(path))) return serve(res, t, "vendors", { vendorId: m[1] }, company.getVendor(m[1]));
-      if (req.method === "GET" && path === "/tools/payments") return serve(res, t, "payments", { vendorId: q("vendorId") }, company.paymentsFor(q("vendorId")));
-      if (req.method === "GET" && (m = /^\/tools\/po\/([\w-]+)$/.exec(path))) return serve(res, t, "po", { poNumber: m[1] }, company.getPo(m[1]));
-      if (req.method === "GET" && path === "/tools/receiving") return serve(res, t, "receiving", { po: q("po") }, company.receivingFor(q("po")));
-      if (req.method === "GET" && (m = /^\/tools\/contracts\/([\w-]+)$/.exec(path))) return serve(res, t, "contracts", { vendorId: m[1] }, company.getContract(m[1]));
+      if (req.method === "GET" && path === "/tools/vendors") {
+        const args = { name: q("name") };
+        mayUse(t, "vendors", args);
+        // Count letters after the search's own cleanup, or "e llc" would search for one letter.
+        if (company.vendorQuery(q("name")).replace(/\s/g, "").length < 3) deny(t, "vendors", args, "search with at least 3 letters of the vendor's name");
+        return serve(res, t, "vendors", args, company.searchVendors(q("name")));
+      }
+      if (req.method === "GET" && (m = /^\/tools\/vendors\/([\w-]+)$/.exec(path))) {
+        const args = { vendorId: m[1] };
+        return serve(res, t, "vendors", args, company.getVendor(vendorForRun(t, "vendors", args, m[1])));
+      }
+      if (req.method === "GET" && path === "/tools/payments") {
+        const args = { vendorId: q("vendorId") };
+        return serve(res, t, "payments", args, company.paymentsFor(vendorForRun(t, "payments", args, q("vendorId"))));
+      }
+      if (req.method === "GET" && (m = /^\/tools\/po\/([\w-]+)$/.exec(path))) {
+        const args = { poNumber: m[1] };
+        const po = poForRun(t, "po", args, m[1]);
+        // The owner is for the orchestrator; seats never see employee details (the insider check matches on them).
+        const rec = company.getPo(po);
+        return serve(res, t, "po", args, rec && { ...rec, owner: undefined }, missingPo(po));
+      }
+      if (req.method === "GET" && path === "/tools/receiving") {
+        const args = { po: q("po") };
+        return serve(res, t, "receiving", args, company.receivingFor(poForRun(t, "receiving", args, q("po"))));
+      }
+      if (req.method === "GET" && (m = /^\/tools\/contracts\/([\w-]+)$/.exec(path))) {
+        const args = { vendorId: m[1] };
+        return serve(res, t, "contracts", args, company.getContract(vendorForRun(t, "contracts", args, m[1])));
+      }
       if (req.method === "GET" && path === "/tools/employees/match") {
         const args = {
           phones: url.searchParams.getAll("phone"),

@@ -10,6 +10,8 @@ export interface Ticket {
   runId?: string;
   // Every tool response served on this ticket, used to check that cited values came from a tool.
   served: { tool: string; data: unknown }[];
+  // Lookups that found nothing or were denied; past a budget the run must stop searching.
+  misses: number;
 }
 
 export function createTickets(ttlMs = 45 * 60_000) {
@@ -19,7 +21,7 @@ export function createTickets(ttlMs = 45 * 60_000) {
     issue(seat: Seat, billId: string): { ticket: string; expiresAt: string } {
       const ticket = `bpt_${randomBytes(24).toString("base64url")}`;
       const expiresAt = Date.now() + ttlMs;
-      tickets.set(ticket, { seat, billId, expiresAt, served: [] });
+      tickets.set(ticket, { seat, billId, expiresAt, served: [], misses: 0 });
       return { ticket, expiresAt: new Date(expiresAt).toISOString() };
     },
     // Accepts an Authorization header value; returns the live ticket or undefined.
