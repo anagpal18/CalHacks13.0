@@ -1,0 +1,1 @@
+A known vendor bills $6.85 a stud against a PO price of $6.40 (contract tolerance 1%). Expect: order fails, the rest pass.

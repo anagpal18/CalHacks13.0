@@ -1,0 +1,48 @@
+Return-Path: <bounce@baylumber.com>
+Received: from mail.baylumber.com ([198.51.100.44]) by mx.bayline.example with ESMTPS; Sat, 24 Oct 2026 15:10:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=baylumber.com; dkim=pass header.d=baylumber.com; dmarc=pass header.from=baylumber.com
+From: "Bay Lumber Accounts Receivable" <ar@baylumber.com>
+To: <ap@bayline.example>
+Subject: Invoice BL-55231 - studs for Site 2
+Date: Sat, 24 Oct 2026 15:10:00 +0000
+Message-ID: <sample-bl@baylumber.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-SAMPLE-BL"
+
+--bp-SAMPLE-BL
+Content-Type: text/plain; charset=utf-8
+
+Hello, please find attached invoice BL-55231 for the 2x4 studs delivered to Site 2 under PO-5602. Payment to our account on file. Thank you, Bay Lumber Accounts Receivable
+
+--bp-SAMPLE-BL
+Content-Type: application/pdf; name="BL-55231.pdf"
+Content-Disposition: attachment; filename="BL-55231.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzIzID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChCYXkgTHVtYmVyIFN1cHBseSBJbmMpIFRqIEVUCkJUIC9G
+MSA5IFRmIDUwIDcyNCBUZCAoMjIwMCBDZXNhciBDaGF2ZXogU3QsIFNhbiBGcmFuY2lzY28sIENB
+ICAtICBcKDU1NVwpIDAxMC0yMDQ0KSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZv
+aWNlIEJMLTU1MjMxKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0x
+MC0yNCAgLSAgWW91ciBQTyBQTy01NjAyICAtICBQYXltZW50IHRlcm1zOiBOZXQgMzApIFRqIEVU
+CkJUIC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBU
+aiBFVAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICg0
+MDAgeCAyeDR4OCBTUEYgc3R1ZHMsIFNpdGUgMiBAICQ2Ljg1KSBUaiBFVApCVCAvRjEgMTAgVGYg
+NDcwIDYxNCBUZCAoJDIsNzQwLjAwKSBUaiBFVAowLjYgdyA1MCA1OTAgbSA1NjIgNTkwIGwgUwpC
+VCAvRjIgMTEgVGYgMzgwIDU3MiBUZCAoVG90YWwgJDIsNzQwLjAwKSBUaiBFVApCVCAvRjEgMTAg
+VGYgNTAgNTM2IFRkIChSZW1pdCBieSBBQ0ggdG8gdGhlIGFjY291bnQgb24gZmlsZSBlbmRpbmcg
+MDA3MS4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5rIHlvdSwgQWNjb3VudHMg
+UmVjZWl2YWJsZSBcKGFyQGJheWx1bWJlci5jb21cKSkgVGogRVQKZW5kc3RyZWFtCmVuZG9iago1
+IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGlj
+YSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAwIG9iago8PCAvVHlwZSAv
+Rm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZCAvRW5jb2Rpbmcg
+L1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAow
+MDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDExNSAwMDAwMCBu
+IAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDEwMjUgMDAwMDAgbiAKMDAwMDAwMTEyMiAwMDAw
+MCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjEyMjQKJSVF
+T0YK
+--bp-SAMPLE-BL--
