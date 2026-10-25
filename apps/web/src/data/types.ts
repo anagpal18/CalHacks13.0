@@ -101,8 +101,6 @@ export interface PaymentRunItem {
   terms: string;
   discount?: { percent: number; payByDate: string; savingsCents: number };
   requestedBy: string;
-  /** What the last-minute re-check will find (mock only). */
-  recheckOutcome: "unchanged" | "bank_changed" | "already_paid" | "amount_changed";
 }
 
 export interface PaymentRun {
@@ -125,7 +123,7 @@ export interface PlantedProblemResult {
   billId: string;
   amountCents: number;
   outcome: "caught" | "missed";
-  caughtBy?: StampId | "recheck" | "approver" | "bank_match";
+  caughtBy?: StampId | "approver" | "bank_match";
 }
 
 export interface FalseAlarm {

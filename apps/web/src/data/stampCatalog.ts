@@ -32,6 +32,5 @@ export const PAYMENT_CHECKS = [
   { number: 10, label: "Discount", question: "Early-payment discount worth taking?" },
   { number: 11, label: "Cash", question: "Enough in the bank for the run?" },
   { number: 12, label: "Approver", question: "A human, not the requester, within limit?" },
-  { number: 13, label: "Re-check", question: "Bank details, amount and paid status unchanged?" },
-  { number: 14, label: "Bank match", question: "Does the bank record match the bill?" },
+  { number: 13, label: "Bank match", question: "Does the bank record match the bill?" },
 ] as const;

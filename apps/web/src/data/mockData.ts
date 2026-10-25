@@ -365,12 +365,12 @@ export const MOCK_PAYMENT_RUN: PaymentRun = {
   approverLimitCents: 250_000_00,
   operatingBalanceCents: 2_327_435_00,
   items: [
-    { billId: "B-NC-2231", vendorName: "Nakamura Concrete", amountCents: 31_250_00, dueDate: "2026-10-27", terms: "2/10 net 30", discount: { percent: 2, payByDate: "2026-10-27", savingsCents: 625_00 }, requestedBy: "Payments agent", recheckOutcome: "unchanged" },
-    { billId: "B-1101", vendorName: "Delta HVAC", amountCents: 18_920_00, dueDate: "2026-10-27", terms: "Net 30", requestedBy: "Payments agent", recheckOutcome: "unchanged" },
-    { billId: "B-1104", vendorName: "Granite Equipment Rentals", amountCents: 7_480_00, dueDate: "2026-10-29", terms: "Net 30", requestedBy: "Payments agent", recheckOutcome: "unchanged" },
-    { billId: "B-HB-115", vendorName: "Harbor Concrete Pumping", amountCents: 26_300_00, dueDate: "2026-10-29", terms: "Net 30", requestedBy: "Payments agent", recheckOutcome: "bank_changed" },
-    { billId: "B-1109", vendorName: "Pacific Glass & Glazing", amountCents: 12_045_00, dueDate: "2026-10-31", terms: "1/10 net 45", discount: { percent: 1, payByDate: "2026-10-31", savingsCents: 120_45 }, requestedBy: "Payments agent", recheckOutcome: "unchanged" },
-    { billId: "B-VP-560", vendorName: "Venkatesan Plumbing", amountCents: 9_115_00, dueDate: "2026-11-03", terms: "Net 30 (contract)", requestedBy: "Payments agent", recheckOutcome: "unchanged" },
+    { billId: "B-NC-2231", vendorName: "Nakamura Concrete", amountCents: 31_250_00, dueDate: "2026-10-27", terms: "2/10 net 30", discount: { percent: 2, payByDate: "2026-10-27", savingsCents: 625_00 }, requestedBy: "Payments agent" },
+    { billId: "B-1101", vendorName: "Delta HVAC", amountCents: 18_920_00, dueDate: "2026-10-27", terms: "Net 30", requestedBy: "Payments agent" },
+    { billId: "B-1104", vendorName: "Granite Equipment Rentals", amountCents: 7_480_00, dueDate: "2026-10-29", terms: "Net 30", requestedBy: "Payments agent" },
+    { billId: "B-HB-115", vendorName: "Harbor Concrete Pumping", amountCents: 26_300_00, dueDate: "2026-10-29", terms: "Net 30", requestedBy: "Payments agent" },
+    { billId: "B-1109", vendorName: "Pacific Glass & Glazing", amountCents: 12_045_00, dueDate: "2026-10-31", terms: "1/10 net 45", discount: { percent: 1, payByDate: "2026-10-31", savingsCents: 120_45 }, requestedBy: "Payments agent" },
+    { billId: "B-VP-560", vendorName: "Venkatesan Plumbing", amountCents: 9_115_00, dueDate: "2026-11-03", terms: "Net 30 (contract)", requestedBy: "Payments agent" },
   ],
 };
 
@@ -384,7 +384,7 @@ const PLANTED_PROBLEM_MIX: [ProblemKind, number][] = [
 
 const CAUGHT_BY: Record<ProblemKind, PlantedProblemResult["caughtBy"]> = {
   duplicate: "repeat", price_creep: "order", not_delivered: "delivered", wrong_terms: "terms", missed_discount: "terms",
-  bank_change_scam: "payto", bank_change_after_booking: "recheck", insider_vendor: "insider", self_approval: "approver",
+  bank_change_scam: "payto", bank_change_after_booking: "payto", insider_vendor: "insider", self_approval: "approver",
   bank_mismatch: "bank_match", ghost_vendor: "vendor",
 };
 
@@ -475,7 +475,7 @@ export const MOCK_WEEK_INTAKE: DailyIntake[] = WEEK_BASE.map((day, dayIndex) => 
 export const MOCK_ATTENTION_ITEMS: AttentionItem[] = [
   {
     id: "run", kind: "approve_run", title: "Approve this week's payment run",
-    reason: "6 bills are due between Oct 27 and Nov 3. All passed their checks; one more re-check happens before money moves.",
+    reason: "6 bills are due between Oct 27 and Nov 3. All passed their checks and are ready to pay.",
     recommendation: "Approve", amountCents: 105_110_00, urgencyNote: "$745 in early-pay discounts expire Oct 27",
     tone: "checking", actionLabel: "Review & approve", href: "/pay",
   },

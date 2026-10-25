@@ -25,9 +25,8 @@ const PROBLEM_LABEL: Record<ProblemKind, string> = {
 
 const CAUGHT_BY_LABEL: Record<NonNullable<PlantedProblemResult["caughtBy"]>, string> = {
   ...Object.fromEntries(STAMP_CATALOG.map((definition) => [definition.id, `Stamp ${definition.number} · ${definition.label}`])) as Record<StampId, string>,
-  recheck: "Check 13 · Re-check",
   approver: "Check 12 · Approver",
-  bank_match: "Check 14 · Bank match",
+  bank_match: "Check 13 · Bank match",
 };
 
 const AUDITABLE_BILLS = [

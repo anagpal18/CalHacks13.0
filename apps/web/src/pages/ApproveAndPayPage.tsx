@@ -1,10 +1,9 @@
 // ④ Approve & Pay: "The right person signs, then money moves."
 // Bills sit on a due-date timeline, cash is a fill bar, a human approves, then each bill runs
-// re-check → pay (Nessie) → bank match on its card. A bill whose bank details changed after booking is held
-// at re-check (its card turns orange).
+// pay (Nessie) → bank match, shown on its card.
 
 import { AnimatePresence, motion } from "motion/react";
-import { Bot, CalendarClock, Check, CircleX, Loader, Percent, ShieldCheck, UserCheck, Wallet, X } from "lucide-react";
+import { Bot, CalendarClock, Check, Loader, Percent, ShieldCheck, UserCheck, Wallet, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ApprovedCheck } from "@/components/visuals/ApprovedCheck";
@@ -20,9 +19,9 @@ const CONTROLLER_NAME = "Dana Whitfield";
 const EXECUTION_STEP_MS = 650;
 
 type RunPhase = "proposed" | "executing" | "done";
-type ItemStage = "queued" | "rechecking" | "paying" | "matching" | "paid" | "held";
+type ItemStage = "queued" | "paying" | "matching" | "paid";
 
-/** Advances each item through re-check → pay → match, one item after another. */
+/** Advances each item through pay → match, one item after another. */
 function useExecution(items: PaymentRunItem[], isRunning: boolean) {
   const [stepCount, setStepCount] = useState(0);
   useEffect(() => {
@@ -36,14 +35,11 @@ function useExecution(items: PaymentRunItem[], isRunning: boolean) {
     const stageByBillId: Record<string, ItemStage> = {};
     let stepsUsed = 0;
     for (const item of items) {
-      const stepsForItem = item.recheckOutcome === "unchanged" ? 4 : 2;
       const progress = isRunning ? stepCount - stepsUsed : -1;
-      stepsUsed += stepsForItem;
+      stepsUsed += 3;
       if (progress < 0) stageByBillId[item.billId] = "queued";
-      else if (progress === 0) stageByBillId[item.billId] = "rechecking";
-      else if (item.recheckOutcome !== "unchanged") stageByBillId[item.billId] = "held";
-      else if (progress === 1) stageByBillId[item.billId] = "paying";
-      else if (progress === 2) stageByBillId[item.billId] = "matching";
+      else if (progress === 0) stageByBillId[item.billId] = "paying";
+      else if (progress === 1) stageByBillId[item.billId] = "matching";
       else stageByBillId[item.billId] = "paid";
     }
     return { stageByBillId, isFinished: isRunning && stepCount >= stepsUsed };
@@ -96,9 +92,9 @@ function sumPaid(run: PaymentRun, stageByBillId: Record<string, ItemStage>): num
 }
 
 function ChecksStrip({ phase }: { phase: RunPhase }) {
-  const passedThrough = phase === "proposed" ? 11 : phase === "executing" ? 12 : 14;
+  const passedThrough = phase === "proposed" ? 11 : phase === "executing" ? 12 : 13;
   return (
-    <div className="grid grid-cols-3 gap-2 md:grid-cols-6">
+    <div className="grid grid-cols-3 gap-2 md:grid-cols-5">
       {PAYMENT_CHECKS.map((check) => {
         const isPassed = check.number <= passedThrough;
         return (
@@ -175,15 +171,13 @@ function DueDateTimeline({ items, stageByBillId }: { items: PaymentRunItem[]; st
 
 function RunItemCard({ item, stage }: { item: PaymentRunItem; stage: ItemStage }) {
   const isPaid = stage === "paid";
-  const isHeld = stage === "held";
-  const isBusy = stage === "rechecking" || stage === "paying" || stage === "matching";
+  const isBusy = stage === "paying" || stage === "matching";
   return (
     <motion.div
       layout
       className={cn(
         "relative rounded-xl border bg-card p-3 transition-colors duration-500",
         isPaid && "border-foreground/40",
-        isHeld && "border-held/50 bg-held/8",
         isBusy && "border-checking/60",
         stage === "queued" && "border-border",
       )}
@@ -198,7 +192,6 @@ function RunItemCard({ item, stage }: { item: PaymentRunItem; stage: ItemStage }
       )}
       <span className="absolute right-2 top-2">
         {isPaid && <Check className="size-4 text-cleared" />}
-        {isHeld && <CircleX className="size-4 text-held" />}
         {isBusy && <Loader className="size-4 animate-spin text-checking" />}
       </span>
     </motion.div>
