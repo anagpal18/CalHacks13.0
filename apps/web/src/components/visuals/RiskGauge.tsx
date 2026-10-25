@@ -48,10 +48,10 @@ export function RiskGauge({ score, isRevealed }: { score: number; isRevealed: bo
           strokeWidth="14"
           strokeLinecap="round"
           strokeDasharray={ARC_LENGTH}
-          style={{ strokeDashoffset: dashOffset, filter: `drop-shadow(0 0 8px ${color})` }}
+          style={{ strokeDashoffset: dashOffset }}
         />
-        <motion.line x1={100} y1={100} x2={needleTipX} y2={needleTipY} stroke="white" strokeWidth={2.5} strokeLinecap="round" />
-        <circle cx="100" cy="100" r="6" fill="white" />
+        <motion.line x1={100} y1={100} x2={needleTipX} y2={needleTipY} stroke="var(--foreground)" strokeWidth={2.5} strokeLinecap="round" />
+        <circle cx="100" cy="100" r="6" fill="var(--foreground)" />
         {[0, 50, 100].map((tick) => (
           <text key={tick} x={tick === 0 ? 14 : tick === 100 ? 186 : 100} y={tick === 50 ? 12 : 114} textAnchor="middle" className="fill-muted-foreground text-[9px]">
             {tick}

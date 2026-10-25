@@ -7,6 +7,7 @@ import { Database, History, Target } from "lucide-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { AnimatedNumber } from "@/components/visuals/AnimatedNumber";
+import { HorizontalBars } from "@/components/charts/HorizontalBars";
 import { STAMP_ICON } from "@/components/visuals/stampIcons";
 import { getAuditTrail, getCrsDataUseLog, getScore } from "@/data/dataSource";
 import { STAMP_CATALOG } from "@/data/stampCatalog";
@@ -36,7 +37,7 @@ const AUDITABLE_BILLS = [
 
 export function ProofPage() {
   const score = useAsyncData(getScore, []);
-  if (!score) return <div className="h-[560px] animate-pulse rounded-3xl bg-card/50" />;
+  if (!score) return <div className="h-[560px] animate-pulse rounded-3xl bg-card" />;
 
   const caught = score.plantedProblems.filter((problem) => problem.outcome === "caught");
   const protectedCents = caught.reduce((total, problem) => total + problem.amountCents, 0);
@@ -44,11 +45,11 @@ export function ProofPage() {
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-6 rounded-3xl border border-white/8 bg-card/50 p-8 lg:grid-cols-[1fr_1.6fr]">
+      <section className="grid gap-6 rounded-3xl bg-card p-8 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)] lg:grid-cols-[1fr_1.6fr]">
         <div className="flex flex-col justify-center">
           <div className="flex items-center gap-2 text-sm text-muted-foreground"><Target className="size-4" /> Against the answer key</div>
-          <div className="mt-2 text-7xl font-black tracking-tight">
-            <AnimatedNumber value={caught.length} className="text-cleared" /> <span className="text-muted-foreground/60">of {score.plantedProblems.length}</span>
+          <div className="mt-2 text-7xl font-semibold tracking-tighter">
+            <AnimatedNumber value={caught.length} /> <span className="text-muted-foreground/50">of {score.plantedProblems.length}</span>
           </div>
           <div className="text-2xl font-semibold">planted problems caught</div>
           <div className="mt-6 flex gap-8">
@@ -71,12 +72,12 @@ export function ProofPage() {
             </div>
           ))}
           <div className="flex items-center gap-3 pt-2">
-            <span className="w-48 shrink-0 text-right text-xs text-asking">False alarms</span>
+            <span className="w-48 shrink-0 text-right text-xs text-muted-foreground">False alarms</span>
             <div className="flex gap-1.5">
               {score.falseAlarms.map((alarm) => (
                 <Tooltip key={alarm.billId}>
                   <TooltipTrigger asChild>
-                    <span className="size-7 rounded-md border border-asking/50 bg-asking/25" />
+                    <span className="size-6 rounded-[6px] border-2 border-asking bg-card" />
                   </TooltipTrigger>
                   <TooltipContent>{alarm.billId}: {alarm.reason}</TooltipContent>
                 </Tooltip>
@@ -84,9 +85,9 @@ export function ProofPage() {
             </div>
           </div>
           <div className="flex gap-4 pl-[204px] pt-3 text-[11px] text-muted-foreground">
-            <Legend className="bg-cleared" label="caught" />
+            <Legend className="bg-foreground" label="caught" />
             <Legend className="bg-held" label="missed" />
-            <Legend className="bg-asking" label="false alarm" />
+            <Legend className="border-2 border-asking bg-card" label="false alarm" />
           </div>
         </div>
       </section>
@@ -104,8 +105,8 @@ export function ProofPage() {
 function MiniStat({ label, value, tone }: { label: string; value: string; tone: "cleared" | "held" | "asking" }) {
   return (
     <div>
-      <div className={cn("text-3xl font-extrabold tabular-nums", TONE_STYLE[tone].text)}>{value}</div>
-      <div className="text-xs uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="text-3xl font-semibold tracking-tight">{value}</div>
+      <div className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground"><span className={cn("size-2 rounded-full", TONE_STYLE[tone].dot)} />{label}</div>
     </div>
   );
 }
@@ -124,8 +125,8 @@ function ProblemTile({ problem, delay }: { problem: PlantedProblemResult; delay:
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay, type: "spring", stiffness: 400, damping: 20 }}
           className={cn(
-            "size-7 cursor-default rounded-md border",
-            isCaught ? "border-cleared/50 bg-cleared/30 hover:bg-cleared/60" : "border-held/60 bg-held/40 hover:bg-held/70 shadow-[0_0_12px_-2px_var(--held)]",
+            "size-6 cursor-default rounded-[6px] border",
+            isCaught ? "border-transparent bg-foreground hover:bg-foreground/70" : "border-transparent bg-held hover:bg-held/80",
           )}
         />
       </TooltipTrigger>
@@ -141,32 +142,20 @@ function CaughtByChart({ problems }: { problems: PlantedProblemResult[] }) {
   const counts = new Map<string, number>();
   problems.forEach((problem) => counts.set(problem.caughtBy!, (counts.get(problem.caughtBy!) ?? 0) + 1));
   const rows = [...counts.entries()].sort((first, second) => second[1] - first[1]);
-  const maxCount = Math.max(...rows.map(([, count]) => count));
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
-      <div className="mb-4 text-sm font-semibold">Which check caught what</div>
-      <div className="space-y-2.5">
-        {rows.map(([caughtBy, count], index) => {
-          const StampIcon = caughtBy in STAMP_ICON ? STAMP_ICON[caughtBy as StampId] : History;
-          return (
-            <div key={caughtBy} className="flex items-center gap-3">
-              <StampIcon className="size-4 shrink-0 text-muted-foreground" />
-              <span className="w-44 shrink-0 truncate text-xs">{CAUGHT_BY_LABEL[caughtBy as keyof typeof CAUGHT_BY_LABEL]}</span>
-              <div className="h-5 flex-1 rounded-md bg-white/4">
-                <motion.div
-                  className="flex h-full items-center justify-end rounded-md bg-gradient-to-r from-cleared/30 to-cleared/70 pr-2 text-[11px] font-bold"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${(count / maxCount) * 100}%` }}
-                  transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
-                >
-                  {count}
-                </motion.div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+    <div className="rounded-3xl bg-card p-6 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)]">
+      <div className="text-lg font-semibold tracking-tight">Which check caught what</div>
+      <div className="mb-5 mt-0.5 text-sm text-muted-foreground">Each planted problem, credited to the stamp or check that stopped it</div>
+      <HorizontalBars
+        labelWidth={170}
+        data={rows.map(([caughtBy, count]) => ({
+          key: caughtBy,
+          label: CAUGHT_BY_LABEL[caughtBy as keyof typeof CAUGHT_BY_LABEL],
+          value: count,
+          icon: caughtBy in STAMP_ICON ? STAMP_ICON[caughtBy as StampId] : History,
+        }))}
+      />
     </div>
   );
 }
@@ -176,7 +165,7 @@ function AuditTrail() {
   const events = useAsyncData(() => getAuditTrail(billId), [billId]) ?? [];
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <div className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2 text-sm font-semibold"><History className="size-4 text-checking" /> Audit trail</div>
         <div className="flex gap-1">
@@ -184,14 +173,14 @@ function AuditTrail() {
             <button
               key={bill.billId}
               onClick={() => setBillId(bill.billId)}
-              className={cn("rounded-full border px-3 py-1 text-xs transition", bill.billId === billId ? "border-checking bg-checking/12" : "border-white/8 text-muted-foreground hover:text-foreground")}
+              className={cn("rounded-full border px-3 py-1 text-xs transition", bill.billId === billId ? "border-checking bg-checking/12" : "border-foreground/8 text-muted-foreground hover:text-foreground")}
             >
               {bill.label}
             </button>
           ))}
         </div>
       </div>
-      <ol className="relative ml-2 border-l border-white/10">
+      <ol className="relative ml-2 border-l border-foreground/10">
         {events.map((event, index) => (
           <motion.li
             key={`${billId}-${index}`}
@@ -200,7 +189,7 @@ function AuditTrail() {
             transition={{ delay: index * 0.07 }}
             className="relative pb-4 pl-5 last:pb-0"
           >
-            <span className={cn("absolute -left-[5px] top-1.5 size-2.5 rounded-full", event.tone === "neutral" ? "bg-white/40" : TONE_STYLE[event.tone].dot)} />
+            <span className={cn("absolute -left-[5px] top-1.5 size-2.5 rounded-full", event.tone === "neutral" ? "bg-foreground/40" : TONE_STYLE[event.tone].dot)} />
             <div className="flex items-baseline gap-2">
               <span className="font-mono text-[11px] text-muted-foreground">{event.at}</span>
               <span className="text-xs text-muted-foreground">{event.actor}</span>
@@ -217,17 +206,17 @@ function AuditTrail() {
 function CrsDataUseLog() {
   const entries = useAsyncData(getCrsDataUseLog, []) ?? [];
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <div className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="mb-1 flex items-center gap-2 text-sm font-semibold"><Database className="size-4 text-checking" /> CRS data-use log</div>
       <p className="mb-4 text-xs text-muted-foreground">Identity data is pulled only for new vendors and bank-detail changes, never on every bill. No credit reports on vendors.</p>
       <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
         {entries.map((entry, index) => (
-          <div key={index} className="flex items-start gap-3 rounded-xl border border-white/6 bg-background/50 p-3">
+          <div key={index} className="flex items-start gap-3 rounded-xl border border-foreground/6 bg-background/50 p-3">
             <span className="font-mono text-[11px] text-muted-foreground">{entry.at}</span>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 text-sm font-semibold">
                 {entry.product}
-                {entry.cached && <span className="rounded bg-white/8 px-1.5 text-[10px] font-normal text-muted-foreground">cached</span>}
+                {entry.cached && <span className="rounded bg-foreground/8 px-1.5 text-[10px] font-normal text-muted-foreground">cached</span>}
               </div>
               <div className="truncate text-xs">{entry.persona}</div>
               <div className="truncate text-xs text-muted-foreground">{entry.purpose}</div>

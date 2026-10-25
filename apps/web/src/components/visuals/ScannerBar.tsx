@@ -27,15 +27,15 @@ export function ScannerBar({ stepNumber, title, subtitle, icon: Icon, state, res
     <motion.div
       layout
       className={cn(
-        "relative overflow-hidden rounded-2xl border bg-card/70 p-5 transition-colors duration-500",
-        state === "waiting" && "border-white/6 opacity-50",
+        "relative overflow-hidden rounded-2xl border bg-card p-5 transition-colors duration-500",
+        state === "waiting" && "border-foreground/6 opacity-50",
         state === "scanning" && "border-checking/50",
-        isDone && cn(tone.border, tone.glow),
+        isDone && "border-border",
       )}
     >
       {state === "scanning" && (
         <motion.div
-          className="pointer-events-none absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-checking/25 to-transparent"
+          className="pointer-events-none absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-data-soft/60 to-transparent"
           initial={{ left: "-35%" }}
           animate={{ left: "105%" }}
           transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
@@ -45,7 +45,7 @@ export function ScannerBar({ stepNumber, title, subtitle, icon: Icon, state, res
         <span
           className={cn(
             "flex size-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold transition-colors duration-500",
-            isDone ? cn(tone.background, tone.text) : "bg-white/6 text-muted-foreground",
+            isDone ? cn(tone.background, tone.text) : "bg-foreground/6 text-muted-foreground",
           )}
         >
           <Icon className="size-6" />
@@ -65,7 +65,7 @@ export function ScannerBar({ stepNumber, title, subtitle, icon: Icon, state, res
                 </motion.p>
               )}
               {isDone && (
-                <motion.p key="done" className={cn("text-lg font-semibold", tone.text)} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}>
+                <motion.p key="done" className="text-[17px] font-semibold leading-snug" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}>
                   {resultLine}
                 </motion.p>
               )}
@@ -85,8 +85,8 @@ export function ScannerBar({ stepNumber, title, subtitle, icon: Icon, state, res
 /** Small labelled fact chip shown under a resolved scanner. */
 export function SignalChip({ label, value, isBad }: { label: string; value: string; isBad?: boolean }) {
   return (
-    <span className={cn("rounded-lg border px-2.5 py-1 text-xs", isBad ? "border-held/30 bg-held/8 text-held" : "border-white/8 bg-white/4 text-muted-foreground")}>
-      <span className="opacity-70">{label}</span> <span className="font-semibold">{value}</span>
+    <span className={cn("rounded-lg border px-2.5 py-1 text-xs", isBad ? "border-held/25 bg-card text-foreground" : "border-border bg-card text-muted-foreground")}>
+      <span className="opacity-70">{label}</span> <span className={cn("font-semibold", isBad && "text-held")}>{value}</span>
     </span>
   );
 }

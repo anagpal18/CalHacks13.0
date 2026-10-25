@@ -5,6 +5,7 @@
 import { STAMP_CATALOG } from "./stampCatalog";
 import type {
   AuditEvent,
+  DailyIntake,
   BillSummary,
   CrsChainResult,
   CrsDataUseEntry,
@@ -397,7 +398,7 @@ function buildScore(): ScoreResult {
       const missed = missedProblemIds.has(problemId);
       return {
         problemId, kind, billId: `B-${1200 + problemNumber}`,
-        amountCents: Math.round((900 + random() * 46_000) * 100),
+        amountCents: Math.round((400 + random() * 9_600) * 100),
         outcome: missed ? "missed" : "caught",
         caughtBy: missed ? undefined : CAUGHT_BY[kind],
       } satisfies PlantedProblemResult;
@@ -441,3 +442,28 @@ export const MOCK_CRS_DATA_USE: CrsDataUseEntry[] = [
   { at: "10:05:20", product: "TU Identity", persona: "P14 Harold Pettigrew", purpose: "New sole-proprietor vendor", cached: false },
   { at: "10:22:41", product: "Reverse Phone", persona: "Coastline Hauling contact", purpose: "Insider check on new vendor", cached: true },
 ];
+
+// ---------------------------------------------------------------- inbox week (Sun Oct 18 → today, Sat Oct 24)
+
+// Caught problems and protected dollars are spread from the answer key (MOCK_SCORE) across Mon–Sat,
+// so the Inbox week and the Proof page always add up to the same totals.
+const WEEK_BASE = [
+  { date: "2026-10-18", dayLetter: "S", billsReceived: 6, amountCents: 41_200_00 },
+  { date: "2026-10-19", dayLetter: "M", billsReceived: 41, amountCents: 386_400_00 },
+  { date: "2026-10-20", dayLetter: "T", billsReceived: 33, amountCents: 512_750_00 },
+  { date: "2026-10-21", dayLetter: "W", billsReceived: 29, amountCents: 274_100_00 },
+  { date: "2026-10-22", dayLetter: "T", billsReceived: 37, amountCents: 448_900_00 },
+  { date: "2026-10-23", dayLetter: "F", billsReceived: 24, amountCents: 301_650_00 },
+  { date: "2026-10-24", dayLetter: "S", billsReceived: 36, amountCents: 433_120_00 },
+];
+
+export const MOCK_WEEK_INTAKE: DailyIntake[] = WEEK_BASE.map((day, dayIndex) => {
+  const caughtThatDay = MOCK_SCORE.plantedProblems.filter(
+    (problem, problemIndex) => problem.outcome === "caught" && dayIndex > 0 && problemIndex % 6 === dayIndex - 1,
+  );
+  return {
+    ...day,
+    problemsCaught: caughtThatDay.length,
+    protectedCents: caughtThatDay.reduce((total, problem) => total + problem.amountCents, 0),
+  };
+});

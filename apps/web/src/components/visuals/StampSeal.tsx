@@ -21,12 +21,14 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, onOpenEvi
   const StampIcon = STAMP_ICON[definition.id];
   const StatusIcon = look.icon;
   const isProblem = stamp.status !== "pass";
+  // Passes recede (thin grey ring, ink icon); problems carry the status colour.
+  const sealColor = isProblem ? tone.color : "rgb(31 36 51 / 0.22)";
 
   return (
     <button onClick={onOpenEvidence} disabled={!isRevealed} className="group flex flex-col items-center text-center">
       <div className="relative size-28">
         {/* Empty slot while waiting */}
-        <div className={cn("absolute inset-0 rounded-full border-2 border-dashed transition-colors", isChecking ? "border-checking/70" : "border-white/10")} />
+        <div className={cn("absolute inset-0 rounded-full border-2 border-dashed transition-colors", isChecking ? "border-checking/70" : "border-foreground/10")} />
         {isChecking && (
           <motion.div className="absolute inset-0 rounded-full border-2 border-checking border-t-transparent" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
         )}
@@ -36,15 +38,15 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, onOpenEvi
             animate={{ scale: 1, rotate: isProblem ? -8 : -4, opacity: 1 }}
             transition={{ type: "spring", stiffness: 420, damping: 14 }}
             className={cn(
-              "absolute inset-0 flex flex-col items-center justify-center rounded-full border-[3px] transition-transform group-hover:scale-105",
-              tone.border, tone.background, tone.text, isProblem && tone.glow,
+              "absolute inset-0 flex flex-col items-center justify-center rounded-full transition-transform group-hover:scale-105",
+              isProblem ? cn("border-[3px]", tone.background, tone.text) : "border-2 bg-card text-foreground/75",
             )}
-            style={{ borderColor: tone.color }}
+            style={{ borderColor: sealColor }}
           >
-            <div className="absolute inset-1.5 rounded-full border border-dashed opacity-50" style={{ borderColor: tone.color }} />
+            <div className="absolute inset-1.5 rounded-full border border-dashed opacity-50" style={{ borderColor: sealColor }} />
             <StampIcon className="size-7" />
             <span className="mt-1 text-[10px] font-black uppercase tracking-wider">{look.label === "Asking a human" ? "Asking" : look.label}</span>
-            <span className="absolute -right-1 -top-1 flex size-7 items-center justify-center rounded-full bg-background" style={{ color: tone.color }}>
+            <span className="absolute -right-1 -top-1 flex size-7 items-center justify-center rounded-full bg-card" style={{ color: isProblem ? tone.color : "var(--foreground)" }}>
               <StatusIcon className="size-6" />
             </span>
           </motion.div>

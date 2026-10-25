@@ -1,43 +1,52 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-/* Dark-only dashboard. Status colours: cleared = emerald, held = rose, asking a human = amber. */
+/* Light, minimal theme. Colours from the Twisty reference, type hierarchy from Vercel/Geist.
+   One hot colour only: held (orange-red). Navy ink doubles as "cleared".
+   Chart palette (data blue + held) validated with the dataviz script: all checks pass on white. */
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.145 0.012 265);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.185 0.014 265);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.185 0.014 265);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.72 0.15 250);
-  --primary-foreground: oklch(0.15 0.02 265);
-  --secondary: oklch(0.25 0.015 265);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.24 0.014 265);
-  --muted-foreground: oklch(0.68 0.02 265);
-  --accent: oklch(0.27 0.02 265);
-  --accent-foreground: oklch(0.97 0 0);
-  --destructive: oklch(0.65 0.22 18);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.15 250);
+  --radius: 1rem;
 
-  --cleared: oklch(0.76 0.17 158);
-  --held: oklch(0.66 0.22 18);
-  --asking: oklch(0.8 0.16 78);
-  --checking: oklch(0.72 0.15 250);
+  --backdrop: #8f97b0;        /* slate frame around the app */
+  --background: #f1f2f5;      /* app canvas */
+  --foreground: #1f2433;      /* navy ink */
+  --card: #ffffff;
+  --card-foreground: #1f2433;
+  --popover: #ffffff;
+  --popover-foreground: #1f2433;
+  --primary: #1f2433;
+  --primary-foreground: #ffffff;
+  --secondary: #eceef2;
+  --secondary-foreground: #1f2433;
+  --muted: #eceef2;
+  --muted-foreground: #6b7183;
+  --accent: #eceef2;
+  --accent-foreground: #1f2433;
+  --destructive: #e5532d;
+  --border: #e3e5ea;
+  --input: #e3e5ea;
+  --ring: #5a7fbf;
+
+  /* Status (always shipped with an icon + label, never colour alone) */
+  --cleared: #1f2433;
+  --held: #e5532d;
+  --asking: #b9852c;
+  --checking: #5a7fbf;
+
+  /* Data marks */
+  --data: #5a7fbf;
+  --data-soft: #cfd9ec;
+  --track: #e6e8ee;
 }
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-backdrop: var(--backdrop);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -60,9 +69,12 @@
   --color-held: var(--held);
   --color-asking: var(--asking);
   --color-checking: var(--checking);
+  --color-data: var(--data);
+  --color-data-soft: var(--data-soft);
+  --color-track: var(--track);
 }
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground font-sans antialiased; }
+  body { @apply bg-backdrop text-foreground font-sans antialiased; }
 }

@@ -1,3 +1,5 @@
+// The ① → ⑤ steps as a quiet text nav. The active step gets an ink underline that slides between items.
+
 import { motion } from "motion/react";
 import { NavLink, useLocation } from "react-router";
 import { cn } from "@/lib/utils";
@@ -5,37 +7,33 @@ import { DASHBOARD_STEPS, findStepForPath } from "./dashboardSteps";
 
 export function StepBar() {
   const currentStep = findStepForPath(useLocation().pathname);
-  const progressPercent = ((currentStep.number - 1) / (DASHBOARD_STEPS.length - 1)) * 100;
 
   return (
-    <nav className="relative mx-auto flex w-full max-w-3xl items-center justify-between">
-      <div className="absolute inset-x-6 top-5 h-0.5 rounded-full bg-white/8" />
-      <motion.div
-        className="absolute left-6 top-5 h-0.5 rounded-full bg-gradient-to-r from-checking to-cleared"
-        initial={false}
-        animate={{ width: `calc((100% - 3rem) * ${progressPercent / 100})` }}
-        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      />
+    <nav className="flex items-center gap-1">
       {DASHBOARD_STEPS.map((step) => {
         const isCurrent = step.number === currentStep.number;
         const isDone = step.number < currentStep.number;
-        const Icon = step.icon;
         return (
-          <NavLink key={step.path} to={step.path} className="group relative z-10 flex w-28 flex-col items-center gap-1.5">
-            <motion.span
+          <NavLink
+            key={step.path}
+            to={step.path}
+            className={cn(
+              "relative flex items-center gap-2 whitespace-nowrap px-3 py-2 text-sm transition-colors",
+              isCurrent ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            <span
               className={cn(
-                "flex size-10 items-center justify-center rounded-full border text-sm font-bold transition-colors",
-                isCurrent && "border-checking bg-checking text-primary-foreground shadow-[0_0_28px_-2px_var(--checking)]",
-                isDone && "border-cleared/50 bg-cleared/15 text-cleared",
-                !isCurrent && !isDone && "border-white/12 bg-card text-muted-foreground group-hover:border-white/30",
+                "flex size-5 items-center justify-center rounded-full text-[11px] font-medium tabular-nums",
+                isCurrent ? "bg-foreground text-background" : isDone ? "bg-foreground/10 text-foreground" : "bg-foreground/5",
               )}
-              animate={{ scale: isCurrent ? 1.1 : 1 }}
             >
-              <Icon className="size-4.5" />
-            </motion.span>
-            <span className={cn("whitespace-nowrap text-xs font-medium", isCurrent ? "text-foreground" : "text-muted-foreground")}>
-              {step.number} · {step.label}
+              {step.number}
             </span>
+            {step.label}
+            {isCurrent && (
+              <motion.span layoutId="step-underline" className="absolute inset-x-3 -bottom-px h-[1.5px] rounded-full bg-foreground" transition={{ type: "spring", stiffness: 400, damping: 34 }} />
+            )}
           </NavLink>
         );
       })}

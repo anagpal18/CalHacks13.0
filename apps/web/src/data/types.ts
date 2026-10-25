@@ -154,3 +154,14 @@ export interface CrsDataUseEntry {
   purpose: string;
   cached: boolean;
 }
+
+// ---- Inbox analytics ----
+
+export interface DailyIntake {
+  date: string;
+  dayLetter: string;
+  billsReceived: number;
+  amountCents: number;
+  problemsCaught: number;
+  protectedCents: number;
+}

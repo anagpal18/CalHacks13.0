@@ -32,7 +32,7 @@ export function ScamConsoleDialog({ open, onOpenChange }: { open: boolean; onOpe
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl border-held/30 bg-card/95 backdrop-blur sm:max-w-2xl">
+      <DialogContent className="max-w-2xl border-held/30 bg-card backdrop-blur sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl">Try to scam us</DialogTitle>
           <DialogDescription>Pick an attack. We'll run it through the identity checks and show you what happens.</DialogDescription>
@@ -49,7 +49,7 @@ export function ScamConsoleDialog({ open, onOpenChange }: { open: boolean; onOpe
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -3 }}
-                className="group flex gap-3 rounded-xl border border-white/8 bg-background/60 p-4 text-left transition-colors hover:border-held/50 hover:bg-held/8"
+                className="group flex gap-3 rounded-xl border border-foreground/8 bg-background/60 p-4 text-left transition-colors hover:border-held/50 hover:bg-held/8"
               >
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-held/12 text-held group-hover:bg-held group-hover:text-white">
                   <Icon className="size-5" />

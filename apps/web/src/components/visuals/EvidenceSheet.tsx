@@ -19,7 +19,7 @@ export function EvidenceSheet({ stamp, onClose }: { stamp: Stamp | null; onClose
 
   return (
     <Sheet open={stamp !== null} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent className="w-full overflow-y-auto border-white/8 bg-card sm:max-w-lg">
+      <SheetContent className="w-full overflow-y-auto border-foreground/8 bg-card sm:max-w-lg">
         {stamp && definition && (
           <>
             <SheetHeader>
@@ -43,7 +43,7 @@ export function EvidenceSheet({ stamp, onClose }: { stamp: Stamp | null; onClose
                         key={index}
                         className={cn(
                           "rounded-xl border p-3",
-                          isWinner ? "border-cleared/50 bg-cleared/8" : isLoser ? "border-held/30 bg-held/5" : "border-white/8 bg-background/50",
+                          isWinner ? "border-cleared/50 bg-cleared/8" : isLoser ? "border-held/30 bg-held/5" : "border-foreground/8 bg-background/50",
                         )}
                       >
                         <div className="flex items-center justify-between gap-2">
@@ -67,7 +67,7 @@ export function EvidenceSheet({ stamp, onClose }: { stamp: Stamp | null; onClose
                 </section>
               )}
 
-              <section className="flex items-start gap-3 rounded-xl border border-white/8 bg-background/50 p-4 text-sm">
+              <section className="flex items-start gap-3 rounded-xl border border-foreground/8 bg-background/50 p-4 text-sm">
                 <PenLine className="mt-0.5 size-4 text-muted-foreground" />
                 <div>
                   <div>Signed by <span className="font-semibold">{SEAT_LABEL[stamp.signedBy]}</span></div>

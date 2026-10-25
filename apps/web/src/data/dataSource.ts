@@ -9,8 +9,9 @@ import {
   MOCK_PASSPORTS,
   MOCK_PAYMENT_RUN,
   MOCK_SCORE,
+  MOCK_WEEK_INTAKE,
 } from "./mockData";
-import type { AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, Passport, PaymentRun, ScoreResult } from "./types";
+import type { AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport, PaymentRun, ScoreResult } from "./types";
 
 const MOCK_LATENCY_MS = 120;
 const resolveLater = <Value,>(value: Value) => new Promise<Value>((resolve) => setTimeout(() => resolve(value), MOCK_LATENCY_MS));
@@ -34,3 +35,4 @@ export const getScore = (): Promise<ScoreResult> => resolveLater(MOCK_SCORE);
 export const getAuditTrail = (billId: string): Promise<AuditEvent[]> => resolveLater(MOCK_AUDIT_TRAILS[billId] ?? []);
 
 export const getCrsDataUseLog = (): Promise<CrsDataUseEntry[]> => resolveLater(MOCK_CRS_DATA_USE);
+export const getWeekIntake = (): Promise<DailyIntake[]> => resolveLater(MOCK_WEEK_INTAKE);

@@ -9,7 +9,10 @@ import { Link, useNavigate, useParams } from "react-router";
 import { Button } from "@/components/ui/button";
 import { EvidenceSheet } from "@/components/visuals/EvidenceSheet";
 import { StampSeal } from "@/components/visuals/StampSeal";
-import { getBillSummary, getPassport, listBills } from "@/data/dataSource";
+import { getBillSummary, getPassport, getScore, listBills } from "@/data/dataSource";
+import { HorizontalBars } from "@/components/charts/HorizontalBars";
+import { Panel } from "@/components/charts/Panel";
+import { STAMP_ICON } from "@/components/visuals/stampIcons";
 import { DEMO_FEATURED_BILL_ID } from "@/data/mockData";
 import { SEAT_LABEL, STAMP_CATALOG } from "@/data/stampCatalog";
 import type { BillSummary, Passport, Stamp } from "@/data/types";
@@ -39,13 +42,27 @@ export function CheckPage() {
   const passport = useAsyncData(() => getPassport(billId), [billId]);
   const bill = useAsyncData(() => getBillSummary(billId), [billId]);
   const allBills = useAsyncData(listBills, []) ?? [];
+  const score = useAsyncData(getScore, []);
   const revealedCount = useStampReveal(STAMP_CATALOG.length, `${billId}-${replayCount}-${passport ? 1 : 0}`);
 
   const interestingBills = allBills.filter((candidate) => candidate.headline);
 
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-      <BillRail bills={interestingBills} currentBillId={billId} onPick={(id) => navigate(`/check/${id}`)} />
+      <div className="space-y-5">
+        <BillRail bills={interestingBills} currentBillId={billId} onPick={(id) => navigate(`/check/${id}`)} />
+        <Panel title="Where bills fail" subtitle="Problems caught per stamp this week" className="p-5">
+          {score && (
+            <HorizontalBars
+              labelWidth={110}
+              data={STAMP_CATALOG.map((definition) => {
+                const count = score.plantedProblems.filter((problem) => problem.caughtBy === definition.id).length;
+                return { key: definition.id, label: `${definition.number} ${definition.label}`, value: count, icon: STAMP_ICON[definition.id], highlight: definition.id === "payto", tooltip: `${count} caught by ${definition.label}` };
+              })}
+            />
+          )}
+        </Panel>
+      </div>
 
       {passport && bill ? (
         <div className="space-y-5">
@@ -57,7 +74,7 @@ export function CheckPage() {
           </div>
         </div>
       ) : (
-        <div className="h-[560px] animate-pulse rounded-3xl bg-card/50" />
+        <div className="h-[560px] animate-pulse rounded-3xl bg-card" />
       )}
 
       <EvidenceSheet stamp={evidenceStamp} onClose={() => setEvidenceStamp(null)} />
@@ -79,7 +96,7 @@ function BillRail({ bills, currentBillId, onPick }: { bills: BillSummary[]; curr
             onClick={() => onPick(bill.billId)}
             className={cn(
               "relative w-full overflow-hidden rounded-xl border p-3 pl-4 text-left transition",
-              isCurrent ? "border-checking/60 bg-checking/8" : "border-white/6 bg-card/50 hover:border-white/20",
+              isCurrent ? "border-foreground/40 bg-card shadow-sm" : "border-transparent bg-card hover:border-foreground/15",
             )}
           >
             <span className={cn("absolute inset-y-0 left-0 w-1", tone.dot)} />
@@ -100,11 +117,11 @@ function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { b
   const ReceivedIcon = bill.receivedVia === "email" ? Mail : MonitorSmartphone;
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-card to-card/60 shadow-2xl">
+    <div className="relative overflow-hidden rounded-3xl bg-card shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)]">
       {/* Passport header strip */}
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-dashed border-white/10 bg-white/[0.02] px-8 py-5">
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-dashed border-foreground/10 bg-foreground/[0.02] px-8 py-5">
         <div className="flex items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-checking/30 to-cleared/20"><BookCheck className="size-6" /></span>
+          <span className="flex size-11 items-center justify-center rounded-xl bg-foreground text-background"><BookCheck className="size-6" /></span>
           <div>
             <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Bill passport</div>
             <div className="font-mono text-sm">{bill.invoiceNumber}</div>
@@ -121,7 +138,7 @@ function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { b
       {/* Agent lanes: who signs which stamps */}
       <div className="flex flex-wrap justify-center gap-2 px-8 pt-5">
         {(["intake", "vendor_records", "matching"] as const).map((seat) => (
-          <span key={seat} className="rounded-full border border-white/8 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
+          <span key={seat} className="rounded-full border border-foreground/8 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
             {SEAT_LABEL[seat]} signs {STAMP_CATALOG.filter((definition) => definition.signedBy === seat).map((definition) => definition.number).join(", ")}
           </span>
         ))}

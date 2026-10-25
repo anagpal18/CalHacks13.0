@@ -17,10 +17,10 @@ export interface ToneStyle {
 }
 
 export const TONE_STYLE: Record<Tone, ToneStyle> = {
-  cleared: { text: "text-cleared", background: "bg-cleared/12", border: "border-cleared/40", glow: "shadow-[0_0_24px_-4px_var(--cleared)]", dot: "bg-cleared", color: "var(--cleared)" },
-  held: { text: "text-held", background: "bg-held/12", border: "border-held/40", glow: "shadow-[0_0_24px_-4px_var(--held)]", dot: "bg-held", color: "var(--held)" },
-  asking: { text: "text-asking", background: "bg-asking/12", border: "border-asking/40", glow: "shadow-[0_0_24px_-4px_var(--asking)]", dot: "bg-asking", color: "var(--asking)" },
-  checking: { text: "text-checking", background: "bg-checking/12", border: "border-checking/40", glow: "shadow-[0_0_24px_-4px_var(--checking)]", dot: "bg-checking", color: "var(--checking)" },
+  cleared: { text: "text-cleared", background: "bg-cleared/8", border: "border-cleared/25", glow: "", dot: "bg-cleared", color: "var(--cleared)" },
+  held: { text: "text-held", background: "bg-held/8", border: "border-held/25", glow: "", dot: "bg-held", color: "var(--held)" },
+  asking: { text: "text-asking", background: "bg-asking/8", border: "border-asking/25", glow: "", dot: "bg-asking", color: "var(--asking)" },
+  checking: { text: "text-checking", background: "bg-checking/8", border: "border-checking/25", glow: "", dot: "bg-checking", color: "var(--checking)" },
 };
 
 export interface StatusLook {

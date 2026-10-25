@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRightLeft, Fingerprint, PhoneCall, RotateCcw, ShieldAlert, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
-import { Spotlight } from "@/components/ui/spotlight-new";
 import { Button } from "@/components/ui/button";
 import { RiskGauge } from "@/components/visuals/RiskGauge";
 import { ScannerBar, SignalChip, type ScannerState } from "@/components/visuals/ScannerBar";
@@ -46,14 +45,17 @@ export function VerifyPage() {
   const personas = useAsyncData(listCrsPersonas, []) ?? [];
   const phase = useScanSequence(`${personaId}-${searchParams.get("attack")}-${replayCount}-${result ? "ready" : "loading"}`);
 
-  if (!result) return <div className="h-96 animate-pulse rounded-2xl bg-card/50" />;
+  if (!result) return <div className="h-96 animate-pulse rounded-2xl bg-card" />;
 
   return (
     <div className="space-y-6">
       <PersonaSwitcher personas={personas} currentPersonaId={personaId} onPick={(id) => navigate(`/verify/${id}`)} />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.35fr_1fr]">
-        <RequestCard result={result} />
+        <div className="space-y-6">
+          <RequestCard result={result} />
+          <RiskLadder personas={personas} currentPersonaId={personaId} onPick={(id) => navigate(`/verify/${id}`)} />
+        </div>
 
         <div className="space-y-4">
           <ScannerBar
@@ -122,7 +124,7 @@ function PersonaSwitcher({ personas, currentPersonaId, onPick }: { personas: Crs
             onClick={() => onPick(persona.personaId)}
             className={cn(
               "flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition",
-              isCurrent ? "border-checking bg-checking/12 text-foreground" : "border-white/8 text-muted-foreground hover:border-white/25 hover:text-foreground",
+              isCurrent ? "border-checking bg-checking/12 text-foreground" : "border-foreground/8 text-muted-foreground hover:border-foreground/25 hover:text-foreground",
             )}
           >
             <span className={cn("size-2 rounded-full", TONE_STYLE[look.tone].dot)} />
@@ -137,10 +139,10 @@ function PersonaSwitcher({ personas, currentPersonaId, onPick }: { personas: Crs
 function RequestCard({ result }: { result: CrsChainResult }) {
   const isBankChange = result.personaId === "P13" || result.personaId === "P12";
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-card/70 p-6">
+    <div className="relative overflow-hidden rounded-2xl border border-foreground/8 bg-card p-6">
       <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The request</div>
       <div className="mt-5 flex items-center gap-3">
-        <span className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-white/15 to-white/5">
+        <span className="flex size-14 items-center justify-center rounded-full bg-foreground/[0.06]">
           <UserRound className="size-7" />
         </span>
         <div>
@@ -151,7 +153,7 @@ function RequestCard({ result }: { result: CrsChainResult }) {
       <p className="mt-5 text-base leading-relaxed">{result.scenario}</p>
 
       {isBankChange && (
-        <div className="mt-5 flex items-center gap-3 rounded-xl border border-white/8 bg-background/60 p-3 font-mono text-sm">
+        <div className="mt-5 flex items-center gap-3 rounded-xl border border-foreground/8 bg-background/60 p-3 font-mono text-sm">
           <div className="text-center">
             <div className="text-[10px] uppercase text-muted-foreground">verified</div>
             <div className="text-cleared">••4417</div>
@@ -178,12 +180,7 @@ function DecisionPanel({ result, isRevealed, isGaugeRevealed, onReplay }: { resu
   const Icon = look.icon;
 
   return (
-    <div className={cn("relative flex flex-col overflow-hidden rounded-2xl border bg-card/70 p-6 transition-colors duration-700", isRevealed ? tone.border : "border-white/8")}>
-      {isRevealed && result.decision === "held" && (
-        <div className="pointer-events-none absolute inset-0 opacity-70">
-          <Spotlight gradientFirst="radial-gradient(68.54% 68.72% at 55.02% 31.46%, oklch(0.66 0.22 18 / 0.18) 0, oklch(0.66 0.22 18 / 0.04) 50%, transparent 80%)" duration={9} />
-        </div>
-      )}
+    <div className={cn("relative flex flex-col overflow-hidden rounded-2xl border bg-card p-6 transition-colors duration-700", isRevealed ? tone.border : "border-foreground/8")}>
       <RiskGauge score={result.fraudFinder.riskScore} isRevealed={isGaugeRevealed} />
 
       <div className="mt-6 flex flex-1 flex-col items-center justify-center text-center">
@@ -208,6 +205,40 @@ function DecisionPanel({ result, isRevealed, isGaugeRevealed, onReplay }: { resu
       <Button variant="ghost" size="sm" onClick={onReplay} className="mt-4 self-center text-muted-foreground">
         <RotateCcw className="size-4" /> Run again
       </Button>
+    </div>
+  );
+}
+
+const HOLD_THRESHOLD = 70;
+
+/** Every bank-change request this week as a bar of its risk score, with the hold line at 70. */
+function RiskLadder({ personas, currentPersonaId, onPick }: { personas: CrsChainResult[]; currentPersonaId: string; onPick: (personaId: string) => void }) {
+  const sorted = [...personas].sort((first, second) => second.fraudFinder.riskScore - first.fraudFinder.riskScore);
+  return (
+    <div className="rounded-2xl border border-border bg-card p-5">
+      <div className="text-sm font-semibold">Risk across this week's requests</div>
+      <div className="mt-0.5 text-xs text-muted-foreground">Above {HOLD_THRESHOLD} is held automatically</div>
+      <div className="relative mt-4 space-y-2">
+        <div className="pointer-events-none absolute inset-y-0 border-l border-dashed border-held/50" style={{ left: `calc(84px + (100% - 84px - 28px) * ${HOLD_THRESHOLD / 100})` }} />
+        {sorted.map((persona, index) => {
+          const isCurrent = persona.personaId === currentPersonaId;
+          const isHeld = persona.fraudFinder.riskScore >= HOLD_THRESHOLD;
+          return (
+            <button key={persona.personaId} onClick={() => onPick(persona.personaId)} className="flex w-full items-center gap-2 text-left">
+              <span className={cn("w-[76px] shrink-0 truncate text-xs", isCurrent ? "font-semibold text-foreground" : "text-muted-foreground")}>{persona.personaName.split(" ")[0]}</span>
+              <div className="flex flex-1 items-center gap-1.5">
+                <motion.div
+                  className={cn("h-3 rounded-r-[4px]", isHeld ? "bg-held" : "bg-data", !isCurrent && "opacity-60")}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${persona.fraudFinder.riskScore}%` }}
+                  transition={{ delay: index * 0.04, duration: 0.5 }}
+                />
+                <span className="w-5 text-[11px] font-semibold tabular-nums">{persona.fraudFinder.riskScore}</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

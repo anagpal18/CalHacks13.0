@@ -1,6 +1,6 @@
 # apps/web — Aditya
 
-The Bill Passport dashboard. Vite + React 19 + Tailwind v4 + shadcn/ui + Aceternity UI + motion.
+The Bill Passport dashboard. Vite + React 19 + Tailwind v4 + shadcn/ui + motion. Light, minimal theme: colours from the Twisty reference, type from Vercel/Geist.
 
 ```
 corepack pnpm --filter @bill-passport/web dev    # http://127.0.0.1:5173
@@ -28,8 +28,15 @@ src/data/stampCatalog.ts   stamp + payment-check labels
 src/lib/statusStyle.ts     the one place status colours/icons/labels are decided
 src/components/layout/     shell, step bar, scam console, demo/live mode
 src/components/visuals/    stamp seal, scanner bar, risk gauge, evidence drawer, counters
-src/components/ui/         shadcn + Aceternity components (generated, don't hand-edit much)
+src/components/charts/     lollipop, tick strip, sparkline, horizontal bars, Panel + StatFigure
+src/components/ui/         shadcn components (generated, don't hand-edit much)
 src/pages/                 one file per page
 ```
 
-Colours: green = cleared, red = held, amber = asking a human, blue = checking.
+## Theme rules
+
+- Tokens live in `src/index.css` only. Navy `#1f2433` ink (also "cleared"), slate-blue `#5a7fbf` data marks,
+  orange-red `#e5532d` = held (the only hot colour), ochre `#b9852c` = asking a human.
+- Data blue + orange-red pass the dataviz palette validator (CVD, contrast) on white.
+- Text is always ink or muted grey; colour goes on marks, dots and status pills, never on body text.
+- Big number + small muted label for every figure. One orange thing per decision.

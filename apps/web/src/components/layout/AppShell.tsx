@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, BookCheck, Skull } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
-import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { useDemoMode } from "./DemoModeContext";
@@ -18,68 +17,57 @@ export function AppShell() {
   const [isScamConsoleOpen, setScamConsoleOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,oklch(0.72_0.15_250/0.14),transparent)]" />
-
-      <header className="sticky top-0 z-40 border-b border-white/6 bg-background/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-3">
+    <div className="min-h-screen p-3 md:p-6">
+      {/* The app sits on a light canvas inside the slate frame, like the reference. */}
+      <div className="relative mx-auto max-w-[1480px] rounded-[28px] bg-background px-5 pb-24 pt-5 shadow-[0_30px_80px_-30px_rgb(31_36_51/0.45)] md:px-9">
+        <header className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-border pb-4">
           <Link to="/inbox" className="flex shrink-0 items-center gap-2.5">
-            <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-checking to-cleared text-primary-foreground">
-              <BookCheck className="size-5" />
+            <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
+              <BookCheck className="size-4.5" />
             </span>
-            <span className="leading-tight">
-              <span className="block font-bold tracking-tight">Bill Passport</span>
-              <span className="block text-[11px] text-muted-foreground">Every bill proves itself</span>
-            </span>
+            <span className="text-[15px] font-semibold tracking-tight">Bill Passport</span>
           </Link>
 
-          <div className="flex-1"><StepBar /></div>
+          <div className="flex flex-1 justify-center"><StepBar /></div>
 
-          <div className="flex shrink-0 items-center gap-4">
-            <label className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+          <div className="flex shrink-0 items-center gap-3">
+            <label className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground">
               <span className={cn(mode === "demo" && "text-foreground")}>Demo</span>
               <Switch checked={mode === "live"} onCheckedChange={(isLive) => setMode(isLive ? "live" : "demo")} />
-              <span className={cn("flex items-center gap-1", mode === "live" && "text-held")}>
+              <span className={cn("flex items-center gap-1", mode === "live" && "text-foreground")}>
                 {mode === "live" && <span className="size-1.5 animate-pulse rounded-full bg-held" />}Live
               </span>
             </label>
-            <MovingBorderButton
+            <button
               onClick={() => setScamConsoleOpen(true)}
-              borderRadius="0.75rem"
-              duration={2600}
-              containerClassName="h-10 w-40"
-              borderClassName="bg-[radial-gradient(var(--held)_40%,transparent_60%)]"
-              className="gap-2 border-held/30 bg-background/90 text-sm font-semibold text-foreground"
+              className="flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-foreground/85"
             >
               <Skull className="size-4 text-held" /> Try to scam us
-            </MovingBorderButton>
+            </button>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="relative mx-auto max-w-7xl px-6 pb-28 pt-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep.path}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
+        <main className="pt-8">
+          <AnimatePresence mode="wait">
+            <motion.div key={currentStep.path} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25 }}>
+              <div className="mb-8 max-w-5xl">
+                <h1 className="text-4xl font-semibold tracking-tight md:text-[44px] md:leading-[1.1]">{currentStep.headline}</h1>
+                <p className="mt-2 text-base text-muted-foreground">{currentStep.subtitle}</p>
+              </div>
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        {nextStep && (
+          <Link
+            to={nextStep.path}
+            className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium shadow-sm transition hover:border-foreground/30 md:right-9"
           >
-            <h1 className="mb-8 text-4xl font-extrabold tracking-tight md:text-5xl">{currentStep.headline}</h1>
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-
-      {nextStep && (
-        <Link
-          to={nextStep.path}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-card/90 px-5 py-3 text-sm font-semibold shadow-2xl backdrop-blur transition hover:border-checking/60 hover:text-checking"
-        >
-          Next: {nextStep.label} <ArrowRight className="size-4" />
-        </Link>
-      )}
+            Next: {nextStep.label} <ArrowRight className="size-4" />
+          </Link>
+        )}
+      </div>
 
       <ScamConsoleDialog open={isScamConsoleOpen} onOpenChange={setScamConsoleOpen} />
     </div>

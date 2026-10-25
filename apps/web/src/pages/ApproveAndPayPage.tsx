@@ -5,7 +5,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { Bot, CalendarClock, Check, CircleX, Landmark, Loader, Percent, ShieldCheck, UserCheck, Wallet, X, Link2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Button } from "@/components/ui/button";
 import { getNextPaymentRun } from "@/data/dataSource";
 import { DEMO_TODAY } from "@/data/mockData";
@@ -60,7 +59,7 @@ export function ApproveAndPayPage() {
     if (isFinished) setPhase("done");
   }, [isFinished]);
 
-  if (!run) return <div className="h-[560px] animate-pulse rounded-3xl bg-card/50" />;
+  if (!run) return <div className="h-[560px] animate-pulse rounded-3xl bg-card" />;
 
   const runTotalCents = run.items.reduce((total, item) => total + item.amountCents, 0);
   const discountCents = run.items.reduce((total, item) => total + (item.discount?.savingsCents ?? 0), 0);
@@ -103,9 +102,9 @@ function ChecksStrip({ phase }: { phase: RunPhase }) {
       {PAYMENT_CHECKS.map((check) => {
         const isPassed = check.number <= passedThrough;
         return (
-          <div key={check.number} className={cn("rounded-xl border p-3 transition-colors duration-500", isPassed ? "border-cleared/40 bg-cleared/8" : "border-white/6 bg-card/40")}>
+          <div key={check.number} className={cn("rounded-xl border p-3 transition-colors duration-500", isPassed ? "border-transparent bg-card shadow-[0_1px_2px_rgb(31_36_51/0.05)]" : "border-dashed border-foreground/15 bg-transparent")}>
             <div className="flex items-center gap-2">
-              <span className={cn("flex size-5 items-center justify-center rounded-full text-[10px] font-bold", isPassed ? "bg-cleared text-background" : "bg-white/10 text-muted-foreground")}>
+              <span className={cn("flex size-5 items-center justify-center rounded-full text-[10px] font-bold", isPassed ? "bg-foreground text-background" : "bg-foreground/[0.06] text-muted-foreground")}>
                 {isPassed ? <Check className="size-3" /> : check.number}
               </span>
               <span className="text-sm font-semibold">{check.label}</span>
@@ -122,7 +121,7 @@ function CashBar({ balanceCents, runTotalCents, paidCents }: { balanceCents: num
   const runPercent = (runTotalCents / balanceCents) * 100;
   const paidPercent = (paidCents / balanceCents) * 100;
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <div className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="flex items-end justify-between">
         <div className="flex items-center gap-2 text-sm font-semibold"><Wallet className="size-4 text-checking" /> Cash in the operating account</div>
         <div className="text-right">
@@ -130,13 +129,13 @@ function CashBar({ balanceCents, runTotalCents, paidCents }: { balanceCents: num
           <div className="text-xs text-muted-foreground">live from Nessie</div>
         </div>
       </div>
-      <div className="relative mt-4 h-5 overflow-hidden rounded-full bg-white/6">
-        <motion.div className="absolute inset-y-0 left-0 rounded-full bg-checking/35" initial={{ width: 0 }} animate={{ width: `${Math.max(runPercent * 6, 4)}%` }} transition={{ duration: 1 }} />
-        <motion.div className="absolute inset-y-0 left-0 rounded-full bg-cleared" animate={{ width: `${Math.max(paidPercent * 6, 0)}%` }} transition={{ duration: 0.5 }} />
+      <div className="relative mt-4 h-4 overflow-hidden rounded-full bg-track">
+        <motion.div className="absolute inset-y-0 left-0 rounded-full bg-data-soft" initial={{ width: 0 }} animate={{ width: `${Math.max(runPercent * 6, 4)}%` }} transition={{ duration: 1 }} />
+        <motion.div className="absolute inset-y-0 left-0 rounded-full bg-data" animate={{ width: `${Math.max(paidPercent * 6, 0)}%` }} transition={{ duration: 0.5 }} />
       </div>
       <div className="mt-2 flex justify-between text-xs text-muted-foreground">
         <span>This run: <span className="font-semibold text-foreground">{formatDollars(runTotalCents)}</span> ({runPercent.toFixed(1)}% of cash, bar zoomed 6×)</span>
-        <span className="flex items-center gap-1 text-cleared"><Check className="size-3.5" /> Enough cash</span>
+        <span className="flex items-center gap-1 font-medium text-foreground"><Check className="size-3.5" /> Enough cash</span>
       </div>
     </div>
   );
@@ -144,18 +143,20 @@ function CashBar({ balanceCents, runTotalCents, paidCents }: { balanceCents: num
 
 function DueDateTimeline({ items, stageByBillId }: { items: PaymentRunItem[]; stageByBillId: Record<string, ItemStage> }) {
   const dueDates = [...new Set(items.map((item) => item.dueDate))].sort();
+  const maxDueCents = Math.max(...dueDates.map((dueDate) => items.filter((item) => item.dueDate === dueDate).reduce((total, item) => total + item.amountCents, 0)));
   const daysFromToday = (isoDate: string) => Math.round((new Date(isoDate).getTime() - new Date(DEMO_TODAY).getTime()) / 86_400_000);
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <div className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="mb-4 flex items-center gap-2 text-sm font-semibold"><CalendarClock className="size-4 text-checking" /> Grouped by due date</div>
       <div className="relative">
-        <div className="absolute inset-x-0 top-[22px] h-px bg-white/10" />
+        <div className="absolute inset-x-0 top-[118px] h-px bg-border" />
         <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${dueDates.length}, minmax(0, 1fr))` }}>
           {dueDates.map((dueDate) => (
             <div key={dueDate} className="relative">
+              <DueColumn amountCents={items.filter((item) => item.dueDate === dueDate).reduce((total, item) => total + item.amountCents, 0)} maxCents={maxDueCents} />
               <div className="flex flex-col items-center">
-                <span className="relative z-10 flex size-11 flex-col items-center justify-center rounded-full border border-white/12 bg-background text-center leading-none">
+                <span className="relative z-10 flex size-11 flex-col items-center justify-center rounded-full border border-foreground/12 bg-background text-center leading-none">
                   <span className="text-[9px] uppercase text-muted-foreground">{formatWeekday(dueDate)}</span>
                   <span className="text-sm font-bold">{formatShortDate(dueDate).split(" ")[1]}</span>
                 </span>
@@ -180,18 +181,18 @@ function RunItemCard({ item, stage }: { item: PaymentRunItem; stage: ItemStage }
     <motion.div
       layout
       className={cn(
-        "relative rounded-xl border bg-background/70 p-3 transition-colors duration-500",
-        isPaid && "border-cleared/50 bg-cleared/8",
+        "relative rounded-xl border bg-card p-3 transition-colors duration-500",
+        isPaid && "border-foreground/40",
         isHeld && "border-held/50 bg-held/8",
         isBusy && "border-checking/60",
-        stage === "queued" && "border-white/8",
+        stage === "queued" && "border-border",
       )}
     >
       <div className="truncate text-sm font-semibold">{item.vendorName}</div>
       <div className="text-lg font-bold tabular-nums">{formatDollars(item.amountCents)}</div>
       <div className="text-[11px] text-muted-foreground">{item.terms}</div>
       {item.discount && (
-        <div className="mt-2 flex items-center gap-1 rounded-md bg-asking/12 px-1.5 py-0.5 text-[11px] font-semibold text-asking">
+        <div className="mt-2 flex w-fit items-center gap-1 rounded-full bg-data-soft/70 px-2 py-0.5 text-[11px] font-semibold text-foreground">
           <Percent className="size-3" /> Save {formatDollars(item.discount.savingsCents)}
         </div>
       )}
@@ -221,7 +222,7 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
     { label: `Within ${formatDollars(run.approverLimitCents, { compact: true })} limit`, ok: runTotalCents <= run.approverLimitCents },
   ];
   return (
-    <div className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <div className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="flex items-center justify-between">
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground">Payment run</div>
@@ -229,14 +230,14 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
         </div>
         <div className="text-right">
           <div className="text-3xl font-extrabold tabular-nums">{formatDollars(runTotalCents)}</div>
-          <div className="text-xs text-asking">{formatDollars(discountCents)} in early-pay discounts</div>
+          <div className="text-xs text-muted-foreground">{formatDollars(discountCents)} in early-pay discounts</div>
         </div>
       </div>
 
       {/* Requester → approver handoff */}
       <div className="mt-5 flex items-center gap-3">
         <Person icon={Bot} name={run.requestedBy} role="proposed it" />
-        <div className="h-px flex-1 bg-gradient-to-r from-white/10 via-white/30 to-white/10" />
+        <div className="h-px flex-1 bg-border" />
         <Person icon={UserCheck} name={CONTROLLER_NAME} role="Controller signs" highlighted={phase !== "proposed"} />
       </div>
 
@@ -254,9 +255,9 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
       <div className="mt-6 flex flex-col items-center gap-3">
         {phase === "proposed" ? (
           <>
-            <HoverBorderGradient onClick={onApprove} containerClassName="rounded-full" className="flex items-center gap-2 bg-background px-8 py-3 text-base font-bold">
-              <ShieldCheck className="size-5 text-cleared" /> Approve as {CONTROLLER_NAME.split(" ")[0]}
-            </HoverBorderGradient>
+            <button onClick={onApprove} className="flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-base font-semibold text-background transition hover:bg-foreground/85">
+              <ShieldCheck className="size-5" /> Approve as {CONTROLLER_NAME.split(" ")[0]}
+            </button>
             <Button variant="ghost" size="sm" onClick={onAgentSelfApprove} className="text-xs text-muted-foreground">
               <Bot className="size-3.5" /> Let the Payments agent approve its own run
             </Button>
@@ -285,7 +286,7 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
 function Person({ icon: Icon, name, role, highlighted }: { icon: typeof Bot; name: string; role: string; highlighted?: boolean }) {
   return (
     <div className="flex items-center gap-2">
-      <span className={cn("flex size-10 items-center justify-center rounded-full border transition-colors", highlighted ? "border-cleared bg-cleared/15 text-cleared" : "border-white/12 bg-background")}>
+      <span className={cn("flex size-10 items-center justify-center rounded-full border transition-colors", highlighted ? "border-cleared bg-cleared/15 text-cleared" : "border-foreground/12 bg-background")}>
         <Icon className="size-5" />
       </span>
       <div className="leading-tight">
@@ -317,7 +318,7 @@ function ExecutionLog({ items, stageByBillId, phase }: { items: PaymentRunItem[]
   const paidItems = items.filter((item) => stageByBillId[item.billId] === "paid");
 
   return (
-    <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-white/8 bg-card/60 p-5">
+    <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-foreground/8 bg-card p-5">
       <div className="mb-3 text-sm font-semibold">Money moving</div>
       <div className="space-y-2">
         {items.map((item) => {
@@ -335,10 +336,10 @@ function ExecutionLog({ items, stageByBillId, phase }: { items: PaymentRunItem[]
                       title={step.label}
                       className={cn(
                         "flex h-7 flex-1 items-center justify-center rounded-md border text-[10px] transition-colors duration-300",
-                        tone === "done" && "border-cleared/40 bg-cleared/15 text-cleared",
-                        tone === "active" && "border-checking/60 bg-checking/15 text-checking",
+                        tone === "done" && "border-foreground bg-foreground text-background",
+                        tone === "active" && "border-data bg-data-soft/60 text-foreground",
                         tone === "failed" && "border-held/50 bg-held/15 text-held",
-                        tone === "idle" && "border-white/6 text-muted-foreground/40",
+                        tone === "idle" && "border-foreground/6 text-muted-foreground/40",
                       )}
                     >
                       <Icon className={cn("size-3.5", tone === "active" && "animate-pulse")} />
@@ -365,5 +366,16 @@ function ExecutionLog({ items, stageByBillId, phase }: { items: PaymentRunItem[]
         </motion.div>
       )}
     </motion.div>
+  );
+}
+
+/** Cash going out on one due date: a <=24px column, rounded at the top, value on the cap. */
+function DueColumn({ amountCents, maxCents }: { amountCents: number; maxCents: number }) {
+  const columnHeight = Math.max((amountCents / maxCents) * 64, 6);
+  return (
+    <div className="mb-2 flex h-[88px] flex-col items-center justify-end">
+      <span className="mb-1 text-xs font-semibold">{formatDollars(amountCents, { compact: true })}</span>
+      <motion.span className="w-6 rounded-t-[4px] bg-data" initial={{ height: 0 }} animate={{ height: columnHeight }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} />
+    </div>
   );
 }
