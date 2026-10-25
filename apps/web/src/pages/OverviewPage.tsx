@@ -1,6 +1,6 @@
 // Overview: the landing page for the AP manager.
-// Only what needs a person (ranked by urgency), what money is about to move, and a receipt of what
-// the automation handled. Every item links into the step tab where the decision or detail lives.
+// Top: what needs a person (ranked by urgency), what money is about to move, and a receipt of what
+// the automation handled. Below: the company snapshot. Every item links into the step tab where the decision or detail lives.
 
 import { motion } from "motion/react";
 import { ArrowRight, BadgeCheck, CalendarClock, CircleX, Hand, Landmark, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
@@ -37,14 +37,6 @@ export function OverviewPage() {
 
   return (
     <div className="space-y-5">
-      {/* Company snapshot */}
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        <SnapshotTile label="Bills processed this week" value={billsThisWeek.toLocaleString()} trend={week.map((day) => day.billsReceived)} note="Oct 18 – 24" />
-        <SnapshotTile label="Handled without a person" value={`${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={`${billsThisWeek - caughtThisWeek} booked automatically`} />
-        <SnapshotTile label="Kept from going out" value={formatDollars(protectedThisWeek, { compact: true })} trend={week.map((day) => day.protectedCents)} note={`${caughtThisWeek} problems stopped`} />
-        <SnapshotTile label="Cash in the bank" value={run ? formatDollars(run.operatingBalanceCents, { compact: true }) : "–"} note={run ? `${formatDollars(run.operatingBalanceCents - run.items.reduce((total, item) => total + item.amountCents, 0), { compact: true })} after this week's run` : undefined} />
-      </div>
-
       <div className="grid gap-5 xl:grid-cols-12">
         {/* Needs your attention */}
         <Panel
@@ -79,6 +71,14 @@ export function OverviewPage() {
             <ArrowRight className="size-4 text-muted-foreground" />
           </Link>
         </div>
+      </div>
+
+      {/* Company snapshot */}
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <SnapshotTile label="Bills processed this week" value={billsThisWeek.toLocaleString()} trend={week.map((day) => day.billsReceived)} note="Oct 18 – 24" />
+        <SnapshotTile label="Handled without a person" value={`${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={`${billsThisWeek - caughtThisWeek} booked automatically`} />
+        <SnapshotTile label="Kept from going out" value={formatDollars(protectedThisWeek, { compact: true })} trend={week.map((day) => day.protectedCents)} note={`${caughtThisWeek} problems stopped`} />
+        <SnapshotTile label="Cash in the bank" value={run ? formatDollars(run.operatingBalanceCents, { compact: true }) : "–"} note={run ? `${formatDollars(run.operatingBalanceCents - run.items.reduce((total, item) => total + item.amountCents, 0), { compact: true })} after this week's run` : undefined} />
       </div>
     </div>
   );
