@@ -209,3 +209,20 @@ export interface DailyProcessing {
   asking: number;
   averageSecondsToBook: number;
 }
+
+// ---- Bill upload (Overview) ----
+
+export type UploadStage = "uploading" | "reading" | "checking" | "done";
+
+export interface UploadedBill {
+  uploadId: string;
+  fileName: string;
+  sizeBytes: number;
+  stage: UploadStage;
+  /** Set once the gateway accepts the file (POST /dashboard/inbox returns it). */
+  billId?: string;
+  outcome?: "booked" | "held" | "asking";
+  vendorName?: string;
+  amountCents?: number;
+  headline?: string;
+}

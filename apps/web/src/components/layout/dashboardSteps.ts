@@ -20,8 +20,8 @@ export const DASHBOARD_STEPS: DashboardStep[] = [
 
 /** The landing page: only what needs a person, plus what was handled. Sits before step ①. */
 export const OVERVIEW_STEP: DashboardStep = {
-  number: 0, path: "/overview", label: "Overview", headline: "Here's what needs you today.",
-  subtitle: "Everything else was checked and handled automatically. Open any item to see the full trail.", icon: LayoutDashboard,
+  number: 0, path: "/overview", label: "Overview", headline: "Your accounts payable, today.",
+  subtitle: "Upload bills and the agents check every one. You only see what needs you; everything else is handled.", icon: LayoutDashboard,
 };
 
 /** Drill-down from Overview's "View more". Number 0 keeps Overview underlined in the nav. */

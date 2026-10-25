@@ -1,12 +1,15 @@
 // Overview: the landing page for the AP manager.
-// Top: what needs a person (ranked by urgency), the latest processed invoices (View more -> /processed)
-// and a receipt of what the automation handled. Below: the company snapshot. Every item links into the step tab where the decision or detail lives.
+// First the manager uploads bills: company snapshot on top, upload + a skeleton list while the agents check them.
+// When every bill is checked, "Needs your attention" and "Processed" take the top and the snapshot slides down.
 
-import { motion } from "motion/react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { ArrowRight, BadgeCheck, CircleX, Hand, Landmark, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Panel, StatFigure } from "@/components/charts/Panel";
 import { Sparkline } from "@/components/charts/Sparkline";
+import { ProcessingList } from "@/components/upload/ProcessingList";
+import { UploadDropzone } from "@/components/upload/UploadDropzone";
+import { useUploadSession } from "@/components/upload/UploadSessionContext";
 import { getNextPaymentRun, getScore, getWeekIntake, listAttentionItems, listBills, listProcessedInvoices } from "@/data/dataSource";
 import type { AttentionItem, AttentionKind, BillSummary, ProcessedInvoice } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
@@ -30,6 +33,7 @@ export function OverviewPage() {
   const run = useAsyncData(getNextPaymentRun, []);
   const score = useAsyncData(getScore, []);
   const processed = useAsyncData(listProcessedInvoices, []) ?? [];
+  const { uploads, phase } = useUploadSession();
 
   const billsThisWeek = week.reduce((total, day) => total + day.billsReceived, 0);
   const caughtThisWeek = week.reduce((total, day) => total + day.problemsCaught, 0);
@@ -37,50 +41,93 @@ export function OverviewPage() {
   const autoBookedShare = billsThisWeek > 0 ? (billsThisWeek - caughtThisWeek) / billsThisWeek : 0;
   const caughtCount = score?.plantedProblems.filter((problem) => problem.outcome === "caught").length ?? 0;
 
-  return (
-    <div className="space-y-5">
-      <div className="grid gap-5 xl:grid-cols-12">
-        {/* Needs your attention */}
-        <Panel
-          className="xl:col-span-7"
-          title="Needs your attention"
-          subtitle="Ranked by urgency. Each one has a recommendation; you make the call."
-          action={<span className="rounded-full bg-foreground px-2.5 py-1 text-xs font-semibold text-background">{attentionItems.length} open</span>}
-        >
-          <div className="space-y-3">
-            {attentionItems.map((item, index) => <AttentionRow key={item.id} item={item} index={index} />)}
-          </div>
+  const snapshot = (
+    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <SnapshotTile label="Bills processed this week" value={billsThisWeek.toLocaleString()} trend={week.map((day) => day.billsReceived)} note="Oct 18 – 24" />
+      <SnapshotTile label="Handled without a person" value={`${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={`${billsThisWeek - caughtThisWeek} booked automatically`} />
+      <SnapshotTile label="Kept from going out" value={formatDollars(protectedThisWeek, { compact: true })} trend={week.map((day) => day.protectedCents)} note={`${caughtThisWeek} problems stopped`} />
+      <SnapshotTile label="Cash in the bank" value={run ? formatDollars(run.operatingBalanceCents, { compact: true }) : "–"} note={run ? `${formatDollars(run.operatingBalanceCents - run.items.reduce((total, item) => total + item.amountCents, 0), { compact: true })} after this week's run` : undefined} />
+    </div>
+  );
+
+  const uploadPanel = (
+    <Panel title="Upload bills" subtitle="Send this week's bills to the agents. You'll see what needs you as soon as they're checked.">
+      <UploadDropzone />
+      {uploads.length > 0 && (
+        <div className="mt-6">
+          <ProcessingList uploads={uploads} />
+        </div>
+      )}
+    </Panel>
+  );
+
+  const results = (
+    <div className="grid gap-5 xl:grid-cols-12">
+      <Panel
+        className="xl:col-span-7"
+        title="Needs your attention"
+        subtitle="Ranked by urgency. Each one has a recommendation; you make the call."
+        action={<span className="rounded-full bg-foreground px-2.5 py-1 text-xs font-semibold text-background">{attentionItems.length} open</span>}
+      >
+        <div className="space-y-3">
+          {attentionItems.map((item, index) => <AttentionRow key={item.id} item={item} index={index} />)}
+        </div>
+      </Panel>
+
+      <div className="space-y-5 xl:col-span-5">
+        <Panel title="Processed" subtitle={`${uploads.length} bills you uploaded, plus the rest of the week`} action={<span className="text-xs text-muted-foreground">{processed.length} this week</span>}>
+          <RecentProcessed invoices={processed.slice(0, 4)} />
         </Panel>
 
-        {/* Processed for you + money about to move */}
-        <div className="space-y-5 xl:col-span-5">
-          <Panel title="Processed" subtitle="Latest invoices booked or paid" action={<span className="text-xs text-muted-foreground">{processed.length} this week</span>}>
-            <RecentProcessed invoices={processed.slice(0, 4)} />
-          </Panel>
+        <Panel title="Processed for you · today" subtitle="Checked by the agents, no one had to look">
+          <ProcessedToday bills={bills} />
+        </Panel>
 
-          <Panel title="Processed for you · today" subtitle="Checked by the agents, no one had to look">
-            <ProcessedToday bills={bills} />
-          </Panel>
-
-          <Link to="/proof" className="flex items-center gap-4 rounded-3xl bg-card p-5 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)] transition hover:shadow-[0_2px_4px_rgb(31_36_51/0.06),0_12px_28px_-12px_rgb(31_36_51/0.18)]">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-foreground/[0.05]"><Trophy className="size-5 text-foreground/70" /></span>
-            <div className="flex-1">
-              <div className="text-sm font-semibold">{caughtCount} of {score?.plantedProblems.length ?? 40} planted problems caught</div>
-              <div className="text-xs text-muted-foreground">0 payments made without a human signature · every decision has a signed trail</div>
-            </div>
-            <ArrowRight className="size-4 text-muted-foreground" />
-          </Link>
-        </div>
-      </div>
-
-      {/* Company snapshot */}
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        <SnapshotTile label="Bills processed this week" value={billsThisWeek.toLocaleString()} trend={week.map((day) => day.billsReceived)} note="Oct 18 – 24" />
-        <SnapshotTile label="Handled without a person" value={`${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={`${billsThisWeek - caughtThisWeek} booked automatically`} />
-        <SnapshotTile label="Kept from going out" value={formatDollars(protectedThisWeek, { compact: true })} trend={week.map((day) => day.protectedCents)} note={`${caughtThisWeek} problems stopped`} />
-        <SnapshotTile label="Cash in the bank" value={run ? formatDollars(run.operatingBalanceCents, { compact: true }) : "–"} note={run ? `${formatDollars(run.operatingBalanceCents - run.items.reduce((total, item) => total + item.amountCents, 0), { compact: true })} after this week's run` : undefined} />
+        <Link to="/proof" className="flex items-center gap-4 rounded-3xl bg-card p-5 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)] transition hover:shadow-[0_2px_4px_rgb(31_36_51/0.06),0_12px_28px_-12px_rgb(31_36_51/0.18)]">
+          <span className="flex size-10 items-center justify-center rounded-xl bg-foreground/[0.05]"><Trophy className="size-5 text-foreground/70" /></span>
+          <div className="flex-1">
+            <div className="text-sm font-semibold">{caughtCount} of {score?.plantedProblems.length ?? 40} planted problems caught</div>
+            <div className="text-xs text-muted-foreground">0 payments made without a human signature · every decision has a signed trail</div>
+          </div>
+          <ArrowRight className="size-4 text-muted-foreground" />
+        </Link>
       </div>
     </div>
+  );
+
+  // Before and during processing: snapshot on top, upload + skeleton list below.
+  // Once every bill is checked: the two decision columns take the top and the snapshot slides down.
+  const sections =
+    phase === "processed"
+      ? [
+          { key: "results", node: results },
+          { key: "upload-more", node: <UploadDropzone compact /> },
+          { key: "snapshot", node: snapshot },
+        ]
+      : [
+          { key: "snapshot", node: snapshot },
+          { key: "upload", node: uploadPanel },
+        ];
+
+  return (
+    <LayoutGroup>
+      <div className="space-y-5">
+        <AnimatePresence initial={false}>
+          {sections.map((section) => (
+            <motion.div
+              key={section.key}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ layout: { type: "spring", stiffness: 160, damping: 24 }, duration: 0.35 }}
+            >
+              {section.node}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </LayoutGroup>
   );
 }
 

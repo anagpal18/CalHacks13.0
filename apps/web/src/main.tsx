@@ -4,6 +4,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppShell } from "@/components/layout/AppShell";
 import { DemoModeProvider } from "@/components/layout/DemoModeContext";
+import { UploadSessionProvider } from "@/components/upload/UploadSessionContext";
 import { OverviewPage } from "@/pages/OverviewPage";
 import { ProcessedPage } from "@/pages/ProcessedPage";
 import { InboxPage } from "@/pages/InboxPage";
@@ -32,9 +33,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <DemoModeProvider>
-      <TooltipProvider delayDuration={150}>
-        <RouterProvider router={router} />
-      </TooltipProvider>
+      <UploadSessionProvider>
+        <TooltipProvider delayDuration={150}>
+          <RouterProvider router={router} />
+        </TooltipProvider>
+      </UploadSessionProvider>
     </DemoModeProvider>
   </StrictMode>,
 );
