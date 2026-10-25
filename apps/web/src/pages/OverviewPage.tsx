@@ -3,14 +3,14 @@
 // When every bill is checked, "Needs your attention" and "Processed" take the top and the snapshot slides down.
 
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import { ArrowRight, BadgeCheck, CircleX, Hand, Landmark, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
+import { ArrowRight, BadgeCheck, CircleX, Hand, Landmark, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Panel, StatFigure } from "@/components/charts/Panel";
 import { Sparkline } from "@/components/charts/Sparkline";
 import { ProcessingList } from "@/components/upload/ProcessingList";
 import { UploadDropzone } from "@/components/upload/UploadDropzone";
 import { useUploadSession } from "@/components/upload/UploadSessionContext";
-import { getNextPaymentRun, getScore, getWeekIntake, listAttentionItems, listBills, listProcessedInvoices } from "@/data/dataSource";
+import { getNextPaymentRun, getWeekIntake, listAttentionItems, listBills, listProcessedInvoices } from "@/data/dataSource";
 import type { AttentionItem, AttentionKind, BillSummary, ProcessedInvoice } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatDollars } from "@/lib/format";
@@ -31,7 +31,6 @@ export function OverviewPage() {
   const week = useAsyncData(getWeekIntake, []) ?? [];
   const bills = useAsyncData(listBills, []) ?? [];
   const run = useAsyncData(getNextPaymentRun, []);
-  const score = useAsyncData(getScore, []);
   const processed = useAsyncData(listProcessedInvoices, []) ?? [];
   const { uploads, phase } = useUploadSession();
 
@@ -39,7 +38,6 @@ export function OverviewPage() {
   const caughtThisWeek = week.reduce((total, day) => total + day.problemsCaught, 0);
   const protectedThisWeek = week.reduce((total, day) => total + day.protectedCents, 0);
   const autoBookedShare = billsThisWeek > 0 ? (billsThisWeek - caughtThisWeek) / billsThisWeek : 0;
-  const caughtCount = score?.plantedProblems.filter((problem) => problem.outcome === "caught").length ?? 0;
 
   const snapshot = (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
@@ -83,14 +81,6 @@ export function OverviewPage() {
           <ProcessedToday bills={bills} />
         </Panel>
 
-        <Link to="/proof" className="flex items-center gap-4 rounded-3xl bg-card p-5 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)] transition hover:shadow-[0_2px_4px_rgb(31_36_51/0.06),0_12px_28px_-12px_rgb(31_36_51/0.18)]">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-foreground/[0.05]"><Trophy className="size-5 text-foreground/70" /></span>
-          <div className="flex-1">
-            <div className="text-sm font-semibold">{caughtCount} of {score?.plantedProblems.length ?? 40} planted problems caught</div>
-            <div className="text-xs text-muted-foreground">0 payments made without a human signature · every decision has a signed trail</div>
-          </div>
-          <ArrowRight className="size-4 text-muted-foreground" />
-        </Link>
       </div>
     </div>
   );
