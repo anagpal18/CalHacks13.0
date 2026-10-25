@@ -75,7 +75,7 @@ Bursar replaces that glance with a **passport**: a signed chain of proof that ev
           → the desk lead writes a scoped rule into that seat's rule book
 ```
 
-**Stage 2** (plan, approve, pay; see *Where it stands*) takes booked bills. It schedules each by its contract terms, flags early-payment discounts worth taking, checks cash, requires a human approver who isn't the requester, re-checks bank details at the last minute, pays through **Capital One Nessie**, and matches the bank record to the bill.
+**Stage 2** (plan, approve, pay) takes booked bills. It schedules each by its contract terms, flags early-payment discounts worth taking, checks cash, requires a human approver who isn't the requester, re-checks bank details at the last minute, pays through **Capital One Nessie**, and matches the bank record to the bill.
 
 ---
 
@@ -221,31 +221,6 @@ Other scripts:
 The dashboard works without any third-party keys in **Demo** mode. Live mode needs the gateway; live agent runs need Anthropic, Creao and the tunnel; identity checks need CRS.
 
 > Tip: if `corepack pnpm` fails with `Cannot find module …/pnpm/12.15.0/bin/pnpm.cjs`, your corepack is older than pnpm 12's new launcher. Update it (`npm i -g corepack@latest`) or run `~/.cache/node/corepack/v1/pnpm/12.15.0/pnpm` directly.
-
----
-
-## Where it stands
-
-**Live today**
-- The gateway: seats and tickets, Ed25519 signing, grounding traces, the hash-chained event log, booking to the double-entry ledger, human decisions and learned rule books.
-- The CRS identity chain and its data-use log.
-- Creao seat runs, driven by the desk lead.
-- Uploading bills.
-- The dashboard's live mode for inbox, check, audit trail, CRS log and rule books.
-- The Nessie bank service with seat-token routes.
-
-**Scripted in demo mode**
-- Executing the payment run (approve → pay → match).
-- The Proof page's answer-key score.
-- Processing analytics.
-
-**Next up**
-- Stage 2 routes (`/runs/next`, `/runs/:id/approve`, `/runs/:id/execute`) wired to Nessie, with the last-minute re-check, bank match, and Cash lines in the ledger.
-- The Payments seat.
-- An answer key and `/score` from the demo-data generator (`services/api/src/sim`).
-- Point stamps 3 and 7 at live Nessie history.
-- `GET /events?asOf=` replay.
-- Shared zod schemas in `packages/shared`.
 
 ---
 
