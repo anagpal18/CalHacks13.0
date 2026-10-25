@@ -21,15 +21,41 @@ export interface Disagreement {
   rule: string;
 }
 
+/** Where the gateway found one cited value, index-aligned with `Stamp.evidence`. Live mode only. */
+export interface EvidenceTrace {
+  found: boolean;
+  /** The gateway tool whose output held the value (vendors, payments, po, crs, ...). */
+  tool?: string;
+  /** The path of the value inside `record`. */
+  path?: string;
+  /** The record the value came from, as the tool served it (cut down when long). */
+  record?: unknown;
+  /** For raw files (email, PDF): the text around the value. */
+  snippet?: string;
+}
+
+/** One tool call the signing agent made in its run, from the gateway's event log. */
+export interface StampToolCall {
+  at: string;
+  tool: string;
+  args: Record<string, unknown>;
+  outcome: "served" | "denied" | "error";
+  note?: string;
+}
+
 export interface Stamp {
   id: StampId;
   status: StampStatus;
   reason: string;
   evidence: Evidence[];
   disagreement?: Disagreement;
+  askedWho?: string;
   signedBy: Exclude<SeatName, "payments">;
   signature: string;
   at: string;
+  creaoRunId?: string;
+  trace?: EvidenceTrace[];
+  toolCalls?: StampToolCall[];
 }
 
 export type PassportStatus = "checking" | "parked" | "booked" | "scheduled" | "approved" | "held" | "paid" | "rejected";

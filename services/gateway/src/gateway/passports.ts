@@ -15,6 +15,8 @@ export interface SignedStamp {
   creaoRunId?: string;
   at: string;
   signature: string;
+  /** Per evidence item, the tool output the gateway found the value in. Not part of the signed payload. */
+  trace?: unknown[];
 }
 
 // isApproved: a person approved this stamp from the dashboard, so it counts as passed (the signed stamp is unchanged).

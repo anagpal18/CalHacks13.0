@@ -252,17 +252,121 @@ function buildFillerBills(count: number): BillSummary[] {
 function buildStamps(bill: BillSummary, overrides: Partial<Record<StampId, StampOverride>>): Stamp[] {
   return STAMP_CATALOG.map((definition, index) => {
     const override = overrides[definition.id];
+    const at = new Date(new Date(bill.receivedAt).getTime() + (index + 1) * 4_000);
+    const evidence = override?.evidence ?? cleanEvidence(definition.id, bill);
     return {
       id: definition.id,
       status: override?.status ?? "pass",
       reason: override?.reason ?? CLEAN_STAMP_REASON[definition.id],
-      evidence: override?.evidence ?? [{ source: CLEAN_STAMP_SOURCE[definition.id], field: "result", value: CLEAN_STAMP_REASON[definition.id] }],
+      evidence,
       disagreement: override?.disagreement,
       signedBy: definition.signedBy,
       signature: MOCK_SIGNATURE,
-      at: new Date(new Date(bill.receivedAt).getTime() + (index + 1) * 4_000).toISOString(),
+      at: at.toISOString(),
+      creaoRunId: `demo-run-${bill.billId.toLowerCase()}-${definition.signedBy}`,
+      trace: evidence.map((item) => mockTrace(item, bill, definition.signedBy)),
+      toolCalls: mockToolCalls(evidence, bill, definition.signedBy, at),
     };
   });
+}
+
+// ---- demo evidence: what a clean stamp cites, the records behind it, and the lookups that found them.
+// The live gateway records all of this as the agents work; the demo shows the same shapes.
+
+const vendorSlug = (bill: BillSummary) => bill.vendorName.toLowerCase().replace(/[^a-z]+/g, "");
+const demoBankLast4 = (bill: BillSummary) => String(1000 + (bill.amountCents % 9000)).slice(-4);
+const demoPo = (bill: BillSummary) => `PO-${5500 + (bill.amountCents % 400)}`;
+
+function cleanEvidence(stampId: StampId, bill: BillSummary): Stamp["evidence"] {
+  const contact = `ar@${vendorSlug(bill)}.com`;
+  const amount = formatDemoDollars(bill.amountCents);
+  switch (stampId) {
+    case "sender":
+      return [{ source: "email", field: "from", value: contact }, { source: "vendor_history", field: "verifiedContacts[0].email", value: contact }];
+    case "vendor":
+      return [{ source: "vendor_master", field: "vendorId", value: bill.vendorId }, { source: "vendor_master", field: "legalName", value: bill.vendorName }];
+    case "repeat":
+      return [{ source: "invoice", field: "invoiceNumber", value: bill.invoiceNumber }, { source: "nessie", field: "paymentsWithThisInvoice", value: "0" }];
+    case "order":
+      return [{ source: "invoice", field: "totalAmount", value: amount }, { source: "po", field: "total", value: amount }];
+    case "delivered":
+      return [{ source: "po", field: "poNumber", value: demoPo(bill) }, { source: "receiving", field: "receivedOn", value: bill.receivedAt.slice(0, 10) }];
+    case "terms":
+      return [{ source: "invoice", field: "terms", value: "Net 30" }, { source: "contract", field: "terms", value: "Net 30" }];
+    case "payto":
+      return [{ source: "invoice", field: "bankAccountLast4", value: demoBankLast4(bill) }, { source: "vendor_master", field: "verifiedBankLast4", value: demoBankLast4(bill) }];
+    case "insider":
+      return [{ source: "employees", field: "matches", value: "[]" }];
+  }
+}
+
+const formatDemoDollars = (cents: number) => `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+
+const TOOL_FOR_SOURCE: Partial<Record<Stamp["evidence"][number]["source"], string>> = {
+  vendor_master: "vendors", vendor_history: "vendors", nessie: "payments", past_bills: "payments", po: "po",
+  receiving: "receiving", contract: "contracts", employees: "employees", crs: "crs",
+};
+const toolFor = (source: Stamp["evidence"][number]["source"], seat: Stamp["signedBy"]) =>
+  TOOL_FOR_SOURCE[source] ?? (seat === "intake" ? "inbox" : "bill");
+
+/** Puts `value` at a dotted path ("risk.phone.prepaid", "lines[0].unitPrice") inside a copy of `base`. */
+function withPath(base: Record<string, unknown>, path: string, value: unknown): Record<string, unknown> {
+  const keys = path.replace(/\[(\d+)\]/g, ".$1").split(".");
+  const root: any = structuredClone(base);
+  let node = root;
+  keys.slice(0, -1).forEach((key, i) => {
+    node[key] ??= /^\d+$/.test(keys[i + 1]) ? [] : {};
+    node = node[key];
+  });
+  node[keys[keys.length - 1]] = value;
+  return root;
+}
+
+function demoRecord(tool: string, bill: BillSummary): Record<string, unknown> {
+  const vendor = { vendorId: bill.vendorId, legalName: bill.vendorName };
+  switch (tool) {
+    case "vendors":
+      return { ...vendor, address: "On file", verifiedContacts: [{ name: "Accounts Receivable", email: `ar@${vendorSlug(bill)}.com` }], verifiedBankLast4: demoBankLast4(bill), changeHistory: [] };
+    case "payments":
+      return { vendorId: bill.vendorId, invoiceNumber: "earlier invoice", amountCents: Math.round(bill.amountCents * 0.8), paidOn: "2026-09-18", status: "completed" };
+    case "po":
+      return { poNumber: demoPo(bill), vendorId: bill.vendorId, site: bill.jobSite, lines: [{ description: "Per contract", quantity: 1, unitPrice: (bill.amountCents / 100).toFixed(2) }] };
+    case "receiving":
+      return { poNumber: demoPo(bill), quantity: 1, signedBy: `PM, ${bill.jobSite}` };
+    case "contracts":
+      return { vendorId: bill.vendorId, contractId: `C-${bill.vendorId.slice(-3)}`, rateTolerancePct: 2 };
+    case "employees":
+      return {};
+    case "crs":
+      return { product: "fraud_finder", persona: "demo" };
+    default:
+      return { billId: bill.billId, vendorName: bill.vendorName, invoiceNumber: bill.invoiceNumber, jobSite: bill.jobSite };
+  }
+}
+
+function mockTrace(item: Stamp["evidence"][number], bill: BillSummary, seat: Stamp["signedBy"]): NonNullable<Stamp["trace"]>[number] {
+  const tool = toolFor(item.source, seat);
+  if (tool === "inbox") {
+    return { found: true, tool, snippet: `From: ${bill.vendorName} <ar@${vendorSlug(bill)}.com>\nSubject: Invoice ${bill.invoiceNumber}\n\n... ${item.field}: ${item.value} ...` };
+  }
+  const path = item.field;
+  let value: unknown = item.value;
+  if (value === "[]") value = [];
+  return { found: true, tool, path, record: withPath(demoRecord(tool, bill), path, value) };
+}
+
+function mockToolCalls(evidence: Stamp["evidence"], bill: BillSummary, seat: Stamp["signedBy"], signedAt: Date): NonNullable<Stamp["toolCalls"]> {
+  const tools = [...new Set([seat === "intake" ? "inbox" : "bill", "vendors", ...evidence.map((item) => toolFor(item.source, seat))])];
+  const args: Record<string, Record<string, unknown>> = {
+    vendors: { name: bill.vendorName }, payments: { vendorId: bill.vendorId }, po: { po: demoPo(bill) }, receiving: { po: demoPo(bill) },
+    contracts: { vendorId: bill.vendorId }, employees: { phones: ["(555) 010-2000"] }, crs: { purpose: "bank_change" },
+  };
+  return tools.map((tool, i) => ({
+    at: new Date(signedAt.getTime() - (tools.length - i) * 700).toISOString(),
+    tool,
+    args: args[tool] ?? {},
+    outcome: "served" as const,
+  }));
 }
 
 const CLEAN_STAMP_REASON: Record<StampId, string> = {
@@ -274,11 +378,6 @@ const CLEAN_STAMP_REASON: Record<StampId, string> = {
   terms: "Terms match the contract.",
   payto: "Same bank account as every past payment.",
   insider: "No link to any employee.",
-};
-
-const CLEAN_STAMP_SOURCE: Record<StampId, Stamp["evidence"][number]["source"]> = {
-  sender: "vendor_history", vendor: "vendor_master", repeat: "nessie", order: "po",
-  delivered: "receiving", terms: "contract", payto: "nessie", insider: "employees",
 };
 
 export const MOCK_BILLS: BillSummary[] = [...PLANTED_BILLS.map((planted) => planted.summary), ...buildFillerBills(28)]

@@ -19,8 +19,9 @@ interface StampSealProps {
   /** Picked in the decision bar. */
   isSelected?: boolean;
   decision?: StampDecision;
-  /** Problem stamps still waiting on a person can be picked; others open their evidence. */
+  /** Problem stamps still waiting on a person can be picked; others open their reasoning. */
   onSelect?: () => void;
+  /** Opens this stamp's reasoning in the side drawer. */
   onOpenEvidence: () => void;
 }
 
@@ -89,7 +90,7 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, isMissing
           <span className="font-semibold">{DECISION_LINE[decision.decision].verb} by the {decision.byRole === "controller" ? "Controller" : "site PM"}:</span> {decision.note}
         </p>
       )}
-      {isRevealed && isProblem && (
+      {isRevealed && (
         <span
           role="link"
           tabIndex={0}
@@ -97,7 +98,7 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, isMissing
           onKeyDown={(event) => event.key === "Enter" && openEvidence(event)}
           className="mt-1 text-[11px] font-semibold text-muted-foreground underline-offset-2 hover:text-foreground hover:underline"
         >
-          See evidence
+          See reasoning
         </span>
       )}
     </button>

@@ -436,27 +436,60 @@ async function verifyRequester(body: any, t?: Ticket) {
   }
 }
 
+// Where a cited value came from: the tool output that served it, kept beside the stamp so a person can read
+// the record itself. A record is cut to its innermost object holding the value when the whole is too long.
+export interface EvidenceTrace {
+  found: boolean;
+  tool?: string;
+  path?: string;
+  record?: unknown;
+  snippet?: string;
+}
+const TRACE_LIMIT = 3000;
+
+function excerpt(data: unknown, path: string): unknown {
+  if (JSON.stringify(data).length <= TRACE_LIMIT) return data;
+  const parts = path.split(".");
+  for (let n = parts.length - 1; n > 0; n--) {
+    const parent = getPath(data, parts.slice(0, n).join("."));
+    if (parent && typeof parent === "object" && JSON.stringify(parent).length <= TRACE_LIMIT) return parent;
+  }
+  return { [path]: getPath(data, path) };
+}
+
 // A cited value is grounded when the tool behind its source served exactly that value at that path.
 // Paths may be written relative to one item of an array result, or with the tool name as a prefix.
 // For raw inbox files there are no paths, so the value must appear verbatim in the file.
-function grounded(t: Ticket, ev: any): boolean {
+function trace(t: Ticket, ev: any): EvidenceTrace {
   const want = String(ev?.value ?? "");
   const field = String(ev?.field ?? "");
-  if (!want || !field) return false;
+  if (!want || !field) return { found: false };
+  if (isCrsCitation(ev)) {
+    const response = crs.getCall(String(ev.ref ?? ""))?.response;
+    return response ? { found: crs.checkCitation(String(ev.ref), field, want), tool: "crs", path: field, record: excerpt(response, field) } : { found: false };
+  }
   const tools = SOURCE_TOOLS[String(ev.source).toLowerCase()] ?? [];
   const paths = [field, field.replace(/^[A-Za-z_]+(?=[.[])\.?/, "")];
-  return t.served
-    .filter((s) => tools.includes(s.tool))
-    .flatMap((s) => (Array.isArray(s.data) ? [s.data, ...s.data] : [s.data]))
-    .some((data) =>
-      typeof data === "string"
-        ? data.includes(want)
-        : paths.some((p) => {
-            const v = getPath(data, p);
-            return v !== undefined && v !== null && (typeof v === "object" ? JSON.stringify(v) : String(v)) === want;
-          }),
-    );
+  for (const s of t.served.filter((s) => tools.includes(s.tool))) {
+    for (const data of Array.isArray(s.data) ? [s.data, ...s.data] : [s.data]) {
+      if (typeof data === "string") {
+        const at = data.indexOf(want);
+        if (at >= 0) return { found: true, tool: s.tool, snippet: data.slice(Math.max(0, at - 160), at + want.length + 160) };
+        continue;
+      }
+      for (const p of paths) {
+        const v = getPath(data, p);
+        if (v !== undefined && v !== null && (typeof v === "object" ? JSON.stringify(v) : String(v)) === want) {
+          return { found: true, tool: s.tool, path: p, record: excerpt(data, p) };
+        }
+      }
+    }
+  }
+  return { found: false };
 }
+
+// Anything pointing at a stored CRS call is a CRS citation, whatever its label says.
+const isCrsCitation = (ev: any) => String(ev?.source ?? "").toLowerCase() === "crs" || Boolean(crs.getCall(String(ev?.ref ?? "")));
 
 // What Intake recorded, as the other seats see it, with the CRS persona looked up from the contact.
 function billFor(t: Ticket): any {
@@ -498,8 +531,7 @@ function submitStamps(t: Ticket, body: any) {
   const results = stamps.map((st) => {
     const evidence: any[] = Array.isArray(st?.evidence) ? st.evidence : [];
     const source = (ev: any) => String(ev?.source ?? "").toLowerCase();
-    // Anything pointing at a stored CRS call is a CRS citation, whatever its label says.
-    const isCrs = (ev: any) => source(ev) === "crs" || Boolean(crs.getCall(String(ev?.ref ?? "")));
+    const isCrs = isCrsCitation;
     const problems = [
       seat.stamps.includes(st?.id) ? "" : `the ${t.seat} seat may not sign "${st?.id}"`,
       STATUSES.has(st?.status) ? "" : "status must be pass, fail or ask_human",
@@ -519,7 +551,8 @@ function submitStamps(t: Ticket, body: any) {
       return { id: st?.id, accepted: false, problems };
     }
     const nonCrs = evidence.filter((ev) => !isCrs(ev));
-    const groundedCount = nonCrs.filter((ev) => grounded(t, ev)).length;
+    const traces = evidence.map((ev) => trace(t, ev));
+    const groundedCount = traces.filter((tr, i) => tr.found && !isCrs(evidence[i])).length;
     const payload = {
       billId: t.billId,
       id: st.id,
@@ -532,7 +565,8 @@ function submitStamps(t: Ticket, body: any) {
       creaoRunId: t.runId,
       at: new Date().toISOString(),
     };
-    const signed = { ...payload, signature: signer.sign(t.seat, payload) };
+    // The trace sits beside the signature, not under it: it is what the gateway saw, not what the agent claimed.
+    const signed = { ...payload, signature: signer.sign(t.seat, payload), trace: traces };
     passports.put(signed);
     events.append("stamp_signed", {
       billId: t.billId,

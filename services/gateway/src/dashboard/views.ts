@@ -95,9 +95,22 @@ export function createViews(d: Deps) {
   function passport(billId: string) {
     const summary = billSummary(billId);
     const p = d.passports.summary(billId);
+    const billEvents = d.events.list({ billId });
+    // What the signing run looked at: its tool calls, refusals and errors, in order, up to the moment it signed.
+    const toolCalls = (s: { signedBy: string; creaoRunId?: string; at: string }) =>
+      billEvents
+        .filter((e) => ["tool_call", "tool_denied", "tool_error"].includes(e.type) && e.seat === s.signedBy && e.at <= s.at)
+        .filter((e) => !s.creaoRunId || (e.data as any)?.runId === s.creaoRunId)
+        .map((e) => {
+          const x: any = e.data ?? {};
+          return { at: e.at, tool: x.tool, args: x.args ?? {}, outcome: e.type === "tool_call" ? "served" : e.type === "tool_denied" ? "denied" : "error", note: x.reason ?? (x.error ? [x.error].flat().join("; ") : x.decision) };
+        });
     const stamps = ALL_STAMPS.filter((id) => p.stamps[id]).map((id) => {
       const s = p.stamps[id];
-      return { id, status: s.status, reason: s.reason, evidence: s.evidence, disagreement: s.disagreement, signedBy: s.signedBy, signature: s.signature, at: s.at, creaoRunId: s.creaoRunId };
+      return {
+        id, status: s.status, reason: s.reason, evidence: s.evidence, disagreement: s.disagreement, askedWho: s.askedWho,
+        signedBy: s.signedBy, signature: s.signature, at: s.at, creaoRunId: s.creaoRunId, trace: s.trace, toolCalls: toolCalls(s),
+      };
     });
     if (!summary || !stamps.length) return undefined;
     return {
