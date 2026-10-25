@@ -3,6 +3,8 @@
   "private": true,
   "packageManager": "pnpm@12.15.0",
   "scripts": {
+    "api:dev": "corepack pnpm --filter @bill-passport/api api:dev",
+    "api:start": "corepack pnpm --filter @bill-passport/api api:start",
     "nessie:check": "corepack pnpm --filter @bill-passport/api nessie:check",
     "nessie:seed": "corepack pnpm --filter @bill-passport/api nessie:seed",
     "typecheck": "corepack pnpm -r typecheck"

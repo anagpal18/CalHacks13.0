@@ -3,6 +3,7 @@
 
 import { randomUUID } from "node:crypto";
 import type { BankRecord, BankService, PastVendorPayment } from "./bankService.js";
+import { UnknownVendorError } from "./nessieAccountDirectory.js";
 import { SAMPLE_VENDORS_FOR_SEEDING, SAMPLE_PAST_PAYMENTS_FOR_SEEDING, COMPANY_OPENING_BALANCE_CENTS } from "./seedData.js";
 
 const fakePayeeAccountIdByVendorId = new Map(
@@ -21,7 +22,7 @@ const fakePayments: PastVendorPayment[] = SAMPLE_PAST_PAYMENTS_FOR_SEEDING.map((
 
 function requireFakePayeeAccountId(vendorId: string): string {
   const payeeAccountId = fakePayeeAccountIdByVendorId.get(vendorId);
-  if (!payeeAccountId) throw new Error(`Vendor ${vendorId} has no offline account`);
+  if (!payeeAccountId) throw new UnknownVendorError(vendorId);
   return payeeAccountId;
 }
 

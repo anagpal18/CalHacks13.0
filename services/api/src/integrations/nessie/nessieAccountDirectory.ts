@@ -36,8 +36,14 @@ export function requireCompanyOperatingAccountId(directory: NessieAccountDirecto
   return directory.company.operatingAccountId;
 }
 
+export class UnknownVendorError extends Error {
+  constructor(readonly vendorId: string) {
+    super(`Vendor ${vendorId} has no bank account on file`);
+  }
+}
+
 export function requireVendorEntry(directory: NessieAccountDirectory, vendorId: string): NessieVendorEntry {
   const vendorEntry = directory.vendorsById[vendorId];
-  if (!vendorEntry) throw new Error(`Vendor ${vendorId} has no Nessie account. Run: pnpm nessie:seed`);
+  if (!vendorEntry) throw new UnknownVendorError(vendorId);
   return vendorEntry;
 }

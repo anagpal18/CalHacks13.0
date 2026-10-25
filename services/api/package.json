@@ -3,11 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "api:dev": "tsx watch src/server.ts",
+    "api:start": "tsx src/server.ts",
     "nessie:check": "tsx scripts/checkNessieConnection.ts",
     "nessie:seed": "tsx scripts/seedNessieBank.ts",
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "fastify": "^5.12.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
