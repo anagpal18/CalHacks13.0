@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Bot, CalendarClock, Check, CircleX, Landmark, Loader, Percent, ShieldCheck, UserCheck, Wallet, X, Link2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ApprovedCheck } from "@/components/visuals/ApprovedCheck";
 import { getNextPaymentRun } from "@/data/dataSource";
 import { DEMO_TODAY } from "@/data/mockData";
 import { PAYMENT_CHECKS } from "@/data/stampCatalog";
@@ -276,7 +277,7 @@ function ApprovalCard({ run, runTotalCents, discountCents, phase, selfApprovalRe
             </AnimatePresence>
           </>
         ) : (
-          <div className="flex items-center gap-2 text-lg font-bold text-cleared"><ShieldCheck className="size-5" /> Approved by {CONTROLLER_NAME}</div>
+          <ApprovedCheck />
         )}
       </div>
     </div>

@@ -32,6 +32,8 @@
   --held: #e5532d;
   --asking: #b9852c;
   --checking: #5a7fbf;
+  /* Used only for the approval moment (signature given). Muted, not a neon green. */
+  --approved: #2f8f5b;
 
   /* Data marks */
   --data: #5a7fbf;
@@ -69,6 +71,7 @@
   --color-held: var(--held);
   --color-asking: var(--asking);
   --color-checking: var(--checking);
+  --color-approved: var(--approved);
   --color-data: var(--data);
   --color-data-soft: var(--data-soft);
   --color-track: var(--track);
