@@ -1,0 +1,12 @@
+{
+  "name": "terms-room",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @terms-room/web dev",
+    "build": "pnpm --filter @terms-room/web build",
+    "api": "pnpm --filter @terms-room/api start",
+    "test": "pnpm --filter @terms-room/api test",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

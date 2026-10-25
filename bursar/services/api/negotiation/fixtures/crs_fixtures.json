@@ -1,0 +1,4547 @@
+{
+ "source": "CRS Credit API sandbox (https://api-sandbox.stitchcredit.com/api). Persona-exact request bodies only; every call logged by CRS as billable:false. Captured 2026-10-24. Response bodies only: no request or response headers are stored. SSNs are masked to the last 4 digits at rest. Request bodies live in crs_requests.json, which only the API server reads.",
+ "calls": [
+  {
+   "callId": "e25f777c-9fa9-4541-b216-951e584f07e1",
+   "product": "tu_idv",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 414,
+   "at": "2026-10-24T16:37:17.516+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "GRACE",
+        "middle": "H",
+        "last": "NAKAMURA"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "1850",
+        "name": "SOLANO AVE"
+       },
+       "location": {
+        "city": "BERKELEY",
+        "state": "CA",
+        "zipCode": "94707"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1019",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1019",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1976-09-16T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "6961c211-a62b-4302-bf6c-70032f357c79",
+   "product": "fraud_finder",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 287,
+   "at": "2026-10-24T16:37:24.135+00:00",
+   "response": {
+    "eam": {
+     "date_first_seen": "2012-09-16",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 7
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 9,
+     "tumbling_risk": 0,
+     "query_id": "calhacks-P19-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "37.89",
+      "longitude": "-122.28"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "5 miles"
+     },
+     "phone": {
+      "line_type": "mobile",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": false,
+      "owner": {
+       "first_name_match": "match",
+       "last_name_match": "match",
+       "street_match": "match",
+       "city_match": "match",
+       "zip_match": "match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "grace.nakamura@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "b6523e92-d31c-4fdd-a5bb-ad9d8d7591db",
+   "product": "reverse_phone",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 247,
+   "at": "2026-10-24T16:37:22.116+00:00",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-0001",
+     "records": [
+      {
+       "firstName": "GRACE",
+       "lastName": "NAKAMURA",
+       "houseNo": "1850",
+       "streetName": "SOLANO AVE",
+       "address": "1850 SOLANO AVE",
+       "city": "BERKELEY",
+       "state": "CA",
+       "postalCode": "94707"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "callId": "4cacf39e-c9d3-487c-b9bd-d9e3138fb371",
+   "product": "pitchpoint",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 376,
+   "at": "2026-10-24T21:42:41Z",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 0,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": "",
+     "BankruptciesFound": 0,
+     "LiensFound": 0
+    }
+   }
+  },
+  {
+   "callId": "ece770c9-2948-4cbf-80e8-06f2b2ebb8dd",
+   "product": "tu_idv",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 315,
+   "at": "2026-10-24T16:37:04.429+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "MARGARET",
+        "middle": "A",
+        "last": "OKAFOR"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "1420",
+        "name": "WILLOW CREEK DR"
+       },
+       "location": {
+        "city": "SAN JOSE",
+        "state": "CA",
+        "zipCode": "95125"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1001",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1001",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1984-03-14T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "138f2c3c-1c64-403c-886c-7d0fa189cdd8",
+   "product": "fraud_finder",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 338,
+   "at": "2026-10-24T21:42:35Z",
+   "response": {
+    "eam": {
+     "date_first_seen": "2016-03-02",
+     "longevity": 9,
+     "velocity": 1,
+     "popularity": 6
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 11,
+     "tumbling_risk": 0,
+     "query_id": "calhacks-P01-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "37.34",
+      "longitude": "-121.89"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "5 miles"
+     },
+     "phone": {
+      "line_type": "mobile",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": false,
+      "owner": {
+       "first_name_match": "match",
+       "last_name_match": "match",
+       "street_match": "match",
+       "city_match": "match",
+       "zip_match": "match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "margaret.okafor@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "fc4108b1-d0b1-4bf9-aae8-d911155f28ba",
+   "product": "reverse_phone",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 338,
+   "at": "2026-10-24T21:42:38Z",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-0001",
+     "records": [
+      {
+       "firstName": "MARGARET",
+       "lastName": "OKAFOR",
+       "houseNo": "1420",
+       "streetName": "WILLOW CREEK DR",
+       "address": "1420 WILLOW CREEK DR",
+       "city": "SAN JOSE",
+       "state": "CA",
+       "postalCode": "95125"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "callId": "01b8ebce-3901-4c24-8057-283e57149ef9",
+   "product": "pitchpoint",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 246,
+   "at": "2026-10-24T16:37:18.820+00:00",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 0,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": "",
+     "BankruptciesFound": 0,
+     "LiensFound": 0
+    }
+   }
+  },
+  {
+   "callId": "2f7924a9-d544-4b85-9a15-2f14e513505a",
+   "product": "tu_idv",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 358,
+   "at": "2026-10-24T16:37:09.664+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "PRIYA",
+        "last": "VENKATESAN"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "3300",
+        "name": "N LAKE SHORE DR APT 15C"
+       },
+       "location": {
+        "city": "CHICAGO",
+        "state": "IL",
+        "zipCode": "60657"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1008",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1008",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1981-07-27T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "66a35260-3477-4a7d-ba72-2c6516bf536a",
+   "product": "fraud_finder",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 343,
+   "at": "2026-10-24T21:42:36Z",
+   "response": {
+    "eam": {
+     "date_first_seen": "2014-01-25",
+     "longevity": 9,
+     "velocity": 1,
+     "popularity": 7
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 10,
+     "tumbling_risk": 0,
+     "query_id": "calhacks-P08-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "41.88",
+      "longitude": "-87.63"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "5 miles"
+     },
+     "phone": {
+      "line_type": "mobile",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": false,
+      "owner": {
+       "first_name_match": "match",
+       "last_name_match": "match",
+       "street_match": "match",
+       "city_match": "match",
+       "zip_match": "match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "priya.venkatesan@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "fbf0d122-90dc-4ec3-8e07-e9d2eb127647",
+   "product": "reverse_phone",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 479,
+   "at": "2026-10-24T21:42:39Z",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-0001",
+     "records": [
+      {
+       "firstName": "PRIYA",
+       "lastName": "VENKATESAN",
+       "houseNo": "3300",
+       "streetName": "N LAKE SHORE DR APT 15C",
+       "address": "3300 N LAKE SHORE DR APT 15C",
+       "city": "CHICAGO",
+       "state": "IL",
+       "postalCode": "60657"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "callId": "68cee97a-d8b4-4d2b-baab-9dde82e18df4",
+   "product": "pitchpoint",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 257,
+   "at": "2026-10-24T16:37:20.838+00:00",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 1,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": {
+      "Judgments": {
+       "JudgmentRecord": {
+        "Plaintiff": {
+         "Name": {
+          "UnparsedName": "LAKEVIEW CONTRACTORS INC",
+          "LastName": "LAKEVIEW CONTRACTORS INC"
+         }
+        },
+        "Status": "Unsatisfied",
+        "CourtCaseNumber": "2023-M1-104455",
+        "FilingDate": {
+         "month": "03",
+         "year": 2023,
+         "day": 15
+        },
+        "Defendant": {
+         "Name": {
+          "FirstName": "PRIYA",
+          "UnparsedName": "PRIYA VENKATESAN",
+          "LastName": "VENKATESAN"
+         }
+        },
+        "DamarDocumentType": "Judgment",
+        "JudgmentType": "Civil Judgment",
+        "FilingLocation": "Cook County, IL",
+        "TotalJudgmentAmount": 12300,
+        "FilingType": "Judgment",
+        "Court": {
+         "Address": {
+          "State": "IL",
+          "City": "CHICAGO"
+         },
+         "Id": "ILCOOK",
+         "Name": "CIRCUIT COURT OF COOK COUNTY"
+        }
+       }
+      },
+      "Liens": {
+       "LienRecord": {
+        "Plaintiff": {
+         "Name": {
+          "UnparsedName": "ILLINOIS DEPARTMENT OF REVENUE",
+          "LastName": "ILLINOIS DEPARTMENT OF REVENUE"
+         }
+        },
+        "Status": "Unreleased",
+        "Debtor": {
+         "Name": {
+          "FirstName": "PRIYA",
+          "UnparsedName": "PRIYA VENKATESAN",
+          "LastName": "VENKATESAN"
+         }
+        },
+        "CourtCaseNumber": "IL-2024-0088123",
+        "KindOfTax": "ST",
+        "FilingDate": {
+         "month": "08",
+         "year": 2024,
+         "day": 21
+        },
+        "TotalLienAmount": 7450,
+        "DamarDocumentType": "Lien",
+        "FilingLocation": "Cook County, IL",
+        "TaxLienDate": {
+         "month": "08",
+         "year": 2024,
+         "day": 21
+        },
+        "FilingType": "Lien",
+        "Court": {
+         "Address": {
+          "State": "IL"
+         },
+         "Id": 17031
+        }
+       }
+      }
+     },
+     "BankruptciesFound": 0,
+     "LiensFound": 1
+    }
+   }
+  },
+  {
+   "callId": "a0742f5e-543e-4909-a9fd-a9cfbe64b573",
+   "product": "tu_idv",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 237,
+   "at": "2026-10-24T16:37:13.419+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "KAYLA",
+        "middle": "D",
+        "last": "BRENNAN"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "9021",
+        "name": "KINGSTON PIKE"
+       },
+       "location": {
+        "city": "KNOXVILLE",
+        "state": "TN",
+        "zipCode": "37923"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1013",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1013",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1999-12-24T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [
+        {
+         "code": "2201",
+         "text": "INPUT SSN NOT ASSOCIATED WITH INPUT NAME",
+         "source": "INPUT"
+        },
+        {
+         "code": "2202",
+         "text": "INPUT DATE OF BIRTH DOES NOT MATCH FILE",
+         "source": "INPUT"
+        },
+        {
+         "code": "2101",
+         "text": "INPUT CURRENT ADDRESS DOES NOT MATCH FILE CURRENT ADDRESS",
+         "source": "INPUT"
+        }
+       ],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "1983eda8-830a-4cd4-b5e0-b13ba6140fab",
+   "product": "fraud_finder",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 223,
+   "at": "2026-10-24T16:37:24.752+00:00",
+   "response": {
+    "eam": {
+     "date_first_seen": "2026-10-15",
+     "longevity": 1,
+     "velocity": 9,
+     "popularity": 1
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 88,
+     "tumbling_risk": 1,
+     "query_id": "calhacks-P13-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "34.05",
+      "longitude": "-118.24"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "> 1000 miles"
+     },
+     "phone": {
+      "line_type": "voip",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": true,
+      "owner": {
+       "first_name_match": "no_match",
+       "last_name_match": "no_match",
+       "street_match": "no_match",
+       "city_match": "no_match",
+       "zip_match": "no_match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "kb.9921x@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "3f45341a-f7c3-415c-b008-13f1be5f03fa",
+   "product": "reverse_phone",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 367,
+   "at": "2026-10-24T21:42:40Z",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-0001",
+     "records": []
+    }
+   }
+  },
+  {
+   "callId": "6db97a09-ead5-488a-b4fc-680f59b0e6eb",
+   "product": "pitchpoint",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 374,
+   "at": "2026-10-24T21:42:42Z",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 0,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": "",
+     "BankruptciesFound": 0,
+     "LiensFound": 0
+    }
+   }
+  },
+  {
+   "callId": "b84a7204-2b32-4f2e-99e2-e32009dda3a7",
+   "product": "tu_idv",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 279,
+   "at": "2026-10-24T16:37:12.774+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "VICTOR",
+        "last": "ANAND"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "55",
+        "name": "WATER ST FL 20"
+       },
+       "location": {
+        "city": "NEW YORK",
+        "state": "NY",
+        "zipCode": "10041"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1012",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1012",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1968-08-08T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [
+        {
+         "code": "2201",
+         "text": "INPUT SSN NOT ASSOCIATED WITH INPUT NAME",
+         "source": "INPUT"
+        },
+        {
+         "code": "2202",
+         "text": "INPUT DATE OF BIRTH DOES NOT MATCH FILE",
+         "source": "INPUT"
+        },
+        {
+         "code": "2101",
+         "text": "INPUT CURRENT ADDRESS DOES NOT MATCH FILE CURRENT ADDRESS",
+         "source": "INPUT"
+        }
+       ],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "58b669be-e136-42c0-8d0d-10e2ec063200",
+   "product": "fraud_finder",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 402,
+   "at": "2026-10-24T21:42:36Z",
+   "response": {
+    "eam": {
+     "date_first_seen": "2024-10-01",
+     "longevity": 3,
+     "velocity": 6,
+     "popularity": 2
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 85,
+     "tumbling_risk": 1,
+     "query_id": "calhacks-P12-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "51.51",
+      "longitude": "-0.13"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "> 1000 miles"
+     },
+     "phone": {
+      "line_type": "mobile",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": false,
+      "owner": {
+       "first_name_match": "no_match",
+       "last_name_match": "no_match",
+       "street_match": "no_match",
+       "city_match": "no_match",
+       "zip_match": "no_match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "v.anand.1968@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "7ce42d22-4339-416b-9116-d15869f7ad59",
+   "product": "reverse_phone",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 217,
+   "at": "2026-10-24T16:37:22.744+00:00",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-P12",
+     "records": [
+      {
+       "firstName": "RAJESH",
+       "lastName": "MENON",
+       "houseNo": "55",
+       "streetName": "WATER ST FL 20",
+       "address": "55 WATER ST FL 20",
+       "city": "NEW YORK",
+       "state": "NY",
+       "postalCode": "10041"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "callId": "93f775e7-7cba-4ff8-b08f-2d789feaaff2",
+   "product": "pitchpoint",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 375,
+   "at": "2026-10-24T21:42:43Z",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 0,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": "",
+     "BankruptciesFound": 0,
+     "LiensFound": 0
+    }
+   }
+  },
+  {
+   "callId": "1d3cc47a-d294-4bfb-bd52-cc389579578d",
+   "product": "tu_idv",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "status": 200,
+   "latencyMs": 252,
+   "at": "2026-10-24T16:37:15.417+00:00",
+   "response": {
+    "fileNumber": "01",
+    "fileSummary": {
+     "fileHitIndicator": "SUBJECT_HIT",
+     "creditDataStatus": {
+      "suppressed": false,
+      "doNotPromote": {
+       "indicator": false
+      },
+      "freeze": {
+       "indicator": false
+      },
+      "minor": false,
+      "disputed": false
+     }
+    },
+    "indicative": {
+     "names": [
+      {
+       "person": {
+        "first": "SAMUEL",
+        "middle": "K",
+        "last": "OYELARAN"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "addresses": [
+      {
+       "status": "CURRENT",
+       "street": {
+        "unparseds": [],
+        "number": "1200",
+        "name": "BRICKELL BAY DR APT 2203"
+       },
+       "location": {
+        "city": "MIAMI",
+        "state": "FL",
+        "zipCode": "33131"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "socialSecurities": [
+      {
+       "number": "•••••1016",
+       "identificationIssuance": {
+        "type": "SSN",
+        "status": "ISSUED_AFTER_21",
+        "yearRange": {
+         "startYear": "2001",
+         "endYear": "2001"
+        },
+        "state": "KY",
+        "ageObtained": {
+         "rangeStart": "+35",
+         "rangeEnd": "+36"
+        }
+       },
+       "source": "INPUT",
+       "masked": false
+      },
+      {
+       "number": "•••••1016",
+       "source": "FILE",
+       "masked": false
+      }
+     ],
+     "dateOfBirths": [
+      {
+       "value": "1977-06-12T00:00:00.000+00:00",
+       "source": "INPUT"
+      }
+     ],
+     "ages": [],
+     "phones": [
+      {
+       "number": {
+        "qualifier": "PERSONAL"
+       },
+       "source": "INPUT"
+      }
+     ],
+     "employments": [],
+     "creditCards": [],
+     "genders": [],
+     "vehicles": []
+    },
+    "originalInputs": [],
+    "custom": {
+     "idmanagerVerAnalysisV2": {
+      "verificationSummary": {
+       "riskIndicator": "MEDIUM",
+       "bestMatch": "FILE",
+       "verificationPoint": 30,
+       "lowerThreshold": 5,
+       "upperThreshold": 49,
+       "keyMessages": {
+        "keyMessages": [
+         {
+          "code": "KMSG07",
+          "text": "ADDRESS RELATED ALERT"
+         }
+        ]
+       }
+      },
+      "fraudAnalysis": {
+       "region": {
+        "zipVsCity": "INVALID",
+        "zipVsState": "VALID",
+        "phoneVsState": "NOT_AVAILABLE",
+        "phoneVsZIP": "NOT_AVAILABLE",
+        "phoneVsZIPDistance": "0000.000",
+        "source": "INPUT"
+       },
+       "employment": {},
+       "distance": {
+        "minimum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "maximum": {
+         "noAnalysisReason": "NOT_AVAILABLE"
+        },
+        "source": "INPUT"
+       }
+      },
+      "verificationAnalysises": [
+       {
+        "verificationStatus": "SUBJECT_FOUND",
+        "firstNameVerification": "MATCH",
+        "middleNameVerification": "INPUT_NOT_AVAILABLE",
+        "lastNameVerification": "MATCH",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NO_MATCH",
+        "previousAddressVerification": "INPUT_NOT_AVAILABLE",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "MATCH",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "FILE"
+       },
+       {
+        "verificationStatus": "SUBJECT_NOT_FOUND",
+        "firstNameVerification": "NOT_FOUND",
+        "middleNameVerification": "MATCH_NOT_PERFORMED",
+        "lastNameVerification": "NOT_FOUND",
+        "nameSuffixVerification": "MATCH_NOT_PERFORMED",
+        "currentAddressVerification": "NOT_FOUND",
+        "previousAddressVerification": "MATCH_NOT_PERFORMED",
+        "phoneNumberVerification": "INPUT_NOT_AVAILABLE",
+        "ssnVerification": "NOT_FOUND",
+        "dateOfBirthVerification": "NOT_FOUND",
+        "source": "VENDOR_FILE"
+       }
+      ]
+     }
+    },
+    "addOnProducts": [
+     {
+      "code": "FRDMS",
+      "status": "DELIVERED",
+      "idMismatchAlerts": [],
+      "addressAnalysises": [],
+      "idManagerVerification": {
+       "messages": [
+        {
+         "code": "2401",
+         "text": "IDENTITY VERIFIED - STEP-UP AUTHENTICATION RECOMMENDED (FRAUD ALERT ON FILE)",
+         "source": "INPUT"
+        }
+       ],
+       "deceases": [],
+       "identificationIssuances": [],
+       "returnMessage": "CODES_AND_TEXT",
+       "searchStatus": "HIT"
+      },
+      "creditorContacts": []
+     }
+    ]
+   }
+  },
+  {
+   "callId": "d5199d64-d3a3-4b0a-a03f-7c132515dc3f",
+   "product": "fraud_finder",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "status": 200,
+   "latencyMs": 417,
+   "at": "2026-10-24T21:42:37Z",
+   "response": {
+    "eam": {
+     "date_first_seen": "2020-06-12",
+     "longevity": 7,
+     "velocity": 3,
+     "popularity": 5
+    },
+    "dam": {
+     "date_first_seen": "1995-08-13",
+     "longevity": 10,
+     "velocity": 1,
+     "popularity": 10
+    },
+    "risk": {
+     "score": 50,
+     "tumbling_risk": 0,
+     "query_id": "calhacks-P16-0001",
+     "domain": {
+      "domain_risk_score": 0
+     },
+     "ip": {
+      "routing_type": "fixed",
+      "organization": "comcast cable communications llc",
+      "proxy_type": "",
+      "hosting_facility": false,
+      "latitude": "25.76",
+      "longitude": "-80.19"
+     },
+     "postal": {
+      "first_name_match": "match",
+      "last_name_match": "match",
+      "street_match": "match",
+      "city_match": "match",
+      "zip_match": "match",
+      "address_type": "Street",
+      "deliverability": "deliverable",
+      "ip_postal_distance": "5 miles"
+     },
+     "phone": {
+      "line_type": "mobile",
+      "carrier": "VERIZON WIRELESS",
+      "status": "valid",
+      "prepaid": false,
+      "owner": {
+       "first_name_match": "match",
+       "last_name_match": "match",
+       "street_match": "match",
+       "city_match": "match",
+       "zip_match": "match",
+       "type": "person"
+      }
+     }
+    },
+    "email_validation": {
+     "address": "samuel.oyelaran@example.com",
+     "status": "valid",
+     "status_code": 50,
+     "domain_type": "freeisp"
+    }
+   }
+  },
+  {
+   "callId": "3d3927ad-8d57-40c9-8ca7-25a0d4b6c7bc",
+   "product": "reverse_phone",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "status": 200,
+   "latencyMs": 380,
+   "at": "2026-10-24T21:42:40Z",
+   "response": {
+    "success": true,
+    "message": "Unified reverse completed successfully",
+    "data": {
+     "transactionId": "TC-REVERSE-0001",
+     "records": [
+      {
+       "firstName": "SAMUEL",
+       "lastName": "OYELARAN",
+       "houseNo": "1200",
+       "streetName": "BRICKELL BAY DR APT 2203",
+       "address": "1200 BRICKELL BAY DR APT 2203",
+       "city": "MIAMI",
+       "state": "FL",
+       "postalCode": "33131"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "callId": "5c34b1c7-44c6-4ee9-8df8-482c21e0a403",
+   "product": "pitchpoint",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "status": 200,
+   "latencyMs": 353,
+   "at": "2026-10-24T21:42:43Z",
+   "response": {
+    "DetailedBLJReport": {
+     "JudgmentsFound": 0,
+     "Filters": {
+      "ExcludeBankruptcies": false,
+      "FilterVerbiage": "Judgment satisfied = 7 years; Judgment unsatisfied = 7 years; Lien released = 7 years; Lien unreleased = 10 years; Bankruptcy chapter 7 or 11 dismissed or discharged = 10 years; Bankruptcy chapter 7 or 11 not dismissed or discharged = 10 years; Bankruptcy chapter 13 dismissed or discharged = 7 years; Bankruptcy chapter 13 not dismissed or discharged = 10 years",
+      "SkipNameValidation": false
+     },
+     "Messages": {
+      "Message": {
+       "Text": "No Errors",
+       "Code": 0
+      }
+     },
+     "Results": "",
+     "BankruptciesFound": 0,
+     "LiensFound": 0
+    }
+   }
+  },
+  {
+   "callId": "95cfecaf-76cb-4d3d-9782-ba728cdb8652",
+   "product": "credit_report",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 273,
+   "at": "2026-10-24T16:36:59.479+00:00",
+   "response": {
+    "requestData": {
+     "firstName": "GRACE",
+     "lastName": "NAKAMURA",
+     "ssn": "•••••1019",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "1850 SOLANO AVE",
+       "city": "BERKELEY",
+       "state": "CA",
+       "postalCode": "94707"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:59.488356Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "FACTARiskScoreValue",
+      "responseAlertMessageText": "FACTA: Risk Score Value - The borrower's Risk Score Value was negatively affected by the presence of credit inquiry records on their credit file"
+     }
+    ],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2019-09-10",
+       "creditFileResultStatusType": "FileReturned",
+       "sourceType": "TransUnion"
+      },
+      "aliases": [
+       {
+        "firstName": "GRACE",
+        "lastName": "NAKAMURA",
+        "middleName": "H"
+       }
+      ],
+      "employments": [
+       {
+        "employerName": "SOLSTICE",
+        "employmentStartDate": "2024-09-01",
+        "employmentReportedDate": "2024-10-10"
+       },
+       {
+        "employerName": "TX MANAGEMENT PROPERTY GROUP",
+        "employmentReportedDate": "2024-10-10"
+       }
+      ]
+     }
+    ],
+    "inquiries": [
+     {
+      "creditorName": "CAPITAL AUTO FINANCE",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-19",
+      "businessType": "Finance",
+      "subscriberCode": "F 00030716",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "NORTHSTAR BANK",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-04-19",
+      "businessType": "Finance",
+      "subscriberCode": "F 00030716",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "tradelines": [
+     {
+      "accountIdentifier": "CALHACKS-REV-1",
+      "accountOpenedDate": "2005-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-2",
+      "accountOpenedDate": "2023-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "42",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-3",
+      "accountOpenedDate": "2021-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "60",
+      "creditorName": "UNION CREDIT CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-4",
+      "accountOpenedDate": "2020-04-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "78",
+      "creditorName": "HOMETOWN BANK CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-5",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "SUMMIT VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-6",
+      "accountOpenedDate": "2017-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-7",
+      "accountOpenedDate": "2015-10-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-8",
+      "accountOpenedDate": "2014-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "UNION CREDIT CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-INST-1",
+      "accountOpenedDate": "2025-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "146920",
+      "lastActivityDate": "2026-09-19",
+      "monthlyPaymentAmount": "1901",
+      "monthsReviewedCount": "18",
+      "creditorName": "LAKESIDE AUTO FINANCE",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "termsDescription": "60 months at $1901 per month",
+      "termsMonthsCount": "60",
+      "currentBalanceAmount": "91200",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-1",
+      "accountOpenedDate": "2020-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4000",
+      "lastActivityDate": "2025-10-19",
+      "monthsReviewedCount": "72",
+      "creditorName": "FORMER LENDER 1",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-04-20",
+      "accountIdentifier": "CALHACKS-CLOSED-2",
+      "accountOpenedDate": "2019-10-20",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-04-20",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4900",
+      "lastActivityDate": "2025-04-20",
+      "monthsReviewedCount": "84",
+      "creditorName": "FORMER LENDER 2",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2024-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-3",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2024-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "5800",
+      "lastActivityDate": "2024-10-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "FORMER LENDER 3",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2024-04-19",
+      "accountIdentifier": "CALHACKS-CLOSED-4",
+      "accountOpenedDate": "2017-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2024-04-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "6700",
+      "lastActivityDate": "2024-04-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "FORMER LENDER 4",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2023-10-20",
+      "accountIdentifier": "CALHACKS-CLOSED-5",
+      "accountOpenedDate": "2016-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2023-10-20",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "7600",
+      "lastActivityDate": "2023-10-20",
+      "monthsReviewedCount": "99",
+      "creditorName": "FORMER LENDER 5",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "publicRecords": [],
+    "scores": [
+     {
+      "borrowerSourceType": "Borrower",
+      "modelName": "TransUnionVantageScore4.0",
+      "modelNameType": "001NN",
+      "sourceType": "TransUnion",
+      "factaInquiriesIndicator": true,
+      "scoreValue": "770",
+      "scoreRankPercentileValue": "62",
+      "scoreMaximumValue": "850",
+      "scoreMinimumValue": "300",
+      "scoreFactors": [
+       {
+        "scoreFactorCode": "10",
+        "scoreFactorText": "Too few accounts paid as agreed"
+       },
+       {
+        "scoreFactorCode": "11",
+        "scoreFactorText": "Oldest account was opened too recently"
+       },
+       {
+        "scoreFactorCode": "3",
+        "scoreFactorText": ""
+       },
+       {
+        "scoreFactorCode": "5",
+        "scoreFactorText": ""
+       }
+      ]
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {
+      "mortgageTradesCount": "0",
+      "mortgageBalanceTotal": "0",
+      "mortgageHighCreditTotal": "0",
+      "mortgagePaymentsTotal": "0",
+      "mortgagePastDueTotal": "0",
+      "autoTradesCount": "3",
+      "autoBalanceTotal": "91200",
+      "autoHighCreditTotal": "158520",
+      "autoPaymentsTotal": "1901",
+      "autoPastDueTotal": "0",
+      "educationTradesCount": "0",
+      "educationBalanceTotal": "0",
+      "educationHighCreditTotal": "0",
+      "educationPaymentsTotal": "0",
+      "educationPastDueTotal": "0",
+      "openTradesCount": "0",
+      "openBalanceTotal": "0",
+      "openHighCreditTotal": "0",
+      "openPaymentsTotal": "0",
+      "openPastDueTotal": "0",
+      "revolvingTradesCount": "11",
+      "revolvingBalanceTotal": "4800",
+      "revolvingHighCreditTotal": "57400",
+      "revolvingPaymentsTotal": "0",
+      "revolvingPastDueTotal": "0",
+      "unknownTradesCount": "0",
+      "unknownBalanceTotal": "0",
+      "unknownHighCreditTotal": "0",
+      "unknownPaymentsTotal": "0",
+      "unknownPastDueTotal": "0",
+      "installmentOtherTradesCount": "0",
+      "installmentOtherBalanceTotal": "0",
+      "installmentOtherHighCreditTotal": "0",
+      "installmentOtherPaymentsTotal": "0",
+      "installmentOtherPastDueTotal": "0",
+      "applicableMortgagePaymentsTotal": "0",
+      "applicableAutoPaymentsTotal": "1901",
+      "applicableEducationPaymentsTotal": "0",
+      "applicableOpenPaymentsTotal": "0",
+      "applicableRevolvingPaymentsTotal": "0",
+      "applicableUnknownPaymentsTotal": "0",
+      "applicableInstallmentPaymentsTotal": "1901",
+      "applicableInstallmentOtherPaymentsTotal": "0",
+      "applicableMortgageHighCreditTotal": "0",
+      "applicableAutoHighCreditTotal": "146920",
+      "applicableEducationHighCreditTotal": "0",
+      "applicableOpenHighCreditTotal": "0",
+      "applicableRevolvingHighCreditTotal": "40000",
+      "applicableUnknownHighCreditTotal": "0",
+      "applicableInstallmentHighCreditTotal": "146920",
+      "applicableInstallmentOtherHighCreditTotal": "0",
+      "tradesCount": "14",
+      "balanceTotal": "96000",
+      "applicablePaymentsTotal": "1901",
+      "applicableHighCreditTotal": "186920",
+      "highCreditTotal": "215920",
+      "paymentsTotal": "1901",
+      "pastDueTotal": "0",
+      "securedDebtBalanceTotal": "91200",
+      "unsecuredDebtBalanceTotal": "4800",
+      "oldestTradelineDate": "2005-10-19",
+      "oldestTradelineCreditorName": "NORTHSTAR BANK VISA",
+      "revolvingCreditUtilization": "12",
+      "totalDebtHighCreditRatio": "51"
+     },
+     "derogatorySummary": {
+      "chargeOffsCount": "0",
+      "collectionsCount": "0",
+      "bankruptciesCount": "0",
+      "publicRecordsCount": "0",
+      "satisfactoryTradelineCount": "14",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "inquiriesCount": "2",
+      "mostRecentLateDate": "",
+      "disputesCount": "0",
+      "currentAdverseTradelineCount": "0",
+      "priorAdverseTradelineCount": "0",
+      "otherCount": "0",
+      "securedDebtBalanceTotal": "91200",
+      "unsecuredDebtBalanceTotal": "4800"
+     }
+    }
+   }
+  },
+  {
+   "callId": "edb21f2c-aea5-4778-9c97-cdf3081f6b0a",
+   "product": "credit_report",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 568,
+   "at": "2026-10-24T16:36:43.462+00:00",
+   "response": {
+    "requestData": {
+     "firstName": "MARGARET",
+     "lastName": "OKAFOR",
+     "ssn": "•••••1001",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "1420 WILLOW CREEK DR",
+       "city": "SAN JOSE",
+       "state": "CA",
+       "postalCode": "95125"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:43.474775Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "FACTARiskScoreValue",
+      "responseAlertMessageText": "FACTA: Risk Score Value - The borrower's Risk Score Value was negatively affected by the presence of credit inquiry records on their credit file"
+     }
+    ],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2019-09-10",
+       "creditFileResultStatusType": "FileReturned",
+       "sourceType": "TransUnion"
+      },
+      "aliases": [
+       {
+        "firstName": "MARGARET",
+        "lastName": "OKAFOR",
+        "middleName": "A"
+       }
+      ],
+      "employments": [
+       {
+        "employerName": "SOLSTICE",
+        "employmentStartDate": "2024-09-01",
+        "employmentReportedDate": "2024-10-10"
+       },
+       {
+        "employerName": "TX MANAGEMENT PROPERTY GROUP",
+        "employmentReportedDate": "2024-10-10"
+       }
+      ]
+     }
+    ],
+    "inquiries": [
+     {
+      "creditorName": "CAPITAL AUTO FINANCE",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-19",
+      "businessType": "Finance",
+      "subscriberCode": "F 00030716",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "tradelines": [
+     {
+      "accountIdentifier": "CALHACKS-REV-1",
+      "accountOpenedDate": "2010-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-2",
+      "accountOpenedDate": "2023-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "42",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-3",
+      "accountOpenedDate": "2021-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "60",
+      "creditorName": "UNION CREDIT CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-4",
+      "accountOpenedDate": "2020-04-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "78",
+      "creditorName": "HOMETOWN BANK CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-5",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "SUMMIT VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-6",
+      "accountOpenedDate": "2017-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-7",
+      "accountOpenedDate": "2015-10-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "400",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-INST-1",
+      "accountOpenedDate": "2025-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "25960",
+      "lastActivityDate": "2026-09-19",
+      "monthlyPaymentAmount": "326",
+      "monthsReviewedCount": "18",
+      "creditorName": "LAKESIDE AUTO FINANCE",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "termsDescription": "60 months at $326 per month",
+      "termsMonthsCount": "60",
+      "currentBalanceAmount": "15600",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-1",
+      "accountOpenedDate": "2020-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4000",
+      "lastActivityDate": "2025-10-19",
+      "monthsReviewedCount": "72",
+      "creditorName": "FORMER LENDER 1",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-04-20",
+      "accountIdentifier": "CALHACKS-CLOSED-2",
+      "accountOpenedDate": "2019-10-20",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-04-20",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4900",
+      "lastActivityDate": "2025-04-20",
+      "monthsReviewedCount": "84",
+      "creditorName": "FORMER LENDER 2",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2024-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-3",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2024-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "5800",
+      "lastActivityDate": "2024-10-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "FORMER LENDER 3",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2024-04-19",
+      "accountIdentifier": "CALHACKS-CLOSED-4",
+      "accountOpenedDate": "2017-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2024-04-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "6700",
+      "lastActivityDate": "2024-04-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "FORMER LENDER 4",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "publicRecords": [],
+    "scores": [
+     {
+      "borrowerSourceType": "Borrower",
+      "modelName": "TransUnionVantageScore4.0",
+      "modelNameType": "001NN",
+      "sourceType": "TransUnion",
+      "factaInquiriesIndicator": true,
+      "scoreValue": "790",
+      "scoreRankPercentileValue": "71",
+      "scoreMaximumValue": "850",
+      "scoreMinimumValue": "300",
+      "scoreFactors": [
+       {
+        "scoreFactorCode": "10",
+        "scoreFactorText": "Too few accounts paid as agreed"
+       },
+       {
+        "scoreFactorCode": "11",
+        "scoreFactorText": "Oldest account was opened too recently"
+       },
+       {
+        "scoreFactorCode": "3",
+        "scoreFactorText": ""
+       },
+       {
+        "scoreFactorCode": "5",
+        "scoreFactorText": ""
+       }
+      ]
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {
+      "mortgageTradesCount": "0",
+      "mortgageBalanceTotal": "0",
+      "mortgageHighCreditTotal": "0",
+      "mortgagePaymentsTotal": "0",
+      "mortgagePastDueTotal": "0",
+      "autoTradesCount": "3",
+      "autoBalanceTotal": "15600",
+      "autoHighCreditTotal": "37560",
+      "autoPaymentsTotal": "326",
+      "autoPastDueTotal": "0",
+      "educationTradesCount": "0",
+      "educationBalanceTotal": "0",
+      "educationHighCreditTotal": "0",
+      "educationPaymentsTotal": "0",
+      "educationPastDueTotal": "0",
+      "openTradesCount": "0",
+      "openBalanceTotal": "0",
+      "openHighCreditTotal": "0",
+      "openPaymentsTotal": "0",
+      "openPastDueTotal": "0",
+      "revolvingTradesCount": "9",
+      "revolvingBalanceTotal": "2800",
+      "revolvingHighCreditTotal": "44800",
+      "revolvingPaymentsTotal": "0",
+      "revolvingPastDueTotal": "0",
+      "unknownTradesCount": "0",
+      "unknownBalanceTotal": "0",
+      "unknownHighCreditTotal": "0",
+      "unknownPaymentsTotal": "0",
+      "unknownPastDueTotal": "0",
+      "installmentOtherTradesCount": "0",
+      "installmentOtherBalanceTotal": "0",
+      "installmentOtherHighCreditTotal": "0",
+      "installmentOtherPaymentsTotal": "0",
+      "installmentOtherPastDueTotal": "0",
+      "applicableMortgagePaymentsTotal": "0",
+      "applicableAutoPaymentsTotal": "326",
+      "applicableEducationPaymentsTotal": "0",
+      "applicableOpenPaymentsTotal": "0",
+      "applicableRevolvingPaymentsTotal": "0",
+      "applicableUnknownPaymentsTotal": "0",
+      "applicableInstallmentPaymentsTotal": "326",
+      "applicableInstallmentOtherPaymentsTotal": "0",
+      "applicableMortgageHighCreditTotal": "0",
+      "applicableAutoHighCreditTotal": "25960",
+      "applicableEducationHighCreditTotal": "0",
+      "applicableOpenHighCreditTotal": "0",
+      "applicableRevolvingHighCreditTotal": "35000",
+      "applicableUnknownHighCreditTotal": "0",
+      "applicableInstallmentHighCreditTotal": "25960",
+      "applicableInstallmentOtherHighCreditTotal": "0",
+      "tradesCount": "12",
+      "balanceTotal": "18400",
+      "applicablePaymentsTotal": "326",
+      "applicableHighCreditTotal": "60960",
+      "highCreditTotal": "82360",
+      "paymentsTotal": "326",
+      "pastDueTotal": "0",
+      "securedDebtBalanceTotal": "15600",
+      "unsecuredDebtBalanceTotal": "2800",
+      "oldestTradelineDate": "2010-10-19",
+      "oldestTradelineCreditorName": "NORTHSTAR BANK VISA",
+      "revolvingCreditUtilization": "8",
+      "totalDebtHighCreditRatio": "30"
+     },
+     "derogatorySummary": {
+      "chargeOffsCount": "0",
+      "collectionsCount": "0",
+      "bankruptciesCount": "0",
+      "publicRecordsCount": "0",
+      "satisfactoryTradelineCount": "12",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "inquiriesCount": "1",
+      "mostRecentLateDate": "",
+      "disputesCount": "0",
+      "currentAdverseTradelineCount": "0",
+      "priorAdverseTradelineCount": "0",
+      "otherCount": "0",
+      "securedDebtBalanceTotal": "15600",
+      "unsecuredDebtBalanceTotal": "2800"
+     }
+    }
+   }
+  },
+  {
+   "callId": "04c37e62-7881-4d02-8f5c-acc8b1eac9a3",
+   "product": "credit_report",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 295,
+   "at": "2026-10-24T16:36:49Z",
+   "response": {
+    "requestData": {
+     "firstName": "PRIYA",
+     "lastName": "VENKATESAN",
+     "ssn": "•••••1008",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "3300 N LAKE SHORE DR APT 15C",
+       "city": "CHICAGO",
+       "state": "IL",
+       "postalCode": "60657"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:49.929539Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "FACTARiskScoreValue",
+      "responseAlertMessageText": "FACTA: Risk Score Value - The borrower's Risk Score Value was negatively affected by the presence of credit inquiry records on their credit file"
+     }
+    ],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2017-11-01",
+       "creditFileResultStatusType": "FileReturned",
+       "sourceType": "TransUnion"
+      },
+      "aliases": [
+       {
+        "firstName": "PRIYA",
+        "lastName": "VENKATESAN"
+       }
+      ],
+      "employments": [
+       {
+        "employerName": "JOE",
+        "employmentReportedDate": "2024-10-08"
+       },
+       {
+        "employerName": "BECU",
+        "employmentReportedDate": "2024-10-08"
+       }
+      ]
+     }
+    ],
+    "inquiries": [
+     {
+      "creditorName": "CAPITAL AUTO FINANCE",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-19",
+      "businessType": "Banking",
+      "subscriberCode": "B 04369125",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "NORTHSTAR BANK",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-04-19",
+      "businessType": "Banking",
+      "subscriberCode": "B 04369125",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "tradelines": [
+     {
+      "accountIdentifier": "CALHACKS-REV-1",
+      "accountOpenedDate": "2014-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1900",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-2",
+      "accountOpenedDate": "2023-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "42",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1900",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-3",
+      "accountOpenedDate": "2021-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "60",
+      "creditorName": "UNION CREDIT CARD",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1900",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-4",
+      "accountOpenedDate": "2020-04-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "78",
+      "creditorName": "HOMETOWN BANK CARD",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1900",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-5",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "SUMMIT VISA",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1900",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-INST-1",
+      "accountOpenedDate": "2025-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "21160",
+      "lastActivityDate": "2026-09-19",
+      "monthlyPaymentAmount": "263",
+      "monthsReviewedCount": "18",
+      "creditorName": "LAKESIDE AUTO FINANCE",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "termsDescription": "60 months at $263 per month",
+      "termsMonthsCount": "60",
+      "currentBalanceAmount": "12600",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-1",
+      "accountOpenedDate": "2020-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4000",
+      "lastActivityDate": "2025-10-19",
+      "monthsReviewedCount": "72",
+      "creditorName": "FORMER LENDER 1",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-04-20",
+      "accountIdentifier": "CALHACKS-CLOSED-2",
+      "accountOpenedDate": "2019-10-20",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-04-20",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4900",
+      "lastActivityDate": "2025-04-20",
+      "monthsReviewedCount": "84",
+      "creditorName": "FORMER LENDER 2",
+      "subscriberCode": "B 07695086",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "publicRecords": [],
+    "scores": [
+     {
+      "borrowerSourceType": "Borrower",
+      "modelName": "TransUnionVantageScore4.0",
+      "modelNameType": "001NN",
+      "sourceType": "TransUnion",
+      "factaInquiriesIndicator": true,
+      "scoreValue": "690",
+      "scoreRankPercentileValue": "35",
+      "scoreMaximumValue": "850",
+      "scoreMinimumValue": "300",
+      "scoreFactors": [
+       {
+        "scoreFactorCode": "10",
+        "scoreFactorText": "Too few accounts paid as agreed"
+       },
+       {
+        "scoreFactorCode": "18",
+        "scoreFactorText": "Lack of account information"
+       },
+       {
+        "scoreFactorCode": "12",
+        "scoreFactorText": "Delinquent or derogatory status on accounts is too recent"
+       },
+       {
+        "scoreFactorCode": "5",
+        "scoreFactorText": ""
+       }
+      ]
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {
+      "mortgageTradesCount": "0",
+      "mortgageBalanceTotal": "0",
+      "mortgageHighCreditTotal": "0",
+      "mortgagePaymentsTotal": "0",
+      "mortgagePastDueTotal": "0",
+      "autoTradesCount": "2",
+      "autoBalanceTotal": "12600",
+      "autoHighCreditTotal": "26060",
+      "autoPaymentsTotal": "263",
+      "autoPastDueTotal": "0",
+      "educationTradesCount": "0",
+      "educationBalanceTotal": "0",
+      "educationHighCreditTotal": "0",
+      "educationPaymentsTotal": "0",
+      "educationPastDueTotal": "0",
+      "openTradesCount": "0",
+      "openBalanceTotal": "0",
+      "openHighCreditTotal": "0",
+      "openPaymentsTotal": "0",
+      "openPastDueTotal": "0",
+      "revolvingTradesCount": "6",
+      "revolvingBalanceTotal": "9500",
+      "revolvingHighCreditTotal": "29000",
+      "revolvingPaymentsTotal": "0",
+      "revolvingPastDueTotal": "0",
+      "unknownTradesCount": "0",
+      "unknownBalanceTotal": "0",
+      "unknownHighCreditTotal": "0",
+      "unknownPaymentsTotal": "0",
+      "unknownPastDueTotal": "0",
+      "installmentOtherTradesCount": "0",
+      "installmentOtherBalanceTotal": "0",
+      "installmentOtherHighCreditTotal": "0",
+      "installmentOtherPaymentsTotal": "0",
+      "installmentOtherPastDueTotal": "0",
+      "applicableMortgagePaymentsTotal": "0",
+      "applicableAutoPaymentsTotal": "263",
+      "applicableEducationPaymentsTotal": "0",
+      "applicableOpenPaymentsTotal": "0",
+      "applicableRevolvingPaymentsTotal": "0",
+      "applicableUnknownPaymentsTotal": "0",
+      "applicableInstallmentPaymentsTotal": "263",
+      "applicableInstallmentOtherPaymentsTotal": "0",
+      "applicableMortgageHighCreditTotal": "0",
+      "applicableAutoHighCreditTotal": "21160",
+      "applicableEducationHighCreditTotal": "0",
+      "applicableOpenHighCreditTotal": "0",
+      "applicableRevolvingHighCreditTotal": "25000",
+      "applicableUnknownHighCreditTotal": "0",
+      "applicableInstallmentHighCreditTotal": "21160",
+      "applicableInstallmentOtherHighCreditTotal": "0",
+      "tradesCount": "8",
+      "balanceTotal": "22100",
+      "applicablePaymentsTotal": "263",
+      "applicableHighCreditTotal": "46160",
+      "highCreditTotal": "55060",
+      "paymentsTotal": "263",
+      "pastDueTotal": "0",
+      "securedDebtBalanceTotal": "12600",
+      "unsecuredDebtBalanceTotal": "9500",
+      "oldestTradelineDate": "2014-10-19",
+      "oldestTradelineCreditorName": "NORTHSTAR BANK VISA",
+      "revolvingCreditUtilization": "38",
+      "totalDebtHighCreditRatio": "48"
+     },
+     "derogatorySummary": {
+      "chargeOffsCount": "0",
+      "collectionsCount": "0",
+      "bankruptciesCount": "0",
+      "publicRecordsCount": "0",
+      "satisfactoryTradelineCount": "8",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "inquiriesCount": "2",
+      "mostRecentLateDate": "",
+      "disputesCount": "0",
+      "currentAdverseTradelineCount": "0",
+      "priorAdverseTradelineCount": "0",
+      "otherCount": "0",
+      "securedDebtBalanceTotal": "12600",
+      "unsecuredDebtBalanceTotal": "9500"
+     }
+    }
+   }
+  },
+  {
+   "callId": "192d9381-e1cf-4c1d-9572-a216118e23d6",
+   "product": "credit_report",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 265,
+   "at": "2026-10-24T16:36:53Z",
+   "response": {
+    "requestData": {
+     "firstName": "VICTOR",
+     "lastName": "ANAND",
+     "ssn": "•••••1012",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "55 WATER ST FL 20",
+       "city": "NEW YORK",
+       "state": "NY",
+       "postalCode": "10041"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:53.617760Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "SSNVerification",
+      "responseAlertMessageText": "SSN Alert: NO SSN ON FILE"
+     }
+    ],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2024-11-19",
+       "creditFileResultStatusType": "NoFileReturnedNoHit",
+       "sourceType": "TransUnion"
+      }
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {},
+     "derogatorySummary": {}
+    }
+   }
+  },
+  {
+   "callId": "3ccd6ea9-d4d3-4e1a-9509-717d1b24ff9b",
+   "product": "credit_report",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 337,
+   "at": "2026-10-24T16:36:54Z",
+   "response": {
+    "requestData": {
+     "firstName": "KAYLA",
+     "lastName": "BRENNAN",
+     "ssn": "•••••1013",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "9021 KINGSTON PIKE",
+       "city": "KNOXVILLE",
+       "state": "TN",
+       "postalCode": "37923"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:54.348229Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2024-10-01",
+       "creditFileResultStatusType": "FileReturned",
+       "sourceType": "TransUnion"
+      },
+      "aliases": [
+       {
+        "firstName": "KAYLA",
+        "lastName": "BRENNAN",
+        "middleName": "D"
+       }
+      ],
+      "employments": [
+       {
+        "employerName": "JOE",
+        "employmentReportedDate": "2024-10-10"
+       },
+       {
+        "employerName": "AGF",
+        "employmentReportedDate": "2024-10-10"
+       }
+      ]
+     }
+    ],
+    "inquiries": [
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-19",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-22",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-25",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-28",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-31",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-09-03",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-09-06",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-09-09",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "RICHTEST",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-09-12",
+      "businessType": "RealEstateAndPublicAccommodation",
+      "subscriberCode": "R 00001962",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "tradelines": [
+     {
+      "accountIdentifier": "CALHACKS-CARD-1",
+      "accountOpenedDate": "2025-08-01",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-01",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "2500",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "800",
+      "lastActivityDate": "2026-08-20",
+      "monthlyPaymentAmount": "75",
+      "monthsReviewedCount": "14",
+      "creditorName": "NEW HORIZON BANK",
+      "subscriberCode": "B 01597029",
+      "pastDueAmount": "0",
+      "termsDescription": "48 months at $75 per month",
+      "termsMonthsCount": "48",
+      "currentBalanceAmount": "300",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-01",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-AU-1",
+      "accountOpenedDate": "2025-08-15",
+      "accountOwnershipType": "AuthorizedUser",
+      "accountReportedDate": "2026-09-01",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "3500",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "1200",
+      "lastActivityDate": "2026-08-20",
+      "monthlyPaymentAmount": "75",
+      "monthsReviewedCount": "14",
+      "creditorName": "PREMIER CARD SERVICES",
+      "subscriberCode": "B 01597029",
+      "pastDueAmount": "0",
+      "termsDescription": "48 months at $75 per month",
+      "termsMonthsCount": "48",
+      "currentBalanceAmount": "600",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-01",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-AU-2",
+      "accountOpenedDate": "2025-09-01",
+      "accountOwnershipType": "AuthorizedUser",
+      "accountReportedDate": "2026-09-01",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "1500",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "350",
+      "lastActivityDate": "2026-08-20",
+      "monthlyPaymentAmount": "75",
+      "monthsReviewedCount": "13",
+      "creditorName": "DEPT STORE CHARGE",
+      "subscriberCode": "B 01597029",
+      "pastDueAmount": "0",
+      "termsDescription": "48 months at $75 per month",
+      "termsMonthsCount": "48",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "ChargeAccount",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-01",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "publicRecords": [],
+    "scores": [
+     {
+      "borrowerSourceType": "Borrower",
+      "modelName": "TransUnionVantageScore4.0",
+      "modelNameType": "001NN",
+      "sourceType": "TransUnion",
+      "factaInquiriesIndicator": false,
+      "scoreValue": "640",
+      "scoreRankPercentileValue": "23",
+      "scoreMaximumValue": "850",
+      "scoreMinimumValue": "300",
+      "scoreFactors": [
+       {
+        "scoreFactorCode": "27",
+        "scoreFactorText": "Delinquent or derogatory status on revolving accounts is too recent"
+       },
+       {
+        "scoreFactorCode": "16",
+        "scoreFactorText": "Total of credit limits and loan amounts is too low"
+       },
+       {
+        "scoreFactorCode": "15",
+        "scoreFactorText": "Lack of recently reported accounts"
+       },
+       {
+        "scoreFactorCode": "8",
+        "scoreFactorText": ""
+       }
+      ]
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {
+      "mortgageTradesCount": "0",
+      "mortgageBalanceTotal": "0",
+      "mortgageHighCreditTotal": "0",
+      "mortgagePaymentsTotal": "0",
+      "mortgagePastDueTotal": "0",
+      "autoTradesCount": "0",
+      "autoBalanceTotal": "0",
+      "autoHighCreditTotal": "0",
+      "autoPaymentsTotal": "0",
+      "autoPastDueTotal": "0",
+      "educationTradesCount": "0",
+      "educationBalanceTotal": "0",
+      "educationHighCreditTotal": "0",
+      "educationPaymentsTotal": "0",
+      "educationPastDueTotal": "0",
+      "openTradesCount": "0",
+      "openBalanceTotal": "0",
+      "openHighCreditTotal": "0",
+      "openPaymentsTotal": "0",
+      "openPastDueTotal": "0",
+      "revolvingTradesCount": "3",
+      "revolvingBalanceTotal": "900",
+      "revolvingHighCreditTotal": "7500",
+      "revolvingPaymentsTotal": "225",
+      "revolvingPastDueTotal": "0",
+      "unknownTradesCount": "0",
+      "unknownBalanceTotal": "0",
+      "unknownHighCreditTotal": "0",
+      "unknownPaymentsTotal": "0",
+      "unknownPastDueTotal": "0",
+      "installmentOtherTradesCount": "0",
+      "installmentOtherBalanceTotal": "0",
+      "installmentOtherHighCreditTotal": "0",
+      "installmentOtherPaymentsTotal": "0",
+      "installmentOtherPastDueTotal": "0",
+      "applicableMortgagePaymentsTotal": "0",
+      "applicableAutoPaymentsTotal": "0",
+      "applicableEducationPaymentsTotal": "0",
+      "applicableOpenPaymentsTotal": "0",
+      "applicableRevolvingPaymentsTotal": "150",
+      "applicableUnknownPaymentsTotal": "0",
+      "applicableInstallmentPaymentsTotal": "0",
+      "applicableInstallmentOtherPaymentsTotal": "0",
+      "applicableMortgageHighCreditTotal": "0",
+      "applicableAutoHighCreditTotal": "0",
+      "applicableEducationHighCreditTotal": "0",
+      "applicableOpenHighCreditTotal": "0",
+      "applicableRevolvingHighCreditTotal": "7500",
+      "applicableUnknownHighCreditTotal": "0",
+      "applicableInstallmentHighCreditTotal": "0",
+      "applicableInstallmentOtherHighCreditTotal": "0",
+      "tradesCount": "3",
+      "balanceTotal": "900",
+      "applicablePaymentsTotal": "150",
+      "applicableHighCreditTotal": "7500",
+      "highCreditTotal": "7500",
+      "paymentsTotal": "225",
+      "pastDueTotal": "0",
+      "securedDebtBalanceTotal": "0",
+      "unsecuredDebtBalanceTotal": "900",
+      "oldestTradelineDate": "2025-08-01",
+      "oldestTradelineCreditorName": "NEW HORIZON BANK",
+      "revolvingCreditUtilization": "12",
+      "totalDebtHighCreditRatio": "12"
+     },
+     "derogatorySummary": {
+      "chargeOffsCount": "0",
+      "collectionsCount": "0",
+      "bankruptciesCount": "0",
+      "publicRecordsCount": "0",
+      "satisfactoryTradelineCount": "3",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "inquiriesCount": "9",
+      "mostRecentLateDate": "",
+      "disputesCount": "0",
+      "currentAdverseTradelineCount": "0",
+      "priorAdverseTradelineCount": "0",
+      "otherCount": "0",
+      "securedDebtBalanceTotal": "0",
+      "unsecuredDebtBalanceTotal": "900"
+     }
+    }
+   }
+  },
+  {
+   "callId": "0ef9a1fa-a4bd-4870-a026-c6b5d81b068e",
+   "product": "credit_report",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "status": 200,
+   "latencyMs": 303,
+   "at": "2026-10-24T16:36:57Z",
+   "response": {
+    "requestData": {
+     "firstName": "SAMUEL",
+     "lastName": "OYELARAN",
+     "ssn": "•••••1016",
+     "addresses": [
+      {
+       "borrowerResidencyType": "Current",
+       "addressLine1": "1200 BRICKELL BAY DR APT 2203",
+       "city": "MIAMI",
+       "state": "FL",
+       "postalCode": "33131"
+      }
+     ]
+    },
+    "repositoryIncluded": {
+     "transunion": true,
+     "experian": false,
+     "equifax": false
+    },
+    "responseDetail": {
+     "dateRequested": "2026-10-24T16:36:57.426362Z",
+     "requestingParty": {
+      "name": "CALHACKS13"
+     },
+     "creditBureauContact": {
+      "name": "CREDIT REPORTING SERVICES, INC",
+      "address": {
+       "addressLine1": "1024 IRON POINT ROAD",
+       "city": "FOLSOM",
+       "state": "CA",
+       "postalCode": "95630"
+      }
+     }
+    },
+    "responseAlertMessages": [
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "FACTAFraudVictimInitial",
+      "responseAlertMessageText": "FACTA: Initial Fraud Alert - The borrower has been a fraud victim."
+     },
+     {
+      "borrowerSourceType": "Borrower",
+      "sourceType": "TransUnion",
+      "responseAlertMessageCategoryType": "FACTARiskScoreValue",
+      "responseAlertMessageText": "FACTA: Risk Score Value - The borrower's Risk Score Value was negatively affected by the presence of credit inquiry records on their credit file"
+     }
+    ],
+    "creditFiles": [
+     {
+      "creditFileDetail": {
+       "borrowerSourceType": "Borrower",
+       "creditFileInfileDate": "2019-09-10",
+       "creditFileResultStatusType": "FileReturned",
+       "sourceType": "TransUnion"
+      },
+      "aliases": [
+       {
+        "firstName": "SAMUEL",
+        "lastName": "OYELARAN",
+        "middleName": "K"
+       }
+      ],
+      "employments": [
+       {
+        "employerName": "SOLSTICE",
+        "employmentStartDate": "2024-09-01",
+        "employmentReportedDate": "2024-10-10"
+       },
+       {
+        "employerName": "TX MANAGEMENT PROPERTY GROUP",
+        "employmentReportedDate": "2024-10-10"
+       }
+      ],
+      "comments": [
+       {
+        "commentSourceType": "TransUnion",
+        "commentType": "ConsumerStatement",
+        "commentText": "INITIAL FRAUD ALERT: CONSUMER STATEMENT ON FILE. VERIFY IDENTITY BEFORE EXTENDING CREDIT. CALL 555-010-1016"
+       }
+      ]
+     }
+    ],
+    "inquiries": [
+     {
+      "creditorName": "CAPITAL AUTO FINANCE",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-08-19",
+      "businessType": "Finance",
+      "subscriberCode": "F 00030716",
+      "sourceType": "TransUnion"
+     },
+     {
+      "creditorName": "NORTHSTAR BANK",
+      "accountOwnershipType": "Individual",
+      "borrowerSourceType": "Borrower",
+      "inquiryDate": "2026-04-19",
+      "businessType": "Finance",
+      "subscriberCode": "F 00030716",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "tradelines": [
+     {
+      "accountIdentifier": "CALHACKS-REV-1",
+      "accountOpenedDate": "2008-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-2",
+      "accountOpenedDate": "2023-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "42",
+      "creditorName": "CAPITAL REWARDS MC",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-3",
+      "accountOpenedDate": "2021-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "60",
+      "creditorName": "UNION CREDIT CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-4",
+      "accountOpenedDate": "2020-04-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "78",
+      "creditorName": "HOMETOWN BANK CARD",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-5",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "SUMMIT VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-REV-6",
+      "accountOpenedDate": "2017-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "creditLimitAmount": "5000",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "2000",
+      "lastActivityDate": "2026-09-19",
+      "monthsReviewedCount": "99",
+      "creditorName": "NORTHSTAR BANK VISA",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "1200",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountIdentifier": "CALHACKS-INST-1",
+      "accountOpenedDate": "2025-04-20",
+      "accountOwnershipType": "Individual",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Open",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "21000",
+      "lastActivityDate": "2026-09-19",
+      "monthlyPaymentAmount": "261",
+      "monthsReviewedCount": "18",
+      "creditorName": "LAKESIDE AUTO FINANCE",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "termsDescription": "60 months at $261 per month",
+      "termsMonthsCount": "60",
+      "currentBalanceAmount": "12500",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-1",
+      "accountOpenedDate": "2020-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4000",
+      "lastActivityDate": "2025-10-19",
+      "monthsReviewedCount": "72",
+      "creditorName": "FORMER LENDER 1",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2025-04-20",
+      "accountIdentifier": "CALHACKS-CLOSED-2",
+      "accountOpenedDate": "2019-10-20",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2025-04-20",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Installment",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "4900",
+      "lastActivityDate": "2025-04-20",
+      "monthsReviewedCount": "84",
+      "creditorName": "FORMER LENDER 2",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "Automobile",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     },
+     {
+      "accountClosedDate": "2024-10-19",
+      "accountIdentifier": "CALHACKS-CLOSED-3",
+      "accountOpenedDate": "2018-10-19",
+      "accountOwnershipType": "Individual",
+      "accountPaidDate": "2024-10-19",
+      "accountReportedDate": "2026-09-19",
+      "accountStatusType": "Paid",
+      "accountType": "Revolving",
+      "borrowerSourceType": "Borrower",
+      "derogatoryDataIndicator": false,
+      "highBalanceAmount": "5800",
+      "lastActivityDate": "2024-10-19",
+      "monthsReviewedCount": "96",
+      "creditorName": "FORMER LENDER 3",
+      "subscriberCode": "B 08194051",
+      "pastDueAmount": "0",
+      "currentBalanceAmount": "0",
+      "businessType": "Banking",
+      "loanType": "CreditCard",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "currentRatingCode": "C",
+      "currentRatingType": "AsAgreed",
+      "paymentPatternData": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "paymentPatternStartDate": "2026-09-19",
+      "sourceType": "TransUnion"
+     }
+    ],
+    "publicRecords": [],
+    "scores": [
+     {
+      "borrowerSourceType": "Borrower",
+      "modelName": "TransUnionVantageScore4.0",
+      "modelNameType": "001NN",
+      "sourceType": "TransUnion",
+      "factaInquiriesIndicator": true,
+      "scoreValue": "730",
+      "scoreRankPercentileValue": "49",
+      "scoreMaximumValue": "850",
+      "scoreMinimumValue": "300",
+      "scoreFactors": [
+       {
+        "scoreFactorCode": "10",
+        "scoreFactorText": "Too few accounts paid as agreed"
+       },
+       {
+        "scoreFactorCode": "11",
+        "scoreFactorText": "Oldest account was opened too recently"
+       },
+       {
+        "scoreFactorCode": "3",
+        "scoreFactorText": ""
+       },
+       {
+        "scoreFactorCode": "5",
+        "scoreFactorText": ""
+       }
+      ]
+     }
+    ],
+    "summaries": {
+     "tradeSummary": {
+      "mortgageTradesCount": "0",
+      "mortgageBalanceTotal": "0",
+      "mortgageHighCreditTotal": "0",
+      "mortgagePaymentsTotal": "0",
+      "mortgagePastDueTotal": "0",
+      "autoTradesCount": "2",
+      "autoBalanceTotal": "12500",
+      "autoHighCreditTotal": "25900",
+      "autoPaymentsTotal": "261",
+      "autoPastDueTotal": "0",
+      "educationTradesCount": "0",
+      "educationBalanceTotal": "0",
+      "educationHighCreditTotal": "0",
+      "educationPaymentsTotal": "0",
+      "educationPastDueTotal": "0",
+      "openTradesCount": "0",
+      "openBalanceTotal": "0",
+      "openHighCreditTotal": "0",
+      "openPaymentsTotal": "0",
+      "openPastDueTotal": "0",
+      "revolvingTradesCount": "8",
+      "revolvingBalanceTotal": "7200",
+      "revolvingHighCreditTotal": "39800",
+      "revolvingPaymentsTotal": "0",
+      "revolvingPastDueTotal": "0",
+      "unknownTradesCount": "0",
+      "unknownBalanceTotal": "0",
+      "unknownHighCreditTotal": "0",
+      "unknownPaymentsTotal": "0",
+      "unknownPastDueTotal": "0",
+      "installmentOtherTradesCount": "0",
+      "installmentOtherBalanceTotal": "0",
+      "installmentOtherHighCreditTotal": "0",
+      "installmentOtherPaymentsTotal": "0",
+      "installmentOtherPastDueTotal": "0",
+      "applicableMortgagePaymentsTotal": "0",
+      "applicableAutoPaymentsTotal": "261",
+      "applicableEducationPaymentsTotal": "0",
+      "applicableOpenPaymentsTotal": "0",
+      "applicableRevolvingPaymentsTotal": "0",
+      "applicableUnknownPaymentsTotal": "0",
+      "applicableInstallmentPaymentsTotal": "261",
+      "applicableInstallmentOtherPaymentsTotal": "0",
+      "applicableMortgageHighCreditTotal": "0",
+      "applicableAutoHighCreditTotal": "21000",
+      "applicableEducationHighCreditTotal": "0",
+      "applicableOpenHighCreditTotal": "0",
+      "applicableRevolvingHighCreditTotal": "30000",
+      "applicableUnknownHighCreditTotal": "0",
+      "applicableInstallmentHighCreditTotal": "21000",
+      "applicableInstallmentOtherHighCreditTotal": "0",
+      "tradesCount": "10",
+      "balanceTotal": "19700",
+      "applicablePaymentsTotal": "261",
+      "applicableHighCreditTotal": "51000",
+      "highCreditTotal": "65700",
+      "paymentsTotal": "261",
+      "pastDueTotal": "0",
+      "securedDebtBalanceTotal": "12500",
+      "unsecuredDebtBalanceTotal": "7200",
+      "oldestTradelineDate": "2008-10-19",
+      "oldestTradelineCreditorName": "NORTHSTAR BANK VISA",
+      "revolvingCreditUtilization": "24",
+      "totalDebtHighCreditRatio": "39"
+     },
+     "derogatorySummary": {
+      "chargeOffsCount": "0",
+      "collectionsCount": "0",
+      "bankruptciesCount": "0",
+      "publicRecordsCount": "0",
+      "satisfactoryTradelineCount": "10",
+      "_30DayLates": "0",
+      "_60DayLates": "0",
+      "_90DayLates": "0",
+      "inquiriesCount": "2",
+      "mostRecentLateDate": "",
+      "disputesCount": "0",
+      "currentAdverseTradelineCount": "0",
+      "priorAdverseTradelineCount": "0",
+      "otherCount": "0",
+      "securedDebtBalanceTotal": "12500",
+      "unsecuredDebtBalanceTotal": "7200"
+     }
+    }
+   }
+  }
+ ]
+}

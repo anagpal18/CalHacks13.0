@@ -1,0 +1,8 @@
+packages:
+  - packages/*
+  - services/*
+  - apps/*
+allowBuilds:
+  esbuild: set this to true or false
+onlyBuiltDependencies:
+  - esbuild

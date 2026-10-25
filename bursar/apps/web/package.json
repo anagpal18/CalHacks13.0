@@ -1,0 +1,36 @@
+{
+  "name": "@terms-room/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@fontsource/archivo": "5.2.5",
+    "@fontsource/caveat": "5.2.5",
+    "@fontsource/ibm-plex-mono": "5.2.5",
+    "@fontsource/source-serif-4": "5.2.5",
+    "@react-three/drei": "10.0.6",
+    "@react-three/fiber": "9.1.2",
+    "@react-three/postprocessing": "3.0.4",
+    "@terms-room/api": "workspace:*",
+    "@terms-room/shared": "workspace:*",
+    "postprocessing": "6.37.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "three": "0.170.0",
+    "zustand": "5.0.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "@types/three": "0.170.0",
+    "@vitejs/plugin-react": "4.4.1",
+    "typescript": "5.8.3",
+    "vite": "6.3.5"
+  }
+}

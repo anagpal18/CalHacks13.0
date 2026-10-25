@@ -1,0 +1,503 @@
+{
+ "note": "Server-only. Persona-exact CRS sandbox request bodies, copied verbatim from the CalHacks personas. The live client sends only these; anything else is refused.",
+ "calls": [
+  {
+   "product": "tu_idv",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "GRACE",
+    "lastName": "NAKAMURA",
+    "ssn": "666701019",
+    "dob": "1976-09-16",
+    "street1": "1850 SOLANO AVE",
+    "city": "BERKELEY",
+    "state": "CA",
+    "zip": "94707"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "GRACE",
+    "lastName": "NAKAMURA",
+    "phoneNumber": "5550101019",
+    "email": "grace.nakamura@example.com",
+    "ipAddress": "203.0.113.29",
+    "address": {
+     "addressLine1": "1850 SOLANO AVE",
+     "city": "BERKELEY",
+     "state": "CA",
+     "postalCode": "94707"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101019"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "GRACE",
+        "lastName": "NAKAMURA",
+        "ssn": "666701019"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "tu_idv",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "MARGARET",
+    "lastName": "OKAFOR",
+    "ssn": "666701001",
+    "dob": "1984-03-14",
+    "street1": "1420 WILLOW CREEK DR",
+    "city": "SAN JOSE",
+    "state": "CA",
+    "zip": "95125"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "MARGARET",
+    "lastName": "OKAFOR",
+    "phoneNumber": "5550101001",
+    "email": "margaret.okafor@example.com",
+    "ipAddress": "203.0.113.11",
+    "address": {
+     "addressLine1": "1420 WILLOW CREEK DR",
+     "city": "SAN JOSE",
+     "state": "CA",
+     "postalCode": "95125"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101001"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "MARGARET",
+        "lastName": "OKAFOR",
+        "ssn": "666701001"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "tu_idv",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "PRIYA",
+    "lastName": "VENKATESAN",
+    "ssn": "666701008",
+    "dob": "1981-07-27",
+    "street1": "3300 N LAKE SHORE DR APT 15C",
+    "city": "CHICAGO",
+    "state": "IL",
+    "zip": "60657"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "PRIYA",
+    "lastName": "VENKATESAN",
+    "phoneNumber": "5550101008",
+    "email": "priya.venkatesan@example.com",
+    "ipAddress": "203.0.113.18",
+    "address": {
+     "addressLine1": "3300 N LAKE SHORE DR APT 15C",
+     "city": "CHICAGO",
+     "state": "IL",
+     "postalCode": "60657"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101008"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "PRIYA",
+        "lastName": "VENKATESAN",
+        "ssn": "666701008"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "tu_idv",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "KAYLA",
+    "lastName": "BRENNAN",
+    "ssn": "666701013",
+    "dob": "1999-12-24",
+    "street1": "9021 KINGSTON PIKE",
+    "city": "KNOXVILLE",
+    "state": "TN",
+    "zip": "37923"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "KAYLA",
+    "lastName": "BRENNAN",
+    "phoneNumber": "5550101013",
+    "email": "kb.9921x@example.com",
+    "ipAddress": "198.51.100.13",
+    "address": {
+     "addressLine1": "9021 KINGSTON PIKE",
+     "city": "KNOXVILLE",
+     "state": "TN",
+     "postalCode": "37923"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101013"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "KAYLA",
+        "lastName": "BRENNAN",
+        "ssn": "666701013"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "tu_idv",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "VICTOR",
+    "lastName": "ANAND",
+    "ssn": "666701012",
+    "dob": "1968-08-08",
+    "street1": "55 WATER ST FL 20",
+    "city": "NEW YORK",
+    "state": "NY",
+    "zip": "10041"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "VICTOR",
+    "lastName": "ANAND",
+    "phoneNumber": "5550101012",
+    "email": "v.anand.1968@example.com",
+    "ipAddress": "198.51.100.12",
+    "address": {
+     "addressLine1": "55 WATER ST FL 20",
+     "city": "NEW YORK",
+     "state": "NY",
+     "postalCode": "10041"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101012"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "VICTOR",
+        "lastName": "ANAND",
+        "ssn": "666701012"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "tu_idv",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/transunion/identity-manager-verification/basic",
+   "body": {
+    "firstName": "SAMUEL",
+    "lastName": "OYELARAN",
+    "ssn": "666701016",
+    "dob": "1977-06-12",
+    "street1": "1200 BRICKELL BAY DR APT 2203",
+    "city": "MIAMI",
+    "state": "FL",
+    "zip": "33131"
+   }
+  },
+  {
+   "product": "fraud_finder",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/fraud-finder/fraud-finder",
+   "body": {
+    "firstName": "SAMUEL",
+    "lastName": "OYELARAN",
+    "phoneNumber": "5550101016",
+    "email": "samuel.oyelaran@example.com",
+    "ipAddress": "203.0.113.26",
+    "address": {
+     "addressLine1": "1200 BRICKELL BAY DR APT 2203",
+     "city": "MIAMI",
+     "state": "FL",
+     "postalCode": "33131"
+    }
+   }
+  },
+  {
+   "product": "reverse_phone",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/accurate-append/reverse",
+   "body": {
+    "phoneNumber": "5550101016"
+   }
+  },
+  {
+   "product": "pitchpoint",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/pp/fcrablj/data",
+   "body": {
+    "terms": {
+     "term": [
+      {
+       "person": {
+        "firstName": "SAMUEL",
+        "lastName": "OYELARAN",
+        "ssn": "666701016"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P19",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "GRACE",
+    "lastName": "NAKAMURA",
+    "ssn": "666701019",
+    "addresses": [
+     {
+      "addressLine1": "1850 SOLANO AVE",
+      "city": "BERKELEY",
+      "state": "CA",
+      "postalCode": "94707",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P01",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "MARGARET",
+    "lastName": "OKAFOR",
+    "ssn": "666701001",
+    "addresses": [
+     {
+      "addressLine1": "1420 WILLOW CREEK DR",
+      "city": "SAN JOSE",
+      "state": "CA",
+      "postalCode": "95125",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P08",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "PRIYA",
+    "lastName": "VENKATESAN",
+    "ssn": "666701008",
+    "addresses": [
+     {
+      "addressLine1": "3300 N LAKE SHORE DR APT 15C",
+      "city": "CHICAGO",
+      "state": "IL",
+      "postalCode": "60657",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P12",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "VICTOR",
+    "lastName": "ANAND",
+    "ssn": "666701012",
+    "addresses": [
+     {
+      "addressLine1": "55 WATER ST FL 20",
+      "city": "NEW YORK",
+      "state": "NY",
+      "postalCode": "10041",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P13",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "KAYLA",
+    "lastName": "BRENNAN",
+    "ssn": "666701013",
+    "addresses": [
+     {
+      "addressLine1": "9021 KINGSTON PIKE",
+      "city": "KNOXVILLE",
+      "state": "TN",
+      "postalCode": "37923",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  },
+  {
+   "product": "credit_report",
+   "persona": "P16",
+   "method": "POST",
+   "path": "/transunion/credit-report/standard/tu-prequal-fico9",
+   "body": {
+    "firstName": "SAMUEL",
+    "lastName": "OYELARAN",
+    "ssn": "666701016",
+    "addresses": [
+     {
+      "addressLine1": "1200 BRICKELL BAY DR APT 2203",
+      "city": "MIAMI",
+      "state": "FL",
+      "postalCode": "33131",
+      "borrowerResidencyType": "Current"
+     }
+    ]
+   }
+  }
+ ]
+}
