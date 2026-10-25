@@ -119,7 +119,9 @@ export function createOrchestrator(deps: OrchestratorDeps) {
       });
       emit("passport", { billId });
       if (result.error && !result.creaoRunId) throw new Error(result.error);
-      return { summary: seatSummary(result), data: result };
+      // The summary says why an uploaded bill's reading has no score, so the model doesn't report a null as a gap.
+      const summary = seatSummary(result);
+      return { summary, data: { summary, ...result } };
     }
     if (name === "get_passport") {
       const p = deps.passport(input.billId);
