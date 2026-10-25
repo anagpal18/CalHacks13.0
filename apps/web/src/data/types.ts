@@ -1,0 +1,156 @@
+// Mirrors BILL_PASSPORT_MASTER.md §8. Replace with imports from packages/shared once Kenil publishes it.
+
+export type StampId = "sender" | "vendor" | "repeat" | "order" | "delivered" | "terms" | "payto" | "insider";
+export type StampStatus = "pass" | "fail" | "ask_human";
+export type SeatName = "intake" | "vendor_records" | "matching" | "payments";
+
+export type EvidenceSource =
+  | "invoice" | "email" | "vendor_master" | "vendor_history" | "po" | "contract"
+  | "receiving" | "past_bills" | "ledger" | "nessie" | "crs" | "employees" | "approval_rules" | "callback";
+
+export interface Evidence {
+  source: EvidenceSource;
+  field: string;
+  value: string;
+  ref?: string;
+}
+
+export interface Disagreement {
+  sources: string[];
+  winner: string;
+  rule: string;
+}
+
+export interface Stamp {
+  id: StampId;
+  status: StampStatus;
+  reason: string;
+  evidence: Evidence[];
+  disagreement?: Disagreement;
+  signedBy: Exclude<SeatName, "payments">;
+  signature: string;
+  at: string;
+}
+
+export type PassportStatus = "checking" | "parked" | "booked" | "scheduled" | "approved" | "held" | "paid";
+
+export interface Passport {
+  billId: string;
+  vendorId: string;
+  amountCents: number;
+  stamps: Stamp[];
+  status: PassportStatus;
+  askedWho?: "controller" | "project_manager" | "vendor";
+  payment?: { runId: string; approvedBy: string; nessieTransferId?: string; matched?: boolean };
+}
+
+/** What the Inbox list shows per bill. */
+export interface BillSummary {
+  billId: string;
+  invoiceNumber: string;
+  vendorId: string;
+  vendorName: string;
+  amountCents: number;
+  receivedVia: "email" | "portal";
+  receivedAt: string;
+  jobSite: string;
+  status: PassportStatus;
+  /** One plain line explaining the status, shown on held/parked bills. */
+  headline?: string;
+  /** Planted demo bills link to the CRS persona that drives their Verify story. */
+  crsPersonaId?: string;
+}
+
+// ---- CRS (Verify page) ----
+
+export type CrsDecision = "cleared" | "held" | "review" | "escalate";
+
+export interface CrsReasonCode {
+  code: string;
+  meaning: string;
+  ok: boolean;
+}
+
+export interface CrsChainResult {
+  personaId: string;
+  personaName: string;
+  claimsToBe: string;
+  scenario: string;
+  amountAtStakeCents: number;
+  fraudFinder: {
+    riskScore: number;
+    emailAgeDays: number;
+    phoneType: "mobile" | "landline" | "voip" | "prepaid";
+    phoneOwnerMatches: boolean;
+    ipDistanceMiles: number;
+    line: string;
+  };
+  identity: { passed: boolean; reasonCodes: CrsReasonCode[]; line: string };
+  phoneOwner: { registeredTo: string; matchesContact: boolean; line: string };
+  decision: CrsDecision;
+  decisionLine: string;
+}
+
+// ---- Stage 2 (Approve & Pay) ----
+
+export interface PaymentRunItem {
+  billId: string;
+  vendorName: string;
+  amountCents: number;
+  dueDate: string;
+  terms: string;
+  discount?: { percent: number; payByDate: string; savingsCents: number };
+  requestedBy: string;
+  /** What the last-minute re-check will find (mock only). */
+  recheckOutcome: "unchanged" | "bank_changed" | "already_paid" | "amount_changed";
+}
+
+export interface PaymentRun {
+  runId: string;
+  requestedBy: string;
+  approverLimitCents: number;
+  operatingBalanceCents: number;
+  items: PaymentRunItem[];
+}
+
+// ---- Proof page ----
+
+export type ProblemKind =
+  | "duplicate" | "price_creep" | "not_delivered" | "wrong_terms" | "missed_discount"
+  | "bank_change_scam" | "bank_change_after_booking" | "insider_vendor" | "self_approval" | "bank_mismatch" | "ghost_vendor";
+
+export interface PlantedProblemResult {
+  problemId: string;
+  kind: ProblemKind;
+  billId: string;
+  amountCents: number;
+  outcome: "caught" | "missed";
+  caughtBy?: StampId | "recheck" | "approver" | "bank_match";
+}
+
+export interface FalseAlarm {
+  billId: string;
+  stamp: StampId;
+  reason: string;
+}
+
+export interface ScoreResult {
+  plantedProblems: PlantedProblemResult[];
+  falseAlarms: FalseAlarm[];
+}
+
+export interface AuditEvent {
+  at: string;
+  actor: string;
+  action: string;
+  detail: string;
+  tone: "neutral" | "cleared" | "held" | "asking";
+}
+
+export interface CrsDataUseEntry {
+  at: string;
+  product: "Fraud Finder" | "TU Identity" | "Reverse Phone";
+  persona: string;
+  purpose: string;
+  cached: boolean;
+}
