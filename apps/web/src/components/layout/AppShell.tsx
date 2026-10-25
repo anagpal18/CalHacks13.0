@@ -17,9 +17,9 @@ export function AppShell() {
   const [isScamConsoleOpen, setScamConsoleOpen] = useState(false);
 
   return (
-    <div className="min-h-screen p-3 md:p-6">
-      {/* The app sits on a light canvas inside the slate frame, like the reference. */}
-      <div className="relative mx-auto max-w-[1480px] rounded-[28px] bg-background px-5 pb-24 pt-5 shadow-[0_30px_80px_-30px_rgb(31_36_51/0.45)] md:px-9">
+    <div className="min-h-screen bg-background">
+      {/* Full-screen light canvas; content stays on a readable max width. */}
+      <div className="relative mx-auto max-w-[1680px] px-5 pb-24 pt-5 md:px-10">
         <header className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-border pb-4">
           <Link to="/inbox" className="flex shrink-0 items-center gap-2.5">
             <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
@@ -62,7 +62,7 @@ export function AppShell() {
         {nextStep && (
           <Link
             to={nextStep.path}
-            className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium shadow-sm transition hover:border-foreground/30 md:right-9"
+            className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium shadow-sm transition hover:border-foreground/30 md:right-10"
           >
             Next: {nextStep.label} <ArrowRight className="size-4" />
           </Link>
