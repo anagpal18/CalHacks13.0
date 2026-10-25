@@ -1,10 +1,10 @@
-# Aditya — Bill Passport (Lead, full stack)
+# Aditya — Bursar (Lead, full stack)
 
-> Read BILL_PASSPORT_MASTER.md first. This file lists only your work.
-> Bill Passport is standalone. It is NOT connected to Terms Room.
+> Read BURSAR_MASTER.md first. This file lists only your work.
+> Bursar is standalone. It is NOT connected to Terms Room.
 
 ## Your mission
-Make Bill Passport **eye-catching and obvious in 2 minutes**, and build stage 2: planning, approving, paying through Nessie, and matching the bank record.
+Make Bursar **eye-catching and obvious in 2 minutes**, and build stage 2: planning, approving, paying through Nessie, and matching the bank record.
 
 ## You own
 ```

@@ -187,7 +187,7 @@ function PassportDocument({ bill, passport, revealedCount, openStampIds, selecte
         <div className="flex items-center gap-3">
           <span className="flex size-11 items-center justify-center rounded-xl bg-foreground text-background"><BookCheck className="size-6" /></span>
           <div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Bill passport</div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Passport</div>
             <div className="font-mono text-sm">{bill.invoiceNumber}</div>
           </div>
         </div>

@@ -29,7 +29,7 @@ function toPastVendorPayment(transfer: NessieTransfer): PastVendorPayment | null
   };
 }
 
-async function listAllBillPassportPayments(): Promise<PastVendorPayment[]> {
+async function listAllBursarPayments(): Promise<PastVendorPayment[]> {
   const operatingAccountId = requireCompanyOperatingAccountId(loadNessieAccountDirectory());
   const transfers = await nessieHttpClient.listTransfersFromAccount(operatingAccountId);
   return transfers.map(toPastVendorPayment).filter((payment) => payment !== null);
@@ -37,12 +37,12 @@ async function listAllBillPassportPayments(): Promise<PastVendorPayment[]> {
 
 export const liveNessieBankService: BankService = {
   async getPaymentHistory(vendorId) {
-    const allPayments = await listAllBillPassportPayments();
+    const allPayments = await listAllBursarPayments();
     return allPayments.filter((payment) => payment.vendorId === vendorId && payment.status !== CANCELLED_STATUS);
   },
 
   async findPaymentsForBill(billId) {
-    const allPayments = await listAllBillPassportPayments();
+    const allPayments = await listAllBursarPayments();
     return allPayments.filter((payment) => payment.billId === billId && payment.status !== CANCELLED_STATUS);
   },
 

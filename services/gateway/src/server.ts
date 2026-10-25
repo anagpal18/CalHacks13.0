@@ -1,4 +1,4 @@
-// Bill Passport API: the gateway between the Creao seat agents and the company's data, CRS and the passport.
+// Bursar API: the gateway between the Creao seat agents and the company's data, CRS and the passport.
 // Seat agents call /tools/* with a run ticket. Our backend calls /admin/* with BP_ADMIN_KEY, from this machine only.
 // The dashboard calls /dashboard/* with BP_DASHBOARD_KEY (added by the Vite dev proxy), also from this machine only.
 // Usage: pnpm gateway   (then pnpm tunnel for a public URL the Creao agents can reach)
@@ -737,4 +737,4 @@ const server = createServer(async (req, res) => {
 });
 
 const port = Number(process.env.PORT ?? 8787);
-server.listen(port, () => console.log(`Bill Passport API on http://localhost:${port}`));
+server.listen(port, () => console.log(`Bursar API on http://localhost:${port}`));

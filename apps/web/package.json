@@ -1,5 +1,5 @@
 {
-  "name": "@bill-passport/web",
+  "name": "@bursar/web",
   "private": true,
   "type": "module",
   "scripts": {

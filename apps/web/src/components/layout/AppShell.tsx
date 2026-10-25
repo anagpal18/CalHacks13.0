@@ -28,7 +28,7 @@ export function AppShell() {
             <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
               <BookCheck className="size-4.5" />
             </span>
-            <span className="text-[15px] font-semibold tracking-tight">Bill Passport</span>
+            <span className="text-[15px] font-semibold tracking-tight">Bursar</span>
           </Link>
 
           <div className="flex flex-1 justify-center"><StepBar /></div>

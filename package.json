@@ -1,17 +1,17 @@
 {
-  "name": "bill-passport",
+  "name": "bursar",
   "private": true,
   "packageManager": "pnpm@12.15.0",
   "scripts": {
-    "api:dev": "corepack pnpm --filter @bill-passport/api api:dev",
-    "api:start": "corepack pnpm --filter @bill-passport/api api:start",
-    "nessie:check": "corepack pnpm --filter @bill-passport/api nessie:check",
-    "nessie:seed": "corepack pnpm --filter @bill-passport/api nessie:seed",
+    "api:dev": "corepack pnpm --filter @bursar/api api:dev",
+    "api:start": "corepack pnpm --filter @bursar/api api:start",
+    "nessie:check": "corepack pnpm --filter @bursar/api nessie:check",
+    "nessie:seed": "corepack pnpm --filter @bursar/api nessie:seed",
     "typecheck": "corepack pnpm -r typecheck",
-    "gateway": "corepack pnpm --filter @bill-passport/gateway start",
-    "web:dev": "corepack pnpm --filter @bill-passport/web dev",
-    "creao:passport": "corepack pnpm --filter @bill-passport/gateway creao:passport",
-    "inbox:build": "corepack pnpm --filter @bill-passport/gateway inbox:build",
+    "gateway": "corepack pnpm --filter @bursar/gateway start",
+    "web:dev": "corepack pnpm --filter @bursar/web dev",
+    "creao:passport": "corepack pnpm --filter @bursar/gateway creao:passport",
+    "inbox:build": "corepack pnpm --filter @bursar/gateway inbox:build",
     "tunnel": "cloudflared tunnel --protocol http2 --no-autoupdate --url http://localhost:8787"
   }
 }

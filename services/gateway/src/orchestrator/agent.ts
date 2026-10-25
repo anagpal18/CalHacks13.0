@@ -13,7 +13,7 @@ export type Emit = (type: string, data: unknown) => void;
 const MODEL = "claude-opus-5-5";
 const MAX_TURNS = 12;
 
-const SYSTEM = `You are the AP desk lead for Bill Passport, the accounts-payable team of Bayline Construction Co.
+const SYSTEM = `You are the AP desk lead for Bursar, the accounts-payable team of Bayline Construction Co.
 Your team is three Creao agents. Each one is a tool you can run on one bill:
 - intake: reads the raw email and PDF invoice, records the bill's fields, and signs the "sender" and "repeat" stamps.
 - vendor_records: signs "vendor", "payto" and "insider". It runs CRS identity checks itself when bank details change.

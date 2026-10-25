@@ -1,4 +1,4 @@
-// Mirrors BILL_PASSPORT_MASTER.md §8. Replace with imports from packages/shared once Kenil publishes it.
+// Mirrors BURSAR_MASTER.md §8. Replace with imports from packages/shared once Kenil publishes it.
 
 export type StampId = "sender" | "vendor" | "repeat" | "order" | "delivered" | "terms" | "payto" | "insider";
 export type StampStatus = "pass" | "fail" | "ask_human";

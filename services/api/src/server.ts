@@ -1,4 +1,4 @@
-// Bill Passport API. Start with: corepack pnpm api:dev
+// Bursar API. Start with: corepack pnpm api:dev
 // Creao agents and the dashboard call this; only this server talks to Nessie.
 
 import Fastify from "fastify";

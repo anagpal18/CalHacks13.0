@@ -1,6 +1,6 @@
-# Bill Passport — MASTER.md
+# Bursar — MASTER.md
 
-> Single source of truth for building Bill Passport at Cal Hacks 13.0.
+> Single source of truth for building Bursar at Cal Hacks 13.0.
 > Standalone project. It is NOT connected to Terms Room.
 > Plan doc: https://claude.ai/artifact/Lr1XrSDnAWyHBVjZxPfULZ
 
@@ -123,7 +123,7 @@ Web app (React, 2D)  ──►  API (gateway)  ──►  Ledger + event log + p
 - `packages/shared` — zod schemas + types used by web and api
 
 ```
-bill-passport/
+bursar/
   apps/web/            # Aditya
   services/api/
     gateway/           # Kenil
@@ -252,7 +252,7 @@ Modes: **demo** (seeded replay) and **live** (judge attacks).
 | 1:35–1:50 | Scam console | Judge's attack caught live |
 | 1:50–2:00 | Proof | "38 of 40 caught, every decision explained" |
 
-Hyphenate video opens with the Verify catch. Seats line: "Bill Passport fills the AP intake, vendor-records, matching and payments seats."
+Hyphenate video opens with the Verify catch. Seats line: "Bursar fills the AP intake, vendor-records, matching and payments seats."
 
 ---
 

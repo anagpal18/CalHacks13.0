@@ -9,7 +9,7 @@ export interface DashboardStep {
   icon: LucideIcon;
 }
 
-// BILL_PASSPORT_MASTER.md §12: the step bar on every page, in this order.
+// BURSAR_MASTER.md §12: the step bar on every page, in this order.
 export const DASHBOARD_STEPS: DashboardStep[] = [
   { number: 1, path: "/inbox", label: "Inbox", headline: "Bills are coming in.", subtitle: "Every bill is checked the moment it arrives. Most clear; the rest are held or sent to a person.", icon: Inbox },
   { number: 2, path: "/check", label: "Check", headline: "Every bill must prove itself.", subtitle: "Eight stamps, signed by three agents. A bill is booked only when all eight pass. If someone asks to change where the money goes, their identity is checked here too.", icon: ShieldCheck },

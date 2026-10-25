@@ -1,4 +1,4 @@
-// Nessie speaks dollars; Bill Passport stores integer cents everywhere.
+// Nessie speaks dollars; Bursar stores integer cents everywhere.
 
 export function centsToNessieDollars(amountCents: number): number {
   if (!Number.isInteger(amountCents)) throw new Error(`amountCents must be an integer, got ${amountCents}`);

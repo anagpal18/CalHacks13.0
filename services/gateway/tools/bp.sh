@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bp: Bill Passport seat tools for Creao agents.
+# bp: Bursar seat tools for Creao agents.
 # Needs BP_GATEWAY_URL (a Creao Secret) and BP_TICKET (export it from payload.ticket).
 # Every call is checked by the gateway: your seat may use only its own tools and sign only its own stamps.
 set -euo pipefail

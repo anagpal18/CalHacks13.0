@@ -1,5 +1,5 @@
 {
-  "name": "@bill-passport/api",
+  "name": "@bursar/api",
   "private": true,
   "type": "module",
   "scripts": {

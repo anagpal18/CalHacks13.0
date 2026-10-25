@@ -1,6 +1,6 @@
 // Starter bank data so stamps 3 and 7 have history from hour 0.
 // TEMPORARY: replace with Shresth's generator output (services/api/src/sim) once it exists.
-// Contact names match the CRS demo personas in BILL_PASSPORT_MASTER.md §9.
+// Contact names match the CRS demo personas in BURSAR_MASTER.md §9.
 
 export const COMPANY_NAME = { firstName: "Ridgeline", lastName: "Builders" };
 export const COMPANY_OPENING_BALANCE_CENTS = 2_500_000_00; // $2.5M operating cash

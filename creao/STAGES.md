@@ -1,6 +1,6 @@
 # Creao build, in stages
 
-**Why the product dies without Creao:** every seat of Bill Passport is a Creao agent. Intake, Vendor-Records and Matching read each bill and make the stamps. Payments plans the run. Our code only starts the runs, checks each stamp and holds the money rules. If Creao stops, no bill is read, no stamp is made and nothing is paid.
+**Why the product dies without Creao:** every seat of Bursar is a Creao agent. Intake, Vendor-Records and Matching read each bill and make the stamps. Payments plans the run. Our code only starts the runs, checks each stamp and holds the money rules. If Creao stops, no bill is read, no stamp is made and nothing is paid.
 
 **Track:** AI-First Disruptor ("remove the agent, and the product stops working").
 

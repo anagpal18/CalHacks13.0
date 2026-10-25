@@ -24,7 +24,7 @@ export function encodePaymentMemo(memo: PaymentMemo): string {
   ].join("|");
 }
 
-/** Returns null for transfers that were not made by Bill Passport. */
+/** Returns null for transfers that were not made by Bursar. */
 export function decodePaymentMemo(description: string): PaymentMemo | null {
   const [prefix, ...fieldParts] = description.split("|");
   if (prefix !== MEMO_PREFIX) return null;

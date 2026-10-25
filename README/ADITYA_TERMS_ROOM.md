@@ -1,7 +1,7 @@
 # Aditya — Terms Room (Backend support)
 
 > Read TERMS_ROOM_MASTER.md first. This file lists only your work.
-> Terms Room is standalone. It is NOT connected to Bill Passport.
+> Terms Room is standalone. It is NOT connected to Bursar (formerly Bill Passport).
 
 ## Your mission
 Give the negotiation a realistic cast and a real money step: persona scenarios, the demo seed, and the Nessie deposit payment.

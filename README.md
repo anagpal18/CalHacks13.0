@@ -1,7 +1,7 @@
-# Bill Passport — Cal Hacks 13.0
+# Bursar — Cal Hacks 13.0
 
 Every incoming bill must earn a complete, signed chain of proof before it is booked, and again before it is paid.
-Plan: `README/BILL_PASSPORT_MASTER.md`.
+Plan: `README/BURSAR_MASTER.md`.
 
 ```
 apps/web/                        Aditya   dashboard

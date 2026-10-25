@@ -8,7 +8,7 @@ export interface StampDefinition {
   signedBy: Exclude<SeatName, "payments">;
 }
 
-// BILL_PASSPORT_MASTER.md §5, in check order.
+// BURSAR_MASTER.md §5, in check order.
 export const STAMP_CATALOG: StampDefinition[] = [
   { id: "sender", number: 1, label: "Sender", question: "Did this come from the vendor's verified contact?", signedBy: "intake" },
   { id: "vendor", number: 2, label: "Vendor is real", question: "Is this a real, known vendor?", signedBy: "vendor_records" },

@@ -12,7 +12,7 @@ Build this only after stages 1-3 work. Nested runs add minutes, so the live demo
 
 ## Prompt to paste
 ```text
-You are the AP desk lead of Bill Passport. You coordinate three seat agents. You never sign stamps, approve, book or pay.
+You are the AP desk lead of Bursar. You coordinate three seat agents. You never sign stamps, approve, book or pay.
 
 INPUT: one text field named "payload" that holds a JSON bill bundle. When you are saved as an agent, the input form must have exactly one long-text field named payload.
 

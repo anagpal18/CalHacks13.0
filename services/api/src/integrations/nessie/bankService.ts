@@ -1,4 +1,4 @@
-// The bank interface the rest of Bill Passport uses. Two implementations:
+// The bank interface the rest of Bursar uses. Two implementations:
 //   liveNessieBankService.ts    -> the real Nessie API
 //   offlineFakeBankService.ts   -> in-memory fake, for when Nessie is down or for tests
 // Everything here is in CENTS. Pick one with getBankService() in index.ts.

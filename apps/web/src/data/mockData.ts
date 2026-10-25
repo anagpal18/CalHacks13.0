@@ -1,5 +1,5 @@
 // Mock data for building the dashboard before the API exists.
-// The planted bills follow the 2-minute demo script in BILL_PASSPORT_MASTER.md §13 exactly,
+// The planted bills follow the 2-minute demo script in BURSAR_MASTER.md §13 exactly,
 // so the demo can be rehearsed on mocks. Everything is deterministic (same output every load).
 
 import { STAMP_CATALOG } from "./stampCatalog";

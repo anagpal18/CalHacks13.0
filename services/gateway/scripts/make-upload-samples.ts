@@ -1,6 +1,6 @@
 // Writes invoices you can upload with "Add a bill" on the dashboard: each folder holds an email (.eml,
 // with the PDF attached) and the PDF itself. Upload one or both files of a folder.
-// Usage: corepack pnpm --filter @bill-passport/gateway samples:build
+// Usage: corepack pnpm --filter @bursar/gateway samples:build
 import { mkdirSync, writeFileSync } from "node:fs";
 import { email, invoicePdf, type Letterhead, type MailAuth } from "./lib/documents.ts";
 

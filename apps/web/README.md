@@ -1,9 +1,9 @@
 # apps/web — Aditya
 
-The Bill Passport dashboard. Vite + React 19 + Tailwind v4 + shadcn/ui + motion. Light, minimal theme: colours from the Twisty reference, type from Vercel/Geist.
+The Bursar dashboard. Vite + React 19 + Tailwind v4 + shadcn/ui + motion. Light, minimal theme: colours from the Twisty reference, type from Vercel/Geist.
 
 ```
-corepack pnpm --filter @bill-passport/web dev    # http://127.0.0.1:5173
+corepack pnpm --filter @bursar/web dev    # http://127.0.0.1:5173
 ```
 
 ## Pages (step bar ① → ⑤)
