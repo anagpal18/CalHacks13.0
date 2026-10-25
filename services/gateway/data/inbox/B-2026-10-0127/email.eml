@@ -1,0 +1,48 @@
+Return-Path: <bounce@redwooddrywall.com>
+Received: from mail.redwooddrywall.com ([198.51.100.127]) by mx.bayline.example with ESMTPS; Wed, 21 Oct 2026 22:48:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=redwooddrywall.com; dkim=pass header.d=redwooddrywall.com; dmarc=pass header.from=redwooddrywall.com
+From: "Redwood Drywall & Framing Inc Billing" <ar@redwooddrywall.com>
+To: <ap@bayline.example>
+Subject: Invoice RDF-19919 - 5/8 in Type X drywall sheets, Site 6
+Date: Wed, 21 Oct 2026 22:48:00 +0000
+Message-ID: <b-2026-10-0127@redwooddrywall.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0127"
+
+--bp-B-2026-10-0127
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice RDF-19919 for 5/8 in type x drywall sheets, site 6 under PO-5637. Payment to our account on file. Thank you, Redwood Drywall Accounts Receivable
+
+--bp-B-2026-10-0127
+Content-Type: application/pdf; name="RDF-19919.pdf"
+Content-Disposition: attachment; filename="RDF-19919.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzQzID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChSZWR3b29kIERyeXdhbGwgJiBGcmFtaW5nIEluYykgVGog
+RVQKQlQgL0YxIDkgVGYgNTAgNzI0IFRkICg5OTAgTWFyaW5hIEJsdmQsIFNhbiBMZWFuZHJvLCBD
+QSAgLSAgXCg1NTVcKSAwMTAtMjAyMikgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52
+b2ljZSBSREYtMTk5MTkpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2
+LTEwLTIxICAtICBZb3VyIFBPIFBPLTU2MzcgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGog
+RVQKQlQgL0YxIDEwIFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4p
+IFRqIEVUCjAuNiB3IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQg
+KDYwMCB4IDUvOCBpbiBUeXBlIFggZHJ5d2FsbCBzaGVldHMsIFNpdGUgNiBAICQxNi4yMCkgVGog
+RVQKQlQgL0YxIDEwIFRmIDQ3MCA2MTQgVGQgKCQ5LDcyMC4wMCkgVGogRVQKMC42IHcgNTAgNTkw
+IG0gNTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQ5LDcyMC4wMCkg
+VGogRVQKQlQgL0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNjb3VudCBv
+biBmaWxlLCBlbmRpbmcgMjI1Ny4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5r
+IHlvdSwgQWNjb3VudHMgUmVjZWl2YWJsZSBcKGFyQHJlZHdvb2Rkcnl3YWxsLmNvbVwpKSBUaiBF
+VAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUx
+IC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9i
+ago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZl
+dGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iagp4cmVmCjAgNwow
+MDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBu
+IAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAgbiAKMDAwMDAwMTA0NSAwMDAw
+MCBuIAowMDAwMDAxMTQyIDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNyAvUm9vdCAxIDAgUiA+
+PgpzdGFydHhyZWYKMTI0NAolJUVPRgo=
+--bp-B-2026-10-0127--

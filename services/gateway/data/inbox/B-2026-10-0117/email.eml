@@ -1,0 +1,48 @@
+Return-Path: <bounce@brightlinesupply.com>
+Received: from mail.brightlinesupply.com ([198.51.100.117]) by mx.bayline.example with ESMTPS; Wed, 21 Oct 2026 15:49:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=brightlinesupply.com; dkim=pass header.d=brightlinesupply.com; dmarc=pass header.from=brightlinesupply.com
+From: "Bright Line Electrical Supply Inc Billing" <ar@brightlinesupply.com>
+To: <ap@bayline.example>
+Subject: Invoice BLS-37158 - LED high-bay fixture, Site 7
+Date: Wed, 21 Oct 2026 15:49:00 +0000
+Message-ID: <b-2026-10-0117@brightlinesupply.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0117"
+
+--bp-B-2026-10-0117
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice BLS-37158 for led high-bay fixture, site 7 under PO-5560. Payment to our account on file. Thank you, Bright Line Supply Accounts Receivable
+
+--bp-B-2026-10-0117
+Content-Type: application/pdf; name="BLS-37158.pdf"
+Content-Disposition: attachment; filename="BLS-37158.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzM2ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChCcmlnaHQgTGluZSBFbGVjdHJpY2FsIFN1cHBseSBJbmMp
+IFRqIEVUCkJUIC9GMSA5IFRmIDUwIDcyNCBUZCAoNDU1IFZhbGxleSBEciwgQnJpc2JhbmUsIENB
+ICAtICBcKDU1NVwpIDAxMC0yMDUwKSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZv
+aWNlIEJMUy0zNzE1OCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYt
+MTAtMjEgIC0gIFlvdXIgUE8gUE8tNTU2MCAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMwKSBUaiBF
+VApCVCAvRjEgMTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikg
+VGogRVQKMC42IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAo
+MjAgeCBMRUQgaGlnaC1iYXkgZml4dHVyZSwgU2l0ZSA3IEAgJDE5OS4wMCkgVGogRVQKQlQgL0Yx
+IDEwIFRmIDQ3MCA2MTQgVGQgKCQzLDk4MC4wMCkgVGogRVQKMC42IHcgNTAgNTkwIG0gNTYyIDU5
+MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQzLDk4MC4wMCkgVGogRVQKQlQg
+L0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNjb3VudCBvbiBmaWxlLCBl
+bmRpbmcgOTU1OC4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5rIHlvdSwgQWNj
+b3VudHMgUmVjZWl2YWJsZSBcKGFyQGJyaWdodGxpbmVzdXBwbHkuY29tXCkpIFRqIEVUCmVuZHN0
+cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VG
+b250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCjYgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhLUJv
+bGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhyZWYKMCA3CjAwMDAwMDAw
+MDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAwMDAw
+MDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAxMDM4IDAwMDAwIG4gCjAw
+MDAwMDExMzUgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+CnN0YXJ0
+eHJlZgoxMjM3CiUlRU9GCg==
+--bp-B-2026-10-0117--

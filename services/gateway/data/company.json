@@ -16,6 +16,72 @@
   },
   "vendors": [
     {
+      "vendorId": "V-003",
+      "legalName": "Granite Ridge Aggregates Inc",
+      "aliases": [
+        "Granite Ridge"
+      ],
+      "address": "8800 Tesla Rd, Livermore, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Dana Whitlock",
+          "email": "dana@graniteridgeagg.com",
+          "phone": "(555) 010-2003"
+        }
+      ],
+      "verifiedBankLast4": "9648",
+      "bankLastVerified": "2026-05-14",
+      "changeHistory": [
+        {
+          "on": "2026-05-14",
+          "field": "bank",
+          "from": "1186",
+          "to": "9648",
+          "verifiedBy": "callback to (555) 010-2003"
+        }
+      ]
+    },
+    {
+      "vendorId": "V-008",
+      "legalName": "Summit Steel Fabricators LLC",
+      "aliases": [
+        "Summit Steel"
+      ],
+      "address": "1450 Wallace Ave, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Daniel Whitfield",
+          "email": "dwhitfield@summitsteelfab.com",
+          "phone": "(555) 010-1002",
+          "crsPersona": "P02"
+        }
+      ],
+      "verifiedBankLast4": "5287",
+      "bankLastVerified": "2026-02-16",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-012",
+      "legalName": "Pacific Rebar Supply Inc",
+      "aliases": [
+        "Pacific Rebar"
+      ],
+      "address": "2701 Wood St, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@pacificrebar.com",
+          "phone": "(555) 010-2012"
+        }
+      ],
+      "verifiedBankLast4": "7701",
+      "bankLastVerified": "2026-09-19",
+      "changeHistory": []
+    },
+    {
       "vendorId": "V-017",
       "legalName": "Okafor Electric LLC",
       "aliases": [
@@ -36,6 +102,102 @@
       "changeHistory": []
     },
     {
+      "vendorId": "V-019",
+      "legalName": "Venkatesan Plumbing LLC",
+      "aliases": [
+        "Venkatesan Plumbing"
+      ],
+      "address": "3420 Geary Blvd, San Francisco, CA",
+      "ownerType": "sole_proprietor",
+      "verifiedContacts": [
+        {
+          "name": "Priya Venkatesan",
+          "email": "priya@venkatesanplumbing.com",
+          "phone": "(555) 010-1008",
+          "crsPersona": "P08"
+        }
+      ],
+      "verifiedBankLast4": "4371",
+      "bankLastVerified": "2026-01-21",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-022",
+      "legalName": "Redwood Drywall & Framing Inc",
+      "aliases": [
+        "Redwood Drywall"
+      ],
+      "address": "990 Marina Blvd, San Leandro, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@redwooddrywall.com",
+          "phone": "(555) 010-2022"
+        }
+      ],
+      "verifiedBankLast4": "2257",
+      "bankLastVerified": "2026-01-27",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-025",
+      "legalName": "Golden Gate HVAC Inc",
+      "aliases": [
+        "Golden Gate HVAC"
+      ],
+      "address": "1 Bayshore Blvd, Brisbane, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Luis Ortega",
+          "email": "lortega@ggatehvac.com",
+          "phone": "(555) 010-2025"
+        }
+      ],
+      "verifiedBankLast4": "4818",
+      "bankLastVerified": "2026-08-18",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-027",
+      "legalName": "Coastline Roofing LLC",
+      "aliases": [
+        "Coastline Roofing"
+      ],
+      "address": "4100 Pacific Coast Hwy, Pacifica, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@coastlineroofing.com",
+          "phone": "(555) 010-2027"
+        }
+      ],
+      "verifiedBankLast4": "9119",
+      "bankLastVerified": "2026-06-12",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-029",
+      "legalName": "Mission Glass & Glazing LLC",
+      "aliases": [
+        "Mission Glass"
+      ],
+      "address": "2235 Folsom St, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Teresa Lam",
+          "email": "teresa@missionglazing.com",
+          "phone": "(555) 010-2029"
+        }
+      ],
+      "verifiedBankLast4": "1291",
+      "bankLastVerified": "2026-07-18",
+      "changeHistory": []
+    },
+    {
       "vendorId": "V-031",
       "legalName": "Nakamura Concrete & Coffee LLC",
       "aliases": [
@@ -53,6 +215,82 @@
       ],
       "verifiedBankLast4": "6614",
       "bankLastVerified": "2026-06-11",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-033",
+      "legalName": "Diablo Equipment Rentals Inc",
+      "aliases": [
+        "Diablo Rentals"
+      ],
+      "address": "2600 Monument Blvd, Concord, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@diablorentals.com",
+          "phone": "(555) 010-2033"
+        }
+      ],
+      "verifiedBankLast4": "3763",
+      "bankLastVerified": "2026-08-12",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-036",
+      "legalName": "Bayshore Waste Hauling LLC",
+      "aliases": [
+        "Bayshore Hauling"
+      ],
+      "address": "501 Tunnel Ave, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@bayshorehauling.com",
+          "phone": "(555) 010-2036"
+        }
+      ],
+      "verifiedBankLast4": "3061",
+      "bankLastVerified": "2026-07-20",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-038",
+      "legalName": "Sierra Plumbing Supply Inc",
+      "aliases": [
+        "Sierra Plumbing Supply"
+      ],
+      "address": "1919 Market St, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@sierraplumbingsupply.com",
+          "phone": "(555) 010-2038"
+        }
+      ],
+      "verifiedBankLast4": "0320",
+      "bankLastVerified": "2026-09-20",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-041",
+      "legalName": "Tri-Valley Paving Inc",
+      "aliases": [
+        "Tri-Valley Paving"
+      ],
+      "address": "6200 Southfront Rd, Livermore, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Bill Navarro",
+          "email": "bnavarro@trivalleypaving.com",
+          "phone": "(555) 010-2041"
+        }
+      ],
+      "verifiedBankLast4": "4403",
+      "bankLastVerified": "2026-03-28",
       "changeHistory": []
     },
     {
@@ -81,9 +319,1723 @@
           "verifiedBy": "callback to (555) 010-2044"
         }
       ]
+    },
+    {
+      "vendorId": "V-047",
+      "legalName": "Hernandez Landscaping",
+      "aliases": [
+        "Hernandez Landscape"
+      ],
+      "address": "1730 E 14th St, San Leandro, CA",
+      "ownerType": "sole_proprietor",
+      "verifiedContacts": [
+        {
+          "name": "Ruben Hernandez",
+          "email": "ruben@hernandezlandscape.com",
+          "phone": "(555) 010-2047"
+        }
+      ],
+      "verifiedBankLast4": "1604",
+      "bankLastVerified": "2026-06-11",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-050",
+      "legalName": "Bright Line Electrical Supply Inc",
+      "aliases": [
+        "Bright Line Supply"
+      ],
+      "address": "455 Valley Dr, Brisbane, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@brightlinesupply.com",
+          "phone": "(555) 010-2050"
+        }
+      ],
+      "verifiedBankLast4": "9558",
+      "bankLastVerified": "2026-07-10",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-052",
+      "legalName": "Castro Valley Insulation LLC",
+      "aliases": [
+        "CV Insulation"
+      ],
+      "address": "20600 Lake Chabot Rd, Castro Valley, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@cvinsulation.com",
+          "phone": "(555) 010-2052"
+        }
+      ],
+      "verifiedBankLast4": "5803",
+      "bankLastVerified": "2026-06-25",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-055",
+      "legalName": "Marin Fire Protection Inc",
+      "aliases": [
+        "Marin Fire"
+      ],
+      "address": "75 Woodland Ave, San Rafael, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Jenna Kowal",
+          "email": "jkowal@marinfirepro.com",
+          "phone": "(555) 010-2055"
+        }
+      ],
+      "verifiedBankLast4": "9485",
+      "bankLastVerified": "2026-05-27",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-058",
+      "legalName": "Pinnacle Elevator Services Inc",
+      "aliases": [
+        "Pinnacle Elevator"
+      ],
+      "address": "1200 Industrial Rd, San Carlos, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@pinnacleelevator.com",
+          "phone": "(555) 010-2058"
+        }
+      ],
+      "verifiedBankLast4": "4973",
+      "bankLastVerified": "2026-06-18",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-061",
+      "legalName": "Iron Horse Scaffolding LLC",
+      "aliases": [
+        "Iron Horse Scaffold"
+      ],
+      "address": "2950 Seaport Blvd, Redwood City, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Cody Brandt",
+          "email": "cbrandt@ironhorsescaffold.com",
+          "phone": "(555) 010-2061"
+        }
+      ],
+      "verifiedBankLast4": "9965",
+      "bankLastVerified": "2026-02-14",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-063",
+      "legalName": "Delta Ready Mix Inc",
+      "aliases": [
+        "Delta Ready Mix"
+      ],
+      "address": "3301 Wilbur Ave, Antioch, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@deltareadymix.com",
+          "phone": "(555) 010-2063"
+        }
+      ],
+      "verifiedBankLast4": "8099",
+      "bankLastVerified": "2026-08-12",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-066",
+      "legalName": "Sunset Painting LLC",
+      "aliases": [
+        "Sunset Painting"
+      ],
+      "address": "3815 Noriega St, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Mike Aldana",
+          "email": "mike@sunsetpaintingsf.com",
+          "phone": "(555) 010-2066"
+        }
+      ],
+      "verifiedBankLast4": "3888",
+      "bankLastVerified": "2026-04-22",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-069",
+      "legalName": "Precision Survey Group Inc",
+      "aliases": [
+        "Precision Survey"
+      ],
+      "address": "100 Webster St, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Alan Brooks",
+          "email": "abrooks@precisionsurveygroup.com",
+          "phone": "(555) 010-2069"
+        }
+      ],
+      "verifiedBankLast4": "0797",
+      "bankLastVerified": "2026-06-19",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-072",
+      "legalName": "Oakland Tile & Stone LLC",
+      "aliases": [
+        "Oakland Tile"
+      ],
+      "address": "1001 3rd St, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@oaklandtile.com",
+          "phone": "(555) 010-2072"
+        }
+      ],
+      "verifiedBankLast4": "9685",
+      "bankLastVerified": "2026-04-11",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-075",
+      "legalName": "Crestview Facility Services LLC",
+      "aliases": [
+        "Crestview Facility"
+      ],
+      "address": "19 Dolores St, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Paul Shah",
+          "email": "paul@crestviewfacility.com",
+          "phone": "(555) 010-2075"
+        }
+      ],
+      "verifiedBankLast4": "9677",
+      "bankLastVerified": "2026-09-08",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-078",
+      "legalName": "Lakeside Site Services Inc",
+      "aliases": [
+        "Lakeside Site Services"
+      ],
+      "address": "7000 Coliseum Way, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@lakesidesiteservices.com",
+          "phone": "(555) 010-2078"
+        }
+      ],
+      "verifiedBankLast4": "3938",
+      "bankLastVerified": "2026-07-18",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-080",
+      "legalName": "Fremont Fasteners Inc",
+      "aliases": [
+        "Fremont Fasteners"
+      ],
+      "address": "44800 Industrial Dr, Fremont, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@fremontfasteners.com",
+          "phone": "(555) 010-2080"
+        }
+      ],
+      "verifiedBankLast4": "1748",
+      "bankLastVerified": "2026-06-10",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-083",
+      "legalName": "Atlas Crane & Rigging LLC",
+      "aliases": [
+        "Atlas Crane"
+      ],
+      "address": "2101 Adeline St, Oakland, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Frank Moreau",
+          "email": "dispatch@atlascrane.com",
+          "phone": "(555) 010-2083"
+        }
+      ],
+      "verifiedBankLast4": "8632",
+      "bankLastVerified": "2026-07-15",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-086",
+      "legalName": "Peninsula Waterproofing Inc",
+      "aliases": [
+        "Peninsula Waterproofing"
+      ],
+      "address": "150 Harbor Blvd, Belmont, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@peninsulawaterproofing.com",
+          "phone": "(555) 010-2086"
+        }
+      ],
+      "verifiedBankLast4": "9712",
+      "bankLastVerified": "2026-05-26",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-088",
+      "legalName": "Northgate Security Patrol LLC",
+      "aliases": [
+        "Northgate Security"
+      ],
+      "address": "580 Northgate Dr, San Rafael, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@northgatepatrol.com",
+          "phone": "(555) 010-2088"
+        }
+      ],
+      "verifiedBankLast4": "1063",
+      "bankLastVerified": "2026-09-19",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-090",
+      "legalName": "Ridgeline Equipment Repair LLC",
+      "aliases": [
+        "Ridgeline Repair"
+      ],
+      "address": "4521 E 12th St, Oakland, CA",
+      "ownerType": "sole_proprietor",
+      "verifiedContacts": [
+        {
+          "name": "Marco D.",
+          "email": "service@ridgelinerepair.com",
+          "phone": "(415) 555-0148"
+        }
+      ],
+      "verifiedBankLast4": "3121",
+      "bankLastVerified": "2026-08-21",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-093",
+      "legalName": "Bayview Traffic Control Inc",
+      "aliases": [
+        "Bayview Traffic"
+      ],
+      "address": "1550 Evans Ave, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@bayviewtraffic.com",
+          "phone": "(555) 010-2093"
+        }
+      ],
+      "verifiedBankLast4": "5513",
+      "bankLastVerified": "2026-08-13",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-095",
+      "legalName": "Alameda Hardware Supply Inc",
+      "aliases": [
+        "Alameda Hardware"
+      ],
+      "address": "2315 Lincoln Ave, Alameda, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Accounts Receivable",
+          "email": "ar@alamedahardware.com",
+          "phone": "(555) 010-2095"
+        }
+      ],
+      "verifiedBankLast4": "5235",
+      "bankLastVerified": "2026-03-19",
+      "changeHistory": []
+    },
+    {
+      "vendorId": "V-097",
+      "legalName": "Kestrel Engineering Consultants Inc",
+      "aliases": [
+        "Kestrel Engineering"
+      ],
+      "address": "201 Spear St, San Francisco, CA",
+      "ownerType": "company",
+      "verifiedContacts": [
+        {
+          "name": "Naomi Feld",
+          "email": "nfeld@kestreleng.com",
+          "phone": "(555) 010-2097"
+        }
+      ],
+      "verifiedBankLast4": "9466",
+      "bankLastVerified": "2026-06-16",
+      "changeHistory": []
     }
   ],
   "bills": {
+    "B-2026-10-0096": {
+      "billId": "B-2026-10-0096",
+      "receivedAt": "2026-10-19T15:51:00Z",
+      "channel": "email",
+      "from": "ar@cvinsulation.com",
+      "subject": "Invoice CVI-26335 - Spray foam, closed cell, Site 3 (board ft)",
+      "body": "Hello, attached is invoice CVI-26335 for spray foam, closed cell, site 3 under PO-5589. Payment to our account on file. Thank you, CV Insulation Accounts Receivable",
+      "vendorName": "Castro Valley Insulation LLC",
+      "invoiceNumber": "CVI-26335",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5589",
+      "terms": "Net 30",
+      "bankAccountLast4": "5803",
+      "lineItems": [
+        {
+          "description": "Spray foam, closed cell, Site 3 (board ft)",
+          "quantity": 2603,
+          "unitPrice": "1.95"
+        }
+      ],
+      "totalAmount": "5075.85",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@cvinsulation.com",
+        "phone": "(555) 010-2052"
+      }
+    },
+    "B-2026-10-0097": {
+      "billId": "B-2026-10-0097",
+      "receivedAt": "2026-10-19T16:38:00Z",
+      "channel": "email",
+      "from": "bnavarro@trivalleypaving.com",
+      "subject": "Invoice TVP-28235 - Asphalt paving, 3 in lift, Site 3 (sq ft)",
+      "body": "Hello, attached is invoice TVP-28235 for asphalt paving, 3 in lift, site 3 under PO-5544. Payment to our account on file. Thank you, Bill",
+      "vendorName": "Tri-Valley Paving Inc",
+      "invoiceNumber": "TVP-28235",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5544",
+      "terms": "Net 30",
+      "bankAccountLast4": "4403",
+      "lineItems": [
+        {
+          "description": "Asphalt paving, 3 in lift, Site 3 (sq ft)",
+          "quantity": 1247,
+          "unitPrice": "4.15"
+        }
+      ],
+      "totalAmount": "5175.05",
+      "claimedContact": {
+        "name": "Bill Navarro",
+        "email": "bnavarro@trivalleypaving.com",
+        "phone": "(555) 010-2041"
+      }
+    },
+    "B-2026-10-0098": {
+      "billId": "B-2026-10-0098",
+      "receivedAt": "2026-10-19T19:21:00Z",
+      "channel": "email",
+      "from": "ar@bayviewtraffic.com",
+      "subject": "Invoice BTC-38750 - Flagger, 8 hr shift, Site 1",
+      "body": "Hello, attached is invoice BTC-38750 for flagger, 8 hr shift, site 1 under PO-5591. Payment to our account on file. Thank you, Bayview Traffic Accounts Receivable",
+      "vendorName": "Bayview Traffic",
+      "invoiceNumber": "BTC-38750",
+      "invoiceDate": "2026-10-16",
+      "poNumber": "PO-5591",
+      "terms": "Net 30",
+      "bankAccountLast4": "5513",
+      "lineItems": [
+        {
+          "description": "Flagger, 8 hr shift, Site 1",
+          "quantity": 19,
+          "unitPrice": "520.00"
+        }
+      ],
+      "totalAmount": "9880.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayviewtraffic.com",
+        "phone": "(555) 010-2093"
+      }
+    },
+    "B-2026-10-0099": {
+      "billId": "B-2026-10-0099",
+      "receivedAt": "2026-10-19T19:30:00Z",
+      "channel": "email",
+      "from": "dana@graniteridgeagg.com",
+      "subject": "Invoice GR-12084 - Class II base rock, Site 4, delivered (ton)",
+      "body": "Hello, attached is invoice GR-12084 for class ii base rock, site 4, delivered under PO-5642. Payment to our account on file. Thank you, Dana",
+      "vendorName": "Granite Ridge Aggregates",
+      "invoiceNumber": "GR-12084",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5642",
+      "terms": "Net 30",
+      "bankAccountLast4": "9648",
+      "lineItems": [
+        {
+          "description": "Class II base rock, Site 4, delivered (ton)",
+          "quantity": 380,
+          "unitPrice": "34.50"
+        }
+      ],
+      "totalAmount": "13110.00",
+      "claimedContact": {
+        "name": "Dana Whitlock",
+        "email": "dana@graniteridgeagg.com",
+        "phone": "(555) 010-2003"
+      }
+    },
+    "B-2026-10-0100": {
+      "billId": "B-2026-10-0100",
+      "receivedAt": "2026-10-19T20:33:00Z",
+      "channel": "email",
+      "from": "dispatch@atlascrane.com",
+      "subject": "Invoice ACR-7366 - 90-ton crane with operator, 8 hr, Site 2",
+      "body": "Hello, attached is invoice ACR-7366 for 90-ton crane with operator, 8 hr, site 2 under PO-5618. Payment to our account on file. Thank you, Frank",
+      "vendorName": "Atlas Crane & Rigging LLC",
+      "invoiceNumber": "ACR-7366",
+      "invoiceDate": "2026-10-16",
+      "poNumber": "PO-5618",
+      "terms": "Net 30",
+      "bankAccountLast4": "8632",
+      "lineItems": [
+        {
+          "description": "90-ton crane with operator, 8 hr, Site 2",
+          "quantity": 4,
+          "unitPrice": "3450.00"
+        }
+      ],
+      "totalAmount": "13800.00",
+      "claimedContact": {
+        "name": "Frank Moreau",
+        "email": "dispatch@atlascrane.com",
+        "phone": "(555) 010-2083"
+      }
+    },
+    "B-2026-10-0101": {
+      "billId": "B-2026-10-0101",
+      "receivedAt": "2026-10-19T21:21:00Z",
+      "channel": "email",
+      "from": "dispatch@atlascrane.com",
+      "subject": "Invoice ACR-7341 - 90-ton crane with operator, 8 hr, Site 5",
+      "body": "Hello, attached is invoice ACR-7341 for 90-ton crane with operator, 8 hr, site 5 under PO-5573. Payment to our account on file. Thank you, Frank",
+      "vendorName": "Atlas Crane",
+      "invoiceNumber": "ACR-7341",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5573",
+      "terms": "Net 30",
+      "bankAccountLast4": "8632",
+      "lineItems": [
+        {
+          "description": "90-ton crane with operator, 8 hr, Site 5",
+          "quantity": 2,
+          "unitPrice": "3450.00"
+        }
+      ],
+      "totalAmount": "6900.00",
+      "claimedContact": {
+        "name": "Frank Moreau",
+        "email": "dispatch@atlascrane.com",
+        "phone": "(555) 010-2083"
+      }
+    },
+    "B-2026-10-0102": {
+      "billId": "B-2026-10-0102",
+      "receivedAt": "2026-10-19T22:38:00Z",
+      "channel": "email",
+      "from": "ar@northgatepatrol.com",
+      "subject": "Invoice NSP-15084 - Night security guard, per shift, Site 7",
+      "body": "Hello, attached is invoice NSP-15084 for night security guard, per shift, site 7 under PO-5575. Payment to our account on file. Thank you, Northgate Security Accounts Receivable",
+      "vendorName": "Northgate Security Patrol LLC",
+      "invoiceNumber": "NSP-15084",
+      "invoiceDate": "2026-10-16",
+      "poNumber": "PO-5575",
+      "terms": "Net 15",
+      "bankAccountLast4": "1063",
+      "lineItems": [
+        {
+          "description": "Night security guard, per shift, Site 7",
+          "quantity": 26,
+          "unitPrice": "312.00"
+        }
+      ],
+      "totalAmount": "8112.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@northgatepatrol.com",
+        "phone": "(555) 010-2088"
+      }
+    },
+    "B-2026-10-0103": {
+      "billId": "B-2026-10-0103",
+      "receivedAt": "2026-10-19T23:09:00Z",
+      "channel": "email",
+      "from": "nfeld@kestreleng.com",
+      "subject": "Invoice KEC-21421 - Structural observation visit, Site 4",
+      "body": "Hello, attached is invoice KEC-21421 for structural observation visit, site 4 under PO-5579. Payment to our account on file. Thank you, Naomi",
+      "vendorName": "Kestrel Engineering Consultants Inc",
+      "invoiceNumber": "KEC-21421",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5579",
+      "terms": "Net 30",
+      "bankAccountLast4": "9466",
+      "lineItems": [
+        {
+          "description": "Structural observation visit, Site 4",
+          "quantity": 2,
+          "unitPrice": "1450.00"
+        }
+      ],
+      "totalAmount": "2900.00",
+      "claimedContact": {
+        "name": "Naomi Feld",
+        "email": "nfeld@kestreleng.com",
+        "phone": "(555) 010-2097"
+      }
+    },
+    "B-2026-10-0104": {
+      "billId": "B-2026-10-0104",
+      "receivedAt": "2026-10-20T00:58:00Z",
+      "channel": "email",
+      "from": "dispatch@atlascrane.com",
+      "subject": "Invoice ACR-7396 - Rigging crew, 8 hr, Site 3",
+      "body": "Hello, attached is invoice ACR-7396 for rigging crew, 8 hr, site 3 under PO-5623. Payment to our account on file. Thank you, Frank",
+      "vendorName": "Atlas Crane & Rigging LLC",
+      "invoiceNumber": "ACR-7396",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5623",
+      "terms": "Net 30",
+      "bankAccountLast4": "8632",
+      "lineItems": [
+        {
+          "description": "Rigging crew, 8 hr, Site 3",
+          "quantity": 2,
+          "unitPrice": "1280.00"
+        }
+      ],
+      "totalAmount": "2560.00",
+      "claimedContact": {
+        "name": "Frank Moreau",
+        "email": "dispatch@atlascrane.com",
+        "phone": "(555) 010-2083"
+      }
+    },
+    "B-2026-10-0105": {
+      "billId": "B-2026-10-0105",
+      "receivedAt": "2026-10-20T15:33:00Z",
+      "channel": "email",
+      "from": "ar@lakesidesiteservices.com",
+      "subject": "Invoice LSS-10051 - Portable toilet service, monthly, Site 6",
+      "body": "Hello, attached is invoice LSS-10051 for portable toilet service, monthly, site 6 under PO-5570. Payment to our account on file. Thank you, Lakeside Site Services Accounts Receivable",
+      "vendorName": "Lakeside Site Services Inc",
+      "invoiceNumber": "LSS-10051",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5570",
+      "terms": "Net 30",
+      "bankAccountLast4": "3938",
+      "lineItems": [
+        {
+          "description": "Portable toilet service, monthly, Site 6",
+          "quantity": 200,
+          "unitPrice": "145.00"
+        }
+      ],
+      "totalAmount": "29000.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@lakesidesiteservices.com",
+        "phone": "(555) 010-2078"
+      }
+    },
+    "B-2026-10-0106": {
+      "billId": "B-2026-10-0106",
+      "receivedAt": "2026-10-20T16:12:00Z",
+      "channel": "email",
+      "from": "ar@baylumber.com",
+      "subject": "Past due: invoice BL55190",
+      "body": "Hello, our records show invoice BL55190 for the posts and plywood delivered to Site 2 under PO-5629 is still open. Please remit to our account on file. Thank you, Bay Lumber Accounts Receivable",
+      "vendorName": "Bay Lumber Supply Inc",
+      "invoiceNumber": "BL55190",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5629",
+      "terms": "Net 30",
+      "bankAccountLast4": "0071",
+      "lineItems": [
+        {
+          "description": "Pressure-treated 4x4x10 posts, Site 2",
+          "quantity": 450,
+          "unitPrice": "18.35"
+        },
+        {
+          "description": "1/2 in CDX plywood sheets, Site 2",
+          "quantity": 160,
+          "unitPrice": "32.30"
+        }
+      ],
+      "totalAmount": "13425.50",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@baylumber.com",
+        "phone": "(555) 010-2044"
+      }
+    },
+    "B-2026-10-0107": {
+      "billId": "B-2026-10-0107",
+      "receivedAt": "2026-10-20T16:38:00Z",
+      "channel": "email",
+      "from": "teresa@missionglazing.com",
+      "subject": "Invoice MG-10932 - Storefront glazing system, Site 1 (sq ft)",
+      "body": "Hello, attached is invoice MG-10932 for storefront glazing system, site 1 under PO-5586. Payment to our account on file. Thank you, Teresa",
+      "vendorName": "Mission Glass",
+      "invoiceNumber": "MG-10932",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5586",
+      "terms": "Net 30",
+      "bankAccountLast4": "1291",
+      "lineItems": [
+        {
+          "description": "Storefront glazing system, Site 1 (sq ft)",
+          "quantity": 7149,
+          "unitPrice": "92.00"
+        }
+      ],
+      "totalAmount": "657708.00",
+      "claimedContact": {
+        "name": "Teresa Lam",
+        "email": "teresa@missionglazing.com",
+        "phone": "(555) 010-2029"
+      }
+    },
+    "B-2026-10-0108": {
+      "billId": "B-2026-10-0108",
+      "receivedAt": "2026-10-20T17:02:00Z",
+      "channel": "email",
+      "from": "jkowal@marinfirepro.com",
+      "subject": "Invoice MFP-16134 - Fire sprinkler rough-in, Site 4 (head)",
+      "body": "Hello, attached is invoice MFP-16134 for fire sprinkler rough-in, site 4 under PO-5556. Payment to our account on file. Thank you, Jenna",
+      "vendorName": "Marin Fire",
+      "invoiceNumber": "MFP-16134",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5556",
+      "terms": "Net 30",
+      "bankAccountLast4": "9485",
+      "lineItems": [
+        {
+          "description": "Fire sprinkler rough-in, Site 4 (head)",
+          "quantity": 110,
+          "unitPrice": "142.00"
+        },
+        {
+          "description": "Fire alarm panel, installed, Site 4",
+          "quantity": 1,
+          "unitPrice": "6800.00"
+        }
+      ],
+      "totalAmount": "22420.00",
+      "claimedContact": {
+        "name": "Jenna Kowal",
+        "email": "jkowal@marinfirepro.com",
+        "phone": "(555) 010-2055"
+      }
+    },
+    "B-2026-10-0109": {
+      "billId": "B-2026-10-0109",
+      "receivedAt": "2026-10-20T18:44:00Z",
+      "channel": "email",
+      "from": "priya@venkatesanplumbing.com",
+      "subject": "Invoice and updated payment details",
+      "body": "Hello, please find our invoice for the Site 7 rough-in under PO-5648. We have moved our business account; please pay to the account ending 5120 shown on the invoice. Thank you, Priya Venkatesan",
+      "vendorName": "Venkatesan Plumbing",
+      "invoiceNumber": "VP-9248",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5648",
+      "terms": "Net 30",
+      "bankAccountLast4": "5120",
+      "lineItems": [
+        {
+          "description": "Rough-in plumbing, Site 7, per unit",
+          "quantity": 5,
+          "unitPrice": "1823.00"
+        }
+      ],
+      "totalAmount": "9115.00",
+      "claimedContact": {
+        "name": "Priya Venkatesan",
+        "email": "priya@venkatesanplumbing.com",
+        "phone": "(555) 010-1008",
+        "crsPersona": "P08"
+      }
+    },
+    "B-2026-10-0110": {
+      "billId": "B-2026-10-0110",
+      "receivedAt": "2026-10-20T18:46:00Z",
+      "channel": "email",
+      "from": "dana@graniteridgeagg.com",
+      "subject": "Invoice GR-12077 - Washed concrete sand, Site 3 (ton)",
+      "body": "Hello, attached is invoice GR-12077 for washed concrete sand, site 3 under PO-5603. Payment to our account on file. Thank you, Dana",
+      "vendorName": "Granite Ridge Aggregates Inc",
+      "invoiceNumber": "GR-12077",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5603",
+      "terms": "2/10 net 30",
+      "bankAccountLast4": "9648",
+      "lineItems": [
+        {
+          "description": "Washed concrete sand, Site 3 (ton)",
+          "quantity": 414,
+          "unitPrice": "38.20"
+        }
+      ],
+      "totalAmount": "15814.80",
+      "claimedContact": {
+        "name": "Dana Whitlock",
+        "email": "dana@graniteridgeagg.com",
+        "phone": "(555) 010-2003"
+      }
+    },
+    "B-2026-10-0111": {
+      "billId": "B-2026-10-0111",
+      "receivedAt": "2026-10-20T19:33:00Z",
+      "channel": "email",
+      "from": "ruben@hernandezlandscape.com",
+      "subject": "Invoice HL-35597 - Site landscaping, phase, Site 3",
+      "body": "Hello, attached is invoice HL-35597 for site landscaping, phase, site 3 under PO-5547. Payment to our account on file. Thank you, Ruben",
+      "vendorName": "Hernandez Landscaping",
+      "invoiceNumber": "HL-35597",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5547",
+      "terms": "Net 15",
+      "bankAccountLast4": "1604",
+      "lineItems": [
+        {
+          "description": "Site landscaping, phase, Site 3",
+          "quantity": 1,
+          "unitPrice": "8900.00"
+        }
+      ],
+      "totalAmount": "8900.00",
+      "claimedContact": {
+        "name": "Ruben Hernandez",
+        "email": "ruben@hernandezlandscape.com",
+        "phone": "(555) 010-2047"
+      }
+    },
+    "B-2026-10-0112": {
+      "billId": "B-2026-10-0112",
+      "receivedAt": "2026-10-20T20:09:00Z",
+      "channel": "email",
+      "from": "ar@bayshorehauling.com",
+      "subject": "Invoice BWH-11745 - 20 yd roll-off swap, Site 2",
+      "body": "Hello, attached is invoice BWH-11745 for 20 yd roll-off swap, site 2 under PO-5598. Payment to our account on file. Thank you, Bayshore Hauling Accounts Receivable",
+      "vendorName": "Bayshore Hauling",
+      "invoiceNumber": "BWH-11745",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5598",
+      "terms": "Net 15",
+      "bankAccountLast4": "3061",
+      "lineItems": [
+        {
+          "description": "20 yd roll-off swap, Site 2",
+          "quantity": 15,
+          "unitPrice": "520.00"
+        }
+      ],
+      "totalAmount": "7800.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayshorehauling.com",
+        "phone": "(555) 010-2036"
+      }
+    },
+    "B-2026-10-0113": {
+      "billId": "B-2026-10-0113",
+      "receivedAt": "2026-10-20T21:05:00Z",
+      "channel": "email",
+      "from": "lortega@ggatehvac.com",
+      "subject": "Invoice GGH-40929 - Rooftop unit, 10-ton, Site 8",
+      "body": "Hello, attached is invoice GGH-40929 for rooftop unit, 10-ton, site 8 under PO-5634. Payment to our account on file. Thank you, Luis",
+      "vendorName": "Golden Gate HVAC Inc",
+      "invoiceNumber": "GGH-40929",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5634",
+      "terms": "Net 30 from delivery",
+      "bankAccountLast4": "4818",
+      "lineItems": [
+        {
+          "description": "Rooftop unit, 10-ton, Site 8",
+          "quantity": 2,
+          "unitPrice": "14850.00"
+        }
+      ],
+      "totalAmount": "29700.00",
+      "claimedContact": {
+        "name": "Luis Ortega",
+        "email": "lortega@ggatehvac.com",
+        "phone": "(555) 010-2025"
+      }
+    },
+    "B-2026-10-0114": {
+      "billId": "B-2026-10-0114",
+      "receivedAt": "2026-10-20T22:14:00Z",
+      "channel": "email",
+      "from": "ar@oaklandtile.com",
+      "subject": "Invoice OTS-30621 - Porcelain floor tile, installed, Site 7 (sq ft)",
+      "body": "Hello, attached is invoice OTS-30621 for porcelain floor tile, installed, site 7 under PO-5567. Payment to our account on file. Thank you, Oakland Tile Accounts Receivable",
+      "vendorName": "Oakland Tile",
+      "invoiceNumber": "OTS-30621",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5567",
+      "terms": "Net 30",
+      "bankAccountLast4": "9685",
+      "lineItems": [
+        {
+          "description": "Porcelain floor tile, installed, Site 7 (sq ft)",
+          "quantity": 7441,
+          "unitPrice": "11.80"
+        }
+      ],
+      "totalAmount": "87803.80",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@oaklandtile.com",
+        "phone": "(555) 010-2072"
+      }
+    },
+    "B-2026-10-0115": {
+      "billId": "B-2026-10-0115",
+      "receivedAt": "2026-10-20T23:46:00Z",
+      "channel": "email",
+      "from": "ar@deltareadymix.com",
+      "subject": "Invoice DRM-6618 - Short-load fee, Site 7",
+      "body": "Hello, attached is invoice DRM-6618 for short-load fee, site 7 under PO-5559. Payment to our account on file. Thank you, Delta Ready Mix Accounts Receivable",
+      "vendorName": "Delta Ready Mix Inc",
+      "invoiceNumber": "DRM-6618",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5559",
+      "terms": "Net 30",
+      "bankAccountLast4": "8099",
+      "lineItems": [
+        {
+          "description": "Short-load fee, Site 7",
+          "quantity": 10,
+          "unitPrice": "125.00"
+        },
+        {
+          "description": "Pump truck, 4 hr min, Site 7",
+          "quantity": 3,
+          "unitPrice": "980.00"
+        }
+      ],
+      "totalAmount": "4190.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@deltareadymix.com",
+        "phone": "(555) 010-2063"
+      }
+    },
+    "B-2026-10-0116": {
+      "billId": "B-2026-10-0116",
+      "receivedAt": "2026-10-21T00:33:00Z",
+      "channel": "email",
+      "from": "ar@bayviewtraffic.com",
+      "subject": "Invoice BTC-38796 - Arrow board rental, daily, Site 8",
+      "body": "Hello, attached is invoice BTC-38796 for arrow board rental, daily, site 8 under PO-5612. Payment to our account on file. Thank you, Bayview Traffic Accounts Receivable",
+      "vendorName": "Bayview Traffic Control Inc",
+      "invoiceNumber": "BTC-38796",
+      "invoiceDate": "2026-10-17",
+      "poNumber": "PO-5612",
+      "terms": "Net 30",
+      "bankAccountLast4": "5513",
+      "lineItems": [
+        {
+          "description": "Arrow board rental, daily, Site 8",
+          "quantity": 40,
+          "unitPrice": "85.00"
+        },
+        {
+          "description": "Flagger, 8 hr shift, Site 8",
+          "quantity": 25,
+          "unitPrice": "520.00"
+        }
+      ],
+      "totalAmount": "16400.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayviewtraffic.com",
+        "phone": "(555) 010-2093"
+      }
+    },
+    "B-2026-10-0117": {
+      "billId": "B-2026-10-0117",
+      "receivedAt": "2026-10-21T15:49:00Z",
+      "channel": "email",
+      "from": "ar@brightlinesupply.com",
+      "subject": "Invoice BLS-37158 - LED high-bay fixture, Site 7",
+      "body": "Hello, attached is invoice BLS-37158 for led high-bay fixture, site 7 under PO-5560. Payment to our account on file. Thank you, Bright Line Supply Accounts Receivable",
+      "vendorName": "Bright Line Electrical Supply Inc",
+      "invoiceNumber": "BLS-37158",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5560",
+      "terms": "Net 30",
+      "bankAccountLast4": "9558",
+      "lineItems": [
+        {
+          "description": "LED high-bay fixture, Site 7",
+          "quantity": 20,
+          "unitPrice": "199.00"
+        }
+      ],
+      "totalAmount": "3980.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@brightlinesupply.com",
+        "phone": "(555) 010-2050"
+      }
+    },
+    "B-2026-10-0118": {
+      "billId": "B-2026-10-0118",
+      "receivedAt": "2026-10-21T16:20:00Z",
+      "channel": "email",
+      "from": "dwhitfield@summitsteelfab.com",
+      "subject": "Invoice SSF-38250 - Steel stair stringers, fabricated, Site 1",
+      "body": "Hello, attached is invoice SSF-38250 for steel stair stringers, fabricated, site 1 under PO-5661. Payment to our account on file. Thank you, Daniel",
+      "vendorName": "Summit Steel Fabricators LLC",
+      "invoiceNumber": "SSF-38250",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5661",
+      "terms": "Net 45",
+      "bankAccountLast4": "5287",
+      "lineItems": [
+        {
+          "description": "Steel stair stringers, fabricated, Site 1",
+          "quantity": 2,
+          "unitPrice": "4200.00"
+        }
+      ],
+      "totalAmount": "8400.00",
+      "claimedContact": {
+        "name": "Daniel Whitfield",
+        "email": "dwhitfield@summitsteelfab.com",
+        "phone": "(555) 010-1002",
+        "crsPersona": "P02"
+      }
+    },
+    "B-2026-10-0119": {
+      "billId": "B-2026-10-0119",
+      "receivedAt": "2026-10-21T16:58:00Z",
+      "channel": "email",
+      "from": "mike@sunsetpaintingsf.com",
+      "subject": "Invoice SP-26855 - Interior paint, 2 coats, Site 5 (sq ft)",
+      "body": "Hello, attached is invoice SP-26855 for interior paint, 2 coats, site 5 under PO-5561. Payment to our account on file. Thank you, Mike",
+      "vendorName": "Sunset Painting LLC",
+      "invoiceNumber": "SP-26855",
+      "invoiceDate": "2026-10-18",
+      "poNumber": "PO-5561",
+      "terms": "Net 30",
+      "bankAccountLast4": "3888",
+      "lineItems": [
+        {
+          "description": "Interior paint, 2 coats, Site 5 (sq ft)",
+          "quantity": 3316,
+          "unitPrice": "1.25"
+        },
+        {
+          "description": "Exterior elastomeric coating, Site 5 (sq ft)",
+          "quantity": 3556,
+          "unitPrice": "2.40"
+        }
+      ],
+      "totalAmount": "12679.40",
+      "claimedContact": {
+        "name": "Mike Aldana",
+        "email": "mike@sunsetpaintingsf.com",
+        "phone": "(555) 010-2066"
+      }
+    },
+    "B-2026-10-0120": {
+      "billId": "B-2026-10-0120",
+      "receivedAt": "2026-10-21T17:09:00Z",
+      "channel": "email",
+      "from": "ar@bayviewtraffic.com",
+      "subject": "Invoice BTC-38760 - Arrow board rental, daily, Site 8",
+      "body": "Hello, attached is invoice BTC-38760 for arrow board rental, daily, site 8 under PO-5595. Payment to our account on file. Thank you, Bayview Traffic Accounts Receivable",
+      "vendorName": "Bayview Traffic Control Inc",
+      "invoiceNumber": "BTC-38760",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5595",
+      "terms": "Net 30",
+      "bankAccountLast4": "5513",
+      "lineItems": [
+        {
+          "description": "Arrow board rental, daily, Site 8",
+          "quantity": 200,
+          "unitPrice": "85.00"
+        }
+      ],
+      "totalAmount": "17000.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayviewtraffic.com",
+        "phone": "(555) 010-2093"
+      }
+    },
+    "B-2026-10-0121": {
+      "billId": "B-2026-10-0121",
+      "receivedAt": "2026-10-21T17:40:00Z",
+      "channel": "email",
+      "from": "ar@pacificrebar.com",
+      "subject": "Invoice PRS-17070 - #4 rebar, 20 ft, Site 5",
+      "body": "Hello, attached is invoice PRS-17070 for #4 rebar, 20 ft, site 5 under PO-5631. Payment to our account on file. Thank you, Pacific Rebar Accounts Receivable",
+      "vendorName": "Pacific Rebar Supply Inc",
+      "invoiceNumber": "PRS-17070",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5631",
+      "terms": "Net 30",
+      "bankAccountLast4": "7701",
+      "lineItems": [
+        {
+          "description": "#4 rebar, 20 ft, Site 5",
+          "quantity": 2000,
+          "unitPrice": "4.10"
+        }
+      ],
+      "totalAmount": "8200.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@pacificrebar.com",
+        "phone": "(555) 010-2012"
+      }
+    },
+    "B-2026-10-0122": {
+      "billId": "B-2026-10-0122",
+      "receivedAt": "2026-10-21T18:46:00Z",
+      "channel": "email",
+      "from": "ar@pinnacleelevator.com",
+      "subject": "Invoice PES-13199 - Hydraulic elevator install, progress billing, Site 1",
+      "body": "Hello, attached is invoice PES-13199 for hydraulic elevator install, progress billing, site 1 under PO-5558. Payment to our account on file. Thank you, Pinnacle Elevator Accounts Receivable",
+      "vendorName": "Pinnacle Elevator",
+      "invoiceNumber": "PES-13199",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5558",
+      "terms": "Net 45",
+      "bankAccountLast4": "4973",
+      "lineItems": [
+        {
+          "description": "Hydraulic elevator install, progress billing, Site 1",
+          "quantity": 1,
+          "unitPrice": "22500.00"
+        }
+      ],
+      "totalAmount": "22500.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@pinnacleelevator.com",
+        "phone": "(555) 010-2058"
+      }
+    },
+    "B-2026-10-0123": {
+      "billId": "B-2026-10-0123",
+      "receivedAt": "2026-10-21T20:11:00Z",
+      "channel": "email",
+      "from": "paul@crestviewfacility.com",
+      "subject": "Invoice CFS-13873 - Post-construction cleaning, Site 2, per floor",
+      "body": "Hello, attached is invoice CFS-13873 for post-construction cleaning, site 2, per floor under PO-5651. Payment to our account on file. Thank you, Paul",
+      "vendorName": "Crestview Facility Services LLC",
+      "invoiceNumber": "CFS-13873",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5651",
+      "terms": "Net 15",
+      "bankAccountLast4": "9677",
+      "lineItems": [
+        {
+          "description": "Post-construction cleaning, Site 2, per floor",
+          "quantity": 4,
+          "unitPrice": "1962.50"
+        }
+      ],
+      "totalAmount": "7850.00",
+      "claimedContact": {
+        "name": "Paul Shah",
+        "email": "paul@crestviewfacility.com",
+        "phone": "(555) 010-2075"
+      }
+    },
+    "B-2026-10-0124": {
+      "billId": "B-2026-10-0124",
+      "receivedAt": "2026-10-21T20:27:00Z",
+      "channel": "email",
+      "from": "dana@graniteridgeagg.com",
+      "subject": "Invoice GR-12074 - Class II base rock, delivered, Site 2 (ton)",
+      "body": "Hello, attached is invoice GR-12074 for class ii base rock, delivered, site 2 under PO-5528. Payment to our account on file. Thank you, Dana",
+      "vendorName": "Granite Ridge Aggregates Inc",
+      "invoiceNumber": "GR-12074",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5528",
+      "terms": "2/10 net 30",
+      "bankAccountLast4": "9648",
+      "lineItems": [
+        {
+          "description": "Class II base rock, delivered, Site 2 (ton)",
+          "quantity": 281,
+          "unitPrice": "34.50"
+        },
+        {
+          "description": "Washed concrete sand, Site 2 (ton)",
+          "quantity": 306,
+          "unitPrice": "38.20"
+        }
+      ],
+      "totalAmount": "21383.70",
+      "claimedContact": {
+        "name": "Dana Whitlock",
+        "email": "dana@graniteridgeagg.com",
+        "phone": "(555) 010-2003"
+      }
+    },
+    "B-2026-10-0125": {
+      "billId": "B-2026-10-0125",
+      "receivedAt": "2026-10-21T21:46:00Z",
+      "channel": "email",
+      "from": "ar@bayviewtraffic.com",
+      "subject": "Invoice BTC-38734 - Arrow board rental, daily, Site 7",
+      "body": "Hello, attached is invoice BTC-38734 for arrow board rental, daily, site 7 under PO-5577. Payment to our account on file. Thank you, Bayview Traffic Accounts Receivable",
+      "vendorName": "Bayview Traffic Control Inc",
+      "invoiceNumber": "BTC-38734",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5577",
+      "terms": "Net 30",
+      "bankAccountLast4": "5513",
+      "lineItems": [
+        {
+          "description": "Arrow board rental, daily, Site 7",
+          "quantity": 250,
+          "unitPrice": "85.00"
+        },
+        {
+          "description": "Flagger, 8 hr shift, Site 7",
+          "quantity": 9,
+          "unitPrice": "520.00"
+        }
+      ],
+      "totalAmount": "25930.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayviewtraffic.com",
+        "phone": "(555) 010-2093"
+      }
+    },
+    "B-2026-10-0126": {
+      "billId": "B-2026-10-0126",
+      "receivedAt": "2026-10-21T22:14:00Z",
+      "channel": "email",
+      "from": "ar@bayshorehauling.com",
+      "subject": "Invoice BWH-11776 - 40 yd roll-off swap, Site 6",
+      "body": "Hello, attached is invoice BWH-11776 for 40 yd roll-off swap, site 6 under PO-5616. Payment to our account on file. Thank you, Bayshore Hauling Accounts Receivable",
+      "vendorName": "Bayshore Waste Hauling LLC",
+      "invoiceNumber": "BWH-11776",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5616",
+      "terms": "Net 15",
+      "bankAccountLast4": "3061",
+      "lineItems": [
+        {
+          "description": "40 yd roll-off swap, Site 6",
+          "quantity": 6,
+          "unitPrice": "695.00"
+        }
+      ],
+      "totalAmount": "4170.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayshorehauling.com",
+        "phone": "(555) 010-2036"
+      }
+    },
+    "B-2026-10-0127": {
+      "billId": "B-2026-10-0127",
+      "receivedAt": "2026-10-21T22:48:00Z",
+      "channel": "email",
+      "from": "ar@redwooddrywall.com",
+      "subject": "Invoice RDF-19919 - 5/8 in Type X drywall sheets, Site 6",
+      "body": "Hello, attached is invoice RDF-19919 for 5/8 in type x drywall sheets, site 6 under PO-5637. Payment to our account on file. Thank you, Redwood Drywall Accounts Receivable",
+      "vendorName": "Redwood Drywall & Framing Inc",
+      "invoiceNumber": "RDF-19919",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5637",
+      "terms": "Net 30",
+      "bankAccountLast4": "2257",
+      "lineItems": [
+        {
+          "description": "5/8 in Type X drywall sheets, Site 6",
+          "quantity": 600,
+          "unitPrice": "16.20"
+        }
+      ],
+      "totalAmount": "9720.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@redwooddrywall.com",
+        "phone": "(555) 010-2022"
+      }
+    },
+    "B-2026-10-0128": {
+      "billId": "B-2026-10-0128",
+      "receivedAt": "2026-10-21T23:58:00Z",
+      "channel": "email",
+      "from": "ar@diablorentals.com",
+      "subject": "Invoice DER-18190 - 40 ft boom lift rental, weekly, Site 3",
+      "body": "Hello, attached is invoice DER-18190 for 40 ft boom lift rental, weekly, site 3 under PO-5624. Payment to our account on file. Thank you, Diablo Rentals Accounts Receivable",
+      "vendorName": "Diablo Equipment Rentals Inc",
+      "invoiceNumber": "DER-18190",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5624",
+      "terms": "Net 30",
+      "bankAccountLast4": "3763",
+      "lineItems": [
+        {
+          "description": "40 ft boom lift rental, weekly, Site 3",
+          "quantity": 4,
+          "unitPrice": "1890.00"
+        }
+      ],
+      "totalAmount": "7560.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@diablorentals.com",
+        "phone": "(555) 010-2033"
+      }
+    },
+    "B-2026-10-0129": {
+      "billId": "B-2026-10-0129",
+      "receivedAt": "2026-10-22T00:09:00Z",
+      "channel": "email",
+      "from": "mike@sunsetpaintingsf.com",
+      "subject": "Invoice SP-26889 - Exterior elastomeric coating, Site 4 (sq ft)",
+      "body": "Hello, attached is invoice SP-26889 for exterior elastomeric coating, site 4 under PO-5606. Payment to our account on file. Thank you, Mike",
+      "vendorName": "Sunset Painting LLC",
+      "invoiceNumber": "SP-26889",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5606",
+      "terms": "Net 30",
+      "bankAccountLast4": "3888",
+      "lineItems": [
+        {
+          "description": "Exterior elastomeric coating, Site 4 (sq ft)",
+          "quantity": 7918,
+          "unitPrice": "2.40"
+        },
+        {
+          "description": "Interior paint, 2 coats, Site 4 (sq ft)",
+          "quantity": 4593,
+          "unitPrice": "1.25"
+        }
+      ],
+      "totalAmount": "24744.45",
+      "claimedContact": {
+        "name": "Mike Aldana",
+        "email": "mike@sunsetpaintingsf.com",
+        "phone": "(555) 010-2066"
+      }
+    },
+    "B-2026-10-0130": {
+      "billId": "B-2026-10-0130",
+      "receivedAt": "2026-10-22T15:09:00Z",
+      "channel": "email",
+      "from": "ar@brightlinesupply.com",
+      "subject": "Invoice BLS-37149 - LED high-bay fixture, Site 8",
+      "body": "Hello, attached is invoice BLS-37149 for led high-bay fixture, site 8 under PO-5550. Payment to our account on file. Thank you, Bright Line Supply Accounts Receivable",
+      "vendorName": "Bright Line Supply",
+      "invoiceNumber": "BLS-37149",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5550",
+      "terms": "Net 30",
+      "bankAccountLast4": "9558",
+      "lineItems": [
+        {
+          "description": "LED high-bay fixture, Site 8",
+          "quantity": 25,
+          "unitPrice": "189.00"
+        }
+      ],
+      "totalAmount": "4725.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@brightlinesupply.com",
+        "phone": "(555) 010-2050"
+      }
+    },
+    "B-2026-10-0131": {
+      "billId": "B-2026-10-0131",
+      "receivedAt": "2026-10-22T15:22:00Z",
+      "channel": "email",
+      "from": "ar@deltareadymix.com",
+      "subject": "Invoice DRM-6634 - 4000 PSI concrete, Site 3, delivered (cu yd)",
+      "body": "Hello, attached is invoice DRM-6634 for 4000 psi concrete, site 3, delivered under PO-5633. Payment to our account on file. Thank you, Delta Ready Mix Accounts Receivable",
+      "vendorName": "Delta Ready Mix",
+      "invoiceNumber": "DRM-6634",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5633",
+      "terms": "Net 30",
+      "bankAccountLast4": "8099",
+      "lineItems": [
+        {
+          "description": "4000 PSI concrete, Site 3, delivered (cu yd)",
+          "quantity": 120,
+          "unitPrice": "172.00"
+        }
+      ],
+      "totalAmount": "20640.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@deltareadymix.com",
+        "phone": "(555) 010-2063"
+      }
+    },
+    "B-2026-10-0132": {
+      "billId": "B-2026-10-0132",
+      "receivedAt": "2026-10-22T16:21:00Z",
+      "channel": "email",
+      "from": "ar@coastlineroofing.com",
+      "subject": "Invoice CR-39637 - Roof drain and flashing kit, Site 1",
+      "body": "Hello, attached is invoice CR-39637 for roof drain and flashing kit, site 1 under PO-5614. Payment to our account on file. Thank you, Coastline Roofing Accounts Receivable",
+      "vendorName": "Coastline Roofing LLC",
+      "invoiceNumber": "CR-39637",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5614",
+      "terms": "Net 30",
+      "bankAccountLast4": "9119",
+      "lineItems": [
+        {
+          "description": "Roof drain and flashing kit, Site 1",
+          "quantity": 5,
+          "unitPrice": "410.00"
+        },
+        {
+          "description": "Tear-off and disposal, Site 1 (square)",
+          "quantity": 82,
+          "unitPrice": "145.00"
+        }
+      ],
+      "totalAmount": "13940.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@coastlineroofing.com",
+        "phone": "(555) 010-2027"
+      }
+    },
+    "B-2026-10-0133": {
+      "billId": "B-2026-10-0133",
+      "receivedAt": "2026-10-22T16:55:00Z",
+      "channel": "email",
+      "from": "samuel.oyelaran@example.com",
+      "subject": "New vendor setup and invoice OCP-1001",
+      "body": "Hello, we pumped concrete at your Site 9 last week as a fill-in for your usual crew. Please set us up as a vendor and pay invoice OCP-1001 to the account on the invoice. Samuel Oyelaran, Owner",
+      "vendorName": "Oyelaran Concrete Pumping",
+      "invoiceNumber": "OCP-1001",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5655",
+      "terms": "Due on receipt",
+      "bankAccountLast4": "6038",
+      "lineItems": [
+        {
+          "description": "Concrete pumping, 52 m boom, Site 9 (day)",
+          "quantity": 4,
+          "unitPrice": "3850.00"
+        },
+        {
+          "description": "Line pump and hoses, Site 9 (day)",
+          "quantity": 2,
+          "unitPrice": "1500.00"
+        }
+      ],
+      "totalAmount": "18400.00",
+      "claimedContact": {
+        "name": "Samuel Oyelaran",
+        "email": "samuel.oyelaran@example.com",
+        "phone": "(555) 010-1016",
+        "crsPersona": "P16"
+      }
+    },
+    "B-2026-10-0134": {
+      "billId": "B-2026-10-0134",
+      "receivedAt": "2026-10-22T17:33:00Z",
+      "channel": "email",
+      "from": "ar@diablorentals.com",
+      "subject": "Invoice DER-18157 - 40 ft boom lift rental, weekly, Site 7",
+      "body": "Hello, attached is invoice DER-18157 for 40 ft boom lift rental, weekly, site 7 under PO-5538. Payment to our account on file. Thank you, Diablo Rentals Accounts Receivable",
+      "vendorName": "Diablo Equipment Rentals Inc",
+      "invoiceNumber": "DER-18157",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5538",
+      "terms": "Net 30",
+      "bankAccountLast4": "3763",
+      "lineItems": [
+        {
+          "description": "40 ft boom lift rental, weekly, Site 7",
+          "quantity": 1,
+          "unitPrice": "1890.00"
+        }
+      ],
+      "totalAmount": "1890.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@diablorentals.com",
+        "phone": "(555) 010-2033"
+      }
+    },
+    "B-2026-10-0135": {
+      "billId": "B-2026-10-0135",
+      "receivedAt": "2026-10-22T18:03:00Z",
+      "channel": "email",
+      "from": "ar@coastlineroofing.com",
+      "subject": "Invoice CR-39706 - TPO roofing membrane, Site 9, installed (square)",
+      "body": "Hello, attached is invoice CR-39706 for tpo roofing membrane, site 9, installed under PO-5640. Payment to our account on file. Thank you, Coastline Roofing Accounts Receivable",
+      "vendorName": "Coastline Roofing LLC",
+      "invoiceNumber": "CR-39706",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5640",
+      "terms": "Net 15",
+      "bankAccountLast4": "9119",
+      "lineItems": [
+        {
+          "description": "TPO roofing membrane, Site 9, installed (square)",
+          "quantity": 42,
+          "unitPrice": "685.00"
+        }
+      ],
+      "totalAmount": "28770.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@coastlineroofing.com",
+        "phone": "(555) 010-2027"
+      }
+    },
+    "B-2026-10-0136": {
+      "billId": "B-2026-10-0136",
+      "receivedAt": "2026-10-22T18:21:00Z",
+      "channel": "email",
+      "from": "nfeld@kestreleng.com",
+      "subject": "Invoice KEC-21457 - Structural observation visit, Site 6",
+      "body": "Hello, attached is invoice KEC-21457 for structural observation visit, site 6 under PO-5621. Payment to our account on file. Thank you, Naomi",
+      "vendorName": "Kestrel Engineering Consultants Inc",
+      "invoiceNumber": "KEC-21457",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5621",
+      "terms": "Net 30",
+      "bankAccountLast4": "9466",
+      "lineItems": [
+        {
+          "description": "Structural observation visit, Site 6",
+          "quantity": 4,
+          "unitPrice": "1450.00"
+        },
+        {
+          "description": "Special inspection, concrete, per day, Site 6",
+          "quantity": 30,
+          "unitPrice": "980.00"
+        }
+      ],
+      "totalAmount": "35200.00",
+      "claimedContact": {
+        "name": "Naomi Feld",
+        "email": "nfeld@kestreleng.com",
+        "phone": "(555) 010-2097"
+      }
+    },
+    "B-2026-10-0137": {
+      "billId": "B-2026-10-0137",
+      "receivedAt": "2026-10-22T19:27:00Z",
+      "channel": "email",
+      "from": "ar@bayshorehauling.com",
+      "subject": "Invoice BWH-11742 - 20 yd roll-off swap, Site 5",
+      "body": "Hello, attached is invoice BWH-11742 for 20 yd roll-off swap, site 5 under PO-5539. Payment to our account on file. Thank you, Bayshore Hauling Accounts Receivable",
+      "vendorName": "Bayshore Waste Hauling LLC",
+      "invoiceNumber": "BWH-11742",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5539",
+      "terms": "Net 15",
+      "bankAccountLast4": "3061",
+      "lineItems": [
+        {
+          "description": "20 yd roll-off swap, Site 5",
+          "quantity": 8,
+          "unitPrice": "520.00"
+        },
+        {
+          "description": "40 yd roll-off swap, Site 5",
+          "quantity": 23,
+          "unitPrice": "695.00"
+        }
+      ],
+      "totalAmount": "20145.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@bayshorehauling.com",
+        "phone": "(555) 010-2036"
+      }
+    },
+    "B-2026-10-0138": {
+      "billId": "B-2026-10-0138",
+      "receivedAt": "2026-10-22T21:21:00Z",
+      "channel": "email",
+      "from": "ar@fremontfasteners.com",
+      "subject": "Invoice FF-41232 - Hilti powder-actuated pins, case, Site 5",
+      "body": "Hello, attached is invoice FF-41232 for hilti powder-actuated pins, case, site 5 under PO-5592. Payment to our account on file. Thank you, Fremont Fasteners Accounts Receivable",
+      "vendorName": "Fremont Fasteners Inc",
+      "invoiceNumber": "FF-41232",
+      "invoiceDate": "2026-10-19",
+      "poNumber": "PO-5592",
+      "terms": "Net 30",
+      "bankAccountLast4": "1748",
+      "lineItems": [
+        {
+          "description": "Hilti powder-actuated pins, case, Site 5",
+          "quantity": 20,
+          "unitPrice": "112.00"
+        }
+      ],
+      "totalAmount": "2240.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@fremontfasteners.com",
+        "phone": "(555) 010-2080"
+      }
+    },
+    "B-2026-10-0139": {
+      "billId": "B-2026-10-0139",
+      "receivedAt": "2026-10-22T22:51:00Z",
+      "channel": "email",
+      "from": "teresa@missionglazing.com",
+      "subject": "Invoice MG-10836 - Storefront glazing system, Site 6 (sq ft)",
+      "body": "Hello, attached is invoice MG-10836 for storefront glazing system, site 6 under PO-5537. Payment to our account on file. Thank you, Teresa",
+      "vendorName": "Mission Glass",
+      "invoiceNumber": "MG-10836",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5537",
+      "terms": "Net 30",
+      "bankAccountLast4": "1291",
+      "lineItems": [
+        {
+          "description": "Storefront glazing system, Site 6 (sq ft)",
+          "quantity": 5973,
+          "unitPrice": "92.00"
+        }
+      ],
+      "totalAmount": "549516.00",
+      "claimedContact": {
+        "name": "Teresa Lam",
+        "email": "teresa@missionglazing.com",
+        "phone": "(555) 010-2029"
+      }
+    },
+    "B-2026-10-0140": {
+      "billId": "B-2026-10-0140",
+      "receivedAt": "2026-10-22T23:17:00Z",
+      "channel": "email",
+      "from": "accounts@summit-steelfab.com",
+      "subject": "URGENT: new remittance account for Summit Steel",
+      "body": "Hello AP team, I am the new accounts manager at Summit Steel. Our bank account was moved after an audit. Please pay invoice SSF-38216 for the Phase 2 steel package ($64,115.00) to the account ending 3307 on the attached invoice. Do not use the old account. Victor Anand, Accounts Manager",
+      "vendorName": "Summit Steel Fabricators LLC",
+      "invoiceNumber": "SSF-38216",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5643",
+      "terms": "Net 45",
+      "bankAccountLast4": "3307",
+      "lineItems": [
+        {
+          "description": "Structural steel package, Phase 2, Site 1",
+          "quantity": 1,
+          "unitPrice": "64115.00"
+        }
+      ],
+      "totalAmount": "64115.00",
+      "claimedContact": {
+        "name": "Victor Anand",
+        "email": "v.anand.1968@example.com",
+        "phone": "(555) 010-1012",
+        "crsPersona": "P12"
+      }
+    },
+    "B-2026-10-0141": {
+      "billId": "B-2026-10-0141",
+      "receivedAt": "2026-10-22T23:51:00Z",
+      "channel": "email",
+      "from": "ar@fremontfasteners.com",
+      "subject": "Invoice FF-41209 - Simpson strong-drive screws, box of 500, Site 4",
+      "body": "Hello, attached is invoice FF-41209 for simpson strong-drive screws, box of 500, site 4 under PO-5571. Payment to our account on file. Thank you, Fremont Fasteners Accounts Receivable",
+      "vendorName": "Fremont Fasteners Inc",
+      "invoiceNumber": "FF-41209",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5571",
+      "terms": "Net 30",
+      "bankAccountLast4": "1748",
+      "lineItems": [
+        {
+          "description": "Simpson strong-drive screws, box of 500, Site 4",
+          "quantity": 250,
+          "unitPrice": "24.80"
+        }
+      ],
+      "totalAmount": "6200.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@fremontfasteners.com",
+        "phone": "(555) 010-2080"
+      }
+    },
+    "B-2026-10-0142": {
+      "billId": "B-2026-10-0142",
+      "receivedAt": "2026-10-23T15:26:00Z",
+      "channel": "email",
+      "from": "grace@nakamuraconcrete.com",
+      "subject": "Invoice NC-2241 and our new bank account",
+      "body": "Hi, attached is invoice NC-2241 for the Site 3 sidewalk and curb under PO-5646. We moved our business account to a new bank this month; the new account ends in 8842. Happy to confirm by phone at (555) 010-1019. Thanks, Grace",
+      "vendorName": "Nakamura Concrete",
+      "invoiceNumber": "NC-2241",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5646",
+      "terms": "2/10 net 30",
+      "bankAccountLast4": "8842",
+      "lineItems": [
+        {
+          "description": "Sidewalk and curb pour, Site 3 (lin ft)",
+          "quantity": 210,
+          "unitPrice": "48.00"
+        }
+      ],
+      "totalAmount": "10080.00",
+      "claimedContact": {
+        "name": "Grace Nakamura",
+        "email": "grace@nakamuraconcrete.com",
+        "phone": "(555) 010-1019",
+        "crsPersona": "P19"
+      }
+    },
     "B-2026-10-0143": {
       "billId": "B-2026-10-0143",
       "receivedAt": "2026-10-23T16:42:00Z",
@@ -138,6 +2090,550 @@
         "email": "margaret@okaforelectric.com",
         "phone": "(555) 010-1001",
         "crsPersona": "P01"
+      }
+    },
+    "B-2026-10-0145": {
+      "billId": "B-2026-10-0145",
+      "receivedAt": "2026-10-23T18:09:00Z",
+      "channel": "email",
+      "from": "ar@alamedahardware.com",
+      "subject": "Invoice AHS-21627 - Contractor trash bags, case, Site 8",
+      "body": "Hello, attached is invoice AHS-21627 for contractor trash bags, case, site 8 under PO-5578. Payment to our account on file. Thank you, Alameda Hardware Accounts Receivable",
+      "vendorName": "Alameda Hardware Supply Inc",
+      "invoiceNumber": "AHS-21627",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5578",
+      "terms": "Net 30",
+      "bankAccountLast4": "5235",
+      "lineItems": [
+        {
+          "description": "Contractor trash bags, case, Site 8",
+          "quantity": 40,
+          "unitPrice": "42.50"
+        }
+      ],
+      "totalAmount": "1700.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@alamedahardware.com",
+        "phone": "(555) 010-2095"
+      }
+    },
+    "B-2026-10-0146": {
+      "billId": "B-2026-10-0146",
+      "receivedAt": "2026-10-23T19:02:00Z",
+      "channel": "email",
+      "from": "derek.holloway@example.com",
+      "subject": "Invoice HH-0417 - dirt export Site 6",
+      "body": "Hi, Raj asked us to haul dirt off Site 6 last Tuesday. Invoice HH-0417 attached; please set us up as a vendor. Derek Holloway",
+      "vendorName": "Holloway Hauling",
+      "invoiceNumber": "HH-0417",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5703",
+      "terms": "Net 15",
+      "bankAccountLast4": "2719",
+      "lineItems": [
+        {
+          "description": "Dirt export, Site 6 (truckload)",
+          "quantity": 24,
+          "unitPrice": "260.00"
+        }
+      ],
+      "totalAmount": "6240.00",
+      "claimedContact": {
+        "name": "Derek Holloway",
+        "email": "derek.holloway@example.com",
+        "phone": "(555) 010-1009",
+        "crsPersona": "P09"
+      }
+    },
+    "B-2026-10-0147": {
+      "billId": "B-2026-10-0147",
+      "receivedAt": "2026-10-23T19:09:00Z",
+      "channel": "email",
+      "from": "ar@redwooddrywall.com",
+      "subject": "Invoice RDF-19905 - 5/8 in Type X drywall sheets, Site 4",
+      "body": "Hello, attached is invoice RDF-19905 for 5/8 in type x drywall sheets, site 4 under PO-5531. Payment to our account on file. Thank you, Redwood Drywall Accounts Receivable",
+      "vendorName": "Redwood Drywall & Framing Inc",
+      "invoiceNumber": "RDF-19905",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5531",
+      "terms": "Net 30",
+      "bankAccountLast4": "2257",
+      "lineItems": [
+        {
+          "description": "5/8 in Type X drywall sheets, Site 4",
+          "quantity": 200,
+          "unitPrice": "16.20"
+        }
+      ],
+      "totalAmount": "3240.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@redwooddrywall.com",
+        "phone": "(555) 010-2022"
+      }
+    },
+    "B-2026-10-0148": {
+      "billId": "B-2026-10-0148",
+      "receivedAt": "2026-10-23T19:27:00Z",
+      "channel": "email",
+      "from": "abrooks@precisionsurveygroup.com",
+      "subject": "Invoice PSG-1495 - As-built survey, Site 3",
+      "body": "Hello, attached is invoice PSG-1495 for as-built survey, site 3 under PO-5564. Payment to our account on file. Thank you, Alan",
+      "vendorName": "Precision Survey Group Inc",
+      "invoiceNumber": "PSG-1495",
+      "invoiceDate": "2026-10-22",
+      "poNumber": "PO-5564",
+      "terms": "Net 30",
+      "bankAccountLast4": "0797",
+      "lineItems": [
+        {
+          "description": "As-built survey, Site 3",
+          "quantity": 4,
+          "unitPrice": "4200.00"
+        }
+      ],
+      "totalAmount": "16800.00",
+      "claimedContact": {
+        "name": "Alan Brooks",
+        "email": "abrooks@precisionsurveygroup.com",
+        "phone": "(555) 010-2069"
+      }
+    },
+    "B-2026-10-0149": {
+      "billId": "B-2026-10-0149",
+      "receivedAt": "2026-10-23T19:51:00Z",
+      "channel": "email",
+      "from": "ar@coastlineroofing.com",
+      "subject": "Invoice CR-39671 - Tear-off and disposal, Site 6 (square)",
+      "body": "Hello, attached is invoice CR-39671 for tear-off and disposal, site 6 under PO-5626. Payment to our account on file. Thank you, Coastline Roofing Accounts Receivable",
+      "vendorName": "Coastline Roofing LLC",
+      "invoiceNumber": "CR-39671",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5626",
+      "terms": "Net 30",
+      "bankAccountLast4": "9119",
+      "lineItems": [
+        {
+          "description": "Tear-off and disposal, Site 6 (square)",
+          "quantity": 57,
+          "unitPrice": "145.00"
+        },
+        {
+          "description": "TPO roofing membrane, installed, Site 6 (square)",
+          "quantity": 80,
+          "unitPrice": "685.00"
+        }
+      ],
+      "totalAmount": "63065.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@coastlineroofing.com",
+        "phone": "(555) 010-2027"
+      }
+    },
+    "B-2026-10-0150": {
+      "billId": "B-2026-10-0150",
+      "receivedAt": "2026-10-23T20:14:00Z",
+      "channel": "email",
+      "from": "ar@peninsulawaterproofing.com",
+      "subject": "Invoice PW-23777 - Below-grade waterproofing membrane, Site 6 (sq ft)",
+      "body": "Hello, attached is invoice PW-23777 for below-grade waterproofing membrane, site 6 under PO-5574. Payment to our account on file. Thank you, Peninsula Waterproofing Accounts Receivable",
+      "vendorName": "Peninsula Waterproofing",
+      "invoiceNumber": "PW-23777",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5574",
+      "terms": "Net 30",
+      "bankAccountLast4": "9712",
+      "lineItems": [
+        {
+          "description": "Below-grade waterproofing membrane, Site 6 (sq ft)",
+          "quantity": 3282,
+          "unitPrice": "6.75"
+        },
+        {
+          "description": "Deck coating system, Site 6 (sq ft)",
+          "quantity": 7483,
+          "unitPrice": "8.90"
+        }
+      ],
+      "totalAmount": "88752.20",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@peninsulawaterproofing.com",
+        "phone": "(555) 010-2086"
+      }
+    },
+    "B-2026-10-0151": {
+      "billId": "B-2026-10-0151",
+      "receivedAt": "2026-10-23T21:37:00Z",
+      "channel": "email",
+      "from": "service@ridgelinerepair.com",
+      "subject": "Invoice RER-23957 - Generator service, 45 kW, Site 5",
+      "body": "Hello, attached is invoice RER-23957 for generator service, 45 kw, site 5 under PO-5652. Payment to our account on file. Thank you, Marco",
+      "vendorName": "Ridgeline Equipment Repair LLC",
+      "invoiceNumber": "RER-23957",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5652",
+      "terms": "Due on receipt",
+      "bankAccountLast4": "3121",
+      "lineItems": [
+        {
+          "description": "Generator service, 45 kW, Site 5",
+          "quantity": 1,
+          "unitPrice": "2920.00"
+        },
+        {
+          "description": "Hydraulic hose replacement, skid steer, Site 5",
+          "quantity": 1,
+          "unitPrice": "1460.00"
+        }
+      ],
+      "totalAmount": "4380.00",
+      "claimedContact": {
+        "name": "Marco D.",
+        "email": "service@ridgelinerepair.com",
+        "phone": "(415) 555-0148"
+      }
+    },
+    "B-2026-10-0152": {
+      "billId": "B-2026-10-0152",
+      "receivedAt": "2026-10-23T21:38:00Z",
+      "channel": "email",
+      "from": "lortega@ggatehvac.com",
+      "subject": "Invoice GGH-40915 - Mini-split system, 2-ton, Site 2",
+      "body": "Hello, attached is invoice GGH-40915 for mini-split system, 2-ton, site 2 under PO-5533. Payment to our account on file. Thank you, Luis",
+      "vendorName": "Golden Gate HVAC Inc",
+      "invoiceNumber": "GGH-40915",
+      "invoiceDate": "2026-10-20",
+      "poNumber": "PO-5533",
+      "terms": "Net 30 from delivery",
+      "bankAccountLast4": "4818",
+      "lineItems": [
+        {
+          "description": "Mini-split system, 2-ton, Site 2",
+          "quantity": 2,
+          "unitPrice": "3275.00"
+        }
+      ],
+      "totalAmount": "6550.00",
+      "claimedContact": {
+        "name": "Luis Ortega",
+        "email": "lortega@ggatehvac.com",
+        "phone": "(555) 010-2025"
+      }
+    },
+    "B-2026-10-0153": {
+      "billId": "B-2026-10-0153",
+      "receivedAt": "2026-10-23T22:15:00Z",
+      "channel": "email",
+      "from": "cbrandt@ironhorsescaffold.com",
+      "subject": "Invoice IHS-32579 - Scaffold erect, rent and dismantle, 12 weeks, Site 4",
+      "body": "Hello, attached is our invoice under PO-5654, including the three-week rental extension Daniel asked for on site. Thank you, Cody",
+      "vendorName": "Iron Horse Scaffolding LLC",
+      "invoiceNumber": "IHS-32579",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5654",
+      "terms": "Net 30",
+      "bankAccountLast4": "9965",
+      "lineItems": [
+        {
+          "description": "Scaffold erect, rent and dismantle, 12 weeks, Site 4",
+          "quantity": 1,
+          "unitPrice": "42000.00"
+        },
+        {
+          "description": "Extended scaffold rental, 3 weeks, Site 4",
+          "quantity": 1,
+          "unitPrice": "6600.00"
+        }
+      ],
+      "totalAmount": "48600.00",
+      "claimedContact": {
+        "name": "Cody Brandt",
+        "email": "cbrandt@ironhorsescaffold.com",
+        "phone": "(555) 010-2061"
+      }
+    },
+    "B-2026-10-0154": {
+      "billId": "B-2026-10-0154",
+      "receivedAt": "2026-10-23T23:51:00Z",
+      "channel": "email",
+      "from": "ar@pacificrebar.com",
+      "subject": "Invoice PRS-17060 - #4 rebar, 20 ft, Site 3",
+      "body": "Hello, attached is invoice PRS-17060 for #4 rebar, 20 ft, site 3 under PO-5529. Payment to our account on file. Thank you, Pacific Rebar Accounts Receivable",
+      "vendorName": "Pacific Rebar Supply Inc",
+      "invoiceNumber": "PRS-17060",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5529",
+      "terms": "Net 30",
+      "bankAccountLast4": "7701",
+      "lineItems": [
+        {
+          "description": "#4 rebar, 20 ft, Site 3",
+          "quantity": 60,
+          "unitPrice": "3.90"
+        }
+      ],
+      "totalAmount": "234.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@pacificrebar.com",
+        "phone": "(555) 010-2012"
+      }
+    },
+    "B-2026-10-0155": {
+      "billId": "B-2026-10-0155",
+      "receivedAt": "2026-10-24T15:38:00Z",
+      "channel": "email",
+      "from": "ar@sierraplumbingsupply.com",
+      "subject": "Invoice SPS-18410 - Floor drain, cast iron, Site 8",
+      "body": "Hello, attached is invoice SPS-18410 for floor drain, cast iron, site 8 under PO-5541. Payment to our account on file. Thank you, Sierra Plumbing Supply Accounts Receivable",
+      "vendorName": "Sierra Plumbing Supply",
+      "invoiceNumber": "SPS-18410",
+      "invoiceDate": "2026-10-24",
+      "poNumber": "PO-5541",
+      "terms": "Net 30",
+      "bankAccountLast4": "0320",
+      "lineItems": [
+        {
+          "description": "Floor drain, cast iron, Site 8",
+          "quantity": 20,
+          "unitPrice": "212.00"
+        },
+        {
+          "description": "3/4 in copper type L, 10 ft, Site 8",
+          "quantity": 10,
+          "unitPrice": "64.90"
+        }
+      ],
+      "totalAmount": "4889.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@sierraplumbingsupply.com",
+        "phone": "(555) 010-2038"
+      }
+    },
+    "B-2026-10-0156": {
+      "billId": "B-2026-10-0156",
+      "receivedAt": "2026-10-24T16:04:00Z",
+      "channel": "email",
+      "from": "ar@fremontfasteners.com",
+      "subject": "Invoice FF-41263 - Simpson strong-drive screws, box of 500, Site 1",
+      "body": "Hello, attached is invoice FF-41263 for simpson strong-drive screws, box of 500, site 1 under PO-5657. Payment to our account on file. Thank you, Fremont Fasteners Accounts Receivable",
+      "vendorName": "Fremont Fasteners",
+      "invoiceNumber": "FF-41263",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5657",
+      "terms": "Net 30",
+      "bankAccountLast4": "1748",
+      "lineItems": [
+        {
+          "description": "Simpson strong-drive screws, box of 500, Site 1",
+          "quantity": 520,
+          "unitPrice": "24.80"
+        }
+      ],
+      "totalAmount": "12896.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@fremontfasteners.com",
+        "phone": "(555) 010-2080"
+      }
+    },
+    "B-2026-10-0157": {
+      "billId": "B-2026-10-0157",
+      "receivedAt": "2026-10-24T17:20:00Z",
+      "channel": "email",
+      "from": "mike@sunsetpaintingsf.com",
+      "subject": "Invoice SP-26923 - Exterior elastomeric coating, Site 8 (sq ft)",
+      "body": "Hello, attached is invoice SP-26923 for exterior elastomeric coating, site 8 under PO-5999. Payment to our account on file. Thank you, Mike",
+      "vendorName": "Sunset Painting LLC",
+      "invoiceNumber": "SP-26923",
+      "invoiceDate": "2026-10-24",
+      "poNumber": "PO-5999",
+      "terms": "Net 30",
+      "bankAccountLast4": "3888",
+      "lineItems": [
+        {
+          "description": "Exterior elastomeric coating, Site 8 (sq ft)",
+          "quantity": 4500,
+          "unitPrice": "2.50"
+        }
+      ],
+      "totalAmount": "11250.00",
+      "claimedContact": {
+        "name": "Mike Aldana",
+        "email": "mike@sunsetpaintingsf.com",
+        "phone": "(555) 010-2066"
+      }
+    },
+    "B-2026-10-0158": {
+      "billId": "B-2026-10-0158",
+      "receivedAt": "2026-10-24T17:38:00Z",
+      "channel": "email",
+      "from": "teresa@missionglazing.com",
+      "subject": "Invoice MG-10871 - Storefront glazing system, Site 8 (sq ft)",
+      "body": "Hello, attached is invoice MG-10871 for storefront glazing system, site 8 under PO-5582. Payment to our account on file. Thank you, Teresa",
+      "vendorName": "Mission Glass",
+      "invoiceNumber": "MG-10871",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5582",
+      "terms": "Net 30",
+      "bankAccountLast4": "1291",
+      "lineItems": [
+        {
+          "description": "Storefront glazing system, Site 8 (sq ft)",
+          "quantity": 5738,
+          "unitPrice": "92.00"
+        },
+        {
+          "description": "Tempered glass panel, 4x8, Site 8",
+          "quantity": 10,
+          "unitPrice": "615.00"
+        }
+      ],
+      "totalAmount": "534046.00",
+      "claimedContact": {
+        "name": "Teresa Lam",
+        "email": "teresa@missionglazing.com",
+        "phone": "(555) 010-2029"
+      }
+    },
+    "B-2026-10-0159": {
+      "billId": "B-2026-10-0159",
+      "receivedAt": "2026-10-24T17:51:00Z",
+      "channel": "email",
+      "from": "ar@cvinsulation.com",
+      "subject": "Invoice CVI-26300 - Spray foam, closed cell, Site 9 (board ft)",
+      "body": "Hello, attached is invoice CVI-26300 for spray foam, closed cell, site 9 under PO-5553. Payment to our account on file. Thank you, CV Insulation Accounts Receivable",
+      "vendorName": "Castro Valley Insulation LLC",
+      "invoiceNumber": "CVI-26300",
+      "invoiceDate": "2026-10-23",
+      "poNumber": "PO-5553",
+      "terms": "Net 30",
+      "bankAccountLast4": "5803",
+      "lineItems": [
+        {
+          "description": "Spray foam, closed cell, Site 9 (board ft)",
+          "quantity": 1249,
+          "unitPrice": "1.95"
+        }
+      ],
+      "totalAmount": "2435.55",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@cvinsulation.com",
+        "phone": "(555) 010-2052"
+      }
+    },
+    "B-2026-10-0160": {
+      "billId": "B-2026-10-0160",
+      "receivedAt": "2026-10-24T18:31:00Z",
+      "channel": "email",
+      "from": "teresa@missionglazing.com",
+      "subject": "Invoice MG-10968 - Storefront glazing system, Site 2 (sq ft)",
+      "body": "Hi, attached is our invoice for the Site 2 storefront under PO-5660. Payment to our usual account, thanks. Teresa",
+      "vendorName": "Mission Glass & Glazing LLC",
+      "invoiceNumber": "MG-10968",
+      "invoiceDate": "2026-10-24",
+      "poNumber": "PO-5660",
+      "terms": "Net 30",
+      "bankAccountLast4": "9046",
+      "lineItems": [
+        {
+          "description": "Storefront glazing system, Site 2 (sq ft)",
+          "quantity": 340,
+          "unitPrice": "92.00"
+        }
+      ],
+      "totalAmount": "31280.00",
+      "claimedContact": {
+        "name": "Teresa Lam",
+        "email": "teresa@missionglazing.com",
+        "phone": "(555) 010-2029"
+      }
+    },
+    "B-2026-10-0161": {
+      "billId": "B-2026-10-0161",
+      "receivedAt": "2026-10-24T18:33:00Z",
+      "channel": "email",
+      "from": "teresa@missionglazing.com",
+      "subject": "Invoice MG-10904 - Tempered glass panel, 4x8, Site 9",
+      "body": "Hello, attached is invoice MG-10904 for tempered glass panel, 4x8, site 9 under PO-5584. Payment to our account on file. Thank you, Teresa",
+      "vendorName": "Mission Glass",
+      "invoiceNumber": "MG-10904",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5584",
+      "terms": "Net 30",
+      "bankAccountLast4": "1291",
+      "lineItems": [
+        {
+          "description": "Tempered glass panel, 4x8, Site 9",
+          "quantity": 17,
+          "unitPrice": "615.00"
+        }
+      ],
+      "totalAmount": "10455.00",
+      "claimedContact": {
+        "name": "Teresa Lam",
+        "email": "teresa@missionglazing.com",
+        "phone": "(555) 010-2029"
+      }
+    },
+    "B-2026-10-0162": {
+      "billId": "B-2026-10-0162",
+      "receivedAt": "2026-10-24T18:46:00Z",
+      "channel": "email",
+      "from": "ar@coastlineroofing.com",
+      "subject": "Invoice CR-39617 - Roof drain and flashing kit, Site 5",
+      "body": "Hello, attached is invoice CR-39617 for roof drain and flashing kit, site 5 under PO-5535. Payment to our account on file. Thank you, Coastline Roofing Accounts Receivable",
+      "vendorName": "Coastline Roofing LLC",
+      "invoiceNumber": "CR-39617",
+      "invoiceDate": "2026-10-21",
+      "poNumber": "PO-5535",
+      "terms": "Net 30",
+      "bankAccountLast4": "9119",
+      "lineItems": [
+        {
+          "description": "Roof drain and flashing kit, Site 5",
+          "quantity": 13,
+          "unitPrice": "410.00"
+        }
+      ],
+      "totalAmount": "5330.00",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@coastlineroofing.com",
+        "phone": "(555) 010-2027"
+      }
+    },
+    "B-2026-10-0163": {
+      "billId": "B-2026-10-0163",
+      "receivedAt": "2026-10-24T20:33:00Z",
+      "channel": "email",
+      "from": "ar@redwooddrywall.com",
+      "subject": "Invoice RDF-19909 - Drywall hang and tape, Site 6 (sq ft)",
+      "body": "Hello, attached is invoice RDF-19909 for drywall hang and tape, site 6 under PO-5600. Payment to our account on file. Thank you, Redwood Drywall Accounts Receivable",
+      "vendorName": "Redwood Drywall & Framing Inc",
+      "invoiceNumber": "RDF-19909",
+      "invoiceDate": "2026-10-24",
+      "poNumber": "PO-5600",
+      "terms": "Net 30",
+      "bankAccountLast4": "2257",
+      "lineItems": [
+        {
+          "description": "Drywall hang and tape, Site 6 (sq ft)",
+          "quantity": 7396,
+          "unitPrice": "1.95"
+        }
+      ],
+      "totalAmount": "14422.20",
+      "claimedContact": {
+        "name": "Accounts Receivable",
+        "email": "ar@redwooddrywall.com",
+        "phone": "(555) 010-2022"
       }
     }
   },
@@ -195,6 +2691,1418 @@
           "unitPrice": "6.40"
         }
       ]
+    },
+    "PO-5528": {
+      "poNumber": "PO-5528",
+      "vendorId": "V-003",
+      "site": "Site 2",
+      "issuedOn": "2026-10-04",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Class II base rock, delivered, Site 2 (ton)",
+          "quantity": 281,
+          "unitPrice": "34.50"
+        },
+        {
+          "description": "Washed concrete sand, Site 2 (ton)",
+          "quantity": 306,
+          "unitPrice": "38.20"
+        }
+      ]
+    },
+    "PO-5529": {
+      "poNumber": "PO-5529",
+      "vendorId": "V-012",
+      "site": "Site 3",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "#4 rebar, 20 ft, Site 3",
+          "quantity": 60,
+          "unitPrice": "3.90"
+        }
+      ]
+    },
+    "PO-5531": {
+      "poNumber": "PO-5531",
+      "vendorId": "V-022",
+      "site": "Site 4",
+      "issuedOn": "2026-10-06",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "5/8 in Type X drywall sheets, Site 4",
+          "quantity": 200,
+          "unitPrice": "16.20"
+        }
+      ]
+    },
+    "PO-5533": {
+      "poNumber": "PO-5533",
+      "vendorId": "V-025",
+      "site": "Site 2",
+      "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Mini-split system, 2-ton, Site 2",
+          "quantity": 2,
+          "unitPrice": "3275.00"
+        }
+      ]
+    },
+    "PO-5535": {
+      "poNumber": "PO-5535",
+      "vendorId": "V-027",
+      "site": "Site 5",
+      "issuedOn": "2026-09-08",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Roof drain and flashing kit, Site 5",
+          "quantity": 13,
+          "unitPrice": "410.00"
+        }
+      ]
+    },
+    "PO-5537": {
+      "poNumber": "PO-5537",
+      "vendorId": "V-029",
+      "site": "Site 6",
+      "issuedOn": "2026-09-16",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Storefront glazing system, Site 6 (sq ft)",
+          "quantity": 5973,
+          "unitPrice": "92.00"
+        }
+      ]
+    },
+    "PO-5538": {
+      "poNumber": "PO-5538",
+      "vendorId": "V-033",
+      "site": "Site 7",
+      "issuedOn": "2026-10-05",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "40 ft boom lift rental, weekly, Site 7",
+          "quantity": 1,
+          "unitPrice": "1890.00"
+        }
+      ]
+    },
+    "PO-5539": {
+      "poNumber": "PO-5539",
+      "vendorId": "V-036",
+      "site": "Site 5",
+      "issuedOn": "2026-09-10",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "20 yd roll-off swap, Site 5",
+          "quantity": 8,
+          "unitPrice": "520.00"
+        },
+        {
+          "description": "40 yd roll-off swap, Site 5",
+          "quantity": 23,
+          "unitPrice": "695.00"
+        }
+      ]
+    },
+    "PO-5541": {
+      "poNumber": "PO-5541",
+      "vendorId": "V-038",
+      "site": "Site 8",
+      "issuedOn": "2026-09-19",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Floor drain, cast iron, Site 8",
+          "quantity": 20,
+          "unitPrice": "212.00"
+        },
+        {
+          "description": "3/4 in copper type L, 10 ft, Site 8",
+          "quantity": 10,
+          "unitPrice": "64.90"
+        }
+      ]
+    },
+    "PO-5544": {
+      "poNumber": "PO-5544",
+      "vendorId": "V-041",
+      "site": "Site 3",
+      "issuedOn": "2026-10-02",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Asphalt paving, 3 in lift, Site 3 (sq ft)",
+          "quantity": 1247,
+          "unitPrice": "4.15"
+        }
+      ]
+    },
+    "PO-5547": {
+      "poNumber": "PO-5547",
+      "vendorId": "V-047",
+      "site": "Site 3",
+      "issuedOn": "2026-09-25",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Site landscaping, phase, Site 3",
+          "quantity": 1,
+          "unitPrice": "8900.00"
+        }
+      ]
+    },
+    "PO-5550": {
+      "poNumber": "PO-5550",
+      "vendorId": "V-050",
+      "site": "Site 8",
+      "issuedOn": "2026-09-25",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "LED high-bay fixture, Site 8",
+          "quantity": 25,
+          "unitPrice": "189.00"
+        }
+      ]
+    },
+    "PO-5553": {
+      "poNumber": "PO-5553",
+      "vendorId": "V-052",
+      "site": "Site 9",
+      "issuedOn": "2026-09-21",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Spray foam, closed cell, Site 9 (board ft)",
+          "quantity": 1249,
+          "unitPrice": "1.95"
+        }
+      ]
+    },
+    "PO-5556": {
+      "poNumber": "PO-5556",
+      "vendorId": "V-055",
+      "site": "Site 4",
+      "issuedOn": "2026-09-28",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Fire sprinkler rough-in, Site 4 (head)",
+          "quantity": 110,
+          "unitPrice": "142.00"
+        },
+        {
+          "description": "Fire alarm panel, installed, Site 4",
+          "quantity": 1,
+          "unitPrice": "6800.00"
+        }
+      ]
+    },
+    "PO-5558": {
+      "poNumber": "PO-5558",
+      "vendorId": "V-058",
+      "site": "Site 1",
+      "issuedOn": "2026-09-13",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Hydraulic elevator install, progress billing, Site 1",
+          "quantity": 1,
+          "unitPrice": "22500.00"
+        }
+      ]
+    },
+    "PO-5559": {
+      "poNumber": "PO-5559",
+      "vendorId": "V-063",
+      "site": "Site 7",
+      "issuedOn": "2026-10-02",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Short-load fee, Site 7",
+          "quantity": 10,
+          "unitPrice": "125.00"
+        },
+        {
+          "description": "Pump truck, 4 hr min, Site 7",
+          "quantity": 3,
+          "unitPrice": "980.00"
+        }
+      ]
+    },
+    "PO-5561": {
+      "poNumber": "PO-5561",
+      "vendorId": "V-066",
+      "site": "Site 5",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Interior paint, 2 coats, Site 5 (sq ft)",
+          "quantity": 3316,
+          "unitPrice": "1.25"
+        },
+        {
+          "description": "Exterior elastomeric coating, Site 5 (sq ft)",
+          "quantity": 3556,
+          "unitPrice": "2.40"
+        }
+      ]
+    },
+    "PO-5564": {
+      "poNumber": "PO-5564",
+      "vendorId": "V-069",
+      "site": "Site 3",
+      "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "As-built survey, Site 3",
+          "quantity": 4,
+          "unitPrice": "4200.00"
+        }
+      ]
+    },
+    "PO-5567": {
+      "poNumber": "PO-5567",
+      "vendorId": "V-072",
+      "site": "Site 7",
+      "issuedOn": "2026-10-05",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Porcelain floor tile, installed, Site 7 (sq ft)",
+          "quantity": 7441,
+          "unitPrice": "11.80"
+        }
+      ]
+    },
+    "PO-5570": {
+      "poNumber": "PO-5570",
+      "vendorId": "V-078",
+      "site": "Site 6",
+      "issuedOn": "2026-09-25",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Portable toilet service, monthly, Site 6",
+          "quantity": 200,
+          "unitPrice": "145.00"
+        }
+      ]
+    },
+    "PO-5571": {
+      "poNumber": "PO-5571",
+      "vendorId": "V-080",
+      "site": "Site 4",
+      "issuedOn": "2026-10-02",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Simpson strong-drive screws, box of 500, Site 4",
+          "quantity": 250,
+          "unitPrice": "24.80"
+        }
+      ]
+    },
+    "PO-5573": {
+      "poNumber": "PO-5573",
+      "vendorId": "V-083",
+      "site": "Site 5",
+      "issuedOn": "2026-10-05",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "90-ton crane with operator, 8 hr, Site 5",
+          "quantity": 2,
+          "unitPrice": "3450.00"
+        }
+      ]
+    },
+    "PO-5574": {
+      "poNumber": "PO-5574",
+      "vendorId": "V-086",
+      "site": "Site 6",
+      "issuedOn": "2026-09-30",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Below-grade waterproofing membrane, Site 6 (sq ft)",
+          "quantity": 3282,
+          "unitPrice": "6.75"
+        },
+        {
+          "description": "Deck coating system, Site 6 (sq ft)",
+          "quantity": 7483,
+          "unitPrice": "8.90"
+        }
+      ]
+    },
+    "PO-5575": {
+      "poNumber": "PO-5575",
+      "vendorId": "V-088",
+      "site": "Site 7",
+      "issuedOn": "2026-09-29",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Night security guard, per shift, Site 7",
+          "quantity": 26,
+          "unitPrice": "312.00"
+        }
+      ]
+    },
+    "PO-5577": {
+      "poNumber": "PO-5577",
+      "vendorId": "V-093",
+      "site": "Site 7",
+      "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Arrow board rental, daily, Site 7",
+          "quantity": 250,
+          "unitPrice": "85.00"
+        },
+        {
+          "description": "Flagger, 8 hr shift, Site 7",
+          "quantity": 9,
+          "unitPrice": "520.00"
+        }
+      ]
+    },
+    "PO-5578": {
+      "poNumber": "PO-5578",
+      "vendorId": "V-095",
+      "site": "Site 8",
+      "issuedOn": "2026-09-04",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Contractor trash bags, case, Site 8",
+          "quantity": 40,
+          "unitPrice": "42.50"
+        }
+      ]
+    },
+    "PO-5579": {
+      "poNumber": "PO-5579",
+      "vendorId": "V-097",
+      "site": "Site 4",
+      "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Structural observation visit, Site 4",
+          "quantity": 2,
+          "unitPrice": "1450.00"
+        }
+      ]
+    },
+    "PO-5582": {
+      "poNumber": "PO-5582",
+      "vendorId": "V-029",
+      "site": "Site 8",
+      "issuedOn": "2026-09-09",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Storefront glazing system, Site 8 (sq ft)",
+          "quantity": 5738,
+          "unitPrice": "92.00"
+        },
+        {
+          "description": "Tempered glass panel, 4x8, Site 8",
+          "quantity": 10,
+          "unitPrice": "615.00"
+        }
+      ]
+    },
+    "PO-5584": {
+      "poNumber": "PO-5584",
+      "vendorId": "V-029",
+      "site": "Site 9",
+      "issuedOn": "2026-09-23",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Tempered glass panel, 4x8, Site 9",
+          "quantity": 17,
+          "unitPrice": "615.00"
+        }
+      ]
+    },
+    "PO-5586": {
+      "poNumber": "PO-5586",
+      "vendorId": "V-029",
+      "site": "Site 1",
+      "issuedOn": "2026-09-29",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Storefront glazing system, Site 1 (sq ft)",
+          "quantity": 7149,
+          "unitPrice": "92.00"
+        }
+      ]
+    },
+    "PO-5589": {
+      "poNumber": "PO-5589",
+      "vendorId": "V-052",
+      "site": "Site 3",
+      "issuedOn": "2026-09-06",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Spray foam, closed cell, Site 3 (board ft)",
+          "quantity": 2603,
+          "unitPrice": "1.95"
+        }
+      ]
+    },
+    "PO-5591": {
+      "poNumber": "PO-5591",
+      "vendorId": "V-093",
+      "site": "Site 1",
+      "issuedOn": "2026-09-20",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Flagger, 8 hr shift, Site 1",
+          "quantity": 19,
+          "unitPrice": "520.00"
+        }
+      ]
+    },
+    "PO-5592": {
+      "poNumber": "PO-5592",
+      "vendorId": "V-080",
+      "site": "Site 5",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Hilti powder-actuated pins, case, Site 5",
+          "quantity": 20,
+          "unitPrice": "112.00"
+        }
+      ]
+    },
+    "PO-5595": {
+      "poNumber": "PO-5595",
+      "vendorId": "V-093",
+      "site": "Site 8",
+      "issuedOn": "2026-09-04",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Arrow board rental, daily, Site 8",
+          "quantity": 200,
+          "unitPrice": "85.00"
+        }
+      ]
+    },
+    "PO-5598": {
+      "poNumber": "PO-5598",
+      "vendorId": "V-036",
+      "site": "Site 2",
+      "issuedOn": "2026-09-08",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "20 yd roll-off swap, Site 2",
+          "quantity": 15,
+          "unitPrice": "520.00"
+        }
+      ]
+    },
+    "PO-5600": {
+      "poNumber": "PO-5600",
+      "vendorId": "V-022",
+      "site": "Site 6",
+      "issuedOn": "2026-10-09",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Drywall hang and tape, Site 6 (sq ft)",
+          "quantity": 7396,
+          "unitPrice": "1.95"
+        }
+      ]
+    },
+    "PO-5603": {
+      "poNumber": "PO-5603",
+      "vendorId": "V-003",
+      "site": "Site 3",
+      "issuedOn": "2026-09-08",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Washed concrete sand, Site 3 (ton)",
+          "quantity": 414,
+          "unitPrice": "38.20"
+        }
+      ]
+    },
+    "PO-5606": {
+      "poNumber": "PO-5606",
+      "vendorId": "V-066",
+      "site": "Site 4",
+      "issuedOn": "2026-09-22",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Exterior elastomeric coating, Site 4 (sq ft)",
+          "quantity": 7918,
+          "unitPrice": "2.40"
+        },
+        {
+          "description": "Interior paint, 2 coats, Site 4 (sq ft)",
+          "quantity": 4593,
+          "unitPrice": "1.25"
+        }
+      ]
+    },
+    "PO-5612": {
+      "poNumber": "PO-5612",
+      "vendorId": "V-093",
+      "site": "Site 8",
+      "issuedOn": "2026-09-25",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Arrow board rental, daily, Site 8",
+          "quantity": 40,
+          "unitPrice": "85.00"
+        },
+        {
+          "description": "Flagger, 8 hr shift, Site 8",
+          "quantity": 25,
+          "unitPrice": "520.00"
+        }
+      ]
+    },
+    "PO-5614": {
+      "poNumber": "PO-5614",
+      "vendorId": "V-027",
+      "site": "Site 1",
+      "issuedOn": "2026-09-24",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Roof drain and flashing kit, Site 1",
+          "quantity": 5,
+          "unitPrice": "410.00"
+        },
+        {
+          "description": "Tear-off and disposal, Site 1 (square)",
+          "quantity": 82,
+          "unitPrice": "145.00"
+        }
+      ]
+    },
+    "PO-5616": {
+      "poNumber": "PO-5616",
+      "vendorId": "V-036",
+      "site": "Site 6",
+      "issuedOn": "2026-09-12",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "40 yd roll-off swap, Site 6",
+          "quantity": 6,
+          "unitPrice": "695.00"
+        }
+      ]
+    },
+    "PO-5618": {
+      "poNumber": "PO-5618",
+      "vendorId": "V-083",
+      "site": "Site 2",
+      "issuedOn": "2026-10-02",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "90-ton crane with operator, 8 hr, Site 2",
+          "quantity": 4,
+          "unitPrice": "3450.00"
+        }
+      ]
+    },
+    "PO-5621": {
+      "poNumber": "PO-5621",
+      "vendorId": "V-097",
+      "site": "Site 6",
+      "issuedOn": "2026-09-04",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Structural observation visit, Site 6",
+          "quantity": 4,
+          "unitPrice": "1450.00"
+        },
+        {
+          "description": "Special inspection, concrete, per day, Site 6",
+          "quantity": 30,
+          "unitPrice": "980.00"
+        }
+      ]
+    },
+    "PO-5623": {
+      "poNumber": "PO-5623",
+      "vendorId": "V-083",
+      "site": "Site 3",
+      "issuedOn": "2026-09-21",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Rigging crew, 8 hr, Site 3",
+          "quantity": 2,
+          "unitPrice": "1280.00"
+        }
+      ]
+    },
+    "PO-5624": {
+      "poNumber": "PO-5624",
+      "vendorId": "V-033",
+      "site": "Site 3",
+      "issuedOn": "2026-09-10",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "40 ft boom lift rental, weekly, Site 3",
+          "quantity": 4,
+          "unitPrice": "1890.00"
+        }
+      ]
+    },
+    "PO-5626": {
+      "poNumber": "PO-5626",
+      "vendorId": "V-027",
+      "site": "Site 6",
+      "issuedOn": "2026-09-08",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Tear-off and disposal, Site 6 (square)",
+          "quantity": 57,
+          "unitPrice": "145.00"
+        },
+        {
+          "description": "TPO roofing membrane, installed, Site 6 (square)",
+          "quantity": 80,
+          "unitPrice": "685.00"
+        }
+      ]
+    },
+    "PO-5629": {
+      "poNumber": "PO-5629",
+      "vendorId": "V-044",
+      "site": "Site 2",
+      "issuedOn": "2026-09-12",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Pressure-treated 4x4x10 posts, Site 2",
+          "quantity": 450,
+          "unitPrice": "18.35"
+        },
+        {
+          "description": "1/2 in CDX plywood sheets, Site 2",
+          "quantity": 160,
+          "unitPrice": "32.30"
+        }
+      ]
+    },
+    "PO-5631": {
+      "poNumber": "PO-5631",
+      "vendorId": "V-012",
+      "site": "Site 5",
+      "issuedOn": "2026-09-28",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "#4 rebar, 20 ft, Site 5",
+          "quantity": 2000,
+          "unitPrice": "3.90"
+        }
+      ]
+    },
+    "PO-5633": {
+      "poNumber": "PO-5633",
+      "vendorId": "V-063",
+      "site": "Site 3",
+      "issuedOn": "2026-09-30",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "4000 PSI concrete, Site 3, delivered (cu yd)",
+          "quantity": 120,
+          "unitPrice": "165.00"
+        }
+      ]
+    },
+    "PO-5634": {
+      "poNumber": "PO-5634",
+      "vendorId": "V-025",
+      "site": "Site 8",
+      "issuedOn": "2026-09-18",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Rooftop unit, 10-ton, Site 8",
+          "quantity": 2,
+          "unitPrice": "14850.00"
+        }
+      ]
+    },
+    "PO-5637": {
+      "poNumber": "PO-5637",
+      "vendorId": "V-022",
+      "site": "Site 6",
+      "issuedOn": "2026-10-02",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "5/8 in Type X drywall sheets, Site 6",
+          "quantity": 600,
+          "unitPrice": "16.20"
+        }
+      ]
+    },
+    "PO-5640": {
+      "poNumber": "PO-5640",
+      "vendorId": "V-027",
+      "site": "Site 9",
+      "issuedOn": "2026-09-22",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "TPO roofing membrane, Site 9, installed (square)",
+          "quantity": 42,
+          "unitPrice": "685.00"
+        }
+      ]
+    },
+    "PO-5642": {
+      "poNumber": "PO-5642",
+      "vendorId": "V-003",
+      "site": "Site 4",
+      "issuedOn": "2026-10-01",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Class II base rock, Site 4, delivered (ton)",
+          "quantity": 380,
+          "unitPrice": "34.50"
+        }
+      ]
+    },
+    "PO-5643": {
+      "poNumber": "PO-5643",
+      "vendorId": "V-008",
+      "site": "Site 1",
+      "issuedOn": "2026-08-25",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Structural steel package, Phase 2, Site 1",
+          "quantity": 1,
+          "unitPrice": "64115.00"
+        }
+      ]
+    },
+    "PO-5646": {
+      "poNumber": "PO-5646",
+      "vendorId": "V-031",
+      "site": "Site 3",
+      "issuedOn": "2026-09-29",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Sidewalk and curb pour, Site 3 (lin ft)",
+          "quantity": 210,
+          "unitPrice": "48.00"
+        }
+      ]
+    },
+    "PO-5648": {
+      "poNumber": "PO-5648",
+      "vendorId": "V-019",
+      "site": "Site 7",
+      "issuedOn": "2026-09-15",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Rough-in plumbing, Site 7, per unit",
+          "quantity": 5,
+          "unitPrice": "1823.00"
+        }
+      ]
+    },
+    "PO-5651": {
+      "poNumber": "PO-5651",
+      "vendorId": "V-075",
+      "site": "Site 2",
+      "issuedOn": "2026-10-06",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Post-construction cleaning, Site 2, per floor",
+          "quantity": 4,
+          "unitPrice": "1962.50"
+        }
+      ]
+    },
+    "PO-5652": {
+      "poNumber": "PO-5652",
+      "vendorId": "V-090",
+      "site": "Site 5",
+      "issuedOn": "2026-10-08",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Generator service, 45 kW, Site 5",
+          "quantity": 1,
+          "unitPrice": "2920.00"
+        },
+        {
+          "description": "Hydraulic hose replacement, skid steer, Site 5",
+          "quantity": 1,
+          "unitPrice": "1460.00"
+        }
+      ]
+    },
+    "PO-5654": {
+      "poNumber": "PO-5654",
+      "vendorId": "V-061",
+      "site": "Site 4",
+      "issuedOn": "2026-07-20",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Scaffold erect, rent and dismantle, 12 weeks, Site 4",
+          "quantity": 1,
+          "unitPrice": "42000.00"
+        }
+      ]
+    },
+    "PO-5657": {
+      "poNumber": "PO-5657",
+      "vendorId": "V-080",
+      "site": "Site 1",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Simpson strong-drive screws, box of 500, Site 1",
+          "quantity": 500,
+          "unitPrice": "24.80"
+        }
+      ]
+    },
+    "PO-5660": {
+      "poNumber": "PO-5660",
+      "vendorId": "V-029",
+      "site": "Site 2",
+      "issuedOn": "2026-09-24",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Storefront glazing system, Site 2 (sq ft)",
+          "quantity": 340,
+          "unitPrice": "92.00"
+        }
+      ]
+    },
+    "PO-5661": {
+      "poNumber": "PO-5661",
+      "vendorId": "V-008",
+      "site": "Site 1",
+      "issuedOn": "2026-09-10",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Steel stair stringers, fabricated, Site 1",
+          "quantity": 2,
+          "unitPrice": "4200.00"
+        }
+      ]
+    },
+    "PO-5662": {
+      "poNumber": "PO-5662",
+      "vendorId": "V-003",
+      "site": "Site 4",
+      "issuedOn": "2026-10-21",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "3/4 in drain rock, delivered, Site 4 (ton)",
+          "quantity": 153,
+          "unitPrice": "41.75"
+        }
+      ]
+    },
+    "PO-5664": {
+      "poNumber": "PO-5664",
+      "vendorId": "V-029",
+      "site": "Site 2",
+      "issuedOn": "2026-10-19",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Tempered glass panel, 4x8, Site 2",
+          "quantity": 17,
+          "unitPrice": "615.00"
+        }
+      ]
+    },
+    "PO-5666": {
+      "poNumber": "PO-5666",
+      "vendorId": "V-022",
+      "site": "Site 3",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Drywall hang and tape, Site 3 (sq ft)",
+          "quantity": 2249,
+          "unitPrice": "1.95"
+        }
+      ]
+    },
+    "PO-5667": {
+      "poNumber": "PO-5667",
+      "vendorId": "V-012",
+      "site": "Site 1",
+      "issuedOn": "2026-10-03",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "#4 rebar, 20 ft, Site 1",
+          "quantity": 20,
+          "unitPrice": "3.90"
+        }
+      ]
+    },
+    "PO-5669": {
+      "poNumber": "PO-5669",
+      "vendorId": "V-078",
+      "site": "Site 4",
+      "issuedOn": "2026-10-06",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "Portable toilet service, monthly, Site 4",
+          "quantity": 60,
+          "unitPrice": "145.00"
+        }
+      ]
+    },
+    "PO-5671": {
+      "poNumber": "PO-5671",
+      "vendorId": "V-080",
+      "site": "Site 3",
+      "issuedOn": "2026-10-06",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Hilti powder-actuated pins, case, Site 3",
+          "quantity": 120,
+          "unitPrice": "112.00"
+        }
+      ]
+    },
+    "PO-5672": {
+      "poNumber": "PO-5672",
+      "vendorId": "V-095",
+      "site": "Site 1",
+      "issuedOn": "2026-09-27",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Safety harness kit, Site 1",
+          "quantity": 40,
+          "unitPrice": "148.00"
+        }
+      ]
+    },
+    "PO-5675": {
+      "poNumber": "PO-5675",
+      "vendorId": "V-095",
+      "site": "Site 9",
+      "issuedOn": "2026-09-25",
+      "owner": {
+        "name": "Sofia Marquez",
+        "role": "Project manager",
+        "phone": "(415) 555-0152"
+      },
+      "lines": [
+        {
+          "description": "Contractor trash bags, case, Site 9",
+          "quantity": 120,
+          "unitPrice": "42.50"
+        }
+      ]
+    },
+    "PO-5677": {
+      "poNumber": "PO-5677",
+      "vendorId": "V-080",
+      "site": "Site 1",
+      "issuedOn": "2026-10-11",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Concrete wedge anchors 1/2 in, box of 25, Site 1",
+          "quantity": 10,
+          "unitPrice": "31.60"
+        }
+      ]
+    },
+    "PO-5679": {
+      "poNumber": "PO-5679",
+      "vendorId": "V-080",
+      "site": "Site 3",
+      "issuedOn": "2026-10-16",
+      "owner": {
+        "name": "Lena Okonkwo",
+        "role": "Project manager",
+        "phone": "(415) 555-0161"
+      },
+      "lines": [
+        {
+          "description": "Concrete wedge anchors 1/2 in, box of 25, Site 3",
+          "quantity": 25,
+          "unitPrice": "31.60"
+        }
+      ]
+    },
+    "PO-5680": {
+      "poNumber": "PO-5680",
+      "vendorId": "V-033",
+      "site": "Site 4",
+      "issuedOn": "2026-10-13",
+      "owner": {
+        "name": "Daniel Cho",
+        "role": "Project manager",
+        "phone": "(415) 555-0190"
+      },
+      "lines": [
+        {
+          "description": "40 ft boom lift rental, weekly, Site 4",
+          "quantity": 3,
+          "unitPrice": "1890.00"
+        }
+      ]
+    },
+    "PO-5682": {
+      "poNumber": "PO-5682",
+      "vendorId": "V-027",
+      "site": "Site 6",
+      "issuedOn": "2026-09-24",
+      "owner": {
+        "name": "Raj Patel",
+        "role": "Project manager",
+        "phone": "(415) 555-0134"
+      },
+      "lines": [
+        {
+          "description": "Roof drain and flashing kit, Site 6",
+          "quantity": 24,
+          "unitPrice": "410.00"
+        }
+      ]
     }
   },
   "receivingLog": [
@@ -218,13 +4126,663 @@
       "quantity": 400,
       "receivedOn": "2026-10-22",
       "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5528",
+      "description": "Class II base rock, delivered, Site 2 (ton)",
+      "quantity": 281,
+      "receivedOn": "2026-10-13",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5528",
+      "description": "Washed concrete sand, Site 2 (ton)",
+      "quantity": 306,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5529",
+      "description": "#4 rebar, 20 ft, Site 3",
+      "quantity": 60,
+      "receivedOn": "2026-10-20",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5531",
+      "description": "5/8 in Type X drywall sheets, Site 4",
+      "quantity": 200,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5533",
+      "description": "Mini-split system, 2-ton, Site 2",
+      "quantity": 2,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5535",
+      "description": "Roof drain and flashing kit, Site 5",
+      "quantity": 13,
+      "receivedOn": "2026-10-18",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5537",
+      "description": "Storefront glazing system, Site 6 (sq ft)",
+      "quantity": 5973,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5538",
+      "description": "40 ft boom lift rental, weekly, Site 7",
+      "quantity": 1,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5539",
+      "description": "20 yd roll-off swap, Site 5",
+      "quantity": 8,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5539",
+      "description": "40 yd roll-off swap, Site 5",
+      "quantity": 23,
+      "receivedOn": "2026-10-13",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5541",
+      "description": "Floor drain, cast iron, Site 8",
+      "quantity": 20,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5541",
+      "description": "3/4 in copper type L, 10 ft, Site 8",
+      "quantity": 10,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5544",
+      "description": "Asphalt paving, 3 in lift, Site 3 (sq ft)",
+      "quantity": 1247,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5547",
+      "description": "Site landscaping, phase, Site 3",
+      "quantity": 1,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5550",
+      "description": "LED high-bay fixture, Site 8",
+      "quantity": 25,
+      "receivedOn": "2026-10-20",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5553",
+      "description": "Spray foam, closed cell, Site 9 (board ft)",
+      "quantity": 1249,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5556",
+      "description": "Fire sprinkler rough-in, Site 4 (head)",
+      "quantity": 110,
+      "receivedOn": "2026-10-12",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5556",
+      "description": "Fire alarm panel, installed, Site 4",
+      "quantity": 1,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5558",
+      "description": "Hydraulic elevator install, progress billing, Site 1",
+      "quantity": 1,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5559",
+      "description": "Short-load fee, Site 7",
+      "quantity": 10,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5559",
+      "description": "Pump truck, 4 hr min, Site 7",
+      "quantity": 3,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5561",
+      "description": "Interior paint, 2 coats, Site 5 (sq ft)",
+      "quantity": 3316,
+      "receivedOn": "2026-10-20",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5561",
+      "description": "Exterior elastomeric coating, Site 5 (sq ft)",
+      "quantity": 3556,
+      "receivedOn": "2026-10-14",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5564",
+      "description": "As-built survey, Site 3",
+      "quantity": 4,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5567",
+      "description": "Porcelain floor tile, installed, Site 7 (sq ft)",
+      "quantity": 7441,
+      "receivedOn": "2026-10-12",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5570",
+      "description": "Portable toilet service, monthly, Site 6",
+      "quantity": 200,
+      "receivedOn": "2026-10-17",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5571",
+      "description": "Simpson strong-drive screws, box of 500, Site 4",
+      "quantity": 250,
+      "receivedOn": "2026-10-21",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5573",
+      "description": "90-ton crane with operator, 8 hr, Site 5",
+      "quantity": 2,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5574",
+      "description": "Below-grade waterproofing membrane, Site 6 (sq ft)",
+      "quantity": 3282,
+      "receivedOn": "2026-10-21",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5574",
+      "description": "Deck coating system, Site 6 (sq ft)",
+      "quantity": 7483,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5575",
+      "description": "Night security guard, per shift, Site 7",
+      "quantity": 26,
+      "receivedOn": "2026-10-17",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5577",
+      "description": "Arrow board rental, daily, Site 7",
+      "quantity": 250,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5577",
+      "description": "Flagger, 8 hr shift, Site 7",
+      "quantity": 9,
+      "receivedOn": "2026-10-14",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5578",
+      "description": "Contractor trash bags, case, Site 8",
+      "quantity": 40,
+      "receivedOn": "2026-10-17",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5579",
+      "description": "Structural observation visit, Site 4",
+      "quantity": 2,
+      "receivedOn": "2026-10-12",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5582",
+      "description": "Storefront glazing system, Site 8 (sq ft)",
+      "quantity": 5738,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5582",
+      "description": "Tempered glass panel, 4x8, Site 8",
+      "quantity": 10,
+      "receivedOn": "2026-10-22",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5584",
+      "description": "Tempered glass panel, 4x8, Site 9",
+      "quantity": 17,
+      "receivedOn": "2026-10-20",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5586",
+      "description": "Storefront glazing system, Site 1 (sq ft)",
+      "quantity": 7149,
+      "receivedOn": "2026-10-19",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5589",
+      "description": "Spray foam, closed cell, Site 3 (board ft)",
+      "quantity": 2603,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5591",
+      "description": "Flagger, 8 hr shift, Site 1",
+      "quantity": 19,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5592",
+      "description": "Hilti powder-actuated pins, case, Site 5",
+      "quantity": 20,
+      "receivedOn": "2026-10-13",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5595",
+      "description": "Arrow board rental, daily, Site 8",
+      "quantity": 200,
+      "receivedOn": "2026-10-20",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5598",
+      "description": "20 yd roll-off swap, Site 2",
+      "quantity": 15,
+      "receivedOn": "2026-10-11",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5600",
+      "description": "Drywall hang and tape, Site 6 (sq ft)",
+      "quantity": 7396,
+      "receivedOn": "2026-10-21",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5603",
+      "description": "Washed concrete sand, Site 3 (ton)",
+      "quantity": 414,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5606",
+      "description": "Exterior elastomeric coating, Site 4 (sq ft)",
+      "quantity": 7918,
+      "receivedOn": "2026-10-12",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5606",
+      "description": "Interior paint, 2 coats, Site 4 (sq ft)",
+      "quantity": 4593,
+      "receivedOn": "2026-10-17",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5612",
+      "description": "Arrow board rental, daily, Site 8",
+      "quantity": 40,
+      "receivedOn": "2026-10-13",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5612",
+      "description": "Flagger, 8 hr shift, Site 8",
+      "quantity": 25,
+      "receivedOn": "2026-10-18",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5614",
+      "description": "Roof drain and flashing kit, Site 1",
+      "quantity": 5,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5614",
+      "description": "Tear-off and disposal, Site 1 (square)",
+      "quantity": 82,
+      "receivedOn": "2026-10-13",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5616",
+      "description": "40 yd roll-off swap, Site 6",
+      "quantity": 6,
+      "receivedOn": "2026-10-19",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5618",
+      "description": "90-ton crane with operator, 8 hr, Site 2",
+      "quantity": 4,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5621",
+      "description": "Structural observation visit, Site 6",
+      "quantity": 4,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5621",
+      "description": "Special inspection, concrete, per day, Site 6",
+      "quantity": 30,
+      "receivedOn": "2026-10-21",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5623",
+      "description": "Rigging crew, 8 hr, Site 3",
+      "quantity": 2,
+      "receivedOn": "2026-10-13",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5624",
+      "description": "40 ft boom lift rental, weekly, Site 3",
+      "quantity": 4,
+      "receivedOn": "2026-10-19",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5626",
+      "description": "Tear-off and disposal, Site 6 (square)",
+      "quantity": 57,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5626",
+      "description": "TPO roofing membrane, installed, Site 6 (square)",
+      "quantity": 80,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5629",
+      "description": "Pressure-treated 4x4x10 posts, Site 2",
+      "quantity": 450,
+      "receivedOn": "2026-09-26",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5629",
+      "description": "1/2 in CDX plywood sheets, Site 2",
+      "quantity": 160,
+      "receivedOn": "2026-09-26",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5631",
+      "description": "#4 rebar, 20 ft, Site 5",
+      "quantity": 2000,
+      "receivedOn": "2026-10-14",
+      "signedBy": "PM Raj Patel"
+    },
+    {
+      "poNumber": "PO-5633",
+      "description": "4000 PSI concrete, Site 3, delivered (cu yd)",
+      "quantity": 120,
+      "receivedOn": "2026-10-16",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5637",
+      "description": "5/8 in Type X drywall sheets, Site 6",
+      "quantity": 450,
+      "receivedOn": "2026-10-17",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5640",
+      "description": "TPO roofing membrane, Site 9, installed (square)",
+      "quantity": 42,
+      "receivedOn": "2026-10-15",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5642",
+      "description": "Class II base rock, Site 4, delivered (ton)",
+      "quantity": 380,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5643",
+      "description": "Structural steel package, Phase 2, Site 1",
+      "quantity": 1,
+      "receivedOn": "2026-10-09",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5646",
+      "description": "Sidewalk and curb pour, Site 3 (lin ft)",
+      "quantity": 210,
+      "receivedOn": "2026-10-19",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5648",
+      "description": "Rough-in plumbing, Site 7, per unit",
+      "quantity": 5,
+      "receivedOn": "2026-10-13",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5651",
+      "description": "Post-construction cleaning, Site 2, per floor",
+      "quantity": 4,
+      "receivedOn": "2026-10-18",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5652",
+      "description": "Generator service, 45 kW, Site 5",
+      "quantity": 1,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5652",
+      "description": "Hydraulic hose replacement, skid steer, Site 5",
+      "quantity": 1,
+      "receivedOn": "2026-10-15",
+      "signedBy": "Super Marco Diaz"
+    },
+    {
+      "poNumber": "PO-5654",
+      "description": "Scaffold erect, rent and dismantle, 12 weeks, Site 4",
+      "quantity": 1,
+      "receivedOn": "2026-10-12",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5657",
+      "description": "Simpson strong-drive screws, box of 500, Site 1",
+      "quantity": 500,
+      "receivedOn": "2026-10-16",
+      "signedBy": "Receiving Aisha Bello"
+    },
+    {
+      "poNumber": "PO-5660",
+      "description": "Storefront glazing system, Site 2 (sq ft)",
+      "quantity": 340,
+      "receivedOn": "2026-10-20",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5661",
+      "description": "Steel stair stringers, fabricated, Site 1",
+      "quantity": 2,
+      "receivedOn": "2026-10-14",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5664",
+      "description": "Tempered glass panel, 4x8, Site 2",
+      "quantity": 17,
+      "receivedOn": "2026-10-24",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5666",
+      "description": "Drywall hang and tape, Site 3 (sq ft)",
+      "quantity": 2249,
+      "receivedOn": "2026-10-24",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5667",
+      "description": "#4 rebar, 20 ft, Site 1",
+      "quantity": 20,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5669",
+      "description": "Portable toilet service, monthly, Site 4",
+      "quantity": 60,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Daniel Cho"
+    },
+    {
+      "poNumber": "PO-5671",
+      "description": "Hilti powder-actuated pins, case, Site 3",
+      "quantity": 120,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5672",
+      "description": "Safety harness kit, Site 1",
+      "quantity": 40,
+      "receivedOn": "2026-10-24",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5675",
+      "description": "Contractor trash bags, case, Site 9",
+      "quantity": 120,
+      "receivedOn": "2026-10-23",
+      "signedBy": "PM Sofia Marquez"
+    },
+    {
+      "poNumber": "PO-5677",
+      "description": "Concrete wedge anchors 1/2 in, box of 25, Site 1",
+      "quantity": 10,
+      "receivedOn": "2026-10-22",
+      "signedBy": "PM Lena Okonkwo"
+    },
+    {
+      "poNumber": "PO-5680",
+      "description": "40 ft boom lift rental, weekly, Site 4",
+      "quantity": 3,
+      "receivedOn": "2026-10-23",
+      "signedBy": "PM Daniel Cho"
     }
   ],
   "contracts": {
+    "V-003": {
+      "contractId": "C-003",
+      "vendorId": "V-003",
+      "terms": "2/10 net 30",
+      "rateTolerancePct": 2
+    },
+    "V-008": {
+      "contractId": "C-008",
+      "vendorId": "V-008",
+      "terms": "Net 45",
+      "rateTolerancePct": 2
+    },
+    "V-012": {
+      "contractId": "C-012",
+      "vendorId": "V-012",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
     "V-017": {
       "contractId": "C-017",
       "vendorId": "V-017",
       "terms": "Net 30 from delivery",
+      "rateTolerancePct": 2
+    },
+    "V-019": {
+      "contractId": "C-019",
+      "vendorId": "V-019",
+      "terms": "Net 30",
+      "rateTolerancePct": 3
+    },
+    "V-022": {
+      "contractId": "C-022",
+      "vendorId": "V-022",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-025": {
+      "contractId": "C-025",
+      "vendorId": "V-025",
+      "terms": "Net 30 from delivery",
+      "rateTolerancePct": 1
+    },
+    "V-027": {
+      "contractId": "C-027",
+      "vendorId": "V-027",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-029": {
+      "contractId": "C-029",
+      "vendorId": "V-029",
+      "terms": "Net 30",
       "rateTolerancePct": 2
     },
     "V-031": {
@@ -233,11 +4791,155 @@
       "terms": "2/10 net 30",
       "rateTolerancePct": 3
     },
+    "V-033": {
+      "contractId": "C-033",
+      "vendorId": "V-033",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-036": {
+      "contractId": "C-036",
+      "vendorId": "V-036",
+      "terms": "Net 15",
+      "rateTolerancePct": 0
+    },
+    "V-038": {
+      "contractId": "C-038",
+      "vendorId": "V-038",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-041": {
+      "contractId": "C-041",
+      "vendorId": "V-041",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
     "V-044": {
       "contractId": "C-044",
       "vendorId": "V-044",
       "terms": "Net 30",
       "rateTolerancePct": 1
+    },
+    "V-047": {
+      "contractId": "C-047",
+      "vendorId": "V-047",
+      "terms": "Net 15",
+      "rateTolerancePct": 3
+    },
+    "V-050": {
+      "contractId": "C-050",
+      "vendorId": "V-050",
+      "terms": "Net 30",
+      "rateTolerancePct": 1
+    },
+    "V-052": {
+      "contractId": "C-052",
+      "vendorId": "V-052",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-055": {
+      "contractId": "C-055",
+      "vendorId": "V-055",
+      "terms": "Net 30",
+      "rateTolerancePct": 1
+    },
+    "V-058": {
+      "contractId": "C-058",
+      "vendorId": "V-058",
+      "terms": "Net 45",
+      "rateTolerancePct": 1
+    },
+    "V-061": {
+      "contractId": "C-061",
+      "vendorId": "V-061",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-063": {
+      "contractId": "C-063",
+      "vendorId": "V-063",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-066": {
+      "contractId": "C-066",
+      "vendorId": "V-066",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-069": {
+      "contractId": "C-069",
+      "vendorId": "V-069",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-072": {
+      "contractId": "C-072",
+      "vendorId": "V-072",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-075": {
+      "contractId": "C-075",
+      "vendorId": "V-075",
+      "terms": "Net 15",
+      "rateTolerancePct": 0
+    },
+    "V-078": {
+      "contractId": "C-078",
+      "vendorId": "V-078",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-080": {
+      "contractId": "C-080",
+      "vendorId": "V-080",
+      "terms": "Net 30",
+      "rateTolerancePct": 1
+    },
+    "V-083": {
+      "contractId": "C-083",
+      "vendorId": "V-083",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-086": {
+      "contractId": "C-086",
+      "vendorId": "V-086",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-088": {
+      "contractId": "C-088",
+      "vendorId": "V-088",
+      "terms": "Net 15",
+      "rateTolerancePct": 0
+    },
+    "V-090": {
+      "contractId": "C-090",
+      "vendorId": "V-090",
+      "terms": "Due on receipt",
+      "rateTolerancePct": 0
+    },
+    "V-093": {
+      "contractId": "C-093",
+      "vendorId": "V-093",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
+    },
+    "V-095": {
+      "contractId": "C-095",
+      "vendorId": "V-095",
+      "terms": "Net 30",
+      "rateTolerancePct": 2
+    },
+    "V-097": {
+      "contractId": "C-097",
+      "vendorId": "V-097",
+      "terms": "Net 30",
+      "rateTolerancePct": 0
     }
   },
   "employees": [
@@ -258,9 +4960,72 @@
       "role": "Controller",
       "phone": "(415) 555-0123",
       "address": "812 Grand Ave, Oakland, CA"
+    },
+    {
+      "name": "Lena Okonkwo",
+      "role": "Project manager",
+      "phone": "(415) 555-0161",
+      "address": "2450 Telegraph Ave, Oakland, CA"
+    },
+    {
+      "name": "Raj Patel",
+      "role": "Project manager",
+      "phone": "(415) 555-0134",
+      "address": "391 Castro St, Mountain View, CA"
+    },
+    {
+      "name": "Sofia Marquez",
+      "role": "Project manager",
+      "phone": "(415) 555-0152",
+      "address": "1600 Webster St, Alameda, CA"
+    },
+    {
+      "name": "Marco Diaz",
+      "role": "Site superintendent",
+      "phone": "(415) 555-0148",
+      "address": "3011 Fruitvale Ave, Oakland, CA"
+    },
+    {
+      "name": "Hannah Lindgren",
+      "role": "AP manager",
+      "phone": "(415) 555-0119",
+      "address": "540 Irving St, San Francisco, CA"
+    },
+    {
+      "name": "Kevin Tran",
+      "role": "Purchasing manager",
+      "phone": "(415) 555-0172",
+      "address": "1418 Noriega St, San Francisco, CA"
+    },
+    {
+      "name": "Aisha Bello",
+      "role": "Receiving coordinator",
+      "phone": "(415) 555-0185",
+      "address": "1275 Fell St, San Francisco, CA"
+    },
+    {
+      "name": "Owen Fitzgerald",
+      "role": "Estimator",
+      "phone": "(415) 555-0141",
+      "address": "62 Ashbury St, San Francisco, CA"
+    },
+    {
+      "name": "Mei Lin Wu",
+      "role": "Payroll specialist",
+      "phone": "(415) 555-0166",
+      "address": "2201 Shattuck Ave, Berkeley, CA"
     }
   ],
   "bankPayments": [
+    {
+      "nessieTransferId": "sample-transfer-8730",
+      "invoiceNumber": "BL-55211",
+      "vendorId": "V-044",
+      "amountCents": 361600,
+      "paidOn": "2026-10-17",
+      "paidToBankLast4": "0071",
+      "status": "completed"
+    },
     {
       "nessieTransferId": "sample-transfer-8812",
       "invoiceNumber": "INV-1043",
@@ -271,12 +5036,102 @@
       "status": "completed"
     },
     {
-      "nessieTransferId": "sample-transfer-7730",
-      "invoiceNumber": "INV-0988",
-      "vendorId": "V-017",
-      "amountCents": 1975000,
-      "paidOn": "2026-09-02",
-      "paidToBankLast4": "2290",
+      "nessieTransferId": "sample-transfer-1467",
+      "invoiceNumber": "IHS-956",
+      "vendorId": "V-061",
+      "amountCents": 660000,
+      "paidOn": "2026-10-14",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1827",
+      "invoiceNumber": "RDF-672",
+      "vendorId": "V-022",
+      "amountCents": 1333155,
+      "paidOn": "2026-10-13",
+      "paidToBankLast4": "2257",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2410",
+      "invoiceNumber": "CR-737",
+      "vendorId": "V-027",
+      "amountCents": 812000,
+      "paidOn": "2026-10-11",
+      "paidToBankLast4": "9119",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9480",
+      "invoiceNumber": "DER-456",
+      "vendorId": "V-033",
+      "amountCents": 656000,
+      "paidOn": "2026-10-11",
+      "paidToBankLast4": "3763",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9467",
+      "invoiceNumber": "SP-1023",
+      "vendorId": "V-066",
+      "amountCents": 2011200,
+      "paidOn": "2026-10-07",
+      "paidToBankLast4": "3888",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9402",
+      "invoiceNumber": "RDF-639",
+      "vendorId": "V-022",
+      "amountCents": 206700,
+      "paidOn": "2026-10-05",
+      "paidToBankLast4": "2257",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5521",
+      "invoiceNumber": "BL-55190",
+      "vendorId": "V-044",
+      "amountCents": 1342550,
+      "paidOn": "2026-10-03",
+      "paidToBankLast4": "0071",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9856",
+      "invoiceNumber": "PSG-784",
+      "vendorId": "V-069",
+      "amountCents": 1260000,
+      "paidOn": "2026-10-03",
+      "paidToBankLast4": "0797",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2767",
+      "invoiceNumber": "RDF-642",
+      "vendorId": "V-022",
+      "amountCents": 989040,
+      "paidOn": "2026-09-28",
+      "paidToBankLast4": "2257",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3722",
+      "invoiceNumber": "GGH-715",
+      "vendorId": "V-025",
+      "amountCents": 2136750,
+      "paidOn": "2026-09-28",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3306",
+      "invoiceNumber": "CFS-1000",
+      "vendorId": "V-075",
+      "amountCents": 250000,
+      "paidOn": "2026-09-27",
+      "paidToBankLast4": "9677",
       "status": "completed"
     },
     {
@@ -289,12 +5144,1110 @@
       "status": "completed"
     },
     {
-      "nessieTransferId": "sample-transfer-5521",
-      "invoiceNumber": "BL-55190",
+      "nessieTransferId": "sample-transfer-6295",
+      "invoiceNumber": "HL-811",
+      "vendorId": "V-047",
+      "amountCents": 145000,
+      "paidOn": "2026-09-25",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4488",
+      "invoiceNumber": "BWH-910",
+      "vendorId": "V-036",
+      "amountCents": 486500,
+      "paidOn": "2026-09-24",
+      "paidToBankLast4": "3061",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6307",
+      "invoiceNumber": "GR-1011",
+      "vendorId": "V-003",
+      "amountCents": 1086750,
+      "paidOn": "2026-09-23",
+      "paidToBankLast4": "9648",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1882",
+      "invoiceNumber": "INV-1007",
+      "vendorId": "V-017",
+      "amountCents": 655000,
+      "paidOn": "2026-09-23",
+      "paidToBankLast4": "2290",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9722",
+      "invoiceNumber": "LSS-983",
+      "vendorId": "V-078",
+      "amountCents": 57000,
+      "paidOn": "2026-09-22",
+      "paidToBankLast4": "3938",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2221",
+      "invoiceNumber": "BLS-981",
+      "vendorId": "V-050",
+      "amountCents": 94500,
+      "paidOn": "2026-09-20",
+      "paidToBankLast4": "9558",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4557",
+      "invoiceNumber": "PSG-830",
+      "vendorId": "V-069",
+      "amountCents": 165000,
+      "paidOn": "2026-09-19",
+      "paidToBankLast4": "0797",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1293",
+      "invoiceNumber": "MG-820",
+      "vendorId": "V-029",
+      "amountCents": 1168500,
+      "paidOn": "2026-09-18",
+      "paidToBankLast4": "1291",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5979",
+      "invoiceNumber": "SPS-485",
+      "vendorId": "V-038",
+      "amountCents": 106000,
+      "paidOn": "2026-09-18",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2178",
+      "invoiceNumber": "ACR-858",
+      "vendorId": "V-083",
+      "amountCents": 256000,
+      "paidOn": "2026-09-18",
+      "paidToBankLast4": "8632",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2882",
+      "invoiceNumber": "PES-533",
+      "vendorId": "V-058",
+      "amountCents": 2250000,
+      "paidOn": "2026-09-16",
+      "paidToBankLast4": "4973",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1565",
+      "invoiceNumber": "CFS-992",
+      "vendorId": "V-075",
+      "amountCents": 785000,
+      "paidOn": "2026-09-15",
+      "paidToBankLast4": "9677",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2632",
+      "invoiceNumber": "RER-849",
+      "vendorId": "V-090",
+      "amountCents": 438000,
+      "paidOn": "2026-09-12",
+      "paidToBankLast4": "3121",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5242",
+      "invoiceNumber": "FF-1085",
+      "vendorId": "V-080",
+      "amountCents": 1344000,
+      "paidOn": "2026-09-10",
+      "paidToBankLast4": "1748",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6990",
+      "invoiceNumber": "GR-1028",
+      "vendorId": "V-003",
+      "amountCents": 462300,
+      "paidOn": "2026-09-09",
+      "paidToBankLast4": "9648",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6428",
+      "invoiceNumber": "HL-756",
+      "vendorId": "V-047",
+      "amountCents": 580000,
+      "paidOn": "2026-09-08",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4040",
+      "invoiceNumber": "NSP-709",
+      "vendorId": "V-088",
+      "amountCents": 312000,
+      "paidOn": "2026-09-08",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2007",
+      "invoiceNumber": "VP-1010",
+      "vendorId": "V-019",
+      "amountCents": 642000,
+      "paidOn": "2026-09-07",
+      "paidToBankLast4": "4371",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6089",
+      "invoiceNumber": "HL-785",
+      "vendorId": "V-047",
+      "amountCents": 145000,
+      "paidOn": "2026-09-07",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8438",
+      "invoiceNumber": "PSG-754",
+      "vendorId": "V-069",
+      "amountCents": 495000,
+      "paidOn": "2026-09-05",
+      "paidToBankLast4": "0797",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5180",
+      "invoiceNumber": "ACR-872",
+      "vendorId": "V-083",
+      "amountCents": 256000,
+      "paidOn": "2026-09-04",
+      "paidToBankLast4": "8632",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7730",
+      "invoiceNumber": "INV-0988",
+      "vendorId": "V-017",
+      "amountCents": 1975000,
+      "paidOn": "2026-09-02",
+      "paidToBankLast4": "2290",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1175",
+      "invoiceNumber": "SSF-966",
+      "vendorId": "V-008",
+      "amountCents": 6411500,
+      "paidOn": "2026-09-01",
+      "paidToBankLast4": "5287",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1275",
+      "invoiceNumber": "GGH-628",
+      "vendorId": "V-025",
+      "amountCents": 912450,
+      "paidOn": "2026-09-01",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1439",
+      "invoiceNumber": "RER-821",
+      "vendorId": "V-090",
+      "amountCents": 292000,
+      "paidOn": "2026-09-01",
+      "paidToBankLast4": "3121",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5552",
+      "invoiceNumber": "IHS-990",
+      "vendorId": "V-061",
+      "amountCents": 4200000,
+      "paidOn": "2026-08-29",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6974",
+      "invoiceNumber": "NSP-729",
+      "vendorId": "V-088",
+      "amountCents": 405600,
+      "paidOn": "2026-08-29",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4387",
+      "invoiceNumber": "NSP-684",
+      "vendorId": "V-088",
+      "amountCents": 93600,
+      "paidOn": "2026-08-28",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3987",
+      "invoiceNumber": "NC-2188",
+      "vendorId": "V-031",
+      "amountCents": 452500,
+      "paidOn": "2026-08-27",
+      "paidToBankLast4": "6614",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8313",
+      "invoiceNumber": "HL-855",
+      "vendorId": "V-047",
+      "amountCents": 890000,
+      "paidOn": "2026-08-24",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2864",
+      "invoiceNumber": "OTS-655",
+      "vendorId": "V-072",
+      "amountCents": 2240820,
+      "paidOn": "2026-08-22",
+      "paidToBankLast4": "9685",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8328",
+      "invoiceNumber": "BL-55102",
       "vendorId": "V-044",
-      "amountCents": 1342550,
-      "paidOn": "2026-10-03",
+      "amountCents": 1029675,
+      "paidOn": "2026-08-21",
       "paidToBankLast4": "0071",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5499",
+      "invoiceNumber": "SP-1045",
+      "vendorId": "V-066",
+      "amountCents": 1024080,
+      "paidOn": "2026-08-19",
+      "paidToBankLast4": "3888",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6922",
+      "invoiceNumber": "NSP-719",
+      "vendorId": "V-088",
+      "amountCents": 156000,
+      "paidOn": "2026-08-19",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7552",
+      "invoiceNumber": "SSF-976",
+      "vendorId": "V-008",
+      "amountCents": 1260000,
+      "paidOn": "2026-08-18",
+      "paidToBankLast4": "5287",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9464",
+      "invoiceNumber": "HL-825",
+      "vendorId": "V-047",
+      "amountCents": 435000,
+      "paidOn": "2026-08-15",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8569",
+      "invoiceNumber": "FF-1123",
+      "vendorId": "V-080",
+      "amountCents": 316000,
+      "paidOn": "2026-08-12",
+      "paidToBankLast4": "1748",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6831",
+      "invoiceNumber": "DER-454",
+      "vendorId": "V-033",
+      "amountCents": 378000,
+      "paidOn": "2026-08-08",
+      "paidToBankLast4": "3763",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4969",
+      "invoiceNumber": "GGH-649",
+      "vendorId": "V-025",
+      "amountCents": 1310000,
+      "paidOn": "2026-08-07",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3062",
+      "invoiceNumber": "IHS-954",
+      "vendorId": "V-061",
+      "amountCents": 660000,
+      "paidOn": "2026-08-06",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5814",
+      "invoiceNumber": "TVP-518",
+      "vendorId": "V-041",
+      "amountCents": 2867650,
+      "paidOn": "2026-08-05",
+      "paidToBankLast4": "4403",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7761",
+      "invoiceNumber": "CR-829",
+      "vendorId": "V-027",
+      "amountCents": 246000,
+      "paidOn": "2026-08-04",
+      "paidToBankLast4": "9119",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2979",
+      "invoiceNumber": "IHS-976",
+      "vendorId": "V-061",
+      "amountCents": 4200000,
+      "paidOn": "2026-08-04",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9803",
+      "invoiceNumber": "BTC-642",
+      "vendorId": "V-093",
+      "amountCents": 510000,
+      "paidOn": "2026-08-02",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2871",
+      "invoiceNumber": "GGH-689",
+      "vendorId": "V-025",
+      "amountCents": 1485000,
+      "paidOn": "2026-08-01",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8000",
+      "invoiceNumber": "BTC-731",
+      "vendorId": "V-093",
+      "amountCents": 1560000,
+      "paidOn": "2026-08-01",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9159",
+      "invoiceNumber": "DER-464",
+      "vendorId": "V-033",
+      "amountCents": 567000,
+      "paidOn": "2026-07-30",
+      "paidToBankLast4": "3763",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5798",
+      "invoiceNumber": "NSP-731",
+      "vendorId": "V-088",
+      "amountCents": 842400,
+      "paidOn": "2026-07-30",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7278",
+      "invoiceNumber": "NC-2150",
+      "vendorId": "V-031",
+      "amountCents": 1120000,
+      "paidOn": "2026-07-30",
+      "paidToBankLast4": "6614",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9567",
+      "invoiceNumber": "BWH-847",
+      "vendorId": "V-036",
+      "amountCents": 834000,
+      "paidOn": "2026-07-27",
+      "paidToBankLast4": "3061",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7076",
+      "invoiceNumber": "PRS-1076",
+      "vendorId": "V-012",
+      "amountCents": 15250,
+      "paidOn": "2026-07-22",
+      "paidToBankLast4": "7701",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9126",
+      "invoiceNumber": "PW-837",
+      "vendorId": "V-086",
+      "amountCents": 3286575,
+      "paidOn": "2026-07-20",
+      "paidToBankLast4": "9712",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5865",
+      "invoiceNumber": "DRM-563",
+      "vendorId": "V-063",
+      "amountCents": 500000,
+      "paidOn": "2026-07-17",
+      "paidToBankLast4": "8099",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4907",
+      "invoiceNumber": "BTC-723",
+      "vendorId": "V-093",
+      "amountCents": 2125000,
+      "paidOn": "2026-07-16",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7205",
+      "invoiceNumber": "GGH-615",
+      "vendorId": "V-025",
+      "amountCents": 655000,
+      "paidOn": "2026-07-14",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8478",
+      "invoiceNumber": "NSP-656",
+      "vendorId": "V-088",
+      "amountCents": 780000,
+      "paidOn": "2026-07-14",
+      "paidToBankLast4": "1063",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1164",
+      "invoiceNumber": "INV-0921",
+      "vendorId": "V-017",
+      "amountCents": 1286000,
+      "paidOn": "2026-07-14",
+      "paidToBankLast4": "2290",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3635",
+      "invoiceNumber": "CR-796",
+      "vendorId": "V-027",
+      "amountCents": 841000,
+      "paidOn": "2026-07-13",
+      "paidToBankLast4": "9119",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5146",
+      "invoiceNumber": "SPS-503",
+      "vendorId": "V-038",
+      "amountCents": 71000,
+      "paidOn": "2026-07-12",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2224",
+      "invoiceNumber": "HL-780",
+      "vendorId": "V-047",
+      "amountCents": 890000,
+      "paidOn": "2026-07-09",
+      "paidToBankLast4": "1604",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9723",
+      "invoiceNumber": "BL-55018",
+      "vendorId": "V-044",
+      "amountCents": 768040,
+      "paidOn": "2026-07-08",
+      "paidToBankLast4": "0071",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6162",
+      "invoiceNumber": "GGH-675",
+      "vendorId": "V-025",
+      "amountCents": 982500,
+      "paidOn": "2026-07-07",
+      "paidToBankLast4": "4818",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2034",
+      "invoiceNumber": "SP-1040",
+      "vendorId": "V-066",
+      "amountCents": 1918560,
+      "paidOn": "2026-07-06",
+      "paidToBankLast4": "3888",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2771",
+      "invoiceNumber": "IHS-1047",
+      "vendorId": "V-061",
+      "amountCents": 660000,
+      "paidOn": "2026-07-03",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2783",
+      "invoiceNumber": "LSS-930",
+      "vendorId": "V-078",
+      "amountCents": 57000,
+      "paidOn": "2026-07-03",
+      "paidToBankLast4": "3938",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8594",
+      "invoiceNumber": "BTC-689",
+      "vendorId": "V-093",
+      "amountCents": 212500,
+      "paidOn": "2026-07-03",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7364",
+      "invoiceNumber": "MG-809",
+      "vendorId": "V-029",
+      "amountCents": 68291600,
+      "paidOn": "2026-06-30",
+      "paidToBankLast4": "1291",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9100",
+      "invoiceNumber": "SP-1050",
+      "vendorId": "V-066",
+      "amountCents": 969250,
+      "paidOn": "2026-06-25",
+      "paidToBankLast4": "3888",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7790",
+      "invoiceNumber": "KEC-737",
+      "vendorId": "V-097",
+      "amountCents": 435000,
+      "paidOn": "2026-06-25",
+      "paidToBankLast4": "9466",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7348",
+      "invoiceNumber": "KEC-700",
+      "vendorId": "V-097",
+      "amountCents": 1960000,
+      "paidOn": "2026-06-17",
+      "paidToBankLast4": "9466",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6948",
+      "invoiceNumber": "TVP-509",
+      "vendorId": "V-041",
+      "amountCents": 1908170,
+      "paidOn": "2026-06-15",
+      "paidToBankLast4": "4403",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6944",
+      "invoiceNumber": "SP-1010",
+      "vendorId": "V-066",
+      "amountCents": 363360,
+      "paidOn": "2026-06-11",
+      "paidToBankLast4": "3888",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9789",
+      "invoiceNumber": "TVP-545",
+      "vendorId": "V-041",
+      "amountCents": 266000,
+      "paidOn": "2026-06-08",
+      "paidToBankLast4": "4403",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8975",
+      "invoiceNumber": "PRS-1069",
+      "vendorId": "V-012",
+      "amountCents": 72500,
+      "paidOn": "2026-06-03",
+      "paidToBankLast4": "7701",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9785",
+      "invoiceNumber": "OTS-664",
+      "vendorId": "V-072",
+      "amountCents": 1423080,
+      "paidOn": "2026-06-03",
+      "paidToBankLast4": "9685",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5772",
+      "invoiceNumber": "SPS-551",
+      "vendorId": "V-038",
+      "amountCents": 324500,
+      "paidOn": "2026-05-31",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7223",
+      "invoiceNumber": "PW-843",
+      "vendorId": "V-086",
+      "amountCents": 4417200,
+      "paidOn": "2026-05-31",
+      "paidToBankLast4": "9712",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-7014",
+      "invoiceNumber": "AHS-921",
+      "vendorId": "V-095",
+      "amountCents": 888000,
+      "paidOn": "2026-05-31",
+      "paidToBankLast4": "5235",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8878",
+      "invoiceNumber": "BTC-660",
+      "vendorId": "V-093",
+      "amountCents": 988000,
+      "paidOn": "2026-05-30",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2692",
+      "invoiceNumber": "MFP-539",
+      "vendorId": "V-055",
+      "amountCents": 2201000,
+      "paidOn": "2026-05-26",
+      "paidToBankLast4": "9485",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2496",
+      "invoiceNumber": "IHS-1019",
+      "vendorId": "V-061",
+      "amountCents": 660000,
+      "paidOn": "2026-05-25",
+      "paidToBankLast4": "9965",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8863",
+      "invoiceNumber": "AHS-935",
+      "vendorId": "V-095",
+      "amountCents": 255000,
+      "paidOn": "2026-05-25",
+      "paidToBankLast4": "5235",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9494",
+      "invoiceNumber": "ACR-887",
+      "vendorId": "V-083",
+      "amountCents": 1380000,
+      "paidOn": "2026-05-23",
+      "paidToBankLast4": "8632",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8144",
+      "invoiceNumber": "MG-835",
+      "vendorId": "V-029",
+      "amountCents": 18510400,
+      "paidOn": "2026-05-18",
+      "paidToBankLast4": "1291",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3465",
+      "invoiceNumber": "FF-1141",
+      "vendorId": "V-080",
+      "amountCents": 672000,
+      "paidOn": "2026-05-18",
+      "paidToBankLast4": "1748",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3088",
+      "invoiceNumber": "PES-605",
+      "vendorId": "V-058",
+      "amountCents": 2250000,
+      "paidOn": "2026-05-17",
+      "paidToBankLast4": "4973",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6390",
+      "invoiceNumber": "CR-766",
+      "vendorId": "V-027",
+      "amountCents": 1015000,
+      "paidOn": "2026-05-16",
+      "paidToBankLast4": "9119",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-5368",
+      "invoiceNumber": "FF-1110",
+      "vendorId": "V-080",
+      "amountCents": 1120000,
+      "paidOn": "2026-05-15",
+      "paidToBankLast4": "1748",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8326",
+      "invoiceNumber": "SPS-466",
+      "vendorId": "V-038",
+      "amountCents": 142000,
+      "paidOn": "2026-05-12",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6687",
+      "invoiceNumber": "TVP-564",
+      "vendorId": "V-041",
+      "amountCents": 2650605,
+      "paidOn": "2026-05-12",
+      "paidToBankLast4": "4403",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1449",
+      "invoiceNumber": "DRM-575",
+      "vendorId": "V-063",
+      "amountCents": 1089000,
+      "paidOn": "2026-05-09",
+      "paidToBankLast4": "8099",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6094",
+      "invoiceNumber": "PRS-1127",
+      "vendorId": "V-012",
+      "amountCents": 6100,
+      "paidOn": "2026-05-08",
+      "paidToBankLast4": "7701",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1066",
+      "invoiceNumber": "PSG-804",
+      "vendorId": "V-069",
+      "amountCents": 495000,
+      "paidOn": "2026-05-08",
+      "paidToBankLast4": "0797",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1648",
+      "invoiceNumber": "TVP-585",
+      "vendorId": "V-041",
+      "amountCents": 1809400,
+      "paidOn": "2026-05-05",
+      "paidToBankLast4": "4403",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1716",
+      "invoiceNumber": "ACR-891",
+      "vendorId": "V-083",
+      "amountCents": 512000,
+      "paidOn": "2026-05-03",
+      "paidToBankLast4": "8632",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4581",
+      "invoiceNumber": "CVI-712",
+      "vendorId": "V-052",
+      "amountCents": 432705,
+      "paidOn": "2026-05-02",
+      "paidToBankLast4": "5803",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6886",
+      "invoiceNumber": "PES-575",
+      "vendorId": "V-058",
+      "amountCents": 2250000,
+      "paidOn": "2026-04-29",
+      "paidToBankLast4": "4973",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-2460",
+      "invoiceNumber": "BLS-974",
+      "vendorId": "V-050",
+      "amountCents": 378100,
+      "paidOn": "2026-04-28",
+      "paidToBankLast4": "9558",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1593",
+      "invoiceNumber": "BWH-873",
+      "vendorId": "V-036",
+      "amountCents": 1529000,
+      "paidOn": "2026-04-27",
+      "paidToBankLast4": "3061",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1245",
+      "invoiceNumber": "MFP-521",
+      "vendorId": "V-055",
+      "amountCents": 2016400,
+      "paidOn": "2026-04-26",
+      "paidToBankLast4": "9485",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4878",
+      "invoiceNumber": "BLS-996",
+      "vendorId": "V-050",
+      "amountCents": 417900,
+      "paidOn": "2026-04-21",
+      "paidToBankLast4": "9558",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-1933",
+      "invoiceNumber": "VP-966",
+      "vendorId": "V-019",
+      "amountCents": 407000,
+      "paidOn": "2026-04-19",
+      "paidToBankLast4": "4371",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6000",
+      "invoiceNumber": "DRM-579",
+      "vendorId": "V-063",
+      "amountCents": 1716000,
+      "paidOn": "2026-04-19",
+      "paidToBankLast4": "8099",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9174",
+      "invoiceNumber": "PRS-1101",
+      "vendorId": "V-012",
+      "amountCents": 19500,
+      "paidOn": "2026-04-17",
+      "paidToBankLast4": "7701",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6115",
+      "invoiceNumber": "BWH-908",
+      "vendorId": "V-036",
+      "amountCents": 936000,
+      "paidOn": "2026-04-16",
+      "paidToBankLast4": "3061",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3052",
+      "invoiceNumber": "BWH-890",
+      "vendorId": "V-036",
+      "amountCents": 1042500,
+      "paidOn": "2026-04-15",
+      "paidToBankLast4": "3061",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4688",
+      "invoiceNumber": "SPS-530",
+      "vendorId": "V-038",
+      "amountCents": 56800,
+      "paidOn": "2026-04-13",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3124",
+      "invoiceNumber": "LSS-957",
+      "vendorId": "V-078",
+      "amountCents": 19000,
+      "paidOn": "2026-04-13",
+      "paidToBankLast4": "3938",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3166",
+      "invoiceNumber": "CR-804",
+      "vendorId": "V-027",
+      "amountCents": 2123500,
+      "paidOn": "2026-04-12",
+      "paidToBankLast4": "9119",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6437",
+      "invoiceNumber": "BTC-703",
+      "vendorId": "V-093",
+      "amountCents": 510000,
+      "paidOn": "2026-04-11",
+      "paidToBankLast4": "5513",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4126",
+      "invoiceNumber": "KEC-723",
+      "vendorId": "V-097",
+      "amountCents": 580000,
+      "paidOn": "2026-04-11",
+      "paidToBankLast4": "9466",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8738",
+      "invoiceNumber": "SPS-453",
+      "vendorId": "V-038",
+      "amountCents": 64900,
+      "paidOn": "2026-04-09",
+      "paidToBankLast4": "0320",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4308",
+      "invoiceNumber": "DRM-534",
+      "vendorId": "V-063",
+      "amountCents": 858000,
+      "paidOn": "2026-04-08",
+      "paidToBankLast4": "8099",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6440",
+      "invoiceNumber": "PSG-852",
+      "vendorId": "V-069",
+      "amountCents": 165000,
+      "paidOn": "2026-04-07",
+      "paidToBankLast4": "0797",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3026",
+      "invoiceNumber": "FF-1161",
+      "vendorId": "V-080",
+      "amountCents": 158000,
+      "paidOn": "2026-04-06",
+      "paidToBankLast4": "1748",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3720",
+      "invoiceNumber": "PES-548",
+      "vendorId": "V-058",
+      "amountCents": 555000,
+      "paidOn": "2026-04-05",
+      "paidToBankLast4": "4973",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-4808",
+      "invoiceNumber": "PES-631",
+      "vendorId": "V-058",
+      "amountCents": 185000,
+      "paidOn": "2026-04-04",
+      "paidToBankLast4": "4973",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9125",
+      "invoiceNumber": "VP-985",
+      "vendorId": "V-019",
+      "amountCents": 222000,
+      "paidOn": "2026-04-03",
+      "paidToBankLast4": "4371",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-6761",
+      "invoiceNumber": "ACR-910",
+      "vendorId": "V-083",
+      "amountCents": 1035000,
+      "paidOn": "2026-04-02",
+      "paidToBankLast4": "8632",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-9445",
+      "invoiceNumber": "BLS-1014",
+      "vendorId": "V-050",
+      "amountCents": 170100,
+      "paidOn": "2026-04-01",
+      "paidToBankLast4": "9558",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3907",
+      "invoiceNumber": "CVI-723",
+      "vendorId": "V-052",
+      "amountCents": 169650,
+      "paidOn": "2026-04-01",
+      "paidToBankLast4": "5803",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-8743",
+      "invoiceNumber": "CVI-739",
+      "vendorId": "V-052",
+      "amountCents": 303420,
+      "paidOn": "2026-04-01",
+      "paidToBankLast4": "5803",
+      "status": "completed"
+    },
+    {
+      "nessieTransferId": "sample-transfer-3917",
+      "invoiceNumber": "LSS-917",
+      "vendorId": "V-078",
+      "amountCents": 57000,
+      "paidOn": "2026-04-01",
+      "paidToBankLast4": "3938",
       "status": "completed"
     }
   ]

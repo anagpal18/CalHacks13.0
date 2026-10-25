@@ -1,0 +1,51 @@
+Return-Path: <bounce@ironhorsescaffold.com>
+Received: from mail.ironhorsescaffold.com ([198.51.100.153]) by mx.bayline.example with ESMTPS; Fri, 23 Oct 2026 22:15:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=ironhorsescaffold.com; dkim=pass header.d=ironhorsescaffold.com; dmarc=pass header.from=ironhorsescaffold.com
+From: "Cody Brandt" <cbrandt@ironhorsescaffold.com>
+To: <ap@bayline.example>
+Subject: Invoice IHS-32579 - Scaffold erect, rent and dismantle, 12 weeks, Site 4
+Date: Fri, 23 Oct 2026 22:15:00 +0000
+Message-ID: <b-2026-10-0153@ironhorsescaffold.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0153"
+
+--bp-B-2026-10-0153
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is our invoice under PO-5654, including the three-week rental extension Daniel asked for on site. Thank you, Cody
+
+--bp-B-2026-10-0153
+Content-Type: application/pdf; name="IHS-32579.pdf"
+Content-Disposition: attachment; filename="IHS-32579.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODk0ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChJcm9uIEhvcnNlIFNjYWZmb2xkaW5nIExMQykgVGogRVQK
+QlQgL0YxIDkgVGYgNTAgNzI0IFRkICgyOTUwIFNlYXBvcnQgQmx2ZCwgUmVkd29vZCBDaXR5LCBD
+QSAgLSAgXCg1NTVcKSAwMTAtMjA2MSkgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52
+b2ljZSBJSFMtMzI1NzkpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2
+LTEwLTIzICAtICBZb3VyIFBPIFBPLTU2NTQgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGog
+RVQKQlQgL0YxIDEwIFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4p
+IFRqIEVUCjAuNiB3IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQg
+KDEgeCBTY2FmZm9sZCBlcmVjdCwgcmVudCBhbmQgZGlzbWFudGxlLCAxMiB3ZWVrcywgU2l0ZSA0
+IEAgJDQyLDAwMC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3MCA2MTQgVGQgKCQ0MiwwMDAuMDAp
+IFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1OTggVGQgKDEgeCBFeHRlbmRlZCBzY2FmZm9sZCByZW50
+YWwsIDMgd2Vla3MsIFNpdGUgNCBAICQ2LDYwMC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3MCA1
+OTggVGQgKCQ2LDYwMC4wMCkgVGogRVQKMC42IHcgNTAgNTkwIG0gNTYyIDU5MCBsIFMKQlQgL0Yy
+IDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQ0OCw2MDAuMDApIFRqIEVUCkJUIC9GMSAxMCBUZiA1
+MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQgb24gZmlsZSwgZW5kaW5nIDk5NjUu
+KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFuayB5b3UsIENvZHkgQnJhbmR0IFwo
+Y2JyYW5kdEBpcm9uaG9yc2VzY2FmZm9sZC5jb21cKSkgVGogRVQKZW5kc3RyZWFtCmVuZG9iago1
+IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGlj
+YSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAwIG9iago8PCAvVHlwZSAv
+Rm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZCAvRW5jb2Rpbmcg
+L1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAow
+MDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDExNSAwMDAwMCBu
+IAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDExOTYgMDAwMDAgbiAKMDAwMDAwMTI5MyAwMDAw
+MCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjEzOTUKJSVF
+T0YK
+--bp-B-2026-10-0153--

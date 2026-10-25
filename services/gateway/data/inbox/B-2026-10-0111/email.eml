@@ -1,0 +1,48 @@
+Return-Path: <bounce@hernandezlandscape.com>
+Received: from mail.hernandezlandscape.com ([198.51.100.111]) by mx.bayline.example with ESMTPS; Tue, 20 Oct 2026 19:33:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=hernandezlandscape.com; dkim=pass header.d=hernandezlandscape.com; dmarc=pass header.from=hernandezlandscape.com
+From: "Ruben Hernandez" <ruben@hernandezlandscape.com>
+To: <ap@bayline.example>
+Subject: Invoice HL-35597 - Site landscaping, phase, Site 3
+Date: Tue, 20 Oct 2026 19:33:00 +0000
+Message-ID: <b-2026-10-0111@hernandezlandscape.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0111"
+
+--bp-B-2026-10-0111
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice HL-35597 for site landscaping, phase, site 3 under PO-5547. Payment to our account on file. Thank you, Ruben
+
+--bp-B-2026-10-0111
+Content-Type: application/pdf; name="HL-35597.pdf"
+Content-Disposition: attachment; filename="HL-35597.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzMyID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChIZXJuYW5kZXogTGFuZHNjYXBpbmcpIFRqIEVUCkJUIC9G
+MSA5IFRmIDUwIDcyNCBUZCAoMTczMCBFIDE0dGggU3QsIFNhbiBMZWFuZHJvLCBDQSAgLSAgXCg1
+NTVcKSAwMTAtMjA0NykgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52b2ljZSBITC0z
+NTU5NykgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYtMTAtMTcgIC0g
+IFlvdXIgUE8gUE8tNTU0NyAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDE1KSBUaiBFVApCVCAvRjEg
+MTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikgVGogRVQKMC42
+IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAoMSB4IFNpdGUg
+bGFuZHNjYXBpbmcsIHBoYXNlLCBTaXRlIDMgQCAkOCw5MDAuMDApIFRqIEVUCkJUIC9GMSAxMCBU
+ZiA0NzAgNjE0IFRkICgkOCw5MDAuMDApIFRqIEVUCjAuNiB3IDUwIDU5MCBtIDU2MiA1OTAgbCBT
+CkJUIC9GMiAxMSBUZiAzODAgNTcyIFRkIChUb3RhbCAkOCw5MDAuMDApIFRqIEVUCkJUIC9GMSAx
+MCBUZiA1MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQgb24gZmlsZSwgZW5kaW5n
+IDE2MDQuKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFuayB5b3UsIFJ1YmVuIEhl
+cm5hbmRleiBcKHJ1YmVuQGhlcm5hbmRlemxhbmRzY2FwZS5jb21cKSkgVGogRVQKZW5kc3RyZWFt
+CmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQg
+L0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAwIG9iago8
+PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZCAv
+RW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2
+NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDEx
+NSAwMDAwMCBuIAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDEwMzQgMDAwMDAgbiAKMDAwMDAw
+MTEzMSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVm
+CjEyMzMKJSVFT0YK
+--bp-B-2026-10-0111--

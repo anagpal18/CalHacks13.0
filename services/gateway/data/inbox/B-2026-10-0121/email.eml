@@ -1,0 +1,47 @@
+Return-Path: <bounce@pacificrebar.com>
+Received: from mail.pacificrebar.com ([198.51.100.121]) by mx.bayline.example with ESMTPS; Wed, 21 Oct 2026 17:40:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=pacificrebar.com; dkim=pass header.d=pacificrebar.com; dmarc=pass header.from=pacificrebar.com
+From: "Pacific Rebar Supply Inc Billing" <ar@pacificrebar.com>
+To: <ap@bayline.example>
+Subject: Invoice PRS-17070 - #4 rebar, 20 ft, Site 5
+Date: Wed, 21 Oct 2026 17:40:00 +0000
+Message-ID: <b-2026-10-0121@pacificrebar.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0121"
+
+--bp-B-2026-10-0121
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice PRS-17070 for #4 rebar, 20 ft, site 5 under PO-5631. Payment to our account on file. Thank you, Pacific Rebar Accounts Receivable
+
+--bp-B-2026-10-0121
+Content-Type: application/pdf; name="PRS-17070.pdf"
+Content-Disposition: attachment; filename="PRS-17070.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzE2ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChQYWNpZmljIFJlYmFyIFN1cHBseSBJbmMpIFRqIEVUCkJU
+IC9GMSA5IFRmIDUwIDcyNCBUZCAoMjcwMSBXb29kIFN0LCBPYWtsYW5kLCBDQSAgLSAgXCg1NTVc
+KSAwMTAtMjAxMikgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52b2ljZSBQUlMtMTcw
+NzApIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTIwICAtICBZ
+b3VyIFBPIFBPLTU2MzEgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGogRVQKQlQgL0YxIDEw
+IFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4pIFRqIEVUCjAuNiB3
+IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQgKDIwMDAgeCAjNCBy
+ZWJhciwgMjAgZnQsIFNpdGUgNSBAICQ0LjEwKSBUaiBFVApCVCAvRjEgMTAgVGYgNDcwIDYxNCBU
+ZCAoJDgsMjAwLjAwKSBUaiBFVAowLjYgdyA1MCA1OTAgbSA1NjIgNTkwIGwgUwpCVCAvRjIgMTEg
+VGYgMzgwIDU3MiBUZCAoVG90YWwgJDgsMjAwLjAwKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2
+IFRkIChQYXkgYnkgQUNIIHRvIG91ciBhY2NvdW50IG9uIGZpbGUsIGVuZGluZyA3NzAxLikgVGog
+RVQKQlQgL0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhhbmsgeW91LCBBY2NvdW50cyBSZWNlaXZhYmxl
+IFwoYXJAcGFjaWZpY3JlYmFyLmNvbVwpKSBUaiBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoK
+PDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNv
+ZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9T
+dWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5z
+aUVuY29kaW5nID4+CmVuZG9iagp4cmVmCjAgNwowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAw
+MDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAw
+MDAyNTEgMDAwMDAgbiAKMDAwMDAwMTAxOCAwMDAwMCBuIAowMDAwMDAxMTE1IDAwMDAwIG4gCnRy
+YWlsZXIKPDwgL1NpemUgNyAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKMTIxNwolJUVPRgo=
+--bp-B-2026-10-0121--

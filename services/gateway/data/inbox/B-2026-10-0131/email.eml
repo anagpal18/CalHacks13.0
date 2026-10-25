@@ -1,0 +1,48 @@
+Return-Path: <bounce@deltareadymix.com>
+Received: from mail.deltareadymix.com ([198.51.100.131]) by mx.bayline.example with ESMTPS; Thu, 22 Oct 2026 15:22:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=deltareadymix.com; dkim=pass header.d=deltareadymix.com; dmarc=pass header.from=deltareadymix.com
+From: "Delta Ready Mix Billing" <ar@deltareadymix.com>
+To: <ap@bayline.example>
+Subject: Invoice DRM-6634 - 4000 PSI concrete, Site 3, delivered (cu yd)
+Date: Thu, 22 Oct 2026 15:22:00 +0000
+Message-ID: <b-2026-10-0131@deltareadymix.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0131"
+
+--bp-B-2026-10-0131
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice DRM-6634 for 4000 psi concrete, site 3, delivered under PO-5633. Payment to our account on file. Thank you, Delta Ready Mix Accounts Receivable
+
+--bp-B-2026-10-0131
+Content-Type: application/pdf; name="DRM-6634.pdf"
+Content-Disposition: attachment; filename="DRM-6634.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzM2ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChEZWx0YSBSZWFkeSBNaXgpIFRqIEVUCkJUIC9GMSA5IFRm
+IDUwIDcyNCBUZCAoMzMwMSBXaWxidXIgQXZlLCBBbnRpb2NoLCBDQSAgLSAgXCg1NTVcKSAwMTAt
+MjA2MykgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52b2ljZSBEUk0tNjYzNCkgVGog
+RVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYtMTAtMjEgIC0gIFlvdXIgUE8g
+UE8tNTYzMyAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMwKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAg
+NjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikgVGogRVQKMC42IHcgNTAgNjMy
+IG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAoMTIwIHggNDAwMCBQU0kgY29u
+Y3JldGUsIFNpdGUgMywgZGVsaXZlcmVkIFwoY3UgeWRcKSBAICQxNzIuMDApIFRqIEVUCkJUIC9G
+MSAxMCBUZiA0NzAgNjE0IFRkICgkMjAsNjQwLjAwKSBUaiBFVAowLjYgdyA1MCA1OTAgbSA1NjIg
+NTkwIGwgUwpCVCAvRjIgMTEgVGYgMzgwIDU3MiBUZCAoVG90YWwgJDIwLDY0MC4wMCkgVGogRVQK
+QlQgL0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNjb3VudCBvbiBmaWxl
+LCBlbmRpbmcgODA5OS4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5rIHlvdSwg
+QWNjb3VudHMgUmVjZWl2YWJsZSBcKGFyQGRlbHRhcmVhZHltaXguY29tXCkpIFRqIEVUCmVuZHN0
+cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VG
+b250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCjYgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhLUJv
+bGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhyZWYKMCA3CjAwMDAwMDAw
+MDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAwMDAw
+MDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAxMDM4IDAwMDAwIG4gCjAw
+MDAwMDExMzUgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+CnN0YXJ0
+eHJlZgoxMjM3CiUlRU9GCg==
+--bp-B-2026-10-0131--

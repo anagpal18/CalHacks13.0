@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1156 >>
+stream
+BT /F2 20 Tf 50 740 Td (OAKLAND TILE) Tj ET
+BT /F1 9 Tf 50 722 Td (1001 3rd St, Oakland, CA  -  \(555\) 010-2072) Tj ET
+BT /F2 16 Tf 400 740 Td (INVOICE) Tj ET
+BT /F1 10 Tf 400 722 Td (Invoice #: OTS-30621) Tj ET
+BT /F1 10 Tf 400 708 Td (Date: 2026-10-18) Tj ET
+BT /F1 10 Tf 400 694 Td (Customer PO: PO-5567) Tj ET
+0.6 w 50 680 m 562 680 l S
+BT /F2 10 Tf 50 662 Td (Bill To: Bayline Construction Co., Accounts Payable) Tj ET
+BT /F1 10 Tf 50 648 Td (Terms: NET 30) Tj ET
+0.6 w 50 630 m 562 630 l S
+BT /F2 10 Tf 50 614 Td (Description) Tj ET
+BT /F2 10 Tf 330 614 Td (Qty) Tj ET
+BT /F2 10 Tf 390 614 Td (Unit Price) Tj ET
+BT /F2 10 Tf 480 614 Td (Amount) Tj ET
+BT /F1 10 Tf 50 596 Td (Porcelain floor tile, installed, Site 7 \(sq ft\)) Tj ET
+BT /F1 10 Tf 330 596 Td (7441) Tj ET
+BT /F1 10 Tf 390 596 Td ($11.80) Tj ET
+BT /F1 10 Tf 480 596 Td ($87,803.80) Tj ET
+0.6 w 50 560 m 562 560 l S
+BT /F2 12 Tf 390 542 Td (AMOUNT DUE) Tj ET
+BT /F2 12 Tf 480 542 Td ($87,803.80) Tj ET
+BT /F1 10 Tf 50 484 Td (Pay by ACH to our account on file, ending 9685.) Tj ET
+BT /F1 9 Tf 50 440 Td (Questions? Contact Accounts Receivable, \(555\) 010-2072, ar@oaklandtile.com) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001459 00000 n 
+0000001556 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1658
+%%EOF

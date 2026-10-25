@@ -1,0 +1,48 @@
+Return-Path: <bounce@alamedahardware.com>
+Received: from mail.alamedahardware.com ([198.51.100.145]) by mx.bayline.example with ESMTPS; Fri, 23 Oct 2026 18:09:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=alamedahardware.com; dkim=pass header.d=alamedahardware.com; dmarc=pass header.from=alamedahardware.com
+From: "Alameda Hardware Supply Inc Billing" <ar@alamedahardware.com>
+To: <ap@bayline.example>
+Subject: Invoice AHS-21627 - Contractor trash bags, case, Site 8
+Date: Fri, 23 Oct 2026 18:09:00 +0000
+Message-ID: <b-2026-10-0145@alamedahardware.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0145"
+
+--bp-B-2026-10-0145
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice AHS-21627 for contractor trash bags, case, site 8 under PO-5578. Payment to our account on file. Thank you, Alameda Hardware Accounts Receivable
+
+--bp-B-2026-10-0145
+Content-Type: application/pdf; name="AHS-21627.pdf"
+Content-Disposition: attachment; filename="AHS-21627.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzM3ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChBbGFtZWRhIEhhcmR3YXJlIFN1cHBseSBJbmMpIFRqIEVU
+CkJUIC9GMSA5IFRmIDUwIDcyNCBUZCAoMjMxNSBMaW5jb2xuIEF2ZSwgQWxhbWVkYSwgQ0EgIC0g
+IFwoNTU1XCkgMDEwLTIwOTUpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2Ug
+QUhTLTIxNjI3KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0xMC0y
+MiAgLSAgWW91ciBQTyBQTy01NTc4ICAtICBQYXltZW50IHRlcm1zOiBOZXQgMzApIFRqIEVUCkJU
+IC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBUaiBF
+VAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICg0MCB4
+IENvbnRyYWN0b3IgdHJhc2ggYmFncywgY2FzZSwgU2l0ZSA4IEAgJDQyLjUwKSBUaiBFVApCVCAv
+RjEgMTAgVGYgNDcwIDYxNCBUZCAoJDEsNzAwLjAwKSBUaiBFVAowLjYgdyA1MCA1OTAgbSA1NjIg
+NTkwIGwgUwpCVCAvRjIgMTEgVGYgMzgwIDU3MiBUZCAoVG90YWwgJDEsNzAwLjAwKSBUaiBFVApC
+VCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQYXkgYnkgQUNIIHRvIG91ciBhY2NvdW50IG9uIGZpbGUs
+IGVuZGluZyA1MjM1LikgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhhbmsgeW91LCBB
+Y2NvdW50cyBSZWNlaXZhYmxlIFwoYXJAYWxhbWVkYWhhcmR3YXJlLmNvbVwpKSBUaiBFVAplbmRz
+dHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNl
+Rm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago2IDAg
+b2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYS1C
+b2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iagp4cmVmCjAgNwowMDAwMDAw
+MDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAw
+MDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAgbiAKMDAwMDAwMTAzOSAwMDAwMCBuIAow
+MDAwMDAxMTM2IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNyAvUm9vdCAxIDAgUiA+PgpzdGFy
+dHhyZWYKMTIzOAolJUVPRgo=
+--bp-B-2026-10-0145--

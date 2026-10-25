@@ -1,0 +1,48 @@
+Return-Path: <bounce@kestreleng.com>
+Received: from mail.kestreleng.com ([198.51.100.103]) by mx.bayline.example with ESMTPS; Mon, 19 Oct 2026 23:09:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=kestreleng.com; dkim=pass header.d=kestreleng.com; dmarc=pass header.from=kestreleng.com
+From: "Naomi Feld" <nfeld@kestreleng.com>
+To: <ap@bayline.example>
+Subject: Invoice KEC-21421 - Structural observation visit, Site 4
+Date: Mon, 19 Oct 2026 23:09:00 +0000
+Message-ID: <b-2026-10-0103@kestreleng.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0103"
+
+--bp-B-2026-10-0103
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice KEC-21421 for structural observation visit, site 4 under PO-5579. Payment to our account on file. Thank you, Naomi
+
+--bp-B-2026-10-0103
+Content-Type: application/pdf; name="KEC-21421.pdf"
+Content-Disposition: attachment; filename="KEC-21421.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzM5ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChLZXN0cmVsIEVuZ2luZWVyaW5nIENvbnN1bHRhbnRzIElu
+YykgVGogRVQKQlQgL0YxIDkgVGYgNTAgNzI0IFRkICgyMDEgU3BlYXIgU3QsIFNhbiBGcmFuY2lz
+Y28sIENBICAtICBcKDU1NVwpIDAxMC0yMDk3KSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRk
+IChJbnZvaWNlIEtFQy0yMTQyMSkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVk
+IDIwMjYtMTAtMTcgIC0gIFlvdXIgUE8gUE8tNTU3OSAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMw
+KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9u
+IENvLikgVGogRVQKMC42IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYx
+NCBUZCAoMiB4IFN0cnVjdHVyYWwgb2JzZXJ2YXRpb24gdmlzaXQsIFNpdGUgNCBAICQxLDQ1MC4w
+MCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3MCA2MTQgVGQgKCQyLDkwMC4wMCkgVGogRVQKMC42IHcg
+NTAgNTkwIG0gNTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQyLDkw
+MC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNj
+b3VudCBvbiBmaWxlLCBlbmRpbmcgOTQ2Ni4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQg
+KFRoYW5rIHlvdSwgTmFvbWkgRmVsZCBcKG5mZWxkQGtlc3RyZWxlbmcuY29tXCkpIFRqIEVUCmVu
+ZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jh
+c2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCjYg
+MCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNh
+LUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhyZWYKMCA3CjAwMDAw
+MDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAw
+MDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAxMDQxIDAwMDAwIG4g
+CjAwMDAwMDExMzggMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+CnN0
+YXJ0eHJlZgoxMjQwCiUlRU9GCg==
+--bp-B-2026-10-0103--

@@ -1,0 +1,48 @@
+Return-Path: <bounce@trivalleypaving.com>
+Received: from mail.trivalleypaving.com ([198.51.100.197]) by mx.bayline.example with ESMTPS; Mon, 19 Oct 2026 16:38:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=trivalleypaving.com; dkim=pass header.d=trivalleypaving.com; dmarc=pass header.from=trivalleypaving.com
+From: "Bill Navarro" <bnavarro@trivalleypaving.com>
+To: <ap@bayline.example>
+Subject: Invoice TVP-28235 - Asphalt paving, 3 in lift, Site 3 (sq ft)
+Date: Mon, 19 Oct 2026 16:38:00 +0000
+Message-ID: <b-2026-10-0097@trivalleypaving.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0097"
+
+--bp-B-2026-10-0097
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice TVP-28235 for asphalt paving, 3 in lift, site 3 under PO-5544. Payment to our account on file. Thank you, Bill
+
+--bp-B-2026-10-0097
+Content-Type: application/pdf; name="TVP-28235.pdf"
+Content-Disposition: attachment; filename="TVP-28235.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzQzID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChUcmktVmFsbGV5IFBhdmluZyBJbmMpIFRqIEVUCkJUIC9G
+MSA5IFRmIDUwIDcyNCBUZCAoNjIwMCBTb3V0aGZyb250IFJkLCBMaXZlcm1vcmUsIENBICAtICBc
+KDU1NVwpIDAxMC0yMDQxKSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZvaWNlIFRW
+UC0yODIzNSkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYtMTAtMTcg
+IC0gIFlvdXIgUE8gUE8tNTU0NCAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMwKSBUaiBFVApCVCAv
+RjEgMTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikgVGogRVQK
+MC42IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAoMTI0NyB4
+IEFzcGhhbHQgcGF2aW5nLCAzIGluIGxpZnQsIFNpdGUgMyBcKHNxIGZ0XCkgQCAkNC4xNSkgVGog
+RVQKQlQgL0YxIDEwIFRmIDQ3MCA2MTQgVGQgKCQ1LDE3NS4wNSkgVGogRVQKMC42IHcgNTAgNTkw
+IG0gNTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQ1LDE3NS4wNSkg
+VGogRVQKQlQgL0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNjb3VudCBv
+biBmaWxlLCBlbmRpbmcgNDQwMy4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5r
+IHlvdSwgQmlsbCBOYXZhcnJvIFwoYm5hdmFycm9AdHJpdmFsbGV5cGF2aW5nLmNvbVwpKSBUaiBF
+VAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUx
+IC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9i
+ago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZl
+dGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iagp4cmVmCjAgNwow
+MDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBu
+IAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAgbiAKMDAwMDAwMTA0NSAwMDAw
+MCBuIAowMDAwMDAxMTQyIDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNyAvUm9vdCAxIDAgUiA+
+PgpzdGFydHhyZWYKMTI0NAolJUVPRgo=
+--bp-B-2026-10-0097--

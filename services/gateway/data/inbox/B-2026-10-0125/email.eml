@@ -1,0 +1,50 @@
+Return-Path: <bounce@bayviewtraffic.com>
+Received: from mail.bayviewtraffic.com ([198.51.100.125]) by mx.bayline.example with ESMTPS; Wed, 21 Oct 2026 21:46:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=bayviewtraffic.com; dkim=pass header.d=bayviewtraffic.com; dmarc=pass header.from=bayviewtraffic.com
+From: "Bayview Traffic Control Inc Billing" <ar@bayviewtraffic.com>
+To: <ap@bayline.example>
+Subject: Invoice BTC-38734 - Arrow board rental, daily, Site 7
+Date: Wed, 21 Oct 2026 21:46:00 +0000
+Message-ID: <b-2026-10-0125@bayviewtraffic.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0125"
+
+--bp-B-2026-10-0125
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice BTC-38734 for arrow board rental, daily, site 7 under PO-5577. Payment to our account on file. Thank you, Bayview Traffic Accounts Receivable
+
+--bp-B-2026-10-0125
+Content-Type: application/pdf; name="BTC-38734.pdf"
+Content-Disposition: attachment; filename="BTC-38734.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODU2ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChCYXl2aWV3IFRyYWZmaWMgQ29udHJvbCBJbmMpIFRqIEVU
+CkJUIC9GMSA5IFRmIDUwIDcyNCBUZCAoMTU1MCBFdmFucyBBdmUsIFNhbiBGcmFuY2lzY28sIENB
+ICAtICBcKDU1NVwpIDAxMC0yMDkzKSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZv
+aWNlIEJUQy0zODczNCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYt
+MTAtMTkgIC0gIFlvdXIgUE8gUE8tNTU3NyAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMwKSBUaiBF
+VApCVCAvRjEgMTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikg
+VGogRVQKMC42IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAo
+MjUwIHggQXJyb3cgYm9hcmQgcmVudGFsLCBkYWlseSwgU2l0ZSA3IEAgJDg1LjAwKSBUaiBFVApC
+VCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDIxLDI1MC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDUw
+IDU5OCBUZCAoOSB4IEZsYWdnZXIsIDggaHIgc2hpZnQsIFNpdGUgNyBAICQ1MjAuMDApIFRqIEVU
+CkJUIC9GMSAxMCBUZiA0NzAgNTk4IFRkICgkNCw2ODAuMDApIFRqIEVUCjAuNiB3IDUwIDU5MCBt
+IDU2MiA1OTAgbCBTCkJUIC9GMiAxMSBUZiAzODAgNTcyIFRkIChUb3RhbCAkMjUsOTMwLjAwKSBU
+aiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQYXkgYnkgQUNIIHRvIG91ciBhY2NvdW50IG9u
+IGZpbGUsIGVuZGluZyA1NTEzLikgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhhbmsg
+eW91LCBBY2NvdW50cyBSZWNlaXZhYmxlIFwoYXJAYmF5dmlld3RyYWZmaWMuY29tXCkpIFRqIEVU
+CmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEg
+L0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2Jq
+CjYgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0
+aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhyZWYKMCA3CjAw
+MDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4g
+CjAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAxMTU4IDAwMDAw
+IG4gCjAwMDAwMDEyNTUgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+
+CnN0YXJ0eHJlZgoxMzU3CiUlRU9GCg==
+--bp-B-2026-10-0125--

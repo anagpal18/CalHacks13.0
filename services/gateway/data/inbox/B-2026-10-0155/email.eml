@@ -1,0 +1,50 @@
+Return-Path: <bounce@sierraplumbingsupply.com>
+Received: from mail.sierraplumbingsupply.com ([198.51.100.155]) by mx.bayline.example with ESMTPS; Sat, 24 Oct 2026 15:38:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=sierraplumbingsupply.com; dkim=pass header.d=sierraplumbingsupply.com; dmarc=pass header.from=sierraplumbingsupply.com
+From: "Sierra Plumbing Supply Billing" <ar@sierraplumbingsupply.com>
+To: <ap@bayline.example>
+Subject: Invoice SPS-18410 - Floor drain, cast iron, Site 8
+Date: Sat, 24 Oct 2026 15:38:00 +0000
+Message-ID: <b-2026-10-0155@sierraplumbingsupply.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0155"
+
+--bp-B-2026-10-0155
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice SPS-18410 for floor drain, cast iron, site 8 under PO-5541. Payment to our account on file. Thank you, Sierra Plumbing Supply Accounts Receivable
+
+--bp-B-2026-10-0155
+Content-Type: application/pdf; name="SPS-18410.pdf"
+Content-Disposition: attachment; filename="SPS-18410.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODUyID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChTaWVycmEgUGx1bWJpbmcgU3VwcGx5KSBUaiBFVApCVCAv
+RjEgOSBUZiA1MCA3MjQgVGQgKDE5MTkgTWFya2V0IFN0LCBPYWtsYW5kLCBDQSAgLSAgXCg1NTVc
+KSAwMTAtMjAzOCkgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52b2ljZSBTUFMtMTg0
+MTApIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTI0ICAtICBZ
+b3VyIFBPIFBPLTU1NDEgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGogRVQKQlQgL0YxIDEw
+IFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4pIFRqIEVUCjAuNiB3
+IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQgKDIwIHggRmxvb3Ig
+ZHJhaW4sIGNhc3QgaXJvbiwgU2l0ZSA4IEAgJDIxMi4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3
+MCA2MTQgVGQgKCQ0LDI0MC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDU5OCBUZCAoMTAgeCAz
+LzQgaW4gY29wcGVyIHR5cGUgTCwgMTAgZnQsIFNpdGUgOCBAICQ2NC45MCkgVGogRVQKQlQgL0Yx
+IDEwIFRmIDQ3MCA1OTggVGQgKCQ2NDkuMDApIFRqIEVUCjAuNiB3IDUwIDU5MCBtIDU2MiA1OTAg
+bCBTCkJUIC9GMiAxMSBUZiAzODAgNTcyIFRkIChUb3RhbCAkNCw4ODkuMDApIFRqIEVUCkJUIC9G
+MSAxMCBUZiA1MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQgb24gZmlsZSwgZW5k
+aW5nIDAzMjAuKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFuayB5b3UsIEFjY291
+bnRzIFJlY2VpdmFibGUgXChhckBzaWVycmFwbHVtYmluZ3N1cHBseS5jb21cKSkgVGogRVQKZW5k
+c3RyZWFtCmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFz
+ZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAw
+IG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2Et
+Qm9sZCAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAw
+MDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAw
+MDAwMDExNSAwMDAwMCBuIAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDExNTQgMDAwMDAgbiAK
+MDAwMDAwMTI1MSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3Rh
+cnR4cmVmCjEzNTMKJSVFT0YK
+--bp-B-2026-10-0155--

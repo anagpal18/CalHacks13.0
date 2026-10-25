@@ -1,0 +1,48 @@
+Return-Path: <bounce@lakesidesiteservices.com>
+Received: from mail.lakesidesiteservices.com ([198.51.100.105]) by mx.bayline.example with ESMTPS; Tue, 20 Oct 2026 15:33:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=lakesidesiteservices.com; dkim=pass header.d=lakesidesiteservices.com; dmarc=pass header.from=lakesidesiteservices.com
+From: "Lakeside Site Services Inc Billing" <ar@lakesidesiteservices.com>
+To: <ap@bayline.example>
+Subject: Invoice LSS-10051 - Portable toilet service, monthly, Site 6
+Date: Tue, 20 Oct 2026 15:33:00 +0000
+Message-ID: <b-2026-10-0105@lakesidesiteservices.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0105"
+
+--bp-B-2026-10-0105
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice LSS-10051 for portable toilet service, monthly, site 6 under PO-5570. Payment to our account on file. Thank you, Lakeside Site Services Accounts Receivable
+
+--bp-B-2026-10-0105
+Content-Type: application/pdf; name="LSS-10051.pdf"
+Content-Disposition: attachment; filename="LSS-10051.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzUxID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChMYWtlc2lkZSBTaXRlIFNlcnZpY2VzIEluYykgVGogRVQK
+QlQgL0YxIDkgVGYgNTAgNzI0IFRkICg3MDAwIENvbGlzZXVtIFdheSwgT2FrbGFuZCwgQ0EgIC0g
+IFwoNTU1XCkgMDEwLTIwNzgpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2Ug
+TFNTLTEwMDUxKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0xMC0y
+MCAgLSAgWW91ciBQTyBQTy01NTcwICAtICBQYXltZW50IHRlcm1zOiBOZXQgMzApIFRqIEVUCkJU
+IC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBUaiBF
+VAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICgyMDAg
+eCBQb3J0YWJsZSB0b2lsZXQgc2VydmljZSwgbW9udGhseSwgU2l0ZSA2IEAgJDE0NS4wMCkgVGog
+RVQKQlQgL0YxIDEwIFRmIDQ3MCA2MTQgVGQgKCQyOSwwMDAuMDApIFRqIEVUCjAuNiB3IDUwIDU5
+MCBtIDU2MiA1OTAgbCBTCkJUIC9GMiAxMSBUZiAzODAgNTcyIFRkIChUb3RhbCAkMjksMDAwLjAw
+KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQYXkgYnkgQUNIIHRvIG91ciBhY2NvdW50
+IG9uIGZpbGUsIGVuZGluZyAzOTM4LikgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhh
+bmsgeW91LCBBY2NvdW50cyBSZWNlaXZhYmxlIFwoYXJAbGFrZXNpZGVzaXRlc2VydmljZXMuY29t
+XCkpIFRqIEVUCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlw
+ZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2Rpbmcg
+Pj4KZW5kb2JqCjYgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9u
+dCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhy
+ZWYKMCA3CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4
+IDAwMDAwIG4gCjAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAx
+MDUzIDAwMDAwIG4gCjAwMDAwMDExNTAgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290
+IDEgMCBSID4+CnN0YXJ0eHJlZgoxMjUyCiUlRU9GCg==
+--bp-B-2026-10-0105--

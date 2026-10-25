@@ -1,0 +1,50 @@
+Return-Path: <bounce@sunsetpaintingsf.com>
+Received: from mail.sunsetpaintingsf.com ([198.51.100.129]) by mx.bayline.example with ESMTPS; Thu, 22 Oct 2026 00:09:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=sunsetpaintingsf.com; dkim=pass header.d=sunsetpaintingsf.com; dmarc=pass header.from=sunsetpaintingsf.com
+From: "Mike Aldana" <mike@sunsetpaintingsf.com>
+To: <ap@bayline.example>
+Subject: Invoice SP-26889 - Exterior elastomeric coating, Site 4 (sq ft)
+Date: Thu, 22 Oct 2026 00:09:00 +0000
+Message-ID: <b-2026-10-0129@sunsetpaintingsf.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0129"
+
+--bp-B-2026-10-0129
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice SP-26889 for exterior elastomeric coating, site 4 under PO-5606. Payment to our account on file. Thank you, Mike
+
+--bp-B-2026-10-0129
+Content-Type: application/pdf; name="SP-26889.pdf"
+Content-Disposition: attachment; filename="SP-26889.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODcyID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChTdW5zZXQgUGFpbnRpbmcgTExDKSBUaiBFVApCVCAvRjEg
+OSBUZiA1MCA3MjQgVGQgKDM4MTUgTm9yaWVnYSBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgIC0gIFwo
+NTU1XCkgMDEwLTIwNjYpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2UgU1At
+MjY4ODkpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTE5ICAt
+ICBZb3VyIFBPIFBPLTU2MDYgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGogRVQKQlQgL0Yx
+IDEwIFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4pIFRqIEVUCjAu
+NiB3IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQgKDc5MTggeCBF
+eHRlcmlvciBlbGFzdG9tZXJpYyBjb2F0aW5nLCBTaXRlIDQgXChzcSBmdFwpIEAgJDIuNDApIFRq
+IEVUCkJUIC9GMSAxMCBUZiA0NzAgNjE0IFRkICgkMTksMDAzLjIwKSBUaiBFVApCVCAvRjEgMTAg
+VGYgNTAgNTk4IFRkICg0NTkzIHggSW50ZXJpb3IgcGFpbnQsIDIgY29hdHMsIFNpdGUgNCBcKHNx
+IGZ0XCkgQCAkMS4yNSkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3MCA1OTggVGQgKCQ1LDc0MS4yNSkg
+VGogRVQKMC42IHcgNTAgNTkwIG0gNTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQg
+KFRvdGFsICQyNCw3NDQuNDUpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MzYgVGQgKFBheSBieSBB
+Q0ggdG8gb3VyIGFjY291bnQgb24gZmlsZSwgZW5kaW5nIDM4ODguKSBUaiBFVApCVCAvRjEgMTAg
+VGYgNTAgNTIwIFRkIChUaGFuayB5b3UsIE1pa2UgQWxkYW5hIFwobWlrZUBzdW5zZXRwYWludGlu
+Z3NmLmNvbVwpKSBUaiBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQg
+L1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVu
+Y29kaW5nID4+CmVuZG9iago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAv
+QmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVu
+ZG9iagp4cmVmCjAgNwowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAw
+MDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAgbiAK
+MDAwMDAwMTE3NCAwMDAwMCBuIAowMDAwMDAxMjcxIDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUg
+NyAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKMTM3MwolJUVPRgo=
+--bp-B-2026-10-0129--

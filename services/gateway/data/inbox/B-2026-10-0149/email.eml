@@ -1,0 +1,50 @@
+Return-Path: <bounce@coastlineroofing.com>
+Received: from mail.coastlineroofing.com ([198.51.100.149]) by mx.bayline.example with ESMTPS; Fri, 23 Oct 2026 19:51:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=coastlineroofing.com; dkim=pass header.d=coastlineroofing.com; dmarc=pass header.from=coastlineroofing.com
+From: "Coastline Roofing LLC Billing" <ar@coastlineroofing.com>
+To: <ap@bayline.example>
+Subject: Invoice CR-39671 - Tear-off and disposal, Site 6 (square)
+Date: Fri, 23 Oct 2026 19:51:00 +0000
+Message-ID: <b-2026-10-0149@coastlineroofing.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0149"
+
+--bp-B-2026-10-0149
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice CR-39671 for tear-off and disposal, site 6 under PO-5626. Payment to our account on file. Thank you, Coastline Roofing Accounts Receivable
+
+--bp-B-2026-10-0149
+Content-Type: application/pdf; name="CR-39671.pdf"
+Content-Disposition: attachment; filename="CR-39671.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODg1ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChDb2FzdGxpbmUgUm9vZmluZyBMTEMpIFRqIEVUCkJUIC9G
+MSA5IFRmIDUwIDcyNCBUZCAoNDEwMCBQYWNpZmljIENvYXN0IEh3eSwgUGFjaWZpY2EsIENBICAt
+ICBcKDU1NVwpIDAxMC0yMDI3KSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZvaWNl
+IENSLTM5NjcxKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0xMC0y
+MSAgLSAgWW91ciBQTyBQTy01NjI2ICAtICBQYXltZW50IHRlcm1zOiBOZXQgMzApIFRqIEVUCkJU
+IC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBUaiBF
+VAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICg1NyB4
+IFRlYXItb2ZmIGFuZCBkaXNwb3NhbCwgU2l0ZSA2IFwoc3F1YXJlXCkgQCAkMTQ1LjAwKSBUaiBF
+VApCVCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDgsMjY1LjAwKSBUaiBFVApCVCAvRjEgMTAgVGYg
+NTAgNTk4IFRkICg4MCB4IFRQTyByb29maW5nIG1lbWJyYW5lLCBpbnN0YWxsZWQsIFNpdGUgNiBc
+KHNxdWFyZVwpIEAgJDY4NS4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3MCA1OTggVGQgKCQ1NCw4
+MDAuMDApIFRqIEVUCjAuNiB3IDUwIDU5MCBtIDU2MiA1OTAgbCBTCkJUIC9GMiAxMSBUZiAzODAg
+NTcyIFRkIChUb3RhbCAkNjMsMDY1LjAwKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQ
+YXkgYnkgQUNIIHRvIG91ciBhY2NvdW50IG9uIGZpbGUsIGVuZGluZyA5MTE5LikgVGogRVQKQlQg
+L0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhhbmsgeW91LCBBY2NvdW50cyBSZWNlaXZhYmxlIFwoYXJA
+Y29hc3RsaW5lcm9vZmluZy5jb21cKSkgVGogRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8
+IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2Rp
+bmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAwIG9iago8PCAvVHlwZSAvRm9udCAvU3Vi
+dHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZCAvRW5jb2RpbmcgL1dpbkFuc2lF
+bmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5
+IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDExNSAwMDAwMCBuIAowMDAwMDAw
+MjUxIDAwMDAwIG4gCjAwMDAwMDExODcgMDAwMDAgbiAKMDAwMDAwMTI4NCAwMDAwMCBuIAp0cmFp
+bGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjEzODYKJSVFT0YK
+--bp-B-2026-10-0149--

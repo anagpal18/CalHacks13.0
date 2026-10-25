@@ -1,0 +1,50 @@
+Return-Path: <bounce@bayshorehauling.com>
+Received: from mail.bayshorehauling.com ([198.51.100.137]) by mx.bayline.example with ESMTPS; Thu, 22 Oct 2026 19:27:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=bayshorehauling.com; dkim=pass header.d=bayshorehauling.com; dmarc=pass header.from=bayshorehauling.com
+From: "Bayshore Waste Hauling LLC Billing" <ar@bayshorehauling.com>
+To: <ap@bayline.example>
+Subject: Invoice BWH-11742 - 20 yd roll-off swap, Site 5
+Date: Thu, 22 Oct 2026 19:27:00 +0000
+Message-ID: <b-2026-10-0137@bayshorehauling.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0137"
+
+--bp-B-2026-10-0137
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice BWH-11742 for 20 yd roll-off swap, site 5 under PO-5539. Payment to our account on file. Thank you, Bayshore Hauling Accounts Receivable
+
+--bp-B-2026-10-0137
+Content-Type: application/pdf; name="BWH-11742.pdf"
+Content-Disposition: attachment; filename="BWH-11742.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODUwID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChCYXlzaG9yZSBXYXN0ZSBIYXVsaW5nIExMQykgVGogRVQK
+QlQgL0YxIDkgVGYgNTAgNzI0IFRkICg1MDEgVHVubmVsIEF2ZSwgU2FuIEZyYW5jaXNjbywgQ0Eg
+IC0gIFwoNTU1XCkgMDEwLTIwMzYpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9p
+Y2UgQldILTExNzQyKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0x
+MC0yMSAgLSAgWW91ciBQTyBQTy01NTM5ICAtICBQYXltZW50IHRlcm1zOiBOZXQgMTUpIFRqIEVU
+CkJUIC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBU
+aiBFVAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICg4
+IHggMjAgeWQgcm9sbC1vZmYgc3dhcCwgU2l0ZSA1IEAgJDUyMC4wMCkgVGogRVQKQlQgL0YxIDEw
+IFRmIDQ3MCA2MTQgVGQgKCQ0LDE2MC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDU5OCBUZCAo
+MjMgeCA0MCB5ZCByb2xsLW9mZiBzd2FwLCBTaXRlIDUgQCAkNjk1LjAwKSBUaiBFVApCVCAvRjEg
+MTAgVGYgNDcwIDU5OCBUZCAoJDE1LDk4NS4wMCkgVGogRVQKMC42IHcgNTAgNTkwIG0gNTYyIDU5
+MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQyMCwxNDUuMDApIFRqIEVUCkJU
+IC9GMSAxMCBUZiA1MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQgb24gZmlsZSwg
+ZW5kaW5nIDMwNjEuKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFuayB5b3UsIEFj
+Y291bnRzIFJlY2VpdmFibGUgXChhckBiYXlzaG9yZWhhdWxpbmcuY29tXCkpIFRqIEVUCmVuZHN0
+cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VG
+b250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCjYgMCBv
+YmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhLUJv
+bGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5kb2JqCnhyZWYKMCA3CjAwMDAwMDAw
+MDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAwMDAw
+MDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAowMDAwMDAxMTUyIDAwMDAwIG4gCjAw
+MDAwMDEyNDkgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+CnN0YXJ0
+eHJlZgoxMzUxCiUlRU9GCg==
+--bp-B-2026-10-0137--

@@ -1,0 +1,48 @@
+Return-Path: <bounce@fremontfasteners.com>
+Received: from mail.fremontfasteners.com ([198.51.100.141]) by mx.bayline.example with ESMTPS; Thu, 22 Oct 2026 23:51:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=fremontfasteners.com; dkim=pass header.d=fremontfasteners.com; dmarc=pass header.from=fremontfasteners.com
+From: "Fremont Fasteners Inc Billing" <ar@fremontfasteners.com>
+To: <ap@bayline.example>
+Subject: Invoice FF-41209 - Simpson strong-drive screws, box of 500, Site 4
+Date: Thu, 22 Oct 2026 23:51:00 +0000
+Message-ID: <b-2026-10-0141@fremontfasteners.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0141"
+
+--bp-B-2026-10-0141
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice FF-41209 for simpson strong-drive screws, box of 500, site 4 under PO-5571. Payment to our account on file. Thank you, Fremont Fasteners Accounts Receivable
+
+--bp-B-2026-10-0141
+Content-Type: application/pdf; name="FF-41209.pdf"
+Content-Disposition: attachment; filename="FF-41209.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzQ3ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChGcmVtb250IEZhc3RlbmVycyBJbmMpIFRqIEVUCkJUIC9G
+MSA5IFRmIDUwIDcyNCBUZCAoNDQ4MDAgSW5kdXN0cmlhbCBEciwgRnJlbW9udCwgQ0EgIC0gIFwo
+NTU1XCkgMDEwLTIwODApIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2UgRkYt
+NDEyMDkpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTIyICAt
+ICBZb3VyIFBPIFBPLTU1NzEgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGogRVQKQlQgL0Yx
+IDEwIFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4pIFRqIEVUCjAu
+NiB3IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQgKDI1MCB4IFNp
+bXBzb24gc3Ryb25nLWRyaXZlIHNjcmV3cywgYm94IG9mIDUwMCwgU2l0ZSA0IEAgJDI0LjgwKSBU
+aiBFVApCVCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDYsMjAwLjAwKSBUaiBFVAowLjYgdyA1MCA1
+OTAgbSA1NjIgNTkwIGwgUwpCVCAvRjIgMTEgVGYgMzgwIDU3MiBUZCAoVG90YWwgJDYsMjAwLjAw
+KSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQYXkgYnkgQUNIIHRvIG91ciBhY2NvdW50
+IG9uIGZpbGUsIGVuZGluZyAxNzQ4LikgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUyMCBUZCAoVGhh
+bmsgeW91LCBBY2NvdW50cyBSZWNlaXZhYmxlIFwoYXJAZnJlbW9udGZhc3RlbmVycy5jb21cKSkg
+VGogRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9U
+eXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+Pgpl
+bmRvYmoKNiAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9I
+ZWx2ZXRpY2EtQm9sZCAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgow
+IDcKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAw
+MDAgbiAKMDAwMDAwMDExNSAwMDAwMCBuIAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDEwNDkg
+MDAwMDAgbiAKMDAwMDAwMTE0NiAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAw
+IFIgPj4Kc3RhcnR4cmVmCjEyNDgKJSVFT0YK
+--bp-B-2026-10-0141--

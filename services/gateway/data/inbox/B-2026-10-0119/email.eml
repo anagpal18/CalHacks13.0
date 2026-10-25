@@ -1,0 +1,50 @@
+Return-Path: <bounce@sunsetpaintingsf.com>
+Received: from mail.sunsetpaintingsf.com ([198.51.100.119]) by mx.bayline.example with ESMTPS; Wed, 21 Oct 2026 16:58:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=sunsetpaintingsf.com; dkim=pass header.d=sunsetpaintingsf.com; dmarc=pass header.from=sunsetpaintingsf.com
+From: "Mike Aldana" <mike@sunsetpaintingsf.com>
+To: <ap@bayline.example>
+Subject: Invoice SP-26855 - Interior paint, 2 coats, Site 5 (sq ft)
+Date: Wed, 21 Oct 2026 16:58:00 +0000
+Message-ID: <b-2026-10-0119@sunsetpaintingsf.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0119"
+
+--bp-B-2026-10-0119
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice SP-26855 for interior paint, 2 coats, site 5 under PO-5561. Payment to our account on file. Thank you, Mike
+
+--bp-B-2026-10-0119
+Content-Type: application/pdf; name="SP-26855.pdf"
+Content-Disposition: attachment; filename="SP-26855.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODcxID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChTdW5zZXQgUGFpbnRpbmcgTExDKSBUaiBFVApCVCAvRjEg
+OSBUZiA1MCA3MjQgVGQgKDM4MTUgTm9yaWVnYSBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgIC0gIFwo
+NTU1XCkgMDEwLTIwNjYpIFRqIEVUCkJUIC9GMiAxMSBUZiA1MCA2OTAgVGQgKEludm9pY2UgU1At
+MjY4NTUpIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NzQgVGQgKElzc3VlZCAyMDI2LTEwLTE4ICAt
+ICBZb3VyIFBPIFBPLTU1NjEgIC0gIFBheW1lbnQgdGVybXM6IE5ldCAzMCkgVGogRVQKQlQgL0Yx
+IDEwIFRmIDUwIDY0NiBUZCAoRm9yOiBCYXlsaW5lIENvbnN0cnVjdGlvbiBDby4pIFRqIEVUCjAu
+NiB3IDUwIDYzMiBtIDU2MiA2MzIgbCBTCkJUIC9GMSAxMCBUZiA1MCA2MTQgVGQgKDMzMTYgeCBJ
+bnRlcmlvciBwYWludCwgMiBjb2F0cywgU2l0ZSA1IFwoc3EgZnRcKSBAICQxLjI1KSBUaiBFVApC
+VCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDQsMTQ1LjAwKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAg
+NTk4IFRkICgzNTU2IHggRXh0ZXJpb3IgZWxhc3RvbWVyaWMgY29hdGluZywgU2l0ZSA1IFwoc3Eg
+ZnRcKSBAICQyLjQwKSBUaiBFVApCVCAvRjEgMTAgVGYgNDcwIDU5OCBUZCAoJDgsNTM0LjQwKSBU
+aiBFVAowLjYgdyA1MCA1OTAgbSA1NjIgNTkwIGwgUwpCVCAvRjIgMTEgVGYgMzgwIDU3MiBUZCAo
+VG90YWwgJDEyLDY3OS40MCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDUzNiBUZCAoUGF5IGJ5IEFD
+SCB0byBvdXIgYWNjb3VudCBvbiBmaWxlLCBlbmRpbmcgMzg4OC4pIFRqIEVUCkJUIC9GMSAxMCBU
+ZiA1MCA1MjAgVGQgKFRoYW5rIHlvdSwgTWlrZSBBbGRhbmEgXChtaWtlQHN1bnNldHBhaW50aW5n
+c2YuY29tXCkpIFRqIEVUCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAv
+U3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5j
+b2RpbmcgPj4KZW5kb2JqCjYgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9C
+YXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgPj4KZW5k
+b2JqCnhyZWYKMCA3CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAw
+MDAwMDU4IDAwMDAwIG4gCjAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1MSAwMDAwMCBuIAow
+MDAwMDAxMTczIDAwMDAwIG4gCjAwMDAwMDEyNzAgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3
+IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgoxMzcyCiUlRU9GCg==
+--bp-B-2026-10-0119--

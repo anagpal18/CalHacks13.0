@@ -1,0 +1,50 @@
+Return-Path: <bounce@ridgelinerepair.com>
+Received: from mail.ridgelinerepair.com ([198.51.100.151]) by mx.bayline.example with ESMTPS; Fri, 23 Oct 2026 21:37:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=ridgelinerepair.com; dkim=pass header.d=ridgelinerepair.com; dmarc=pass header.from=ridgelinerepair.com
+From: "Marco D." <service@ridgelinerepair.com>
+To: <ap@bayline.example>
+Subject: Invoice RER-23957 - Generator service, 45 kW, Site 5
+Date: Fri, 23 Oct 2026 21:37:00 +0000
+Message-ID: <b-2026-10-0151@ridgelinerepair.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0151"
+
+--bp-B-2026-10-0151
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice RER-23957 for generator service, 45 kw, site 5 under PO-5652. Payment to our account on file. Thank you, Marco
+
+--bp-B-2026-10-0151
+Content-Type: application/pdf; name="RER-23957.pdf"
+Content-Disposition: attachment; filename="RER-23957.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggODc1ID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChSaWRnZWxpbmUgRXF1aXBtZW50IFJlcGFpciBMTEMpIFRq
+IEVUCkJUIC9GMSA5IFRmIDUwIDcyNCBUZCAoNDUyMSBFIDEydGggU3QsIE9ha2xhbmQsIENBICAt
+ICBcKDQxNVwpIDU1NS0wMTQ4KSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZvaWNl
+IFJFUi0yMzk1NykgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYtMTAt
+MjMgIC0gIFlvdXIgUE8gUE8tNTY1MiAgLSAgUGF5bWVudCB0ZXJtczogRHVlIG9uIHJlY2VpcHQp
+IFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NDYgVGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24g
+Q28uKSBUaiBFVAowLjYgdyA1MCA2MzIgbSA1NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0
+IFRkICgxIHggR2VuZXJhdG9yIHNlcnZpY2UsIDQ1IGtXLCBTaXRlIDUgQCAkMiw5MjAuMDApIFRq
+IEVUCkJUIC9GMSAxMCBUZiA0NzAgNjE0IFRkICgkMiw5MjAuMDApIFRqIEVUCkJUIC9GMSAxMCBU
+ZiA1MCA1OTggVGQgKDEgeCBIeWRyYXVsaWMgaG9zZSByZXBsYWNlbWVudCwgc2tpZCBzdGVlciwg
+U2l0ZSA1IEAgJDEsNDYwLjAwKSBUaiBFVApCVCAvRjEgMTAgVGYgNDcwIDU5OCBUZCAoJDEsNDYw
+LjAwKSBUaiBFVAowLjYgdyA1MCA1OTAgbSA1NjIgNTkwIGwgUwpCVCAvRjIgMTEgVGYgMzgwIDU3
+MiBUZCAoVG90YWwgJDQsMzgwLjAwKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTM2IFRkIChQYXkg
+YnkgQUNIIHRvIG91ciBhY2NvdW50IG9uIGZpbGUsIGVuZGluZyAzMTIxLikgVGogRVQKQlQgL0Yx
+IDEwIFRmIDUwIDUyMCBUZCAoVGhhbmsgeW91LCBNYXJjbyBELiBcKHNlcnZpY2VAcmlkZ2VsaW5l
+cmVwYWlyLmNvbVwpKSBUaiBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0Zv
+bnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5z
+aUVuY29kaW5nID4+CmVuZG9iago2IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBl
+MSAvQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+
+CmVuZG9iagp4cmVmCjAgNwowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAK
+MDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNTEgMDAwMDAg
+biAKMDAwMDAwMTE3NyAwMDAwMCBuIAowMDAwMDAxMjc0IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1Np
+emUgNyAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKMTM3NgolJUVPRgo=
+--bp-B-2026-10-0151--

@@ -1,0 +1,48 @@
+Return-Path: <bounce@graniteridgeagg.com>
+Received: from mail.graniteridgeagg.com ([198.51.100.199]) by mx.bayline.example with ESMTPS; Mon, 19 Oct 2026 19:30:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=graniteridgeagg.com; dkim=pass header.d=graniteridgeagg.com; dmarc=pass header.from=graniteridgeagg.com
+From: "Dana Whitlock" <dana@graniteridgeagg.com>
+To: <ap@bayline.example>
+Subject: Invoice GR-12084 - Class II base rock, Site 4, delivered (ton)
+Date: Mon, 19 Oct 2026 19:30:00 +0000
+Message-ID: <b-2026-10-0099@graniteridgeagg.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0099"
+
+--bp-B-2026-10-0099
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice GR-12084 for class ii base rock, site 4, delivered under PO-5642. Payment to our account on file. Thank you, Dana
+
+--bp-B-2026-10-0099
+Content-Type: application/pdf; name="GR-12084.pdf"
+Content-Disposition: attachment; filename="GR-12084.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzQxID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChHcmFuaXRlIFJpZGdlIEFnZ3JlZ2F0ZXMpIFRqIEVUCkJU
+IC9GMSA5IFRmIDUwIDcyNCBUZCAoODgwMCBUZXNsYSBSZCwgTGl2ZXJtb3JlLCBDQSAgLSAgXCg1
+NTVcKSAwMTAtMjAwMykgVGogRVQKQlQgL0YyIDExIFRmIDUwIDY5MCBUZCAoSW52b2ljZSBHUi0x
+MjA4NCkgVGogRVQKQlQgL0YxIDEwIFRmIDUwIDY3NCBUZCAoSXNzdWVkIDIwMjYtMTAtMTkgIC0g
+IFlvdXIgUE8gUE8tNTY0MiAgLSAgUGF5bWVudCB0ZXJtczogTmV0IDMwKSBUaiBFVApCVCAvRjEg
+MTAgVGYgNTAgNjQ2IFRkIChGb3I6IEJheWxpbmUgQ29uc3RydWN0aW9uIENvLikgVGogRVQKMC42
+IHcgNTAgNjMyIG0gNTYyIDYzMiBsIFMKQlQgL0YxIDEwIFRmIDUwIDYxNCBUZCAoMzgwIHggQ2xh
+c3MgSUkgYmFzZSByb2NrLCBTaXRlIDQsIGRlbGl2ZXJlZCBcKHRvblwpIEAgJDM0LjUwKSBUaiBF
+VApCVCAvRjEgMTAgVGYgNDcwIDYxNCBUZCAoJDEzLDExMC4wMCkgVGogRVQKMC42IHcgNTAgNTkw
+IG0gNTYyIDU5MCBsIFMKQlQgL0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQxMywxMTAuMDAp
+IFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MzYgVGQgKFBheSBieSBBQ0ggdG8gb3VyIGFjY291bnQg
+b24gZmlsZSwgZW5kaW5nIDk2NDguKSBUaiBFVApCVCAvRjEgMTAgVGYgNTAgNTIwIFRkIChUaGFu
+ayB5b3UsIERhbmEgV2hpdGxvY2sgXChkYW5hQGdyYW5pdGVyaWRnZWFnZy5jb21cKSkgVGogRVQK
+ZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAv
+QmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoK
+NiAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRp
+Y2EtQm9sZCAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAw
+MDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAK
+MDAwMDAwMDExNSAwMDAwMCBuIAowMDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDEwNDMgMDAwMDAg
+biAKMDAwMDAwMTE0MCAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4K
+c3RhcnR4cmVmCjEyNDIKJSVFT0YK
+--bp-B-2026-10-0099--

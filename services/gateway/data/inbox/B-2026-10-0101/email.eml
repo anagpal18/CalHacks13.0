@@ -1,0 +1,48 @@
+Return-Path: <bounce@atlascrane.com>
+Received: from mail.atlascrane.com ([198.51.100.101]) by mx.bayline.example with ESMTPS; Mon, 19 Oct 2026 21:21:00 +0000
+Authentication-Results: mx.bayline.example; spf=pass smtp.mailfrom=atlascrane.com; dkim=pass header.d=atlascrane.com; dmarc=pass header.from=atlascrane.com
+From: "Frank Moreau" <dispatch@atlascrane.com>
+To: <ap@bayline.example>
+Subject: Invoice ACR-7341 - 90-ton crane with operator, 8 hr, Site 5
+Date: Mon, 19 Oct 2026 21:21:00 +0000
+Message-ID: <b-2026-10-0101@atlascrane.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bp-B-2026-10-0101"
+
+--bp-B-2026-10-0101
+Content-Type: text/plain; charset=utf-8
+
+Hello, attached is invoice ACR-7341 for 90-ton crane with operator, 8 hr, site 5 under PO-5573. Payment to our account on file. Thank you, Frank
+
+--bp-B-2026-10-0101
+Content-Type: application/pdf; name="ACR-7341.pdf"
+Content-Disposition: attachment; filename="ACR-7341.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0Yy
+IDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggNzIwID4+CnN0cmVhbQpC
+VCAvRjIgMTUgVGYgNTAgNzQwIFRkIChBdGxhcyBDcmFuZSkgVGogRVQKQlQgL0YxIDkgVGYgNTAg
+NzI0IFRkICgyMTAxIEFkZWxpbmUgU3QsIE9ha2xhbmQsIENBICAtICBcKDU1NVwpIDAxMC0yMDgz
+KSBUaiBFVApCVCAvRjIgMTEgVGYgNTAgNjkwIFRkIChJbnZvaWNlIEFDUi03MzQxKSBUaiBFVApC
+VCAvRjEgMTAgVGYgNTAgNjc0IFRkIChJc3N1ZWQgMjAyNi0xMC0xNyAgLSAgWW91ciBQTyBQTy01
+NTczICAtICBQYXltZW50IHRlcm1zOiBOZXQgMzApIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA2NDYg
+VGQgKEZvcjogQmF5bGluZSBDb25zdHJ1Y3Rpb24gQ28uKSBUaiBFVAowLjYgdyA1MCA2MzIgbSA1
+NjIgNjMyIGwgUwpCVCAvRjEgMTAgVGYgNTAgNjE0IFRkICgyIHggOTAtdG9uIGNyYW5lIHdpdGgg
+b3BlcmF0b3IsIDggaHIsIFNpdGUgNSBAICQzLDQ1MC4wMCkgVGogRVQKQlQgL0YxIDEwIFRmIDQ3
+MCA2MTQgVGQgKCQ2LDkwMC4wMCkgVGogRVQKMC42IHcgNTAgNTkwIG0gNTYyIDU5MCBsIFMKQlQg
+L0YyIDExIFRmIDM4MCA1NzIgVGQgKFRvdGFsICQ2LDkwMC4wMCkgVGogRVQKQlQgL0YxIDEwIFRm
+IDUwIDUzNiBUZCAoUGF5IGJ5IEFDSCB0byBvdXIgYWNjb3VudCBvbiBmaWxlLCBlbmRpbmcgODYz
+Mi4pIFRqIEVUCkJUIC9GMSAxMCBUZiA1MCA1MjAgVGQgKFRoYW5rIHlvdSwgRnJhbmsgTW9yZWF1
+IFwoZGlzcGF0Y2hAYXRsYXNjcmFuZS5jb21cKSkgVGogRVQKZW5kc3RyZWFtCmVuZG9iago1IDAg
+b2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYSAv
+RW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNiAwIG9iago8PCAvVHlwZSAvRm9u
+dCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZCAvRW5jb2RpbmcgL1dp
+bkFuc2lFbmNvZGluZyA+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAw
+MDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDExNSAwMDAwMCBuIAow
+MDAwMDAwMjUxIDAwMDAwIG4gCjAwMDAwMDEwMjIgMDAwMDAgbiAKMDAwMDAwMTExOSAwMDAwMCBu
+IAp0cmFpbGVyCjw8IC9TaXplIDcgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjEyMjEKJSVFT0YK
+
+--bp-B-2026-10-0101--
