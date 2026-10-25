@@ -15,7 +15,7 @@ export interface BarDatum {
   highlight?: boolean;
 }
 
-export function HorizontalBars({ data, labelWidth = 140, barHeight = 14 }: { data: BarDatum[]; labelWidth?: number; barHeight?: number }) {
+export function HorizontalBars({ data, labelWidth = 140, barHeight = 14, formatValue = String }: { data: BarDatum[]; labelWidth?: number; barHeight?: number; formatValue?: (value: number) => string }) {
   const maxValue = Math.max(...data.map((datum) => datum.value), 1);
   return (
     <div className="space-y-2.5">
@@ -37,7 +37,7 @@ export function HorizontalBars({ data, labelWidth = 140, barHeight = 14 }: { dat
                     animate={{ width: `${Math.max((datum.value / maxValue) * 100, 2)}%` }}
                     transition={{ delay: 0.1 + index * 0.04, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   />
-                  <span className="text-xs font-semibold tabular-nums">{datum.value}</span>
+                  <span className="text-xs font-semibold tabular-nums">{formatValue(datum.value)}</span>
                 </div>
               </div>
             </TooltipTrigger>

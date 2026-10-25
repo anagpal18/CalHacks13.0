@@ -7,12 +7,14 @@ import {
   MOCK_BILLS,
   MOCK_CRS_DATA_USE,
   MOCK_CRS_RESULTS,
+  MOCK_DAILY_PROCESSING,
   MOCK_PASSPORTS,
   MOCK_PAYMENT_RUN,
+  MOCK_PROCESSED_INVOICES,
   MOCK_SCORE,
   MOCK_WEEK_INTAKE,
 } from "./mockData";
-import type { AttentionItem, AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport, PaymentRun, ScoreResult } from "./types";
+import type { AttentionItem, AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, DailyProcessing, ProcessedInvoice, Passport, PaymentRun, ScoreResult } from "./types";
 
 const MOCK_LATENCY_MS = 120;
 const resolveLater = <Value,>(value: Value) => new Promise<Value>((resolve) => setTimeout(() => resolve(value), MOCK_LATENCY_MS));
@@ -38,3 +40,5 @@ export const getAuditTrail = (billId: string): Promise<AuditEvent[]> => resolveL
 export const getCrsDataUseLog = (): Promise<CrsDataUseEntry[]> => resolveLater(MOCK_CRS_DATA_USE);
 export const getWeekIntake = (): Promise<DailyIntake[]> => resolveLater(MOCK_WEEK_INTAKE);
 export const listAttentionItems = (): Promise<AttentionItem[]> => resolveLater(MOCK_ATTENTION_ITEMS);
+export const listProcessedInvoices = (): Promise<ProcessedInvoice[]> => resolveLater(MOCK_PROCESSED_INVOICES);
+export const getDailyProcessing = (): Promise<DailyProcessing[]> => resolveLater(MOCK_DAILY_PROCESSING);

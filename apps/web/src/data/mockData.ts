@@ -7,6 +7,8 @@ import type {
   AttentionItem,
   AuditEvent,
   DailyIntake,
+  DailyProcessing,
+  ProcessedInvoice,
   BillSummary,
   CrsChainResult,
   CrsDataUseEntry,
@@ -504,3 +506,52 @@ export const MOCK_ATTENTION_ITEMS: AttentionItem[] = [
     tone: "asking", actionLabel: "Review", href: "/verify/P08",
   },
 ];
+
+// ---------------------------------------------------------------- processed invoices + processing analytics
+
+const CONTROLLER = "Dana Whitfield";
+
+/** Today's auto-booked bills plus this week's approved-and-paid run, newest first. */
+export const MOCK_PROCESSED_INVOICES: ProcessedInvoice[] = [
+  ...MOCK_PAYMENT_RUN.items.map((item, index): ProcessedInvoice => {
+    const bill = MOCK_BILLS.find((candidate) => candidate.billId === item.billId);
+    return {
+      billId: item.billId,
+      invoiceNumber: bill?.invoiceNumber ?? item.billId.replace("B-", ""),
+      vendorName: item.vendorName,
+      jobSite: bill?.jobSite ?? JOB_SITES[index % JOB_SITES.length],
+      amountCents: item.amountCents,
+      status: "paid",
+      processedAt: `2026-10-2${index < 3 ? 2 : 3}T1${index}:15:00`,
+      secondsToBook: 3 + ((index * 7) % 5),
+      approvedBy: CONTROLLER,
+      paidOn: "2026-10-24",
+      nessieTransferId: `tr_${(0x5e1a3 + index * 7919).toString(16)}`,
+    };
+  }),
+  ...MOCK_BILLS.filter((bill) => bill.status === "booked")
+    .reverse()
+    .map((bill, index): ProcessedInvoice => ({
+      billId: bill.billId,
+      invoiceNumber: bill.invoiceNumber,
+      vendorName: bill.vendorName,
+      jobSite: bill.jobSite,
+      amountCents: bill.amountCents,
+      status: "booked",
+      processedAt: bill.receivedAt,
+      secondsToBook: 2 + ((index * 5) % 6),
+      approvedBy: "Agents (auto)",
+    })),
+].sort((first, second) => second.processedAt.localeCompare(first.processedAt));
+
+export const MOCK_DAILY_PROCESSING: DailyProcessing[] = MOCK_WEEK_INTAKE.map((day, index) => {
+  const asking = Math.round(day.problemsCaught * 0.25);
+  return {
+    date: day.date,
+    dayLetter: day.dayLetter,
+    booked: day.billsReceived - day.problemsCaught,
+    held: day.problemsCaught - asking,
+    asking,
+    averageSecondsToBook: [3.9, 4.4, 4.1, 3.8, 4.6, 4.0, 4.2][index],
+  };
+});

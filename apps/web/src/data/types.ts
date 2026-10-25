@@ -183,3 +183,29 @@ export interface AttentionItem {
   actionLabel: string;
   href: string;
 }
+
+// ---- Processed invoices (Overview list + Processed analytics page) ----
+
+export interface ProcessedInvoice {
+  billId: string;
+  invoiceNumber: string;
+  vendorName: string;
+  jobSite: string;
+  amountCents: number;
+  status: "booked" | "paid";
+  processedAt: string;
+  /** Seconds from the bill arriving to being booked. */
+  secondsToBook: number;
+  approvedBy: "Agents (auto)" | string;
+  paidOn?: string;
+  nessieTransferId?: string;
+}
+
+export interface DailyProcessing {
+  date: string;
+  dayLetter: string;
+  booked: number;
+  held: number;
+  asking: number;
+  averageSecondsToBook: number;
+}

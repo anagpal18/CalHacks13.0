@@ -10,13 +10,14 @@ export interface TickGroup {
   value: number;
   /** Shown as the big number; defaults to `value`. */
   displayValue?: string;
-  tone: "data" | "ink" | "held" | "muted";
+  tone: "data" | "ink" | "held" | "asking" | "muted";
 }
 
 const TONE_CLASS: Record<TickGroup["tone"], { tick: string; rule: string }> = {
   data: { tick: "bg-data", rule: "bg-data" },
   ink: { tick: "bg-foreground", rule: "bg-foreground" },
   held: { tick: "bg-held", rule: "bg-held" },
+  asking: { tick: "bg-asking", rule: "bg-asking" },
   muted: { tick: "bg-foreground/20", rule: "bg-foreground/25" },
 };
 

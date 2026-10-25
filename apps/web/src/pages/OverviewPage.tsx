@@ -1,16 +1,16 @@
 // Overview: the landing page for the AP manager.
-// Top: what needs a person (ranked by urgency), what money is about to move, and a receipt of what
-// the automation handled. Below: the company snapshot. Every item links into the step tab where the decision or detail lives.
+// Top: what needs a person (ranked by urgency), the latest processed invoices (View more -> /processed)
+// and a receipt of what the automation handled. Below: the company snapshot. Every item links into the step tab where the decision or detail lives.
 
 import { motion } from "motion/react";
-import { ArrowRight, BadgeCheck, CalendarClock, CircleX, Hand, Landmark, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
+import { ArrowRight, BadgeCheck, CircleX, Hand, Landmark, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Panel, StatFigure } from "@/components/charts/Panel";
 import { Sparkline } from "@/components/charts/Sparkline";
-import { getNextPaymentRun, getScore, getWeekIntake, listAttentionItems, listBills } from "@/data/dataSource";
-import type { AttentionItem, AttentionKind, BillSummary, PaymentRun } from "@/data/types";
+import { getNextPaymentRun, getScore, getWeekIntake, listAttentionItems, listBills, listProcessedInvoices } from "@/data/dataSource";
+import type { AttentionItem, AttentionKind, BillSummary, ProcessedInvoice } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
-import { formatDollars, formatShortDate, formatWeekday } from "@/lib/format";
+import { formatDollars } from "@/lib/format";
 import { TONE_STYLE } from "@/lib/statusStyle";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +28,7 @@ export function OverviewPage() {
   const bills = useAsyncData(listBills, []) ?? [];
   const run = useAsyncData(getNextPaymentRun, []);
   const score = useAsyncData(getScore, []);
+  const processed = useAsyncData(listProcessedInvoices, []) ?? [];
 
   const billsThisWeek = week.reduce((total, day) => total + day.billsReceived, 0);
   const caughtThisWeek = week.reduce((total, day) => total + day.problemsCaught, 0);
@@ -52,15 +53,13 @@ export function OverviewPage() {
 
         {/* Processed for you + money about to move */}
         <div className="space-y-5 xl:col-span-5">
+          <Panel title="Processed" subtitle="Latest invoices booked or paid" action={<span className="text-xs text-muted-foreground">{processed.length} this week</span>}>
+            <RecentProcessed invoices={processed.slice(0, 4)} />
+          </Panel>
+
           <Panel title="Processed for you · today" subtitle="Checked by the agents, no one had to look">
             <ProcessedToday bills={bills} />
           </Panel>
-
-          {run && (
-            <Panel title="Money about to move" subtitle="Next payment run, by due date" action={<Link to="/pay" className="text-sm underline underline-offset-4">Open run</Link>}>
-              <UpcomingPayments run={run} />
-            </Panel>
-          )}
 
           <Link to="/proof" className="flex items-center gap-4 rounded-3xl bg-card p-5 shadow-[0_1px_2px_rgb(31_36_51/0.04),0_8px_24px_-12px_rgb(31_36_51/0.12)] transition hover:shadow-[0_2px_4px_rgb(31_36_51/0.06),0_12px_28px_-12px_rgb(31_36_51/0.18)]">
             <span className="flex size-10 items-center justify-center rounded-xl bg-foreground/[0.05]"><Trophy className="size-5 text-foreground/70" /></span>
@@ -179,33 +178,33 @@ function ProcessedToday({ bills }: { bills: BillSummary[] }) {
   );
 }
 
-function UpcomingPayments({ run }: { run: PaymentRun }) {
-  const dueDates = [...new Set(run.items.map((item) => item.dueDate))].sort();
-  const totals = dueDates.map((dueDate) => run.items.filter((item) => item.dueDate === dueDate).reduce((sum, item) => sum + item.amountCents, 0));
-  const maxTotal = Math.max(...totals);
-  const discountItems = run.items.filter((item) => item.discount);
-
+function RecentProcessed({ invoices }: { invoices: ProcessedInvoice[] }) {
   return (
     <div>
-      <div className="flex items-end justify-between gap-3">
-        {dueDates.map((dueDate, index) => (
-          <div key={dueDate} className="flex flex-1 flex-col items-center">
-            <span className="mb-1 text-xs font-semibold">{formatDollars(totals[index], { compact: true })}</span>
-            <motion.span className="w-6 rounded-t-[4px] bg-data" initial={{ height: 0 }} animate={{ height: Math.max((totals[index] / maxTotal) * 56, 6) }} transition={{ delay: index * 0.06, duration: 0.5 }} />
-            <span className="mt-2 text-[11px] text-muted-foreground">{formatWeekday(dueDate)} {formatShortDate(dueDate).split(" ")[1]}</span>
+      <div className="divide-y divide-border">
+        {invoices.map((invoice) => (
+          <div key={invoice.billId} className="flex items-center gap-3 py-2.5 first:pt-0">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-foreground/[0.05] text-xs font-semibold">
+              {invoice.vendorName.split(" ").map((word) => word[0]).slice(0, 2).join("")}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-sm font-medium">{invoice.vendorName}</div>
+              <div className="truncate text-xs text-muted-foreground">
+                {invoice.invoiceNumber} · {invoice.status === "paid" ? `Approved by ${invoice.approvedBy.split(" ")[0]}` : "Booked automatically"}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-sm font-semibold">{formatDollars(invoice.amountCents)}</div>
+              <span className={cn("text-[11px] font-medium", invoice.status === "paid" ? "text-approved" : "text-muted-foreground")}>
+                {invoice.status === "paid" ? "Paid" : "Booked · 8/8"}
+              </span>
+            </div>
           </div>
         ))}
       </div>
-      {discountItems.length > 0 && (
-        <div className="mt-4 space-y-1.5 border-t border-border pt-3">
-          {discountItems.map((item) => (
-            <div key={item.billId} className="flex items-center justify-between text-sm">
-              <span className="flex items-center gap-2 text-muted-foreground"><CalendarClock className="size-3.5" />Pay {item.vendorName} by {formatShortDate(item.discount!.payByDate)}</span>
-              <span className="font-semibold">save {formatDollars(item.discount!.savingsCents)}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <Link to="/processed" className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-full border border-border py-2 text-sm font-medium transition hover:border-foreground/30">
+        View more <ArrowRight className="size-3.5" />
+      </Link>
     </div>
   );
 }

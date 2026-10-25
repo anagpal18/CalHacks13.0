@@ -24,7 +24,14 @@ export const OVERVIEW_STEP: DashboardStep = {
   subtitle: "Everything else was checked and handled automatically. Open any item to see the full trail.", icon: LayoutDashboard,
 };
 
+/** Drill-down from Overview's "View more". Number 0 keeps Overview underlined in the nav. */
+export const PROCESSED_PAGE: DashboardStep = {
+  number: 0, path: "/processed", label: "Processed", headline: "What's been processed.",
+  subtitle: "Every invoice the agents booked and every payment a person approved, with how the work breaks down.", icon: LayoutDashboard,
+};
+
 export function findStepForPath(pathname: string): DashboardStep {
+  if (pathname.startsWith(PROCESSED_PAGE.path)) return PROCESSED_PAGE;
   if (pathname.startsWith(OVERVIEW_STEP.path)) return OVERVIEW_STEP;
   return DASHBOARD_STEPS.find((step) => pathname.startsWith(step.path)) ?? OVERVIEW_STEP;
 }
