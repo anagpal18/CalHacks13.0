@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight, BookCheck, Skull } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
@@ -48,15 +48,15 @@ export function AppShell() {
         </header>
 
         <main className="pt-8">
-          <AnimatePresence mode="wait">
-            <motion.div key={currentStep.path} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25 }}>
-              <div className="mb-8 max-w-5xl">
-                <h1 className="text-4xl font-semibold tracking-tight md:text-[44px] md:leading-[1.1]">{currentStep.headline}</h1>
-                <p className="mt-2 text-base text-muted-foreground">{currentStep.subtitle}</p>
-              </div>
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
+          {/* Fade the new page in only. An exit + mode="wait" transition can stall forever when the
+              old page still has its own running layout animations (Inbox), leaving a blank page. */}
+          <motion.div key={currentStep.path} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <div className="mb-8 max-w-5xl">
+              <h1 className="text-4xl font-semibold tracking-tight md:text-[44px] md:leading-[1.1]">{currentStep.headline}</h1>
+              <p className="mt-2 text-base text-muted-foreground">{currentStep.subtitle}</p>
+            </div>
+            <Outlet />
+          </motion.div>
         </main>
 
         {nextStep && (
