@@ -4,20 +4,21 @@ import { FileUp, Sparkles } from "lucide-react";
 import { useRef, useState, type DragEvent } from "react";
 import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
+import { groupLooseFiles, readDroppedBills } from "./billFileGroups";
 import { useUploadSession } from "./UploadSessionContext";
 
-const ACCEPTED_TYPES = ".pdf,.png,.jpg,.jpeg,.eml,.msg";
+const ACCEPTED_TYPES = ".pdf,.eml,.txt";
 
 export function UploadDropzone({ compact = false }: { compact?: boolean }) {
-  const { addFiles, addSampleBills } = useUploadSession();
+  const { addBills, addSampleBills } = useUploadSession();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setDragging] = useState(false);
 
-  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+  const handleDrop = async (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setDragging(false);
-    const droppedFiles = [...event.dataTransfer.files];
-    if (droppedFiles.length > 0) addFiles(droppedFiles);
+    const droppedBills = await readDroppedBills(event.dataTransfer);
+    if (droppedBills.length > 0) addBills(droppedBills);
   };
 
   return (
@@ -40,7 +41,7 @@ export function UploadDropzone({ compact = false }: { compact?: boolean }) {
         </span>
         <div>
           <div className={cn("font-semibold tracking-tight", compact ? "text-base" : "text-xl")}>{compact ? "Upload more bills" : "Drop this week's bills here"}</div>
-          <div className="mt-1 text-sm text-muted-foreground">PDF, photo or forwarded email. Each one is checked by the agents before it's booked.</div>
+          <div className="mt-1 text-sm text-muted-foreground">Drop a folder per bill (the email + the PDF invoice), or pick the files. Each bill is checked by the agents before it's booked.</div>
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2">
@@ -58,8 +59,8 @@ export function UploadDropzone({ compact = false }: { compact?: boolean }) {
         accept={ACCEPTED_TYPES}
         className="hidden"
         onChange={(event) => {
-          const pickedFiles = [...(event.target.files ?? [])];
-          if (pickedFiles.length > 0) addFiles(pickedFiles);
+          const pickedBills = groupLooseFiles([...(event.target.files ?? [])]);
+          if (pickedBills.length > 0) addBills(pickedBills);
           event.target.value = "";
         }}
       />

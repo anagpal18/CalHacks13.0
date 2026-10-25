@@ -55,19 +55,27 @@ function ProcessingRow({ upload }: { upload: UploadedBill }) {
         <div className="truncate text-sm font-medium">{upload.fileName}</div>
         <AnimatePresence mode="wait" initial={false}>
           {isDone ? (
-            <motion.div key="done" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="truncate text-xs text-muted-foreground">
-              {upload.vendorName ?? "Vendor"} · {upload.headline ?? "All 8 stamps passed"}
+            <motion.div key="done" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={cn("truncate text-xs", upload.errorMessage ? "text-held" : "text-muted-foreground")}>
+              {upload.errorMessage ?? `${upload.vendorName ?? "Vendor"} · ${upload.headline ?? "All 8 stamps passed"}`}
             </motion.div>
           ) : (
             <motion.div key="working" exit={{ opacity: 0 }} className="mt-1.5 flex items-center gap-2">
-              <Skeleton className="h-3 w-40" />
-              <Skeleton className="h-3 w-16" />
+              {upload.activityLine ? (
+                <span className="truncate text-xs text-muted-foreground">{upload.activityLine}</span>
+              ) : (
+                <>
+                  <Skeleton className="h-3 w-40" />
+                  <Skeleton className="h-3 w-16" />
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       <div className="w-36 shrink-0 text-right">
-        {isDone && outcome ? (
+        {isDone && !outcome ? (
+          <div className="flex items-center justify-end gap-1 text-xs font-medium text-held"><CircleX className="size-3.5" /> Not processed</div>
+        ) : isDone && outcome ? (
           <motion.div initial={{ opacity: 0, x: 6 }} animate={{ opacity: 1, x: 0 }}>
             <div className="text-sm font-semibold">{upload.amountCents ? formatDollars(upload.amountCents) : "–"}</div>
             <div className={cn("flex items-center justify-end gap-1 text-xs font-medium", outcome.className)}>

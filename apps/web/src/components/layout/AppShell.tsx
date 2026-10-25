@@ -7,6 +7,8 @@ import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 import { useDemoMode } from "./DemoModeContext";
 import { DASHBOARD_STEPS, findStepForPath } from "./dashboardSteps";
+import { DataErrorBanner } from "./DataErrorBanner";
+import { GatewayStatusBadge } from "./GatewayStatusBadge";
 import { ScamConsoleDialog } from "./ScamConsoleDialog";
 import { StepBar } from "./StepBar";
 
@@ -39,6 +41,7 @@ export function AppShell() {
                 {mode === "live" && <span className="size-1.5 animate-pulse rounded-full bg-held" />}Live
               </span>
             </label>
+            {mode === "live" && <GatewayStatusBadge />}
             <button
               onClick={() => setScamConsoleOpen(true)}
               className={primaryButton("md")}
@@ -48,10 +51,12 @@ export function AppShell() {
           </div>
         </header>
 
+        <DataErrorBanner />
+
         <main className="pt-8">
           {/* Fade the new page in only. An exit + mode="wait" transition can stall forever when the
               old page still has its own running layout animations (Inbox), leaving a blank page. */}
-          <motion.div key={currentStep.path} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+          <motion.div key={`${currentStep.path}-${mode}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
             <div className="mb-8 max-w-5xl">
               <h1 className="text-4xl font-semibold tracking-tight md:text-[44px] md:leading-[1.1]">{currentStep.headline}</h1>
               <p className="mt-2 text-base text-muted-foreground">{currentStep.subtitle}</p>

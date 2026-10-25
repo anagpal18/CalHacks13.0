@@ -225,4 +225,8 @@ export interface UploadedBill {
   vendorName?: string;
   amountCents?: number;
   headline?: string;
+  /** Live mode: the latest thing an agent did on this bill. */
+  activityLine?: string;
+  /** Set when the bill could not be uploaded or processed. */
+  errorMessage?: string;
 }

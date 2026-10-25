@@ -12,6 +12,7 @@ import { getBillSummary, getPassport, getScore, listBills } from "@/data/dataSou
 import { HorizontalBars } from "@/components/charts/HorizontalBars";
 import { Panel } from "@/components/charts/Panel";
 import { STAMP_ICON } from "@/components/visuals/stampIcons";
+import { getDataMode } from "@/data/dataMode";
 import { DEMO_FEATURED_BILL_ID } from "@/data/mockData";
 import { SEAT_LABEL, STAMP_CATALOG } from "@/data/stampCatalog";
 import type { BillSummary, Passport, Stamp } from "@/data/types";
@@ -35,13 +36,15 @@ function useStampReveal(totalStamps: number, restartKey: string) {
 }
 
 export function CheckPage() {
-  const { billId = DEMO_FEATURED_BILL_ID } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
   const [replayCount, setReplayCount] = useState(0);
   const [evidenceStamp, setEvidenceStamp] = useState<Stamp | null>(null);
-  const passport = useAsyncData(() => getPassport(billId), [billId]);
-  const bill = useAsyncData(() => getBillSummary(billId), [billId]);
   const allBills = useAsyncData(listBills, []) ?? [];
+  // Live bills have gateway IDs (B-2026-10-0147), so without a URL param open the newest bill instead of the demo one.
+  const billId = params.billId ?? (getDataMode() === "live" ? allBills[allBills.length - 1]?.billId : DEMO_FEATURED_BILL_ID);
+  const passport = useAsyncData(() => (billId ? getPassport(billId) : Promise.resolve(null)), [billId]);
+  const bill = useAsyncData(() => (billId ? getBillSummary(billId) : Promise.resolve(null)), [billId]);
   const score = useAsyncData(getScore, []);
   const revealedCount = useStampReveal(STAMP_CATALOG.length, `${billId}-${replayCount}-${passport ? 1 : 0}`);
 
@@ -50,7 +53,7 @@ export function CheckPage() {
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
       <div className="space-y-5">
-        <BillRail bills={interestingBills} currentBillId={billId} onPick={(id) => navigate(`/check/${id}`)} />
+        <BillRail bills={interestingBills} currentBillId={billId ?? ""} onPick={(id) => navigate(`/check/${id}`)} />
         <Panel title="Where bills fail" subtitle="Problems caught per stamp this week" className="p-5">
           {score && (
             <HorizontalBars
@@ -73,6 +76,10 @@ export function CheckPage() {
             </button>
           </div>
         </div>
+      ) : bill && passport === null ? (
+        <Panel title={`${bill.vendorName} · ${bill.invoiceNumber}`} subtitle="No stamps signed yet">
+          <p className="text-sm text-muted-foreground">{bill.headline}</p>
+        </Panel>
       ) : (
         <div className="h-[560px] animate-pulse rounded-3xl bg-card" />
       )}
@@ -147,14 +154,16 @@ function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { b
       {/* The 8 stamps */}
       <div className="grid grid-cols-2 gap-x-4 gap-y-6 px-8 py-8 sm:grid-cols-4">
         {STAMP_CATALOG.map((definition, index) => {
-          const stamp = passport.stamps.find((candidate) => candidate.id === definition.id)!;
+          // Live passports can be partial while the seats are still working: unsigned stamps stay as empty slots.
+          const signedStamp = passport.stamps.find((candidate) => candidate.id === definition.id);
+          const stamp = signedStamp ?? { id: definition.id, status: "pass" as const, reason: "", evidence: [], signedBy: definition.signedBy, signature: "", at: "" };
           return (
             <StampSeal
               key={definition.id}
               definition={definition}
               stamp={stamp}
-              isRevealed={index < revealedCount}
-              isChecking={index === revealedCount}
+              isRevealed={Boolean(signedStamp) && index < revealedCount}
+              isChecking={Boolean(signedStamp) && index === revealedCount}
               onOpenEvidence={() => onOpenEvidence(stamp)}
             />
           );
@@ -178,12 +187,15 @@ function PassportField({ label, value, large }: { label: string; value: string; 
 function PassportVerdict({ passport, crsPersonaId }: { passport: Passport; crsPersonaId?: string }) {
   const failedStamps = passport.stamps.filter((stamp) => stamp.status === "fail");
   const askingStamps = passport.stamps.filter((stamp) => stamp.status === "ask_human");
+  const unsignedCount = 8 - passport.stamps.length;
   const verdict =
     failedStamps.length > 0
       ? { tone: TONE_STYLE.held, icon: ShieldX, word: "Held", line: `${failedStamps.length} of 8 stamps failed. The gateway refused to book it.`, footer: `${formatDollars(passport.amountCents)} protected` }
       : askingStamps.length > 0
         ? { tone: TONE_STYLE.asking, icon: Hand, word: "Asking a human", line: "Parked until the site PM confirms delivery.", footer: "Nothing booked yet" }
-        : { tone: TONE_STYLE.cleared, icon: BookCheck, word: "Booked", line: "All 8 stamps signed. Debit Expense, credit Accounts Payable.", footer: "Ready for the next payment run" };
+        : unsignedCount > 0
+          ? { tone: TONE_STYLE.checking, icon: BookCheck, word: "Checking", line: `${passport.stamps.length} of 8 stamps signed. The agents are still working.`, footer: "Not booked yet" }
+          : { tone: TONE_STYLE.cleared, icon: BookCheck, word: "Booked", line: "All 8 stamps signed. Debit Expense, credit Accounts Payable.", footer: "Ready for the next payment run" };
   const Icon = verdict.icon;
 
   return (
