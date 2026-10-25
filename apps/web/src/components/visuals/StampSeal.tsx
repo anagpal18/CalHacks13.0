@@ -12,10 +12,12 @@ interface StampSealProps {
   stamp: Stamp;
   isRevealed: boolean;
   isChecking: boolean;
+  /** The bill is finished but this stamp was never signed (the agent didn't finish). */
+  isMissing?: boolean;
   onOpenEvidence: () => void;
 }
 
-export function StampSeal({ definition, stamp, isRevealed, isChecking, onOpenEvidence }: StampSealProps) {
+export function StampSeal({ definition, stamp, isRevealed, isChecking, isMissing = false, onOpenEvidence }: StampSealProps) {
   const look = STAMP_STATUS_LOOK[stamp.status];
   const tone = TONE_STYLE[look.tone];
   const StampIcon = STAMP_ICON[definition.id];
@@ -31,6 +33,9 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, onOpenEvi
         <div className={cn("absolute inset-0 rounded-full border-2 border-dashed transition-colors", isChecking ? "border-checking/70" : "border-foreground/10")} />
         {isChecking && (
           <motion.div className="absolute inset-0 rounded-full border-2 border-checking border-t-transparent" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
+        )}
+        {isMissing && (
+          <div className="absolute inset-0 flex items-center justify-center text-[10px] font-black uppercase tracking-wider text-muted-foreground">Not signed</div>
         )}
         {isRevealed && (
           <motion.div
@@ -57,7 +62,7 @@ export function StampSeal({ definition, stamp, isRevealed, isChecking, onOpenEvi
         <span className="text-sm font-semibold">{definition.label}</span>
       </div>
       <p className={cn("mt-1 min-h-10 max-w-40 text-xs leading-snug", isRevealed && isProblem ? cn(tone.text, "font-medium") : "text-muted-foreground")}>
-        {isRevealed ? (isProblem ? stamp.reason : definition.question) : definition.question}
+        {isMissing ? "The agent didn't finish this stamp." : isRevealed ? (isProblem ? stamp.reason : definition.question) : definition.question}
       </p>
       {isRevealed && isProblem && <span className="mt-1 text-[11px] font-semibold text-muted-foreground underline-offset-2 group-hover:text-foreground group-hover:underline">See evidence</span>}
     </button>

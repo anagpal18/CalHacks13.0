@@ -9,7 +9,6 @@ import { OverviewPage } from "@/pages/OverviewPage";
 import { ProcessedPage } from "@/pages/ProcessedPage";
 import { InboxPage } from "@/pages/InboxPage";
 import { CheckPage } from "@/pages/CheckPage";
-import { VerifyPage } from "@/pages/VerifyPage";
 import { ApproveAndPayPage } from "@/pages/ApproveAndPayPage";
 import { ProofPage } from "@/pages/ProofPage";
 import "./index.css";
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
       { path: "processed", element: <ProcessedPage /> },
       { path: "inbox", element: <InboxPage /> },
       { path: "check/:billId?", element: <CheckPage /> },
-      { path: "verify/:personaId?", element: <VerifyPage /> },
+      { path: "verify/*", element: <Navigate to="/check" replace /> },
       { path: "pay", element: <ApproveAndPayPage /> },
       { path: "proof", element: <ProofPage /> },
     ],

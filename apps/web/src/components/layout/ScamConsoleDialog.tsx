@@ -1,9 +1,11 @@
-// "Try to scam us": a judge picks an attacker card and lands on Verify with that persona.
+// "Try to scam us": a judge picks an attacker card and watches the identity check run on it, right in the dialog.
 
 import { motion } from "motion/react";
-import { Skull, UserX, Ghost, AlertTriangle, ShieldQuestion, type LucideIcon } from "lucide-react";
-import { useNavigate } from "react-router";
+import { ArrowLeft, Skull, UserX, Ghost, AlertTriangle, ShieldQuestion, type LucideIcon } from "lucide-react";
+import { useState } from "react";
+import { IdentityCheck } from "@/components/check/IdentityCheck";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { primaryButton } from "@/lib/buttonStyles";
 import { formatDollars } from "@/lib/format";
 import { MOCK_CRS_RESULTS } from "@/data/mockData";
 
@@ -23,20 +25,26 @@ const SCAM_CARDS: ScamCard[] = [
 ];
 
 export function ScamConsoleDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
-  const navigate = useNavigate();
-
-  const launchAttack = (personaId: string) => {
-    onOpenChange(false);
-    navigate(`/verify/${personaId}?attack=${Date.now()}`);
+  const [attackPersonaId, setAttackPersonaId] = useState<string | null>(null);
+  const launchAttack = (personaId: string) => setAttackPersonaId(personaId);
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen) setAttackPersonaId(null);
+    onOpenChange(nextOpen);
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl border-held/30 bg-card backdrop-blur sm:max-w-2xl">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent className={attackPersonaId ? "max-h-[90vh] max-w-5xl overflow-y-auto border-held/30 bg-card sm:max-w-5xl" : "max-w-2xl border-held/30 bg-card backdrop-blur sm:max-w-2xl"}>
         <DialogHeader>
           <DialogTitle className="text-2xl">Try to scam us</DialogTitle>
           <DialogDescription>Pick an attack. We'll run it through the identity checks and show you what happens.</DialogDescription>
         </DialogHeader>
+        {attackPersonaId ? (
+          <div className="space-y-4">
+            <button onClick={() => setAttackPersonaId(null)} className={primaryButton("sm")}><ArrowLeft className="size-3.5" /> Pick another attack</button>
+            <IdentityCheck personaId={attackPersonaId} reason={SCAM_CARDS.find((card) => card.personaId === attackPersonaId)?.pitch} />
+          </div>
+        ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {SCAM_CARDS.map((card, index) => {
             const persona = MOCK_CRS_RESULTS.find((result) => result.personaId === card.personaId)!;
@@ -65,6 +73,7 @@ export function ScamConsoleDialog({ open, onOpenChange }: { open: boolean; onOpe
             );
           })}
         </div>
+        )}
       </DialogContent>
     </Dialog>
   );

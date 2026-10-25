@@ -3,9 +3,10 @@
 // Opens on the demo duplicate (1043-A); the left rail switches between the planted bills.
 
 import { AnimatePresence, motion } from "motion/react";
-import { BookCheck, Mail, MonitorSmartphone, RotateCcw, ScanFace, ShieldX, Hand } from "lucide-react";
+import { BookCheck, Mail, MonitorSmartphone, RotateCcw, ShieldX, Hand } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { IdentityCheck } from "@/components/check/IdentityCheck";
 import { EvidenceSheet } from "@/components/visuals/EvidenceSheet";
 import { StampSeal } from "@/components/visuals/StampSeal";
 import { getBillSummary, getPassport, getScore, listBills } from "@/data/dataSource";
@@ -23,6 +24,13 @@ import { primaryButton } from "@/lib/buttonStyles";
 import { cn } from "@/lib/utils";
 
 const STAMP_INTERVAL_MS = 550;
+const LIVE_REFRESH_MS = 5_000;
+
+const ASKED_WHO_LINE: Record<NonNullable<Passport["askedWho"]>, string> = {
+  controller: "Escalated to the Controller to decide.",
+  project_manager: "Waiting on the site PM to confirm.",
+  vendor: "Waiting on the vendor to verify.",
+};
 
 /** How many stamps have landed so far; restarts when the bill or replay key changes. */
 function useStampReveal(totalStamps: number, restartKey: string) {
@@ -43,8 +51,16 @@ export function CheckPage() {
   const allBills = useAsyncData(listBills, []) ?? [];
   // Live bills have gateway IDs (B-2026-10-0147), so without a URL param open the newest bill instead of the demo one.
   const billId = params.billId ?? (getDataMode() === "live" ? allBills[allBills.length - 1]?.billId : DEMO_FEATURED_BILL_ID);
-  const passport = useAsyncData(() => (billId ? getPassport(billId) : Promise.resolve(null)), [billId]);
-  const bill = useAsyncData(() => (billId ? getBillSummary(billId) : Promise.resolve(null)), [billId]);
+  // Live bills still being checked refresh every few seconds, so stamps appear as the agents sign them.
+  const [refreshTick, setRefreshTick] = useState(0);
+  const passport = useAsyncData(() => (billId ? getPassport(billId) : Promise.resolve(null)), [billId, refreshTick]);
+  const bill = useAsyncData(() => (billId ? getBillSummary(billId) : Promise.resolve(null)), [billId, refreshTick]);
+  const isStillChecking = getDataMode() === "live" && bill?.status === "checking";
+  useEffect(() => {
+    if (!isStillChecking) return;
+    const interval = setInterval(() => setRefreshTick((tick) => tick + 1), LIVE_REFRESH_MS);
+    return () => clearInterval(interval);
+  }, [isStillChecking]);
   const score = useAsyncData(getScore, []);
   const revealedCount = useStampReveal(STAMP_CATALOG.length, `${billId}-${replayCount}-${passport ? 1 : 0}`);
 
@@ -164,13 +180,21 @@ function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { b
               stamp={stamp}
               isRevealed={Boolean(signedStamp) && index < revealedCount}
               isChecking={Boolean(signedStamp) && index === revealedCount}
+              isMissing={!signedStamp && bill.status !== "checking"}
               onOpenEvidence={() => onOpenEvidence(stamp)}
             />
           );
         })}
       </div>
 
-      <AnimatePresence>{isComplete && <PassportVerdict passport={passport} crsPersonaId={bill.crsPersonaId} />}</AnimatePresence>
+      {/* Identity check: only for bills that change bank details or come from a new vendor */}
+      {isComplete && bill.crsPersonaId && (
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="border-t border-dashed border-foreground/10 px-8 py-6">
+          <IdentityCheck personaId={bill.crsPersonaId} reason={identityCheckReason(passport)} />
+        </motion.div>
+      )}
+
+      <AnimatePresence>{isComplete && <PassportVerdict passport={passport} />}</AnimatePresence>
     </div>
   );
 }
@@ -184,15 +208,23 @@ function PassportField({ label, value, large }: { label: string; value: string; 
   );
 }
 
-function PassportVerdict({ passport, crsPersonaId }: { passport: Passport; crsPersonaId?: string }) {
+/** Why this bill needed an identity check, from the stamps that raised it. */
+function identityCheckReason(passport: Passport): string {
+  const stampStatus = (id: Stamp["id"]) => passport.stamps.find((stamp) => stamp.id === id)?.status;
+  if (stampStatus("payto") && stampStatus("payto") !== "pass") return "This bill asks us to pay a new bank account, so we check who's asking.";
+  if (stampStatus("vendor") && stampStatus("vendor") !== "pass") return "This vendor is new to us, so we check the person behind it.";
+  return "We checked who's asking to be paid.";
+}
+
+function PassportVerdict({ passport }: { passport: Passport }) {
   const failedStamps = passport.stamps.filter((stamp) => stamp.status === "fail");
   const askingStamps = passport.stamps.filter((stamp) => stamp.status === "ask_human");
   const unsignedCount = 8 - passport.stamps.length;
   const verdict =
     failedStamps.length > 0
-      ? { tone: TONE_STYLE.held, icon: ShieldX, word: "Held", line: `${failedStamps.length} of 8 stamps failed. The gateway refused to book it.`, footer: `${formatDollars(passport.amountCents)} protected` }
+      ? { tone: TONE_STYLE.held, icon: ShieldX, word: "Held", line: `${failedStamps.length} of 8 stamps failed. The gateway refused to book it.${passport.askedWho ? ` ${ASKED_WHO_LINE[passport.askedWho]}` : ""}`, footer: `${formatDollars(passport.amountCents)} protected` }
       : askingStamps.length > 0
-        ? { tone: TONE_STYLE.asking, icon: Hand, word: "Asking a human", line: "Parked until the site PM confirms delivery.", footer: "Nothing booked yet" }
+        ? { tone: TONE_STYLE.asking, icon: Hand, word: "Asking a human", line: ASKED_WHO_LINE[passport.askedWho ?? "project_manager"], footer: "Nothing booked yet" }
         : unsignedCount > 0
           ? { tone: TONE_STYLE.checking, icon: BookCheck, word: "Checking", line: `${passport.stamps.length} of 8 stamps signed. The agents are still working.`, footer: "Not booked yet" }
           : { tone: TONE_STYLE.cleared, icon: BookCheck, word: "Booked", line: "All 8 stamps signed. Debit Expense, credit Accounts Payable.", footer: "Ready for the next payment run" };
@@ -214,9 +246,6 @@ function PassportVerdict({ passport, crsPersonaId }: { passport: Passport; crsPe
       </div>
       <div className="flex items-center gap-4">
         <div className={cn("text-xl font-bold", verdict.tone.text)}>{verdict.footer}</div>
-        {crsPersonaId && (
-          <Link to={`/verify/${crsPersonaId}`} className={primaryButton("md")}><ScanFace className="size-4" /> See who asked</Link>
-        )}
       </div>
     </motion.div>
   );

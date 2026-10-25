@@ -131,7 +131,7 @@ const PLANTED_BILLS: PlantedBill[] = [
     summary: {
       billId: "B-VP-560", invoiceNumber: "VP-560", vendorId: "V-VENKATESAN-PLUMBING", vendorName: "Venkatesan Plumbing",
       amountCents: 9_115_00, receivedVia: "email", receivedAt: "2026-10-24T09:40:00", jobSite: "Harbor Point",
-      status: "booked", headline: "Bill said net 15; booked at the contract's net 30",
+      status: "booked", headline: "Bill said net 15; booked at the contract's net 30", crsPersonaId: "P08",
     },
     stampOverrides: {
       terms: {
@@ -158,6 +158,24 @@ const PLANTED_BILLS: PlantedBill[] = [
         evidence: [
           { source: "vendor_master", field: "status", value: "Not on file (added 2 days ago)" },
           { source: "crs", field: "identity.reason_code", value: "2301 deceased", ref: "crs:idv-2311" },
+        ],
+      },
+    },
+  },
+  {
+    summary: {
+      billId: "B-OCP-118", invoiceNumber: "OCP-118", vendorId: "V-OYELARAN-PUMPING", vendorName: "Oyelaran Concrete Pumping",
+      amountCents: 18_400_00, receivedVia: "email", receivedAt: "2026-10-24T10:05:00", jobSite: "Fremont Logistics",
+      status: "parked", headline: "New vendor; the owner has a fraud alert on file", crsPersonaId: "P16",
+    },
+    askedWho: "vendor",
+    stampOverrides: {
+      vendor: {
+        status: "ask_human",
+        reason: "New vendor. The owner's identity has a fraud alert and needs step-up verification before we set up payments.",
+        evidence: [
+          { source: "vendor_master", field: "Oyelaran Concrete Pumping", value: "not on file (new vendor)" },
+          { source: "crs", field: "identity.reason_code", value: "2401 · step-up verification required", ref: "crs:tu-P16" },
         ],
       },
     },
@@ -485,13 +503,13 @@ export const MOCK_ATTENTION_ITEMS: AttentionItem[] = [
     id: "okafor-bank-change", kind: "bank_change", title: "Bank-change request on Okafor Electric",
     reason: "Requester's identity failed, the email is 3 days old and the callback number isn't Margaret Okafor's.",
     recommendation: "Reject", amountCents: 48_000_00, urgencyNote: "Blocks INV-2291",
-    tone: "held", actionLabel: "See the checks", href: "/verify/P13",
+    tone: "held", actionLabel: "See the checks", href: "/check/B-OKF-2291",
   },
   {
     id: "oyelaran", kind: "escalation", title: "New vendor with a fraud alert: Oyelaran Concrete Pumping",
     reason: "Identity needs step-up verification before we can set up payments.",
     recommendation: "Ask the vendor to verify", amountCents: 18_400_00,
-    tone: "asking", actionLabel: "Review", href: "/verify/P16",
+    tone: "asking", actionLabel: "Review", href: "/check/B-OCP-118",
   },
   {
     id: "bay-lumber", kind: "parked", title: "Bay Lumber billed for plywood the site never received",
@@ -503,7 +521,7 @@ export const MOCK_ATTENTION_ITEMS: AttentionItem[] = [
     id: "venkatesan", kind: "vendor_review", title: "Venkatesan Plumbing has new liens on file",
     reason: "Real, long-time vendor, but a $7,450 tax lien and a $12,300 judgment appeared.",
     recommendation: "Keep paying, review terms", amountCents: 9_115_00,
-    tone: "asking", actionLabel: "Review", href: "/verify/P08",
+    tone: "asking", actionLabel: "Review", href: "/check/B-VP-560",
   },
 ];
 
