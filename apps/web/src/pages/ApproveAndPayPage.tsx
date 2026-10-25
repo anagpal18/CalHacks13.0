@@ -1,13 +1,11 @@
 // ④ Approve & Pay: "The right person signs, then money moves."
 // Bills sit on a due-date timeline, cash is a fill bar, a human approves, then each bill runs
 // re-check → pay (Nessie) → bank match on its card. A bill whose bank details changed after booking is held
-// at re-check and raised as an alert at the top.
+// at re-check (its card turns orange).
 
 import { AnimatePresence, motion } from "motion/react";
-import { Bot, CalendarClock, Check, CircleX, Loader, Percent, ShieldCheck, TriangleAlert, UserCheck, Wallet, X } from "lucide-react";
+import { Bot, CalendarClock, Check, CircleX, Loader, Percent, ShieldCheck, UserCheck, Wallet, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { ApprovedCheck } from "@/components/visuals/ApprovedCheck";
 import { getNextPaymentRun } from "@/data/dataSource";
@@ -64,27 +62,11 @@ export function ApproveAndPayPage() {
 
   if (!run) return <div className="h-[560px] animate-pulse rounded-3xl bg-card" />;
 
-  const heldItems = run.items.filter((item) => stageByBillId[item.billId] === "held");
   const runTotalCents = run.items.reduce((total, item) => total + item.amountCents, 0);
   const discountCents = run.items.reduce((total, item) => total + (item.discount?.savingsCents ?? 0), 0);
 
   return (
     <div className="space-y-6">
-      <AnimatePresence>
-        {heldItems.map((item) => (
-          <motion.div key={item.billId} initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <Alert className="border-held/30 bg-card">
-              <TriangleAlert className="text-held" />
-              <AlertTitle>Escalated for your review: {item.vendorName}</AlertTitle>
-              <AlertDescription>
-                <p>Bank details changed after this {formatDollars(item.amountCents)} bill was booked, so it was held at the last-minute re-check and not paid. The rest of the run went through.</p>
-                <Link to="/overview" className="font-medium text-foreground underline underline-offset-4">Added to Needs your attention</Link>
-              </AlertDescription>
-            </Alert>
-          </motion.div>
-        ))}
-      </AnimatePresence>
-
       <ChecksStrip phase={phase} />
 
       <div className="grid gap-6 xl:grid-cols-[1.6fr_1fr]">
