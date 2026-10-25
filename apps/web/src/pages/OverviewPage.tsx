@@ -37,12 +37,15 @@ export function OverviewPage() {
   const billsThisWeek = week.reduce((total, day) => total + day.billsReceived, 0);
   const caughtThisWeek = week.reduce((total, day) => total + day.problemsCaught, 0);
   const protectedThisWeek = week.reduce((total, day) => total + day.protectedCents, 0);
-  const autoBookedShare = billsThisWeek > 0 ? (billsThisWeek - caughtThisWeek) / billsThisWeek : 0;
+  // From real statuses: booked out of the bills that have settled (booked, held or with a person).
+  const bookedCount = bills.filter((bill) => bill.status === "booked").length;
+  const settledCount = bills.filter((bill) => bill.status === "booked" || bill.status === "held" || bill.status === "parked").length;
+  const autoBookedShare = settledCount > 0 ? bookedCount / settledCount : null;
 
   const snapshot = (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
       <SnapshotTile label="Bills processed this week" value={billsThisWeek.toLocaleString()} trend={week.map((day) => day.billsReceived)} note="Oct 18 – 24" />
-      <SnapshotTile label="Handled without a person" value={`${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={`${billsThisWeek - caughtThisWeek} booked automatically`} />
+      <SnapshotTile label="Handled without a person" value={autoBookedShare === null ? "–" : `${Math.round(autoBookedShare * 100)}%`} trend={week.map((day) => (day.billsReceived ? (day.billsReceived - day.problemsCaught) / day.billsReceived : 1))} note={autoBookedShare === null ? "No bills settled yet" : `${bookedCount} of ${settledCount} booked automatically`} />
       <SnapshotTile label="Kept from going out" value={formatDollars(protectedThisWeek, { compact: true })} trend={week.map((day) => day.protectedCents)} note={`${caughtThisWeek} problems stopped`} />
       <SnapshotTile label="Cash in the bank" value={run ? formatDollars(run.operatingBalanceCents, { compact: true }) : "–"} note={run ? `${formatDollars(run.operatingBalanceCents - run.items.reduce((total, item) => total + item.amountCents, 0), { compact: true })} after this week's run` : undefined} />
     </div>
@@ -68,6 +71,7 @@ export function OverviewPage() {
         action={<span className="rounded-full bg-foreground px-2.5 py-1 text-xs font-semibold text-background">{attentionItems.length} open</span>}
       >
         <div className="space-y-3">
+          {attentionItems.length === 0 && <EmptyState title="Nothing needs you right now." detail="Held bills and open questions from the agents will show up here." />}
           {attentionItems.map((item, index) => <AttentionRow key={item.id} item={item} index={index} />)}
         </div>
       </Panel>
@@ -91,7 +95,17 @@ export function OverviewPage() {
     phase === "processed"
       ? [
           { key: "results", node: results },
-          { key: "upload-more", node: <UploadDropzone compact /> },
+          {
+            key: "your-uploads",
+            node: (
+              <Panel title="Your uploads" subtitle="What happened to each bill you sent">
+                <ProcessingList uploads={uploads} />
+                <div className="mt-5">
+                  <UploadDropzone compact />
+                </div>
+              </Panel>
+            ),
+          },
           { key: "snapshot", node: snapshot },
         ]
       : [
@@ -118,6 +132,15 @@ export function OverviewPage() {
         </AnimatePresence>
       </div>
     </LayoutGroup>
+  );
+}
+
+function EmptyState({ title, detail }: { title: string; detail: string }) {
+  return (
+    <div className="rounded-2xl border border-dashed border-foreground/15 px-6 py-10 text-center">
+      <div className="font-medium">{title}</div>
+      <div className="mt-1 text-sm text-muted-foreground">{detail}</div>
+    </div>
   );
 }
 
@@ -216,6 +239,7 @@ function ProcessedToday({ bills }: { bills: BillSummary[] }) {
 function RecentProcessed({ invoices }: { invoices: ProcessedInvoice[] }) {
   return (
     <div>
+      {invoices.length === 0 && <EmptyState title="No booked bills yet." detail="Bills appear here once all 8 stamps pass and the gateway books them." />}
       <div className="divide-y divide-border">
         {invoices.map((invoice) => (
           <div key={invoice.billId} className="flex items-center gap-3 py-2.5 first:pt-0">

@@ -77,7 +77,7 @@ export function CheckPage() {
           </div>
         </div>
       ) : bill && passport === null ? (
-        <Panel title={`${bill.vendorName} · ${bill.invoiceNumber}`} subtitle="No stamps signed yet">
+        <Panel title={bill.invoiceNumber === "Not read yet" ? bill.billId : `${bill.vendorName} · ${bill.invoiceNumber}`} subtitle="No stamps signed yet">
           <p className="text-sm text-muted-foreground">{bill.headline}</p>
         </Panel>
       ) : (

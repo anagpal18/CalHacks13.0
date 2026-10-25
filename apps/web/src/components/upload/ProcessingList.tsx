@@ -29,7 +29,9 @@ export function ProcessingList({ uploads }: { uploads: UploadedBill[] }) {
   return (
     <div>
       <div className="mb-3 flex items-center justify-between text-sm">
-        <span className="font-medium">{doneCount === uploads.length ? "All bills checked" : "Agents are checking your bills"}</span>
+        <span className="font-medium">
+          {doneCount < uploads.length ? "Agents are checking your bills" : uploads.some((upload) => upload.errorMessage) ? "Some bills could not be processed" : "All bills checked"}
+        </span>
         <span className="text-muted-foreground">{doneCount} of {uploads.length} done</span>
       </div>
       <div className="mb-4 h-1 overflow-hidden rounded-full bg-track">

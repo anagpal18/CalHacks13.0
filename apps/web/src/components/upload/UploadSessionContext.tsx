@@ -134,7 +134,11 @@ export function UploadSessionProvider({ children }: { children: ReactNode }) {
   }, [mode, addBills]);
 
   const value = useMemo<UploadSession>(() => {
-    const phase: UploadPhase = uploads.length === 0 ? "idle" : uploads.some((upload) => upload.stage !== "done") ? "processing" : "processed";
+    // "processed" only once at least one bill has a result; if every bill failed, stay on the upload view
+    // so the reasons stay on screen.
+    const allDone = uploads.length > 0 && uploads.every((upload) => upload.stage === "done");
+    const anyResult = uploads.some((upload) => upload.outcome);
+    const phase: UploadPhase = uploads.length === 0 ? "idle" : allDone && anyResult ? "processed" : "processing";
     return { uploads, phase, addBills, addSampleBills, clearUploads: () => setUploads([]) };
   }, [uploads, addBills, addSampleBills]);
 
