@@ -1,4 +1,4 @@
-// The one button look used across the dashboard: black pill, white text.
+// The one button look used across the dashboard: white pill with black text, flips to black with white text on hover.
 // Chips, filters and toggles are not buttons and don't use this.
 
 import { cn } from "./utils";
@@ -11,7 +11,7 @@ const BUTTON_SIZE = {
 
 export function primaryButton(size: keyof typeof BUTTON_SIZE = "md", className?: string): string {
   return cn(
-    "inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground font-medium text-background transition hover:bg-foreground/85 disabled:opacity-50",
+    "inline-flex items-center justify-center gap-1.5 rounded-full border border-foreground/15 bg-card font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background disabled:opacity-50",
     BUTTON_SIZE[size],
     className,
   );
