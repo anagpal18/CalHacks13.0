@@ -17,7 +17,7 @@ import {
   MOCK_SCORE,
   MOCK_WEEK_INTAKE,
 } from "./mockData";
-import { mockRecordDecision, mockRemoveRule, mockRuleBooks, mockTeach } from "./mockLearning";
+import { mockRecordDecision, mockRemoveRule, mockReply, mockRuleBooks, mockTeach } from "./mockLearning";
 import type {
   AttentionItem,
   AuditEvent,
@@ -127,6 +127,10 @@ export function decisionMessage(decision: StampDecision): string {
 /** Ask the orchestrator to turn a decision into a rule for the agent that owns the stamp. Streams its events. */
 export const teachFromDecision = (decision: StampDecision, onEvent: (type: string, data: any) => void) =>
   isLive() ? gatewayClient.chatWithOrchestrator(decisionMessage(decision), onEvent) : mockTeach(decision, onEvent);
+
+/** Answer the orchestrator's question in the same conversation (e.g. "which PO did the PM mean?"). */
+export const replyToOrchestrator = (message: string, sessionId: string, onEvent: (type: string, data: any) => void) =>
+  isLive() ? gatewayClient.chatWithOrchestrator(message, onEvent, sessionId) : mockReply(onEvent);
 
 // ---------------------------------------------------------------- no gateway route yet: mocks in both modes
 

@@ -3,10 +3,10 @@
 // orchestrator turns the note into a rule for the agent that owns the stamp. Replies stream in above the bar.
 
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUp, BookOpen, Check, CircleAlert, Loader, X } from "lucide-react";
+import { ArrowUp, BookOpen, Check, CircleAlert, Loader, MessageSquare, X } from "lucide-react";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Link } from "react-router";
-import { recordDecision, teachFromDecision } from "@/data/dataSource";
+import { recordDecision, replyToOrchestrator, teachFromDecision } from "@/data/dataSource";
 import { SEAT_LABEL, STAMP_CATALOG } from "@/data/stampCatalog";
 import type { BillSummary, DecisionKind, DecisionRole, Stamp, StampDecision, StampId } from "@/data/types";
 import { TONE_STYLE } from "@/lib/statusStyle";
@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 const PM_STAMPS = new Set<StampId>(["order", "delivered", "terms"]);
 export const roleForStamp = (stampId: StampId): DecisionRole => (PM_STAMPS.has(stampId) ? "project_manager" : "controller");
 const ROLE_LABEL: Record<DecisionRole, string> = { controller: "the Controller", project_manager: "the site PM" };
+const SEAT_TITLE = { intake: "Intake", vendor_records: "Vendor-Records", matching: "Matching" } as const;
 
 const DECISION_OPTIONS: { kind: DecisionKind; label: string }[] = [
   { kind: "approve", label: "Approve" },
@@ -34,7 +35,7 @@ const EXAMPLE_NOTES: Record<StampId, string[]> = {
   terms: ["Use the contract's net 30 for this vendor, not the bill's terms.", "The early-pay discount applies; pay by the 10th."],
 };
 
-type FeedLine = { id: number; kind: "you" | "status" | "working" | "rule" | "error"; text: string; detail?: string };
+type FeedLine = { id: number; kind: "you" | "status" | "agent" | "working" | "rule" | "error"; text: string; detail?: string };
 
 interface DecisionDockProps {
   bill: BillSummary;
@@ -51,18 +52,23 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
   const [note, setNote] = useState("");
   const [isBusy, setBusy] = useState(false);
   const [feed, setFeed] = useState<FeedLine[]>([]);
+  // Set when the orchestrator answered without writing a rule (usually a question): the bar becomes a reply box.
+  const [followUp, setFollowUp] = useState<{ sessionId: string } | null>(null);
   const lineCounter = useRef(0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // A new bill starts a fresh conversation.
-  useEffect(() => setFeed([]), [bill.billId]);
-  // Once the bill needs nothing more, the replies clear themselves after a while.
+  useEffect(() => {
+    setFeed([]);
+    setFollowUp(null);
+  }, [bill.billId]);
+  // Once the bill needs nothing more and nobody owes an answer, the replies clear themselves after a while.
   const hasOpenStamps = openStamps.length > 0;
   useEffect(() => {
-    if (hasOpenStamps || isBusy || feed.length === 0) return;
+    if (hasOpenStamps || followUp || isBusy || feed.length === 0) return;
     const timer = setTimeout(() => setFeed([]), 12_000);
     return () => clearTimeout(timer);
-  }, [hasOpenStamps, isBusy, feed.length]);
+  }, [hasOpenStamps, followUp, isBusy, feed.length]);
 
   const selected = openStamps.find((stamp) => stamp.id === selectedStampId) ?? openStamps[0];
   const definition = STAMP_CATALOG.find((candidate) => candidate.id === selected?.id);
@@ -97,18 +103,39 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
     }
 
     // Learning is best-effort: the decision already moved the bill.
-    const workingId = pushLine({ kind: "working", text: `Updating ${agentName}'s rule book…` });
+    await streamFromOrchestrator(`Updating ${agentName}'s rule book…`, (onEvent) => teachFromDecision(recorded, onEvent));
+  }
+
+  /** Answer the orchestrator's question in the same conversation. */
+  async function sendReply() {
+    if (!followUp || !note.trim() || isBusy) return;
+    const message = note.trim();
+    setBusy(true);
+    pushLine({ kind: "you", text: message, detail: "Reply" });
+    setNote("");
+    await streamFromOrchestrator("Thinking…", (onEvent) => replyToOrchestrator(message, followUp.sessionId, onEvent));
+  }
+
+  // Shows the orchestrator's progress in the feed. When it adds no rule and says why (often a question),
+  // the bar stays open as a reply box in the same conversation.
+  async function streamFromOrchestrator(workingText: string, run: (onEvent: (type: string, data: any) => void) => Promise<void>) {
+    const workingId = pushLine({ kind: "working", text: workingText });
     let ruleAdded = false;
     let lastText = "";
+    let sessionId = followUp?.sessionId;
+    // The agent whose rule book is being changed, from the tool call (the stamp may already be resolved).
+    let bookOwner = agentName;
     try {
-      await teachFromDecision(recorded, (type, data) => {
-        if (type === "tool_start" && data?.name === "read_rulebook") updateLine(workingId, { text: `Reading ${agentName}'s rule book…` });
-        if (type === "tool_start" && data?.name === "update_rulebook") updateLine(workingId, { text: `Writing a rule for ${agentName}…` });
+      await run((type, data) => {
+        if (type === "session" && data?.sessionId) sessionId = data.sessionId;
+        if (type === "tool_start" && data?.input?.seat) bookOwner = SEAT_TITLE[data.input.seat as keyof typeof SEAT_TITLE] ?? bookOwner;
+        if (type === "tool_start" && data?.name === "read_rulebook") updateLine(workingId, { text: `Reading ${bookOwner}'s rule book…` });
+        if (type === "tool_start" && data?.name === "update_rulebook") updateLine(workingId, { text: `Writing a rule for ${bookOwner}…` });
         if (type === "tool_end" && data?.name === "update_rulebook") {
           if (data.ok) {
             ruleAdded = true;
             const match = /rule ([IVM]-\d+)[^:]*: (.*)$/.exec(data.summary ?? "");
-            pushLine({ kind: "rule", text: match ? `Rule ${match[1]} added to ${agentName}'s rule book` : "Rule book updated", detail: match?.[2] ?? data.summary });
+            pushLine({ kind: "rule", text: match ? `Rule ${match[1]} added to ${bookOwner}'s rule book` : "Rule book updated", detail: match?.[2] ?? data.summary });
           } else {
             pushLine({ kind: "error", text: `The rule was refused: ${data.summary}` });
           }
@@ -116,7 +143,8 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
         if (type === "text" && data?.text) lastText = data.text;
         if (type === "error") pushLine({ kind: "error", text: data?.message ?? "The orchestrator stopped with an error." });
       });
-      if (!ruleAdded && lastText) pushLine({ kind: "status", text: lastText });
+      if (!ruleAdded && lastText) pushLine({ kind: "agent", text: lastText.replace(/\*\*/g, "") });
+      setFollowUp(!ruleAdded && lastText && sessionId ? { sessionId } : null);
     } catch (error) {
       pushLine({ kind: "error", text: (error as Error).message });
     } finally {
@@ -128,7 +156,8 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      submit();
+      if (followUp) sendReply();
+      else submit();
     }
   }
 
@@ -140,7 +169,8 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
     textarea.style.height = `${Math.min(textarea.scrollHeight, 132)}px`;
   }, [note]);
 
-  if (!selected && feed.length === 0) return null;
+  if (!selected && !followUp && feed.length === 0) return null;
+  const isReplying = Boolean(followUp);
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-5 z-40 flex justify-center px-4">
@@ -161,19 +191,27 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
           ))}
         </AnimatePresence>
 
-        {selected && (
+        {(selected || isReplying) && (
           <motion.div
             layout
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             className="rounded-[26px] border border-foreground/10 bg-card p-2 shadow-[0_12px_40px_-12px_rgb(31_36_51/0.28),0_2px_6px_rgb(31_36_51/0.06)]"
           >
-            {/* Which stamp this is about */}
+            {isReplying ? (
+              <div className="flex items-center justify-between gap-2 px-2.5 pt-1 pb-1 text-xs text-muted-foreground">
+                <span>Replying to the AP desk lead</span>
+                <button onClick={() => setFollowUp(null)} className="underline-offset-2 hover:text-foreground hover:underline">
+                  {selected ? "Back to decisions" : "Done"}
+                </button>
+              </div>
+            ) : selected && (
+            /* Which stamp this is about */
             <div className="flex gap-1.5 overflow-x-auto px-1.5 pt-1 pb-1.5">
               {openStamps.map((stamp) => {
                 const stampDefinition = STAMP_CATALOG.find((candidate) => candidate.id === stamp.id)!;
                 const tone = TONE_STYLE[stamp.status === "fail" ? "held" : "asking"];
-                const isCurrent = stamp.id === selected.id;
+                const isCurrent = stamp.id === selected?.id;
                 return (
                   <button
                     key={stamp.id}
@@ -190,6 +228,7 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
                 );
               })}
             </div>
+            )}
 
             <div className="relative px-3">
               <textarea
@@ -200,14 +239,19 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
                 onChange={(event) => setNote(event.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={isBusy}
-                aria-label={`Tell ${agentName} why`}
+                aria-label={isReplying ? "Reply to the AP desk lead" : `Tell ${agentName} why`}
                 className="block w-full resize-none bg-transparent py-2 text-[15px] leading-6 outline-none disabled:opacity-60"
               />
-              {!note && <CyclingPlaceholder agentName={agentName} examples={EXAMPLE_NOTES[selected.id]} />}
+              {!note &&
+                (isReplying || !selected ? (
+                  <div className="pointer-events-none absolute inset-x-3 top-2 truncate text-[15px] leading-6 text-muted-foreground">Answer the question…</div>
+                ) : (
+                  <CyclingPlaceholder agentName={agentName} examples={EXAMPLE_NOTES[selected.id]} />
+                ))}
             </div>
 
             <div className="flex items-center justify-between gap-3 px-1.5 pt-1">
-              <div className="flex items-center gap-1 rounded-full bg-foreground/[0.05] p-0.5">
+              <div className={cn("flex items-center gap-1 rounded-full bg-foreground/[0.05] p-0.5", isReplying && "invisible")}>
                 {DECISION_OPTIONS.map((option) => (
                   <button
                     key={option.kind}
@@ -225,11 +269,11 @@ export function DecisionDock({ bill, openStamps, selectedStampId, onSelectStamp,
                 ))}
               </div>
               <div className="flex items-center gap-3">
-                <span className="hidden text-xs text-muted-foreground sm:inline">Deciding as {ROLE_LABEL[role]}</span>
+                {!isReplying && <span className="hidden text-xs text-muted-foreground sm:inline">Deciding as {ROLE_LABEL[role]}</span>}
                 <button
-                  onClick={submit}
+                  onClick={isReplying ? sendReply : submit}
                   disabled={!note.trim() || isBusy}
-                  aria-label="Send decision"
+                  aria-label={isReplying ? "Send reply" : "Send decision"}
                   className="flex size-9 items-center justify-center rounded-full bg-foreground text-background transition-opacity disabled:opacity-25"
                 >
                   {isBusy ? <Loader className="size-4 animate-spin" /> : <ArrowUp className="size-4" />}
@@ -261,6 +305,7 @@ function FeedBubble({ line, onDismiss }: { line: FeedLine; onDismiss: () => void
   }
   const look = {
     status: { icon: Check, className: "text-foreground" },
+    agent: { icon: MessageSquare, className: "text-foreground" },
     working: { icon: Loader, className: "text-muted-foreground" },
     rule: { icon: BookOpen, className: "text-data" },
     error: { icon: CircleAlert, className: "text-held" },

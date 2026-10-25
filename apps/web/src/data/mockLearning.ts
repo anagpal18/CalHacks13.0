@@ -105,3 +105,10 @@ export async function mockTeach(decision: StampDecision, onEvent: (type: string,
   onEvent("text", { text: `Added ${rule.id} to the ${SEAT_TITLE[seat]} rule book.` });
   onEvent("done", {});
 }
+
+export async function mockReply(onEvent: (type: string, data: any) => void) {
+  onEvent("session", { sessionId: "demo" });
+  await wait(600);
+  onEvent("text", { text: "Thanks. Noted for the rule book." });
+  onEvent("done", {});
+}
