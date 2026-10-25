@@ -3,9 +3,10 @@
 // Opens on the demo duplicate (1043-A); the left rail switches between the planted bills.
 
 import { AnimatePresence, motion } from "motion/react";
-import { BookCheck, Mail, MonitorSmartphone, RotateCcw, ShieldX, Hand } from "lucide-react";
+import { Ban, BookCheck, Mail, MonitorSmartphone, RotateCcw, ShieldX, Hand } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import { DecisionDock } from "@/components/check/DecisionDock";
 import { IdentityCheck } from "@/components/check/IdentityCheck";
 import { EvidenceSheet } from "@/components/visuals/EvidenceSheet";
 import { StampSeal } from "@/components/visuals/StampSeal";
@@ -16,7 +17,7 @@ import { STAMP_ICON } from "@/components/visuals/stampIcons";
 import { getDataMode } from "@/data/dataMode";
 import { DEMO_FEATURED_BILL_ID } from "@/data/mockData";
 import { SEAT_LABEL, STAMP_CATALOG } from "@/data/stampCatalog";
-import type { BillSummary, Passport, Stamp } from "@/data/types";
+import type { BillSummary, Passport, Stamp, StampId } from "@/data/types";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { formatClockTime, formatDollars } from "@/lib/format";
 import { PASSPORT_STATUS_LOOK, TONE_STYLE } from "@/lib/statusStyle";
@@ -64,10 +65,19 @@ export function CheckPage() {
   const score = useAsyncData(getScore, []);
   const revealedCount = useStampReveal(STAMP_CATALOG.length, `${billId}-${replayCount}-${passport ? 1 : 0}`);
 
+  // Problem stamps still waiting on a person: failed or asking, not yet approved or rejected.
+  const [selectedStampId, setSelectedStampId] = useState<StampId | null>(null);
+  useEffect(() => setSelectedStampId(null), [billId]);
+  const isDecidable = passport && bill && bill.status !== "booked" && bill.status !== "rejected";
+  const openStamps = isDecidable
+    ? passport.stamps.filter((stamp) => stamp.status !== "pass" && !["approve", "reject"].includes(passport.decisions?.[stamp.id]?.decision ?? ""))
+    : [];
+  const showDock = Boolean(passport && bill) && revealedCount >= STAMP_CATALOG.length;
+
   const interestingBills = allBills.filter((candidate) => candidate.headline);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+    <div className={cn("grid gap-6 lg:grid-cols-[280px_1fr]", showDock && openStamps.length > 0 && "pb-56")}>
       <div className="space-y-5">
         <BillRail bills={interestingBills} currentBillId={billId ?? ""} onPick={(id) => navigate(`/check/${id}`)} />
         <Panel title="Where bills fail" subtitle="Problems caught per stamp this week" className="p-5">
@@ -85,7 +95,15 @@ export function CheckPage() {
 
       {passport && bill ? (
         <div className="space-y-5">
-          <PassportDocument bill={bill} passport={passport} revealedCount={revealedCount} onOpenEvidence={setEvidenceStamp} />
+          <PassportDocument
+            bill={bill}
+            passport={passport}
+            revealedCount={revealedCount}
+            openStampIds={openStamps.map((stamp) => stamp.id)}
+            selectedStampId={selectedStampId ?? openStamps[0]?.id ?? null}
+            onSelectStamp={setSelectedStampId}
+            onOpenEvidence={setEvidenceStamp}
+          />
           <div className="flex justify-center">
             <button onClick={() => setReplayCount((count) => count + 1)} className={primaryButton("sm")}>
               <RotateCcw className="size-3.5" /> Check again
@@ -101,6 +119,19 @@ export function CheckPage() {
       )}
 
       <EvidenceSheet stamp={evidenceStamp} onClose={() => setEvidenceStamp(null)} />
+
+      {showDock && bill && (
+        <DecisionDock
+          bill={bill}
+          openStamps={openStamps}
+          selectedStampId={selectedStampId}
+          onSelectStamp={setSelectedStampId}
+          onDecided={() => {
+            setSelectedStampId(null);
+            setRefreshTick((tick) => tick + 1);
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -135,7 +166,17 @@ function BillRail({ bills, currentBillId, onPick }: { bills: BillSummary[]; curr
   );
 }
 
-function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { bill: BillSummary; passport: Passport; revealedCount: number; onOpenEvidence: (stamp: Stamp) => void }) {
+interface PassportDocumentProps {
+  bill: BillSummary;
+  passport: Passport;
+  revealedCount: number;
+  openStampIds: StampId[];
+  selectedStampId: StampId | null;
+  onSelectStamp: (stampId: StampId) => void;
+  onOpenEvidence: (stamp: Stamp) => void;
+}
+
+function PassportDocument({ bill, passport, revealedCount, openStampIds, selectedStampId, onSelectStamp, onOpenEvidence }: PassportDocumentProps) {
   const isComplete = revealedCount >= STAMP_CATALOG.length;
   const ReceivedIcon = bill.receivedVia === "email" ? Mail : MonitorSmartphone;
 
@@ -181,6 +222,9 @@ function PassportDocument({ bill, passport, revealedCount, onOpenEvidence }: { b
               isRevealed={Boolean(signedStamp) && index < revealedCount}
               isChecking={Boolean(signedStamp) && index === revealedCount}
               isMissing={!signedStamp && bill.status !== "checking"}
+              isSelected={definition.id === selectedStampId && openStampIds.includes(definition.id)}
+              decision={passport.decisions?.[definition.id]}
+              onSelect={openStampIds.includes(definition.id) ? () => onSelectStamp(definition.id) : undefined}
               onOpenEvidence={() => onOpenEvidence(stamp)}
             />
           );
@@ -217,11 +261,18 @@ function identityCheckReason(passport: Passport): string {
 }
 
 function PassportVerdict({ passport }: { passport: Passport }) {
-  const failedStamps = passport.stamps.filter((stamp) => stamp.status === "fail");
-  const askingStamps = passport.stamps.filter((stamp) => stamp.status === "ask_human");
+  // A stamp a person approved no longer counts against the bill.
+  const isApproved = (stamp: Stamp) => passport.decisions?.[stamp.id]?.decision === "approve";
+  const failedStamps = passport.stamps.filter((stamp) => stamp.status === "fail" && !isApproved(stamp));
+  const askingStamps = passport.stamps.filter((stamp) => stamp.status === "ask_human" && !isApproved(stamp));
   const unsignedCount = 8 - passport.stamps.length;
-  const verdict =
-    failedStamps.length > 0
+  const rejection = Object.values(passport.decisions ?? {}).find((decision) => decision?.decision === "reject");
+  const approvedCount = passport.stamps.filter(isApproved).length;
+  const verdict = rejection
+    ? { tone: TONE_STYLE.held, icon: Ban, word: "Rejected", line: `Rejected by the ${rejection.byRole === "controller" ? "Controller" : "site PM"}: ${rejection.note}`, footer: "Will not be paid" }
+    : passport.status === "booked"
+      ? { tone: TONE_STYLE.cleared, icon: BookCheck, word: "Booked", line: approvedCount ? `Booked after a person approved ${approvedCount} stamp${approvedCount > 1 ? "s" : ""}. Debit Expense, credit Accounts Payable.` : "All 8 stamps signed. Debit Expense, credit Accounts Payable.", footer: "Ready for the next payment run" }
+      : failedStamps.length > 0
       ? { tone: TONE_STYLE.held, icon: ShieldX, word: "Held", line: `${failedStamps.length} of 8 stamps failed. The gateway refused to book it.${passport.askedWho ? ` ${ASKED_WHO_LINE[passport.askedWho]}` : ""}`, footer: `${formatDollars(passport.amountCents)} protected` }
       : askingStamps.length > 0
         ? { tone: TONE_STYLE.asking, icon: Hand, word: "Asking a human", line: ASKED_WHO_LINE[passport.askedWho ?? "project_manager"], footer: "Nothing booked yet" }

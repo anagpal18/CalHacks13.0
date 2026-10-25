@@ -32,7 +32,45 @@ export interface Stamp {
   at: string;
 }
 
-export type PassportStatus = "checking" | "parked" | "booked" | "scheduled" | "approved" | "held" | "paid";
+export type PassportStatus = "checking" | "parked" | "booked" | "scheduled" | "approved" | "held" | "paid" | "rejected";
+
+// ---- Human decisions and rule books ----
+
+export type DecisionKind = "approve" | "reject" | "escalate";
+export type DecisionRole = "controller" | "project_manager";
+
+/** A person's decision on one stamp, made from the Check page. The agent's signed stamp is never changed. */
+export interface StampDecision {
+  billId: string;
+  stampId: StampId;
+  decision: DecisionKind;
+  byRole: DecisionRole;
+  note: string;
+  at: string;
+}
+
+export type RuleSeat = "intake" | "vendor_records" | "matching";
+
+/** One rule an agent learned from a decision; the orchestrator writes it into that agent's rule book. */
+export interface LearnedRule {
+  id: string;
+  seat: RuleSeat;
+  stamp: StampId;
+  scope: string;
+  text: string;
+  sourceBillId: string;
+  byRole?: DecisionRole;
+  decision?: DecisionKind;
+  createdAt: string;
+  timesUsed: number;
+}
+
+export interface RuleBook {
+  seat: RuleSeat;
+  title: string;
+  markdown: string;
+  learned: LearnedRule[];
+}
 
 export interface Passport {
   billId: string;
@@ -41,6 +79,8 @@ export interface Passport {
   stamps: Stamp[];
   status: PassportStatus;
   askedWho?: "controller" | "project_manager" | "vendor";
+  /** Latest decision per stamp, when a person has decided on one. */
+  decisions?: Partial<Record<StampId, StampDecision>>;
   payment?: { runId: string; approvedBy: string; nessieTransferId?: string; matched?: boolean };
 }
 

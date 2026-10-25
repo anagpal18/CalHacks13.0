@@ -1,7 +1,7 @@
 // Calls to the Creao seat gateway (services/gateway), always through the Vite proxy at /dashboard/*.
 // The proxy adds the dashboard key; nothing secret lives in the browser.
 
-import type { AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport } from "./types";
+import type { AuditEvent, BillSummary, CrsChainResult, CrsDataUseEntry, DailyIntake, Passport, RuleBook, StampDecision } from "./types";
 
 export class GatewayError extends Error {
   constructor(readonly status: number, message: string) {
@@ -56,6 +56,17 @@ export const gatewayClient = {
     const entries = await requestGateway<CrsDataUseEntry[]>("/dashboard/crs/log");
     return entries.map((entry) => ({ ...entry, at: toClockTime(entry.at) }));
   },
+
+  /** A person's decision on one stamp. The gateway records it, updates the bill's status and books it if ready. */
+  recordDecision: (decision: Omit<StampDecision, "at">) =>
+    requestGateway<{ decision: StampDecision; bill: BillSummary; passport: Passport }>(`/dashboard/bills/${decision.billId}/decisions`, {
+      method: "POST",
+      body: JSON.stringify({ stampId: decision.stampId, decision: decision.decision, byRole: decision.byRole, note: decision.note }),
+    }),
+
+  listRuleBooks: () => requestGateway<RuleBook[]>("/dashboard/rulebooks"),
+
+  removeRule: (seat: string, ruleId: string) => requestGateway<unknown>(`/dashboard/rulebooks/${seat}/rules/${ruleId}`, { method: "DELETE" }),
 
   /** One bill = 1 to 5 files (email + PDF). Accepted: .pdf, .eml, .txt, up to 4 MB each. */
   async uploadBill(files: File[]): Promise<BillSummary> {

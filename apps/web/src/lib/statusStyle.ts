@@ -1,7 +1,7 @@
 // The one place status colours, icons and labels are decided. Every page uses this.
 //   cleared (green) · held (red) · asking a human (amber) · checking (blue)
 
-import { CircleCheck, CircleX, Hand, Loader, Banknote, CalendarClock, BadgeCheck, type LucideIcon } from "lucide-react";
+import { Ban, CircleCheck, CircleX, Hand, Loader, Banknote, CalendarClock, BadgeCheck, type LucideIcon } from "lucide-react";
 import type { CrsDecision, PassportStatus, StampStatus } from "@/data/types";
 
 export type Tone = "cleared" | "held" | "asking" | "checking";
@@ -37,6 +37,7 @@ export const PASSPORT_STATUS_LOOK: Record<PassportStatus, StatusLook> = {
   approved: { tone: "cleared", label: "Approved", icon: BadgeCheck },
   held: { tone: "held", label: "Held", icon: CircleX },
   paid: { tone: "cleared", label: "Paid", icon: Banknote },
+  rejected: { tone: "held", label: "Rejected", icon: Ban },
 };
 
 export const STAMP_STATUS_LOOK: Record<StampStatus, StatusLook> = {

@@ -7,6 +7,7 @@ import type { createEventLog, LogEvent } from "../gateway/eventlog.ts";
 import type { createExtractions } from "../gateway/extractions.ts";
 import type { createLedger } from "../gateway/ledger.ts";
 import type { createPassports } from "../gateway/passports.ts";
+import type { Decisions } from "../gateway/decisions.ts";
 import { ALL_STAMPS } from "../gateway/seats.ts";
 
 type Deps = {
@@ -15,6 +16,7 @@ type Deps = {
   extractions: ReturnType<typeof createExtractions>;
   ledger: ReturnType<typeof createLedger>;
   passports: ReturnType<typeof createPassports>;
+  decisions: Decisions;
 };
 
 const cents = (s: unknown) => Math.round(Number(String(s ?? "").replace(/[$,\s]/g, "")) * 100) || 0;
@@ -37,19 +39,30 @@ export function createViews(d: Deps) {
     return { ...company.getBill(billId), ...(d.extractions.get(billId)?.fields ?? {}) };
   }
 
-  function passportStatus(billId: string): "checking" | "parked" | "held" | "booked" {
+  // Stamps a person approved count as passed; a rejection keeps the bill out for good.
+  function passportStatus(billId: string): "checking" | "parked" | "held" | "booked" | "rejected" {
     if (d.ledger.forBill(billId)) return "booked";
-    const stamps = Object.values(d.passports.summary(billId).stamps);
-    if (stamps.some((s) => s.status === "fail")) return "held";
-    if (stamps.some((s) => s.status === "ask_human")) return "parked";
+    if (d.decisions.isRejected(billId)) return "rejected";
+    const p = d.passports.summary(billId);
+    if (p.open.some((id) => p.stamps[id].status === "fail" && !d.decisions.isEscalated(billId))) return "held";
+    if (p.open.length) return "parked";
     return "checking";
   }
 
   function headline(billId: string): string {
     const p = d.passports.summary(billId);
     const signed = ALL_STAMPS.filter((id) => p.stamps[id]);
-    const failed = signed.filter((id) => p.stamps[id].status === "fail");
-    if (d.ledger.forBill(billId)) return "All 8 stamps passed. Booked: debit Expense, credit Accounts Payable.";
+    const failed = signed.filter((id) => p.stamps[id].status === "fail" && !d.decisions.isApproved(billId, id));
+    const decided = Object.values(d.decisions.forBill(billId));
+    const rejected = decided.find((x) => x.decision === "reject");
+    if (rejected) return `Rejected by the ${rejected.byRole.replace("_", " ")}: ${rejected.note}`;
+    if (d.ledger.forBill(billId)) {
+      const approved = decided.filter((x) => x.decision === "approve").map((x) => x.stampId);
+      return approved.length
+        ? `Booked after a person approved ${approved.join(", ")}. Debit Expense, credit Accounts Payable.`
+        : "All 8 stamps passed. Booked: debit Expense, credit Accounts Payable.";
+    }
+    if (d.decisions.isEscalated(billId)) return "Escalated to the Controller to decide.";
     if (failed.length) return `${failed.length} stamp${failed.length > 1 ? "s" : ""} failed (${failed.join(", ")}): ${p.stamps[failed[0]].reason}`;
     if (p.askedWho.length) return `Waiting on the ${p.askedWho.join(" and ").replace("_", " ")}.`;
     if (signed.length) return `${signed.length} of 8 stamps signed so far.`;
@@ -93,7 +106,8 @@ export function createViews(d: Deps) {
       amountCents: summary.amountCents,
       stamps,
       status: summary.status,
-      askedWho: p.askedWho[0],
+      askedWho: d.decisions.isEscalated(billId) ? "controller" : p.askedWho[0],
+      decisions: d.decisions.forBill(billId),
       ledgerEntry: d.ledger.forBill(billId),
     };
   }
@@ -123,6 +137,12 @@ export function createViews(d: Deps) {
         return { at: e.at, actor, action: `Stamp ${x.id} rejected`, detail: (x.problems ?? []).join("; "), tone: "held" };
       case "bill_booked":
         return { at: e.at, actor: "Gateway", action: "Booked to the ledger", detail: `${x.entryId}: debit Expense, credit Accounts Payable $${(x.amountCents / 100).toFixed(2)}`, tone: "cleared" };
+      case "human_decision":
+        return { at: e.at, actor: x.byRole === "controller" ? "Controller" : "Site PM", action: `${x.decision === "approve" ? "Approved" : x.decision === "reject" ? "Rejected" : "Escalated"} ${x.stampId}`, detail: x.note, tone: x.decision === "approve" ? "cleared" : x.decision === "reject" ? "held" : "asking" };
+      case "rule_added":
+      case "rule_replaced":
+      case "rule_removed":
+        return { at: e.at, actor: "AP desk lead", action: `${e.type === "rule_added" ? "Added" : e.type === "rule_replaced" ? "Replaced" : "Removed"} rule ${x.ruleId}`, detail: x.text ?? "", tone: "neutral" };
       case "passport_reset":
         return { at: e.at, actor: "Gateway", action: "Reset for a fresh run", detail: "", tone: "neutral" };
       default:

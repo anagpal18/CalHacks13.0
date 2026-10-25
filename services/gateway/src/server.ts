@@ -15,6 +15,8 @@ import { createEventLog, type LogEvent } from "./gateway/eventlog.ts";
 import { checkShape, createExtractions, score } from "./gateway/extractions.ts";
 import { createLedger } from "./gateway/ledger.ts";
 import { createPassports } from "./gateway/passports.ts";
+import { createDecisions, DECISION_KINDS, DECISION_ROLES, type DecisionKind, type DecisionRole } from "./gateway/decisions.ts";
+import { createRuleBooks, RuleBookError, seatForStamp, type RuleChange } from "./gateway/rulebooks.ts";
 import { ASKED_WHO, SEATS, SOURCE_TOOLS, isSeat, type Seat } from "./gateway/seats.ts";
 import { createSigner } from "./gateway/signing.ts";
 import { createTickets, type Ticket } from "./gateway/tickets.ts";
@@ -45,7 +47,9 @@ const crs = createCrsClient({
   storePath: process.env.CRS_STORE_PATH ?? `${dataDir}/crs-store.json`,
 });
 const events = createEventLog(`${dataDir}/events.jsonl`);
-const passports = createPassports(`${dataDir}/passports.json`);
+const decisions = createDecisions(`${dataDir}/decisions.json`);
+const passports = createPassports(`${dataDir}/passports.json`, decisions.isApproved);
+const ruleBooks = createRuleBooks({ fixedDir: new URL("../rulebooks/", import.meta.url), storePath: `${dataDir}/rulebooks/learned.json` });
 const extractions = createExtractions(`${dataDir}/extracted.json`);
 // BP_SEED_BILLS=1 serves the seeded bill to every seat (the pre-inbox flow), for tests only.
 const seedBills = process.env.BP_SEED_BILLS === "1";
@@ -55,7 +59,7 @@ const ledger = createLedger(`${dataDir}/ledger.json`);
 const bpScript = readFileSync(new URL("../tools/bp.sh", import.meta.url), "utf8");
 const dashboardKey = process.env.BP_DASHBOARD_KEY ?? "";
 
-const views = createViews({ crs, events, extractions, ledger, passports });
+const views = createViews({ crs, events, extractions, ledger, passports, decisions });
 const tunnel = createTunnelProbe({ fallbackUrl: process.env.BP_GATEWAY_URL, metricsUrl: process.env.CLOUDFLARED_METRICS_URL });
 const seatRunner = createSeatRunner({
   creao: process.env.CREAO_API_KEY?.startsWith("capi_") ? createCreaoClient({ apiKey: process.env.CREAO_API_KEY, baseUrl: process.env.CREAO_BASE_URL }) : undefined,
@@ -113,6 +117,9 @@ const orchestrator = createOrchestrator({
   audit: (billId) => views.auditTrail(billId),
   purchaseOrder: purchaseOrderFor,
   describe: describeEvent,
+  readRulebook: (seat) => ruleBooks.render(seat),
+  updateRulebook: (change) => changeRuleBook(change, "orchestrator"),
+  decisionsFor: (billId) => decisions.forBill(billId),
 });
 
 // Master section 9: call CRS only for new vendors and bank-detail changes, never on every bill.
@@ -150,7 +157,12 @@ const isDashboard = (req: IncomingMessage) => hasKey(req, dashboardKey) || isAdm
 function bookIfReady(billId: string) {
   if (passports.summary(billId).status !== "bookable" || ledger.forBill(billId)) return;
   const fields = seedBills ? company.getBill(billId) : extractions.get(billId)?.fields;
-  const vendor = company.searchVendors(fields?.vendorName ?? "")[0];
+  // A new vendor is not on file; once a person approves the vendor stamp, book it under a provisional ID.
+  const vendor =
+    company.searchVendors(fields?.vendorName ?? "")[0] ??
+    (decisions.isApproved(billId, "vendor") && fields?.vendorName
+      ? { vendorId: `V-NEW-${String(fields.vendorName).toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "")}`, legalName: fields.vendorName }
+      : undefined);
   const amountCents = Math.round(Number(String(fields?.totalAmount ?? "").replace(/[$,\s]/g, "")) * 100);
   if (!vendor || !(amountCents > 0)) {
     events.append("booking_skipped", { billId, data: { reason: !vendor ? "vendor not found" : "no amount" } });
@@ -158,6 +170,44 @@ function bookIfReady(billId: string) {
   }
   const entry = ledger.book(billId, vendor.vendorId, amountCents, `${fields.invoiceNumber} from ${vendor.legalName}`);
   events.append("bill_booked", { billId, data: { entryId: entry.entryId, amountCents, lines: entry.lines } });
+}
+
+// The site PM can decide the stamps about the job itself; anything about who gets paid needs the Controller.
+const PM_STAMPS = new Set(["order", "delivered", "terms"]);
+
+// Every rule ID cited in signed stamp reasons, so the dashboard can show how often each rule is used.
+function ruleUses(): Record<string, number> {
+  const uses: Record<string, number> = {};
+  for (const e of events.list({})) {
+    if (e.type !== "stamp_signed") continue;
+    const reason = passports.summary(e.billId ?? "").stamps[(e.data as any)?.id]?.reason ?? "";
+    for (const id of new Set(reason.match(/\b[IVM]-\d+\b/g) ?? [])) uses[id] = (uses[id] ?? 0) + 1;
+  }
+  return uses;
+}
+
+function ruleBookViews() {
+  const uses = ruleUses();
+  return (Object.keys(SEATS) as Seat[]).map((seat) => ({
+    seat,
+    title: ruleBooks.title(seat),
+    markdown: ruleBooks.render(seat),
+    learned: ruleBooks.learned(seat).map((r) => ({ ...r, timesUsed: uses[r.id] ?? 0 })),
+  }));
+}
+
+// Add, replace or remove one learned rule, and log it on the bill it came from.
+function changeRuleBook(change: RuleChange, by: "orchestrator" | "dashboard") {
+  try {
+    const { rule, removed } = ruleBooks.apply(change);
+    const r = rule ?? removed!;
+    const type = change.action === "add" ? "rule_added" : change.action === "replace" ? "rule_replaced" : "rule_removed";
+    events.append(type, { billId: r.sourceBillId, seat: r.seat, data: { ruleId: r.id, stamp: r.stamp, scope: r.scope, text: r.text, by } });
+    return { ok: true, action: change.action, rule: r, rulebook: ruleBooks.render(r.seat) };
+  } catch (e) {
+    if (e instanceof RuleBookError) throw new HttpError(400, e.message);
+    throw e;
+  }
 }
 
 // Server-Sent Events for the dashboard's agent panel.
@@ -225,6 +275,42 @@ async function dashboard(req: IncomingMessage, res: ServerResponse, path: string
   if (req.method === "POST" && (m = /^\/dashboard\/crs\/chain\/(P\d{2})$/.exec(path))) {
     if (!isAllowedPersona(m[1])) throw new HttpError(400, "not an allowlisted CRS test persona");
     send(res, 200, await views.crsChain(m[1]));
+    return true;
+  }
+  // A person's decision on one stamp, from the Check page. Recorded as code, not by the orchestrator, so the
+  // bill moves on even if the agent is slow; the orchestrator then turns the note into a rule.
+  if ((m = /^\/dashboard\/bills\/([\w-]+)\/decisions$/.exec(path))) {
+    const billId = m[1];
+    if (!company.getBill(billId)) throw new HttpError(404, `unknown bill ${billId}`);
+    if (req.method === "GET") {
+      send(res, 200, decisions.forBill(billId));
+      return true;
+    }
+    if (req.method !== "POST") return false;
+    const { stampId, decision, byRole, note } = await readJson(req);
+    const stamp = passports.summary(billId).stamps[stampId];
+    if (!stamp) throw new HttpError(400, `${stampId} has not been signed on this bill yet`);
+    if (stamp.status === "pass") throw new HttpError(400, `${stampId} already passed; there is nothing to decide`);
+    if (!DECISION_KINDS.has(decision)) throw new HttpError(400, "decision must be approve, reject or escalate");
+    if (!DECISION_ROLES.has(byRole)) throw new HttpError(400, "byRole must be controller or project_manager");
+    if (typeof note !== "string" || !note.trim()) throw new HttpError(400, "say why in one line (note)");
+    if (byRole === "project_manager" && decision !== "escalate" && !PM_STAMPS.has(stampId)) {
+      throw new HttpError(403, `only the Controller can ${decision} ${stampId}; the site PM can decide ${[...PM_STAMPS].join(", ")}`);
+    }
+    if (ledger.forBill(billId)) throw new HttpError(409, "this bill is already booked");
+    const recorded = { billId, stampId, decision: decision as DecisionKind, byRole: byRole as DecisionRole, note: note.trim().slice(0, 500), at: new Date().toISOString() };
+    decisions.record(recorded);
+    events.append("human_decision", { billId, data: { stampId, decision, byRole, note: recorded.note } });
+    bookIfReady(billId);
+    send(res, 200, { decision: recorded, bill: views.billSummary(billId), passport: views.passport(billId) });
+    return true;
+  }
+  if (req.method === "GET" && path === "/dashboard/rulebooks") {
+    send(res, 200, ruleBookViews());
+    return true;
+  }
+  if (req.method === "DELETE" && (m = /^\/dashboard\/rulebooks\/([a-z_]+)\/rules\/([A-Z]-\d+)$/.exec(path))) {
+    send(res, 200, changeRuleBook({ action: "remove", seat: m[1], ruleId: m[2] }, "dashboard"));
     return true;
   }
   if (req.method === "POST" && path === "/dashboard/agent/chat") {
@@ -487,6 +573,12 @@ const server = createServer(async (req, res) => {
     if (t) {
       let m: RegExpExecArray | null;
       if (req.method === "GET" && path === "/tools/inbox") return serve(res, t, "inbox", {}, company.inboxFiles(t.billId));
+      // The seat's own rule book only; bp help prints it during setup.
+      if (req.method === "GET" && path === "/tools/rulebook") {
+        events.append("rulebook_read", { billId: t.billId, seat: t.seat, data: { rules: ruleBooks.learned(t.seat).map((r) => r.id), runId: t.runId } });
+        res.writeHead(200, { "Content-Type": "text/markdown; charset=utf-8" });
+        return res.end(ruleBooks.render(t.seat));
+      }
       if (req.method === "GET" && (m = /^\/tools\/inbox\/([\w.-]+)$/.exec(path))) {
         const name = m[1];
         if (!SEATS[t.seat].tools.includes("inbox")) deny(t, "inbox", { name }, `the ${t.seat} seat may not read the inbox`);
@@ -582,6 +674,7 @@ const server = createServer(async (req, res) => {
       if (req.method === "DELETE") {
         const revoked = tickets.revokeBill(m[1]);
         passports.reset(m[1]);
+        decisions.reset(m[1]);
         extractions.reset(m[1]);
         ledger.unbook(m[1]);
         events.append("passport_reset", { billId: m[1], data: { ticketsRevoked: revoked } });

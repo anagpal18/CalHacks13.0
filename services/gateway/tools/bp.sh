@@ -21,7 +21,15 @@ bp employee-match [--phone P] [--address A] [--name N]
 bp crs-verify <persona> <bank_change|new_vendor>
                                          CRS chain: Fraud Finder, identity, reverse phone (Vendor-Records only)
 bp submit <stamps.json>                  submit {"stamps":[...]} for the gateway to check and sign
+bp rules                                 your seat's rule book: fixed rules and rules learned from AP decisions
 EOF
+}
+
+# Printed after the usage text, so every agent sees its rules during setup (it runs bp help first).
+rules() {
+  echo "RULES FOR YOUR SEAT. Read them before you decide. Follow them when they apply, and when a rule decides a stamp, name its ID in the reason."
+  echo
+  call "$GW/tools/rulebook"
 }
 
 : "${BP_GATEWAY_URL:?BP_GATEWAY_URL is not set (it is a Creao Secret)}"
@@ -69,6 +77,13 @@ case "$cmd" in
       -d "{\"persona\":\"${1:?persona}\",\"purpose\":\"${2:?purpose}\"}"
     ;;
   submit) call -X POST "$GW/tools/stamps" --data-binary "@${1:?stamps.json}" ;;
-  help | -h | --help) usage ;;
+  rules) rules ;;
+  help | -h | --help)
+    usage
+    if [ -n "${BP_TICKET:-}" ]; then
+      echo
+      rules || echo "(could not load your rule book; run bp rules)"
+    fi
+    ;;
   *) echo "unknown command: $cmd" >&2; usage >&2; exit 2 ;;
 esac

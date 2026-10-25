@@ -17,6 +17,7 @@ import {
   MOCK_SCORE,
   MOCK_WEEK_INTAKE,
 } from "./mockData";
+import { mockRecordDecision, mockRemoveRule, mockRuleBooks, mockTeach } from "./mockLearning";
 import type {
   AttentionItem,
   AuditEvent,
@@ -28,7 +29,9 @@ import type {
   Passport,
   PaymentRun,
   ProcessedInvoice,
+  RuleBook,
   ScoreResult,
+  StampDecision,
   UploadedBill,
 } from "./types";
 
@@ -40,11 +43,15 @@ const isLive = () => getDataMode() === "live";
 
 export const listBills = (): Promise<BillSummary[]> => (isLive() ? gatewayClient.listBills() : resolveLater(MOCK_BILLS));
 
+// Demo decisions change the mock objects in place, so hand out copies for React to see the change.
 export const getPassport = (billId: string): Promise<Passport | null> =>
-  isLive() ? gatewayClient.getPassport(billId) : resolveLater(MOCK_PASSPORTS[billId] ?? null);
+  isLive() ? gatewayClient.getPassport(billId) : resolveLater(MOCK_PASSPORTS[billId] ? { ...MOCK_PASSPORTS[billId] } : null);
 
-export const getBillSummary = (billId: string): Promise<BillSummary | null> =>
-  isLive() ? gatewayClient.getBill(billId).catch(() => null) : resolveLater(MOCK_BILLS.find((bill) => bill.billId === billId) ?? null);
+export const getBillSummary = (billId: string): Promise<BillSummary | null> => {
+  if (isLive()) return gatewayClient.getBill(billId).catch(() => null);
+  const bill = MOCK_BILLS.find((candidate) => candidate.billId === billId);
+  return resolveLater(bill ? { ...bill } : null);
+};
 
 export const getAuditTrail = (billId: string): Promise<AuditEvent[]> =>
   isLive() ? gatewayClient.getAuditTrail(billId) : resolveLater(MOCK_AUDIT_TRAILS[billId] ?? []);
@@ -101,9 +108,46 @@ export async function listProcessedInvoices(): Promise<ProcessedInvoice[]> {
     .sort((first, second) => second.processedAt.localeCompare(first.processedAt));
 }
 
+// ---------------------------------------------------------------- decisions and rule books
+
+export const recordDecision = async (decision: Omit<StampDecision, "at">) =>
+  isLive() ? gatewayClient.recordDecision(decision) : resolveLater(mockRecordDecision(decision));
+
+export const listRuleBooks = (): Promise<RuleBook[]> => (isLive() ? gatewayClient.listRuleBooks() : resolveLater(mockRuleBooks()));
+
+export const removeRule = async (seat: string, ruleId: string) =>
+  isLive() ? gatewayClient.removeRule(seat, ruleId) : resolveLater(mockRemoveRule(seat, ruleId));
+
+/** The message the orchestrator learns from; its system prompt treats "Human decision" as a lesson. */
+export function decisionMessage(decision: StampDecision): string {
+  const role = decision.byRole === "controller" ? "the Controller" : "the site PM";
+  return `Human decision on ${decision.billId}, stamp ${decision.stampId}, ${decision.decision}, by ${role}: "${decision.note}"`;
+}
+
+/** Ask the orchestrator to turn a decision into a rule for the agent that owns the stamp. Streams its events. */
+export const teachFromDecision = (decision: StampDecision, onEvent: (type: string, data: any) => void) =>
+  isLive() ? gatewayClient.chatWithOrchestrator(decisionMessage(decision), onEvent) : mockTeach(decision, onEvent);
+
 // ---------------------------------------------------------------- no gateway route yet: mocks in both modes
 
-export const getNextPaymentRun = (): Promise<PaymentRun> => resolveLater(MOCK_PAYMENT_RUN);
+/** Live: every bill the gateway booked (by the agents or after a person approved it) is in the next run. */
+export async function getNextPaymentRun(): Promise<PaymentRun> {
+  if (!isLive()) return resolveLater(MOCK_PAYMENT_RUN);
+  const booked = (await gatewayClient.listBills()).filter((bill) => bill.status === "booked");
+  const NET_30_MS = 30 * 24 * 60 * 60 * 1000;
+  return {
+    ...MOCK_PAYMENT_RUN,
+    runId: "RUN-LIVE",
+    items: booked.map((bill) => ({
+      billId: bill.billId,
+      vendorName: bill.vendorName,
+      amountCents: bill.amountCents,
+      dueDate: new Date(new Date(bill.receivedAt).getTime() + NET_30_MS).toISOString().slice(0, 10),
+      terms: "Net 30",
+      requestedBy: "Booked by the gateway",
+    })),
+  };
+}
 export const getScore = (): Promise<ScoreResult> => resolveLater(MOCK_SCORE);
 export const getDailyProcessing = (): Promise<DailyProcessing[]> => resolveLater(MOCK_DAILY_PROCESSING);
 

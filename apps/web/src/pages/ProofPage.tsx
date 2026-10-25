@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { Database, History, Target } from "lucide-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { RuleBooksPanel } from "@/components/learning/RuleBooksPanel";
 import { AnimatedNumber } from "@/components/visuals/AnimatedNumber";
 import { HorizontalBars } from "@/components/charts/HorizontalBars";
 import { STAMP_ICON } from "@/components/visuals/stampIcons";
@@ -90,6 +91,8 @@ export function ProofPage() {
           </div>
         </div>
       </section>
+
+      <RuleBooksPanel />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
         <CaughtByChart problems={caught} />
